@@ -6,14 +6,13 @@ PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.MD5PasswordHasher",
 ]
 
-# Use in-memory SQLite for fast isolated unit test execution if PostgreSQL is offline
-if os.environ.get("USE_SQLITE_TEST", "False").lower() in ("true", "1"):
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": ":memory:",
-        }
+# In-memory SQLite database for isolated unit test execution
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": ":memory:",
     }
+}
 
 # In-memory channel layers for fast tests
 CHANNEL_LAYERS = {

@@ -21,6 +21,8 @@ import { ReportsDashboardPage } from "@/features/reports/pages/ReportsDashboardP
 import { NotificationCenterPage } from "@/features/notifications/pages/NotificationCenterPage";
 import { AuditLogsPage } from "@/features/audit/pages/AuditLogsPage";
 import { SettingsPage } from "@/features/settings/pages/SettingsPage";
+import { CustomerDirectoryPage } from "@/features/customers/pages/CustomerDirectoryPage";
+import { ReservationsPage } from "@/features/customers/pages/ReservationsPage";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute";
 import { PermissionRoute } from "@/features/authorization/guards/PermissionRoute";
 
@@ -205,6 +207,26 @@ export const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <PermissionRoute requiredPermission="settings.view">
               <SettingsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/customers"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="customers.view">
+              <CustomerDirectoryPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/reservations"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="reservations.view">
+              <ReservationsPage />
             </PermissionRoute>
           </ProtectedRoute>
         }

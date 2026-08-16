@@ -76,6 +76,12 @@ SYSTEM_PERMISSIONS = [
     ("settings", "manage", "Manage tax rules and operational configurations"),
     ("settings", "update", "Modify restaurant configurations and printer routing"),
     ("audit", "view", "View audit trail logs and security events"),
+
+    # Customer Relationship Management (CRM) & Reservations
+    ("customers", "view", "View customer directory, dining profiles, and preferences"),
+    ("customers", "manage", "Create, update, tag, and merge customer profiles"),
+    ("reservations", "view", "View table reservations and calendar schedule"),
+    ("reservations", "manage", "Book, confirm, assign tables, check in, and cancel reservations"),
 ]
 
 # Role to Permission code mappings
@@ -106,6 +112,8 @@ SYSTEM_ROLE_DEFINITIONS = {
             "reports.view", "reports.export",
             "settings.view", "settings.update",
             "audit.view",
+            "customers.view", "customers.manage",
+            "reservations.view", "reservations.manage",
         ],
     },
     "CASHIER": {
@@ -117,6 +125,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "billing.view", "billing.create", "billing.split", "billing.discount",
             "menu.view",
             "notifications.view",
+            "customers.view", "customers.manage",
         ],
     },
     "WAITER": {
@@ -128,6 +137,8 @@ SYSTEM_ROLE_DEFINITIONS = {
             "menu.view",
             "kitchen.view",
             "notifications.view",
+            "customers.view",
+            "reservations.view", "reservations.manage",
         ],
     },
     "KITCHEN_STAFF": {

@@ -18,6 +18,7 @@ import {
   BarChart3,
   Users,
   Bell,
+  Calendar,
   Shield,
   Settings,
   Menu,
@@ -56,6 +57,8 @@ const NAVIGATION_GROUPS: NavGroup[] = [
       { id: "orders", label: "Orders", path: "/orders/history", icon: Utensils, permission: "orders.view" },
       { id: "kitchen", label: "Kitchen (KDS)", path: "/kitchen", icon: ChefHat, permission: "kitchen.view" },
       { id: "tables", label: "Table Floor", path: "/tables", icon: Layers, permission: "tables.view" },
+      { id: "reservations", label: "Reservations", path: "/reservations", icon: Calendar, permission: "reservations.view" },
+      { id: "customers", label: "Customers & CRM", path: "/customers", icon: Users, permission: "customers.view" },
     ],
   },
   {
