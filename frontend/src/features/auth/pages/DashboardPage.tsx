@@ -1,5 +1,8 @@
 import React from "react";
 import { useAuth, useSessions } from "../hooks/useAuth";
+import { useActiveRole } from "@/features/authorization/hooks/useActiveRole";
+import { RoleSwitcher } from "@/features/authorization/components/RoleSwitcher";
+import { Can } from "@/features/authorization/components/Can";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,14 +13,16 @@ import {
   Smartphone,
   Monitor,
   Trash2,
-  Lock,
-  CheckCircle2,
   Clock,
+  Utensils,
+  RotateCcw,
+  Sparkles,
 } from "lucide-react";
 
 export const DashboardPage: React.FC = () => {
   const { user, logout, isLoggingOut } = useAuth();
   const { sessions, terminateSession, terminateOtherSessions } = useSessions();
+  const { activeRole, permissions } = useActiveRole();
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 p-6 md:p-12 selection:bg-blue-500/30">
@@ -39,80 +44,102 @@ export const DashboardPage: React.FC = () => {
             </div>
           </div>
 
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => logout()}
-            disabled={isLoggingOut}
-            className="border-slate-800 hover:bg-slate-800 text-rose-300 hover:text-rose-200 gap-1.5 text-xs"
-          >
-            <LogOut className="h-3.5 w-3.5" />
-            Sign Out
-          </Button>
+          <div className="flex items-center gap-3">
+            {/* Dynamic Active Role Switcher */}
+            <RoleSwitcher />
+
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => logout()}
+              disabled={isLoggingOut}
+              className="border-slate-800 hover:bg-slate-800 text-rose-300 hover:text-rose-200 gap-1.5 text-xs"
+            >
+              <LogOut className="h-3.5 w-3.5" />
+              Sign Out
+            </Button>
+          </div>
         </header>
 
-        {/* User details & Security stats */}
+        {/* Operational Context & RBAC Status */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card className="bg-slate-900/60 border-slate-800 backdrop-blur-sm">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-slate-200 flex items-center gap-2">
                 <Shield className="h-4 w-4 text-blue-400" />
-                Account Identity & Status
+                Active Operational Role
               </CardTitle>
               <CardDescription className="text-xs text-slate-500">
-                Current authenticated principal metadata
+                Current active RBAC scope governing access to terminal actions
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-2.5 text-xs">
+            <CardContent className="space-y-3 text-xs">
               <div className="flex justify-between py-1.5 border-b border-slate-800/60">
-                <span className="text-slate-400">User ID</span>
-                <span className="font-mono text-slate-300 text-[11px]">{user?.id}</span>
+                <span className="text-slate-400">Role Title</span>
+                <span className="font-semibold text-white">{activeRole?.name || "Standard Member"}</span>
               </div>
               <div className="flex justify-between py-1.5 border-b border-slate-800/60">
-                <span className="text-slate-400">Account Status</span>
-                <span className="text-emerald-400 flex items-center gap-1 font-medium">
-                  <CheckCircle2 className="h-3 w-3" /> Active
-                </span>
+                <span className="text-slate-400">Role Slug</span>
+                <span className="font-mono text-blue-400 text-[11px]">{activeRole?.code || "MEMBER"}</span>
               </div>
               <div className="flex justify-between py-1.5 border-b border-slate-800/60">
-                <span className="text-slate-400">Staff Status</span>
-                <span className="text-slate-300">{user?.is_staff ? "Yes" : "Standard User"}</span>
+                <span className="text-slate-400">Active Permissions Count</span>
+                <span className="font-mono text-emerald-400 font-medium">{permissions.length} capabilities</span>
               </div>
-              <div className="flex justify-between py-1.5">
-                <span className="text-slate-400">Last Login</span>
-                <span className="font-mono text-slate-400 text-[11px]">
-                  {user?.last_login ? new Date(user.last_login).toLocaleString() : "First Session"}
-                </span>
+              <div className="pt-2">
+                <span className="text-slate-400 text-[11px] block mb-2 font-medium">Effective Permissions:</span>
+                <div className="flex flex-wrap gap-1.5 max-h-32 overflow-y-auto pr-1">
+                  {permissions.map((perm) => (
+                    <Badge key={perm} variant="outline" className="text-[10px] border-slate-800 bg-slate-900 text-slate-300">
+                      {perm}
+                    </Badge>
+                  ))}
+                </div>
               </div>
             </CardContent>
           </Card>
 
+          {/* Demonstration of <Can> permission gating */}
           <Card className="bg-slate-900/60 border-slate-800 backdrop-blur-sm">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-slate-200 flex items-center gap-2">
-                <Lock className="h-4 w-4 text-indigo-400" />
-                Prompt 6 Architecture Lock
+                <Sparkles className="h-4 w-4 text-indigo-400" />
+                Permission-Aware UI Guards
               </CardTitle>
               <CardDescription className="text-xs text-slate-500">
-                Authentication Foundation Complete
+                Live evaluation of UI capabilities based on active role
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-2 text-xs text-slate-300">
+            <CardContent className="space-y-3 text-xs text-slate-300">
               <p className="text-slate-400 leading-relaxed">
-                Authentication answers <span className="text-white font-medium">"Who you are"</span>.
-                RBAC, restaurant tenancy binding, and active role switching will be integrated in
-                <span className="text-blue-400 font-medium"> Prompt 7</span>.
+                Actions below automatically enable/disable or hide when you switch roles:
               </p>
-              <div className="pt-2 flex flex-wrap gap-2">
-                <Badge variant="outline" className="border-blue-500/20 bg-blue-500/10 text-blue-400 text-[11px]">
-                  JWT 15m Expiry
-                </Badge>
-                <Badge variant="outline" className="border-indigo-500/20 bg-indigo-500/10 text-indigo-400 text-[11px]">
-                  HttpOnly Refresh
-                </Badge>
-                <Badge variant="outline" className="border-emerald-500/20 bg-emerald-500/10 text-emerald-400 text-[11px]">
-                  Session Rotation
-                </Badge>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                <Can
+                  permission="orders.create"
+                  fallback={
+                    <Button disabled variant="outline" size="sm" className="opacity-40 text-xs gap-1.5 justify-start">
+                      <Utensils className="h-3.5 w-3.5" /> Create Order (Locked)
+                    </Button>
+                  }
+                >
+                  <Button variant="outline" size="sm" className="border-blue-500/30 text-blue-300 hover:bg-blue-500/10 text-xs gap-1.5 justify-start">
+                    <Utensils className="h-3.5 w-3.5 text-blue-400" /> Create Dine-in Order
+                  </Button>
+                </Can>
+
+                <Can
+                  permission="billing.refund"
+                  fallback={
+                    <Button disabled variant="outline" size="sm" className="opacity-40 text-xs gap-1.5 justify-start">
+                      <RotateCcw className="h-3.5 w-3.5" /> Refund (Manager Only)
+                    </Button>
+                  }
+                >
+                  <Button variant="outline" size="sm" className="border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/10 text-xs gap-1.5 justify-start">
+                    <RotateCcw className="h-3.5 w-3.5 text-emerald-400" /> Managerial Refund
+                  </Button>
+                </Can>
               </div>
             </CardContent>
           </Card>
@@ -127,7 +154,7 @@ export const DashboardPage: React.FC = () => {
                 Active Device Sessions
               </CardTitle>
               <CardDescription className="text-xs text-slate-400">
-                Manage your active logins across different devices and browsers.
+                Manage active logins across different POS terminals and kitchen tablets.
               </CardDescription>
             </div>
             {sessions.length > 1 && (
