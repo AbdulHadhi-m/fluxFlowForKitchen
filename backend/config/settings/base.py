@@ -48,6 +48,7 @@ LOCAL_APPS = [
     "apps.accounts",
     "apps.rbac",
     "apps.restaurants",
+    "apps.staff",
     "apps.tenancy",
     "apps.facilities",
     "apps.catalog",

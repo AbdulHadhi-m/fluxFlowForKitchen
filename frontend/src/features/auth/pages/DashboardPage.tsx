@@ -19,6 +19,7 @@ import {
   RotateCcw,
   Sparkles,
   Building2,
+  Users,
 } from "lucide-react";
 
 export const DashboardPage: React.FC = () => {
@@ -147,6 +148,14 @@ export const DashboardPage: React.FC = () => {
                   <Link to="/restaurant/setup">
                     <Button variant="outline" size="sm" className="w-full border-blue-500/30 text-blue-300 hover:bg-blue-500/10 text-xs gap-1.5 justify-start">
                       <Building2 className="h-3.5 w-3.5 text-blue-400" /> Restaurant Settings & Setup
+                    </Button>
+                  </Link>
+                </Can>
+
+                <Can permission="staff.view">
+                  <Link to="/staff">
+                    <Button variant="outline" size="sm" className="w-full border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/10 text-xs gap-1.5 justify-start">
+                      <Users className="h-3.5 w-3.5 text-indigo-400" /> Staff Roster & Roles
                     </Button>
                   </Link>
                 </Can>

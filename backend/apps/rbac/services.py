@@ -43,9 +43,12 @@ SYSTEM_PERMISSIONS = [
     
     # Staff & Membership
     ("staff", "view", "View restaurant staff roster and assignments"),
+    ("staff", "create", "Create new staff accounts and employee profiles"),
     ("staff", "invite", "Invite new staff members and assign roles"),
     ("staff", "update", "Modify staff roles and shift schedules"),
+    ("staff", "disable", "Deactivate or disable staff member accounts"),
     ("staff", "remove", "Deactivate or remove staff from restaurant"),
+    ("staff", "roles.manage", "Assign and modify staff primary and secondary roles"),
     
     # Reports & Analytics
     ("reports", "view", "View sales, operational performance, and kitchen metrics"),
