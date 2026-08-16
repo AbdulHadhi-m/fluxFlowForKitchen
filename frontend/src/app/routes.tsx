@@ -11,6 +11,8 @@ import { TableManagementPage } from "@/features/tables/pages/TableManagementPage
 import { PosTerminalPage } from "@/features/orders/pages/PosTerminalPage";
 import { OrderHistoryPage } from "@/features/orders/pages/OrderHistoryPage";
 import { KitchenDisplayPage } from "@/features/kitchen/pages/KitchenDisplayPage";
+import { BillingDashboardPage } from "@/features/billing/pages/BillingDashboardPage";
+import { BillingHistoryPage } from "@/features/billing/pages/BillingHistoryPage";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute";
 import { PermissionRoute } from "@/features/authorization/guards/PermissionRoute";
 
@@ -97,6 +99,26 @@ export const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <PermissionRoute requiredPermission="kitchen.view">
               <KitchenDisplayPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/billing"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="billing.view">
+              <BillingDashboardPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/billing/history"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="billing.view">
+              <BillingHistoryPage />
             </PermissionRoute>
           </ProtectedRoute>
         }

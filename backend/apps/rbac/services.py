@@ -36,9 +36,11 @@ SYSTEM_PERMISSIONS = [
     # Billing & Payments
     ("billing", "view", "View bills, invoices, and payment receipts"),
     ("billing", "create", "Generate bills and process customer payments"),
+    ("billing", "payment.create", "Record customer payment transactions"),
     ("billing", "split", "Split bills by item or customer seat"),
     ("billing", "discount", "Apply promotional discounts or managerial overrides"),
     ("billing", "refund", "Process invoice refunds or payment reversals"),
+    ("billing", "void", "Void or cancel active bills"),
     
     # Inventory & Recipes
     ("inventory", "view", "View stock levels and raw material inventory"),
