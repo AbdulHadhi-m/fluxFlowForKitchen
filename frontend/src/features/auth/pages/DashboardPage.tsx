@@ -28,6 +28,7 @@ import {
   Receipt,
   Boxes,
   Truck,
+  BarChart3,
 } from "lucide-react";
 
 export const DashboardPage: React.FC = () => {
@@ -228,6 +229,14 @@ export const DashboardPage: React.FC = () => {
                   <Link to="/procurement/orders">
                     <Button variant="outline" size="sm" className="w-full border-purple-500/30 text-purple-300 hover:bg-purple-500/10 text-xs gap-1.5 justify-start">
                       <Truck className="h-3.5 w-3.5 text-purple-400" /> Procurement & POs
+                    </Button>
+                  </Link>
+                </Can>
+
+                <Can permission="reports.view">
+                  <Link to="/reports">
+                    <Button variant="outline" size="sm" className="w-full border-amber-500/30 text-amber-300 hover:bg-amber-500/10 text-xs gap-1.5 justify-start">
+                      <BarChart3 className="h-3.5 w-3.5 text-amber-400" /> Business Analytics & Reports
                     </Button>
                   </Link>
                 </Can>

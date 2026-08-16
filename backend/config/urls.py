@@ -17,6 +17,7 @@ urlpatterns = [
     path("api/v1/billing/", include("apps.billing.urls")),
     path("api/v1/inventory/", include("apps.inventory.urls")),
     path("api/v1/procurement/", include("apps.procurement.urls")),
+    path("api/v1/reports/", include("apps.reports.urls")),
     # OpenAPI 3 Schema & Swagger UI
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
