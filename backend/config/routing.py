@@ -1,6 +1,8 @@
 """WebSocket routing configuration for Django Channels."""
 from apps.kitchen.routing import websocket_urlpatterns as kitchen_ws_urlpatterns
+from apps.notifications.routing import websocket_urlpatterns as notifications_ws_urlpatterns
 
 websocket_urlpatterns = [
     *kitchen_ws_urlpatterns,
+    *notifications_ws_urlpatterns,
 ]

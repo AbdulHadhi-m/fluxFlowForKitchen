@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth, useSessions } from "../hooks/useAuth";
 import { useActiveRole } from "@/features/authorization/hooks/useActiveRole";
 import { RoleSwitcher } from "@/features/authorization/components/RoleSwitcher";
+import { NotificationBell } from "@/features/notifications/components/NotificationBell";
 import { Can } from "@/features/authorization/components/Can";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -57,6 +58,9 @@ export const DashboardPage: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3">
+            {/* Real-time Notification Bell */}
+            <NotificationBell />
+
             {/* Dynamic Active Role Switcher */}
             <RoleSwitcher />
 

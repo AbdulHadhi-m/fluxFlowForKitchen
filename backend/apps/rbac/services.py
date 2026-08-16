@@ -63,6 +63,10 @@ SYSTEM_PERMISSIONS = [
     ("staff", "remove", "Deactivate or remove staff from restaurant"),
     ("staff", "roles.manage", "Assign and modify staff primary and secondary roles"),
     
+    # Notifications & Alerts
+    ("notifications", "view", "View in-app alerts and notifications"),
+    ("notifications", "manage", "Manage notification preferences and dismiss alerts"),
+    
     # Reports & Analytics
     ("reports", "view", "View sales, operational performance, and kitchen metrics"),
     ("reports", "export", "Export analytics and tax audit files"),
@@ -98,6 +102,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "inventory.view", "inventory.update",
             "procurement.view", "procurement.create", "procurement.manage", "procurement.approve", "procurement.receive",
             "staff.view", "staff.update",
+            "notifications.view", "notifications.manage",
             "reports.view", "reports.export",
             "settings.view", "settings.update",
             "audit.view",
@@ -111,6 +116,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "tables.view",
             "billing.view", "billing.create", "billing.split", "billing.discount",
             "menu.view",
+            "notifications.view",
         ],
     },
     "WAITER": {
@@ -121,6 +127,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "tables.view", "tables.update",
             "menu.view",
             "kitchen.view",
+            "notifications.view",
         ],
     },
     "KITCHEN_STAFF": {
@@ -131,6 +138,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "orders.view",
             "menu.view",
             "inventory.view",
+            "notifications.view",
         ],
     },
 }
