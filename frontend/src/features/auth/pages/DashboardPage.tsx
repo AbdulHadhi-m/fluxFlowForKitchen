@@ -244,6 +244,14 @@ export const DashboardPage: React.FC = () => {
                     </Button>
                   </Link>
                 </Can>
+
+                <Can permission="audit.view">
+                  <Link to="/audit-logs">
+                    <Button variant="outline" size="sm" className="w-full border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/10 text-xs gap-1.5 justify-start">
+                      <Shield className="h-3.5 w-3.5 text-cyan-400" /> Security & Audit Logs
+                    </Button>
+                  </Link>
+                </Can>
               </div>
             </CardContent>
           </Card>

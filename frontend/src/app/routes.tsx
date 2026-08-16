@@ -19,6 +19,7 @@ import { SupplierListPage } from "@/features/procurement/pages/SupplierListPage"
 import { PurchaseOrderListPage } from "@/features/procurement/pages/PurchaseOrderListPage";
 import { ReportsDashboardPage } from "@/features/reports/pages/ReportsDashboardPage";
 import { NotificationCenterPage } from "@/features/notifications/pages/NotificationCenterPage";
+import { AuditLogsPage } from "@/features/audit/pages/AuditLogsPage";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute";
 import { PermissionRoute } from "@/features/authorization/guards/PermissionRoute";
 
@@ -184,6 +185,16 @@ export const AppRoutes: React.FC = () => {
         element={
           <ProtectedRoute>
             <NotificationCenterPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/audit-logs"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="audit.view">
+              <AuditLogsPage />
+            </PermissionRoute>
           </ProtectedRoute>
         }
       />
