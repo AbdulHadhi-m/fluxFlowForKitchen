@@ -24,6 +24,7 @@ import {
   LayoutGrid,
   Store,
   History,
+  ChefHat,
 } from "lucide-react";
 
 export const DashboardPage: React.FC = () => {
@@ -192,6 +193,14 @@ export const DashboardPage: React.FC = () => {
                   <Link to="/orders/history">
                     <Button variant="outline" size="sm" className="w-full border-slate-700 text-slate-300 hover:bg-slate-800 text-xs gap-1.5 justify-start">
                       <History className="h-3.5 w-3.5 text-slate-400" /> Orders & Ticket Ledger
+                    </Button>
+                  </Link>
+                </Can>
+
+                <Can permission="kitchen.view">
+                  <Link to="/kds">
+                    <Button variant="outline" size="sm" className="w-full border-amber-500/30 text-amber-300 hover:bg-amber-500/10 text-xs gap-1.5 justify-start">
+                      <ChefHat className="h-3.5 w-3.5 text-amber-400" /> Kitchen Display System (KDS)
                     </Button>
                   </Link>
                 </Can>

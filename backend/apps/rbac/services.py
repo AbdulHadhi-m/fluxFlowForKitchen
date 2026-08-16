@@ -17,6 +17,7 @@ SYSTEM_PERMISSIONS = [
     ("kitchen", "view", "View kitchen display stations and tickets"),
     ("kitchen", "bump", "Advance or complete kitchen order ticket stages"),
     ("kitchen", "recall", "Recall previously bumped kitchen tickets"),
+    ("kitchen", "status.manage", "Advance kitchen ticket status (preparing, ready, completed)"),
     
     # Menu / Catalog
     ("menu", "view", "View restaurant catalog, categories, and items"),

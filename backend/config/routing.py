@@ -1,6 +1,6 @@
 """WebSocket routing configuration for Django Channels."""
-from django.urls import path
+from apps.kitchen.routing import websocket_urlpatterns as kitchen_ws_urlpatterns
 
-# Empty websocket urlpatterns for Phase 0 / Phase 1 foundation
-# Specific domain consumers will be wired in later phases
-websocket_urlpatterns = []
+websocket_urlpatterns = [
+    *kitchen_ws_urlpatterns,
+]

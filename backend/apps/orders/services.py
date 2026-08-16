@@ -140,6 +140,11 @@ class OrderService:
                     table.status = RestaurantTable.TableStatus.OCCUPIED
                     table.save(update_fields=["status", "updated_at"])
 
+            # 6. Spawn kitchen preparation ticket
+            if status_value == Order.OrderStatus.PLACED:
+                from apps.kitchen.services import KitchenService
+                KitchenService.create_ticket_for_order(order)
+
             return order
 
     @classmethod

@@ -10,6 +10,7 @@ import { MenuManagementPage } from "@/features/menu/pages/MenuManagementPage";
 import { TableManagementPage } from "@/features/tables/pages/TableManagementPage";
 import { PosTerminalPage } from "@/features/orders/pages/PosTerminalPage";
 import { OrderHistoryPage } from "@/features/orders/pages/OrderHistoryPage";
+import { KitchenDisplayPage } from "@/features/kitchen/pages/KitchenDisplayPage";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute";
 import { PermissionRoute } from "@/features/authorization/guards/PermissionRoute";
 
@@ -86,6 +87,16 @@ export const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <PermissionRoute requiredPermission="orders.view">
               <OrderHistoryPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/kds"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="kitchen.view">
+              <KitchenDisplayPage />
             </PermissionRoute>
           </ProtectedRoute>
         }
