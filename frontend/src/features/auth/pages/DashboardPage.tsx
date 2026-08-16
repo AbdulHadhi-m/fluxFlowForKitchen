@@ -20,6 +20,7 @@ import {
   Sparkles,
   Building2,
   Users,
+  UtensilsCrossed,
 } from "lucide-react";
 
 export const DashboardPage: React.FC = () => {
@@ -156,6 +157,14 @@ export const DashboardPage: React.FC = () => {
                   <Link to="/staff">
                     <Button variant="outline" size="sm" className="w-full border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/10 text-xs gap-1.5 justify-start">
                       <Users className="h-3.5 w-3.5 text-indigo-400" /> Staff Roster & Roles
+                    </Button>
+                  </Link>
+                </Can>
+
+                <Can permission="menu.view">
+                  <Link to="/menu">
+                    <Button variant="outline" size="sm" className="w-full border-amber-500/30 text-amber-300 hover:bg-amber-500/10 text-xs gap-1.5 justify-start">
+                      <UtensilsCrossed className="h-3.5 w-3.5 text-amber-400" /> Menu & Catalog Management
                     </Button>
                   </Link>
                 </Can>

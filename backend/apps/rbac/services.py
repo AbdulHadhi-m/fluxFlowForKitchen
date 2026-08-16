@@ -22,6 +22,7 @@ SYSTEM_PERMISSIONS = [
     ("menu", "create", "Create new menu categories, items, and variations"),
     ("menu", "update", "Update menu pricing, modifiers, and availability"),
     ("menu", "delete", "Remove catalog items or categories"),
+    ("menu", "availability.manage", "Quickly toggle menu item availability for live ordering"),
     
     # Tables & Facilities
     ("tables", "view", "View floor plan and table seating status"),

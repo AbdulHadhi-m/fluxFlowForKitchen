@@ -10,6 +10,7 @@ urlpatterns = [
     path("api/v1/rbac/", include("apps.rbac.urls")),
     path("api/v1/restaurants/", include("apps.restaurants.urls")),
     path("api/v1/staff/", include("apps.staff.urls")),
+    path("api/v1/menu/", include("apps.menu.urls")),
     # OpenAPI 3 Schema & Swagger UI
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),

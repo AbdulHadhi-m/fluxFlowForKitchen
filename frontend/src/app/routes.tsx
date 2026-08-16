@@ -6,6 +6,7 @@ import { ResetPasswordPage } from "@/features/auth/pages/ResetPasswordPage";
 import { DashboardPage } from "@/features/auth/pages/DashboardPage";
 import { RestaurantSetupPage } from "@/features/restaurants/pages/RestaurantSetupPage";
 import { StaffManagementPage } from "@/features/staff/pages/StaffManagementPage";
+import { MenuManagementPage } from "@/features/menu/pages/MenuManagementPage";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute";
 import { PermissionRoute } from "@/features/authorization/guards/PermissionRoute";
 
@@ -42,6 +43,16 @@ export const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <PermissionRoute requiredPermission="staff.view">
               <StaffManagementPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/menu"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="menu.view">
+              <MenuManagementPage />
             </PermissionRoute>
           </ProtectedRoute>
         }
