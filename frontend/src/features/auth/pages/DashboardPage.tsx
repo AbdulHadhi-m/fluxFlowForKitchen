@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useAuth, useSessions } from "../hooks/useAuth";
 import { useActiveRole } from "@/features/authorization/hooks/useActiveRole";
 import { RoleSwitcher } from "@/features/authorization/components/RoleSwitcher";
@@ -17,6 +18,7 @@ import {
   Utensils,
   RotateCcw,
   Sparkles,
+  Building2,
 } from "lucide-react";
 
 export const DashboardPage: React.FC = () => {
@@ -139,6 +141,14 @@ export const DashboardPage: React.FC = () => {
                   <Button variant="outline" size="sm" className="border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/10 text-xs gap-1.5 justify-start">
                     <RotateCcw className="h-3.5 w-3.5 text-emerald-400" /> Managerial Refund
                   </Button>
+                </Can>
+
+                <Can permission="settings.view">
+                  <Link to="/restaurant/setup">
+                    <Button variant="outline" size="sm" className="w-full border-blue-500/30 text-blue-300 hover:bg-blue-500/10 text-xs gap-1.5 justify-start">
+                      <Building2 className="h-3.5 w-3.5 text-blue-400" /> Restaurant Settings & Setup
+                    </Button>
+                  </Link>
                 </Can>
               </div>
             </CardContent>

@@ -4,7 +4,9 @@ import { LoginPage } from "@/features/auth/pages/LoginPage";
 import { ForgotPasswordPage } from "@/features/auth/pages/ForgotPasswordPage";
 import { ResetPasswordPage } from "@/features/auth/pages/ResetPasswordPage";
 import { DashboardPage } from "@/features/auth/pages/DashboardPage";
+import { RestaurantSetupPage } from "@/features/restaurants/pages/RestaurantSetupPage";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute";
+import { PermissionRoute } from "@/features/authorization/guards/PermissionRoute";
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -20,6 +22,16 @@ export const AppRoutes: React.FC = () => {
         element={
           <ProtectedRoute>
             <DashboardPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/restaurant/setup"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="settings.view">
+              <RestaurantSetupPage />
+            </PermissionRoute>
           </ProtectedRoute>
         }
       />

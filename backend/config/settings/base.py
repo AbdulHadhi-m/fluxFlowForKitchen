@@ -46,8 +46,9 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "apps.core",
     "apps.accounts",
-    "apps.tenancy",
     "apps.rbac",
+    "apps.restaurants",
+    "apps.tenancy",
     "apps.facilities",
     "apps.catalog",
     "apps.tables",
