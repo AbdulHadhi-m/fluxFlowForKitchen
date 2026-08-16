@@ -30,6 +30,7 @@ import {
   Boxes,
   Truck,
   BarChart3,
+  Settings,
 } from "lucide-react";
 
 export const DashboardPage: React.FC = () => {
@@ -249,6 +250,14 @@ export const DashboardPage: React.FC = () => {
                   <Link to="/audit-logs">
                     <Button variant="outline" size="sm" className="w-full border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/10 text-xs gap-1.5 justify-start">
                       <Shield className="h-3.5 w-3.5 text-cyan-400" /> Security & Audit Logs
+                    </Button>
+                  </Link>
+                </Can>
+
+                <Can permission="settings.view">
+                  <Link to="/settings">
+                    <Button variant="outline" size="sm" className="w-full border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/10 text-xs gap-1.5 justify-start">
+                      <Settings className="h-3.5 w-3.5 text-indigo-400" /> Operational Settings
                     </Button>
                   </Link>
                 </Can>
