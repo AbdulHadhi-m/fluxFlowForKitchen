@@ -82,6 +82,14 @@ SYSTEM_PERMISSIONS = [
     ("customers", "manage", "Create, update, tag, and merge customer profiles"),
     ("reservations", "view", "View table reservations and calendar schedule"),
     ("reservations", "manage", "Book, confirm, assign tables, check in, and cancel reservations"),
+
+    # Loyalty, Memberships, Rewards & Gift Cards
+    ("loyalty", "view", "View loyalty programs, points balance, and rewards catalog"),
+    ("loyalty", "manage", "Configure loyalty programs, membership tiers, and rewards"),
+    ("loyalty", "adjust", "Manually adjust customer loyalty points balance with audit reasons"),
+    ("gift_cards", "view", "View gift card inventory, balances, and transaction history"),
+    ("gift_cards", "manage", "Issue, adjust, and cancel gift cards"),
+    ("gift_cards", "redeem", "Redeem gift cards at POS and checkout"),
 ]
 
 # Role to Permission code mappings
@@ -114,6 +122,8 @@ SYSTEM_ROLE_DEFINITIONS = {
             "audit.view",
             "customers.view", "customers.manage",
             "reservations.view", "reservations.manage",
+            "loyalty.view", "loyalty.manage", "loyalty.adjust",
+            "gift_cards.view", "gift_cards.manage", "gift_cards.redeem",
         ],
     },
     "CASHIER": {
@@ -126,6 +136,8 @@ SYSTEM_ROLE_DEFINITIONS = {
             "menu.view",
             "notifications.view",
             "customers.view", "customers.manage",
+            "loyalty.view",
+            "gift_cards.view", "gift_cards.redeem",
         ],
     },
     "WAITER": {

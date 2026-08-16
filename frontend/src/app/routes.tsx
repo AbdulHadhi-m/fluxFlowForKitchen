@@ -23,6 +23,8 @@ import { AuditLogsPage } from "@/features/audit/pages/AuditLogsPage";
 import { SettingsPage } from "@/features/settings/pages/SettingsPage";
 import { CustomerDirectoryPage } from "@/features/customers/pages/CustomerDirectoryPage";
 import { ReservationsPage } from "@/features/customers/pages/ReservationsPage";
+import { LoyaltyDashboardPage } from "@/features/loyalty/pages/LoyaltyDashboardPage";
+import { GiftCardsPage } from "@/features/loyalty/pages/GiftCardsPage";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute";
 import { PermissionRoute } from "@/features/authorization/guards/PermissionRoute";
 
@@ -227,6 +229,26 @@ export const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <PermissionRoute requiredPermission="reservations.view">
               <ReservationsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/loyalty"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="loyalty.view">
+              <LoyaltyDashboardPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/gift-cards"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="gift_cards.view">
+              <GiftCardsPage />
             </PermissionRoute>
           </ProtectedRoute>
         }
