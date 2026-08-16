@@ -29,6 +29,7 @@ SYSTEM_PERMISSIONS = [
     ("tables", "create", "Create table sections and layouts"),
     ("tables", "update", "Update table assignments and occupancy status"),
     ("tables", "delete", "Remove table configurations"),
+    ("tables", "status.manage", "Change operational table occupancy and service status"),
     
     # Billing & Payments
     ("billing", "view", "View bills, invoices, and payment receipts"),

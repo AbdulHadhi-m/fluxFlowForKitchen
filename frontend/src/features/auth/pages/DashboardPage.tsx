@@ -21,6 +21,7 @@ import {
   Building2,
   Users,
   UtensilsCrossed,
+  LayoutGrid,
 } from "lucide-react";
 
 export const DashboardPage: React.FC = () => {
@@ -165,6 +166,14 @@ export const DashboardPage: React.FC = () => {
                   <Link to="/menu">
                     <Button variant="outline" size="sm" className="w-full border-amber-500/30 text-amber-300 hover:bg-amber-500/10 text-xs gap-1.5 justify-start">
                       <UtensilsCrossed className="h-3.5 w-3.5 text-amber-400" /> Menu & Catalog Management
+                    </Button>
+                  </Link>
+                </Can>
+
+                <Can permission="tables.view">
+                  <Link to="/tables">
+                    <Button variant="outline" size="sm" className="w-full border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/10 text-xs gap-1.5 justify-start">
+                      <LayoutGrid className="h-3.5 w-3.5 text-emerald-400" /> Floor Plan & Dining Tables
                     </Button>
                   </Link>
                 </Can>

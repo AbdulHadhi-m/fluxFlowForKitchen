@@ -7,6 +7,7 @@ import { DashboardPage } from "@/features/auth/pages/DashboardPage";
 import { RestaurantSetupPage } from "@/features/restaurants/pages/RestaurantSetupPage";
 import { StaffManagementPage } from "@/features/staff/pages/StaffManagementPage";
 import { MenuManagementPage } from "@/features/menu/pages/MenuManagementPage";
+import { TableManagementPage } from "@/features/tables/pages/TableManagementPage";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute";
 import { PermissionRoute } from "@/features/authorization/guards/PermissionRoute";
 
@@ -53,6 +54,16 @@ export const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <PermissionRoute requiredPermission="menu.view">
               <MenuManagementPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/tables"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="tables.view">
+              <TableManagementPage />
             </PermissionRoute>
           </ProtectedRoute>
         }
