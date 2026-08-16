@@ -1,0 +1,133 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: fluxiflow_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-fluxiflow_db}
+      POSTGRES_USER: ${POSTGRES_USER:-fluxiflow_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-fluxiflow_password}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-fluxiflow_user} -d ${POSTGRES_DB:-fluxiflow_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - fluxiflow_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: fluxiflow_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - fluxiflow_network
+
+  backend:
+    build:
+      context: ..
+      dockerfile: docker/backend.Dockerfile
+    container_name: fluxiflow_backend
+    restart: unless-stopped
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ../backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.local
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:-insecure-dev-secret-key-change-in-production-fluxiflow}
+      - DJANGO_DEBUG=True
+      - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,backend,0.0.0.0
+      - POSTGRES_DB=${POSTGRES_DB:-fluxiflow_db}
+      - POSTGRES_USER=${POSTGRES_USER:-fluxiflow_user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-fluxiflow_password}
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/1
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/api/v1/health/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - fluxiflow_network
+
+  celery_worker:
+    build:
+      context: ..
+      dockerfile: docker/backend.Dockerfile
+    container_name: fluxiflow_celery_worker
+    restart: unless-stopped
+    command: celery -A config worker -l info
+    volumes:
+      - ../backend:/app
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.local
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:-insecure-dev-secret-key-change-in-production-fluxiflow}
+      - POSTGRES_DB=${POSTGRES_DB:-fluxiflow_db}
+      - POSTGRES_USER=${POSTGRES_USER:-fluxiflow_user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-fluxiflow_password}
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/1
+    depends_on:
+      backend:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - fluxiflow_network
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: docker/frontend.Dockerfile
+    container_name: fluxiflow_frontend
+    restart: unless-stopped
+    volumes:
+      - ../frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8000/api/v1
+      - VITE_WS_BASE_URL=ws://localhost:8000/ws
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - fluxiflow_network
+
+networks:
+  fluxiflow_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:

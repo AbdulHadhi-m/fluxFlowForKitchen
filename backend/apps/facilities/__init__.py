@@ -1,0 +1,1 @@
+"""Facilities domain package."""
