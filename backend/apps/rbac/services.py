@@ -47,6 +47,13 @@ SYSTEM_PERMISSIONS = [
     ("inventory", "update", "Record inventory intake, wastage, and adjustments"),
     ("inventory", "manage", "Configure inventory suppliers and recipe deduction maps"),
     
+    # Procurement & Suppliers
+    ("procurement", "view", "View suppliers and purchase orders"),
+    ("procurement", "create", "Create purchase order drafts"),
+    ("procurement", "manage", "Manage suppliers and edit purchase orders"),
+    ("procurement", "approve", "Approve submitted purchase orders"),
+    ("procurement", "receive", "Receive purchase order inventory deliveries"),
+    
     # Staff & Membership
     ("staff", "view", "View restaurant staff roster and assignments"),
     ("staff", "create", "Create new staff accounts and employee profiles"),
@@ -58,10 +65,11 @@ SYSTEM_PERMISSIONS = [
     
     # Reports & Analytics
     ("reports", "view", "View sales, operational performance, and kitchen metrics"),
-    ("reports", "export", "Export financial records and tax reports"),
+    ("reports", "export", "Export analytics and tax audit files"),
     
-    # Settings & Audit
-    ("settings", "view", "View restaurant profile and terminal settings"),
+    # Restaurant Configuration & Setup
+    ("settings", "view", "View restaurant profile, business hours, and operational policies"),
+    ("settings", "manage", "Manage tax rules and operational configurations"),
     ("settings", "update", "Modify restaurant configurations and printer routing"),
     ("audit", "view", "View audit trail logs and security events"),
 ]
@@ -88,6 +96,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "tables.view", "tables.update",
             "billing.view", "billing.create", "billing.split", "billing.discount", "billing.refund",
             "inventory.view", "inventory.update",
+            "procurement.view", "procurement.create", "procurement.manage", "procurement.approve", "procurement.receive",
             "staff.view", "staff.update",
             "reports.view", "reports.export",
             "settings.view", "settings.update",
