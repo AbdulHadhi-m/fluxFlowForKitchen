@@ -133,6 +133,10 @@ class KitchenService:
             order.save(update_fields=["status", "updated_at"])
             OrderService._sync_table_occupancy_on_order_finish(order.table)
 
+            # Trigger automated inventory consumption
+            from apps.inventory.services import InventoryService
+            InventoryService.consume_stock_for_order(order)
+
             cls.broadcast_kitchen_event(
                 restaurant_id=str(ticket.restaurant.id),
                 event_type="KITCHEN_STATUS_CHANGED",
@@ -161,6 +165,10 @@ class KitchenService:
             order.status = Order.OrderStatus.CANCELLED
             order.save(update_fields=["status", "updated_at"])
             OrderService._sync_table_occupancy_on_order_finish(order.table)
+
+            # Reverse inventory consumption if previously consumed
+            from apps.inventory.services import InventoryService
+            InventoryService.reverse_order_consumption(order)
 
             cls.broadcast_kitchen_event(
                 restaurant_id=str(ticket.restaurant.id),
