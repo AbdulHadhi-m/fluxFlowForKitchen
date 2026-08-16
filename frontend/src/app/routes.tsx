@@ -8,6 +8,8 @@ import { RestaurantSetupPage } from "@/features/restaurants/pages/RestaurantSetu
 import { StaffManagementPage } from "@/features/staff/pages/StaffManagementPage";
 import { MenuManagementPage } from "@/features/menu/pages/MenuManagementPage";
 import { TableManagementPage } from "@/features/tables/pages/TableManagementPage";
+import { PosTerminalPage } from "@/features/orders/pages/PosTerminalPage";
+import { OrderHistoryPage } from "@/features/orders/pages/OrderHistoryPage";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute";
 import { PermissionRoute } from "@/features/authorization/guards/PermissionRoute";
 
@@ -64,6 +66,26 @@ export const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <PermissionRoute requiredPermission="tables.view">
               <TableManagementPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/orders/pos"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="orders.create">
+              <PosTerminalPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/orders/history"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="orders.view">
+              <OrderHistoryPage />
             </PermissionRoute>
           </ProtectedRoute>
         }

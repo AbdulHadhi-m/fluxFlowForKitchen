@@ -10,6 +10,7 @@ SYSTEM_PERMISSIONS = [
     ("orders", "create", "Create new dine-in and takeaway orders"),
     ("orders", "update", "Update order items, notes, and modifiers"),
     ("orders", "cancel", "Cancel or void pending orders"),
+    ("orders", "complete", "Mark operational orders as completed"),
     ("orders", "transfer", "Transfer orders between tables"),
     
     # Kitchen Display System (KDS)
