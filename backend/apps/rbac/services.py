@@ -65,6 +65,13 @@ SYSTEM_PERMISSIONS = [
     ("procurement", "manage", "Manage suppliers and edit purchase orders"),
     ("procurement", "approve", "Approve submitted purchase orders"),
     ("procurement", "receive", "Receive purchase order inventory deliveries"),
+    ("procurement", "supplier.manage", "Manage supplier master, contacts, and item relationships"),
+    ("procurement", "requisition.create", "Create and submit internal purchase requisitions"),
+    ("procurement", "requisition.approve", "Review, approve, and convert purchase requisitions"),
+    ("procurement", "order.send", "Send and dispatch purchase orders to suppliers"),
+    ("procurement", "return", "Initiate purchase returns and record supplier credits"),
+    ("procurement", "invoice.match", "Perform 3-way invoice matching and resolve price variances"),
+    ("procurement", "budget.manage", "Configure and monitor departmental procurement budgets"),
     
     # Staff & Membership
     ("staff", "view", "View restaurant staff roster and assignments"),

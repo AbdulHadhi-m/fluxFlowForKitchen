@@ -23,6 +23,12 @@ import { FoodCostingPage } from "@/features/inventory/pages/FoodCostingPage";
 import { ReorderSuggestionsPage } from "@/features/inventory/pages/ReorderSuggestionsPage";
 import { SupplierListPage } from "@/features/procurement/pages/SupplierListPage";
 import { PurchaseOrderListPage } from "@/features/procurement/pages/PurchaseOrderListPage";
+import { ProcurementDashboardPage } from "@/features/procurement/pages/ProcurementDashboardPage";
+import { RequisitionsPage } from "@/features/procurement/pages/RequisitionsPage";
+import { PurchaseReturnsPage } from "@/features/procurement/pages/PurchaseReturnsPage";
+import { InvoiceMatchingPage } from "@/features/procurement/pages/InvoiceMatchingPage";
+import { ProcurementBudgetsPage } from "@/features/procurement/pages/ProcurementBudgetsPage";
+import { PurchasePlanningPage } from "@/features/procurement/pages/PurchasePlanningPage";
 import { ReportsDashboardPage } from "@/features/reports/pages/ReportsDashboardPage";
 import { NotificationCenterPage } from "@/features/notifications/pages/NotificationCenterPage";
 import { AuditLogsPage } from "@/features/audit/pages/AuditLogsPage";
@@ -257,6 +263,16 @@ export const AppRoutes: React.FC = () => {
         }
       />
       <Route
+        path="/procurement"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="procurement.view">
+              <ProcurementDashboardPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
         path="/procurement/suppliers"
         element={
           <ProtectedRoute>
@@ -267,11 +283,71 @@ export const AppRoutes: React.FC = () => {
         }
       />
       <Route
+        path="/procurement/purchase-orders"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="procurement.view">
+              <PurchaseOrderListPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
         path="/procurement/orders"
         element={
           <ProtectedRoute>
             <PermissionRoute requiredPermission="procurement.view">
               <PurchaseOrderListPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/procurement/requisitions"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="procurement.view">
+              <RequisitionsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/procurement/returns"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="procurement.view">
+              <PurchaseReturnsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/procurement/invoices"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="procurement.view">
+              <InvoiceMatchingPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/procurement/budgets"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="procurement.view">
+              <ProcurementBudgetsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/procurement/planning"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="procurement.view">
+              <PurchasePlanningPage />
             </PermissionRoute>
           </ProtectedRoute>
         }

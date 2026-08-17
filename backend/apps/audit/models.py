@@ -54,6 +54,12 @@ class AuditEntityType(models.TextChoices):
     STOCK_COUNT = "STOCK_COUNT", "Physical Stock Count"
     INVENTORY_TRANSFER = "INVENTORY_TRANSFER", "Inventory Transfer"
     WASTE_RECORD = "WASTE_RECORD", "Waste / Spoilage Record"
+    PURCHASE_REQUISITION = "PURCHASE_REQUISITION", "Purchase Requisition"
+    PURCHASE_RECEIPT = "PURCHASE_RECEIPT", "Purchase Receipt"
+    PURCHASE_RETURN = "PURCHASE_RETURN", "Purchase Return"
+    SUPPLIER_INVOICE = "SUPPLIER_INVOICE", "Supplier Invoice"
+    SUPPLIER_CREDIT = "SUPPLIER_CREDIT", "Supplier Credit"
+    PROCUREMENT_BUDGET = "PROCUREMENT_BUDGET", "Procurement Budget"
 
 class AuditActorType(models.TextChoices):
     USER = "USER", "Human User"

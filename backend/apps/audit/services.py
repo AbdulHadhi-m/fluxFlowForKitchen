@@ -80,3 +80,29 @@ class AuditLogService:
         except Exception as e:
             logger.error(f"Failed to write audit log: {e}", exc_info=True)
             raise
+
+    @classmethod
+    def log(
+        cls,
+        action: str,
+        entity_type: str,
+        entity_id: Any = "",
+        description: str = "",
+        restaurant: Optional[Restaurant] = None,
+        actor: Optional[User] = None,
+        actor_role: str = "",
+        **kwargs,
+    ) -> AuditLog:
+        return cls.record(
+            action=action,
+            entity_type=entity_type,
+            entity_id=entity_id,
+            description=description,
+            restaurant=restaurant,
+            actor_user=actor,
+            actor_role=actor_role,
+            **kwargs,
+        )
+
+
+AuditService = AuditLogService

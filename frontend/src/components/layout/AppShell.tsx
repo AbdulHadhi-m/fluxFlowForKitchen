@@ -36,6 +36,9 @@ import {
   DollarSign,
   ShoppingCart,
   History,
+  Building2,
+  RotateCcw,
+  FileCheck,
 } from "lucide-react";
 
 interface NavItem {
@@ -90,8 +93,19 @@ const NAVIGATION_GROUPS: NavGroup[] = [
       { id: "food-cost", label: "Food Costing", path: "/inventory/food-cost", icon: DollarSign, permission: "inventory.view" },
       { id: "reorder", label: "Par Reorder", path: "/inventory/reorder", icon: ShoppingCart, permission: "inventory.view" },
       { id: "movements", label: "Movements Ledger", path: "/inventory/movements", icon: History, permission: "inventory.view" },
-      { id: "suppliers", label: "Suppliers", path: "/procurement/suppliers", icon: Truck, permission: "procurement.view" },
+    ],
+  },
+  {
+    group: "PROCUREMENT & PURCHASING",
+    items: [
+      { id: "procurement-hub", label: "Procurement Hub", path: "/procurement", icon: ShoppingCart, permission: "procurement.view" },
+      { id: "suppliers", label: "Supplier Master", path: "/procurement/suppliers", icon: Building2, permission: "procurement.view" },
+      { id: "requisitions", label: "Requisitions", path: "/procurement/requisitions", icon: ClipboardList, permission: "procurement.view" },
       { id: "po", label: "Purchase Orders", path: "/procurement/purchase-orders", icon: Truck, permission: "procurement.view" },
+      { id: "returns", label: "Returns & Credits", path: "/procurement/returns", icon: RotateCcw, permission: "procurement.view" },
+      { id: "invoices", label: "3-Way Matching", path: "/procurement/invoices", icon: FileCheck, permission: "procurement.view" },
+      { id: "budgets", label: "Purchase Budgets", path: "/procurement/budgets", icon: DollarSign, permission: "procurement.view" },
+      { id: "planning", label: "Auto Reorder", path: "/procurement/planning", icon: Sparkles, permission: "procurement.view" },
     ],
   },
   {

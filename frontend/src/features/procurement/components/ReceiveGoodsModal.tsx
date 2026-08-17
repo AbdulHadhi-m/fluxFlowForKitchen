@@ -1,121 +1,276 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { receiveGoodsSchema, ReceiveGoodsFormValues } from "../schemas/procurement.schemas";
+import React, { useState } from "react";
 import { PurchaseOrder } from "../types/procurement.types";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Truck, Loader2, X } from "lucide-react";
+import { useReceiveGoods } from "../hooks/useProcurement";
+import { X, PackageCheck, AlertCircle } from "lucide-react";
 
 interface ReceiveGoodsModalProps {
+  purchaseOrder: PurchaseOrder;
   isOpen: boolean;
   onClose: () => void;
-  purchaseOrder: PurchaseOrder | null;
-  onSubmit: (poId: string, values: ReceiveGoodsFormValues) => Promise<any>;
-  isLoading: boolean;
 }
 
 export const ReceiveGoodsModal: React.FC<ReceiveGoodsModalProps> = ({
+  purchaseOrder,
   isOpen,
   onClose,
-  purchaseOrder,
-  onSubmit,
-  isLoading,
 }) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    setValue,
-  } = useForm<ReceiveGoodsFormValues>({
-    resolver: zodResolver(receiveGoodsSchema),
-    defaultValues: {
-      notes: "Delivery batch intake",
-      items: [],
-    },
-  });
+  const receiveMutation = useReceiveGoods();
+  const [invoiceNumber, setInvoiceNumber] = useState("");
+  const [deliveryNoteNumber, setDeliveryNoteNumber] = useState("");
+  const [notes, setNotes] = useState("");
 
-  React.useEffect(() => {
-    if (purchaseOrder) {
-      const itemsList = purchaseOrder.items.map((item) => ({
-        purchase_order_item_id: item.id,
-        quantity: parseFloat(item.remaining_quantity) || 0,
+  const [receivedLines, setReceivedLines] = useState(
+    purchaseOrder.items.map((item) => ({
+      purchase_order_item_id: item.id,
+      item_name: item.item_name_snapshot,
+      unit: item.unit,
+      remaining_quantity: parseFloat(item.remaining_quantity || "0"),
+      unit_cost_actual: item.unit_cost,
+      quantity_received: item.remaining_quantity,
+      quantity_accepted: item.remaining_quantity,
+      quantity_rejected: "0.000",
+      rejection_reason: "NONE",
+      batch_number: "",
+      expiry_date: "",
+    }))
+  );
+
+  if (!isOpen) return null;
+
+  const handleLineChange = (index: number, field: string, value: string) => {
+    setReceivedLines((prev) =>
+      prev.map((line, i) => {
+        if (i !== index) return line;
+        const updated = { ...line, [field]: value };
+        if (field === "quantity_received") {
+          const rec = parseFloat(value) || 0;
+          const rej = parseFloat(line.quantity_rejected) || 0;
+          updated.quantity_accepted = Math.max(0, rec - rej).toFixed(3);
+        } else if (field === "quantity_rejected") {
+          const rec = parseFloat(line.quantity_received) || 0;
+          const rej = parseFloat(value) || 0;
+          updated.quantity_accepted = Math.max(0, rec - rej).toFixed(3);
+        }
+        return updated;
+      })
+    );
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const itemsPayload = receivedLines.map((line) => ({
+        purchase_order_item_id: line.purchase_order_item_id,
+        quantity_received: line.quantity_received,
+        quantity_accepted: line.quantity_accepted,
+        quantity_rejected: line.quantity_rejected,
+        rejection_reason: line.rejection_reason,
+        batch_number: line.batch_number,
+        expiry_date: line.expiry_date || undefined,
+        unit_cost_actual: line.unit_cost_actual,
       }));
-      setValue("items", itemsList);
+
+      await receiveMutation.mutateAsync({
+        poId: purchaseOrder.id,
+        data: {
+          invoice_number: invoiceNumber,
+          delivery_note_number: deliveryNoteNumber,
+          notes,
+          items: itemsPayload,
+        },
+      });
+      onClose();
+    } catch (err: any) {
+      alert(err?.response?.data?.error?.message || "Failed to receive goods.");
     }
-  }, [purchaseOrder, setValue]);
-
-  if (!isOpen || !purchaseOrder) return null;
-
-  const handleFormSubmit = async (values: ReceiveGoodsFormValues) => {
-    await onSubmit(purchaseOrder.id, values);
-    reset();
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden text-slate-100 p-6 space-y-4">
-        <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-          <h2 className="text-lg font-bold flex items-center gap-2 text-white">
-            <Truck className="h-5 w-5 text-emerald-400" />
-            Receive Delivery — {purchaseOrder.po_number}
-          </h2>
-          <button onClick={onClose} className="text-slate-400 hover:text-white">
-            <X className="h-4 w-4" />
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950/40">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <PackageCheck className="w-5 h-5" />
+            </div>
+            <div>
+              <h2 className="text-lg font-bold text-white">Receive Goods Intake — {purchaseOrder.po_number}</h2>
+              <p className="text-xs text-slate-400">Supplier: {purchaseOrder.supplier_name} | Location: {purchaseOrder.location}</p>
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+          >
+            <X className="w-5 h-5" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4 pt-1">
-          <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
-            {purchaseOrder.items.map((poItem, idx) => (
-              <div key={poItem.id} className="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1.5">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-bold text-white">{poItem.item_name_snapshot}</span>
-                  <span className="font-mono text-slate-400">
-                    Remaining: <b className="text-amber-400">{poItem.remaining_quantity} {poItem.unit}</b> (of {poItem.quantity_ordered})
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <label className="text-[11px] text-slate-400 whitespace-nowrap">Receive Qty ({poItem.unit}):</label>
-                  <Input
-                    type="number"
-                    step="0.001"
-                    max={parseFloat(poItem.remaining_quantity)}
-                    {...register(`items.${idx}.quantity`)}
-                    className="h-8 bg-slate-900 border-slate-700 text-xs font-mono"
-                  />
-                </div>
-              </div>
-            ))}
+        {/* Form Body */}
+        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-6">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                Vendor Delivery Note / Waybill #
+              </label>
+              <input
+                type="text"
+                value={deliveryNoteNumber}
+                onChange={(e) => setDeliveryNoteNumber(e.target.value)}
+                placeholder="e.g. DN-998201"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                Supplier Invoice Number (Optional)
+              </label>
+              <input
+                type="text"
+                value={invoiceNumber}
+                onChange={(e) => setInvoiceNumber(e.target.value)}
+                placeholder="e.g. INV-2026-0812"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500"
+              />
+            </div>
           </div>
 
-          <div className="space-y-1">
-            <label className="text-xs text-slate-300">Intake Notes / Inspection Remarks</label>
-            <Input
-              {...register("notes")}
-              className="bg-slate-950 border-slate-800 text-slate-200 text-sm"
-              placeholder="e.g. Temperature checked 4°C, all boxes sealed"
+          {/* Line Items Receiving Table */}
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-3">
+              Inspection & Quantity Breakdown
+            </label>
+
+            <div className="space-y-3">
+              {receivedLines.map((line, idx) => (
+                <div
+                  key={line.purchase_order_item_id}
+                  className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 space-y-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="font-semibold text-white text-sm">{line.item_name}</span>
+                      <span className="text-xs text-slate-400 ml-2 font-mono">
+                        (Remaining: {line.remaining_quantity} {line.unit})
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-5 gap-3">
+                    <div>
+                      <label className="block text-[11px] text-slate-400 mb-1">Delivered Qty</label>
+                      <input
+                        type="number"
+                        step="0.001"
+                        min="0"
+                        max={line.remaining_quantity}
+                        value={line.quantity_received}
+                        onChange={(e) => handleLineChange(idx, "quantity_received", e.target.value)}
+                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500 font-mono"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] text-emerald-400 mb-1">Accepted Qty</label>
+                      <input
+                        type="number"
+                        step="0.001"
+                        min="0"
+                        value={line.quantity_accepted}
+                        onChange={(e) => handleLineChange(idx, "quantity_accepted", e.target.value)}
+                        className="w-full bg-slate-900 border border-emerald-500/40 rounded-lg px-2.5 py-1.5 text-xs text-emerald-400 focus:outline-none focus:border-emerald-500 font-mono"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] text-rose-400 mb-1">Rejected Qty</label>
+                      <input
+                        type="number"
+                        step="0.001"
+                        min="0"
+                        value={line.quantity_rejected}
+                        onChange={(e) => handleLineChange(idx, "quantity_rejected", e.target.value)}
+                        className="w-full bg-slate-900 border border-rose-500/40 rounded-lg px-2.5 py-1.5 text-xs text-rose-400 focus:outline-none focus:border-rose-500 font-mono"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] text-slate-400 mb-1">Batch / Lot #</label>
+                      <input
+                        type="text"
+                        value={line.batch_number}
+                        onChange={(e) => handleLineChange(idx, "batch_number", e.target.value)}
+                        placeholder="LOT-..."
+                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500 font-mono"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] text-slate-400 mb-1">Expiry Date</label>
+                      <input
+                        type="date"
+                        value={line.expiry_date}
+                        onChange={(e) => handleLineChange(idx, "expiry_date", e.target.value)}
+                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500 font-mono"
+                      />
+                    </div>
+                  </div>
+
+                  {parseFloat(line.quantity_rejected) > 0 && (
+                    <div className="flex items-center gap-3 pt-2 border-t border-slate-800/80">
+                      <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+                      <div className="flex-1">
+                        <select
+                          value={line.rejection_reason}
+                          onChange={(e) => handleLineChange(idx, "rejection_reason", e.target.value)}
+                          className="w-full bg-slate-900 border border-rose-500/40 rounded-lg px-2.5 py-1 text-xs text-rose-300 focus:outline-none"
+                        >
+                          <option value="DAMAGED">Damaged / Broken Packaging</option>
+                          <option value="EXPIRED">Expired / Near Expiry</option>
+                          <option value="WRONG_SPEC">Wrong Specifications / Grade</option>
+                          <option value="TEMPERATURE_ABUSE">Cold Chain Temperature Abuse</option>
+                          <option value="CONTAMINATED">Foreign Object / Contaminated</option>
+                          <option value="OTHER">Other Discrepancy</option>
+                        </select>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              Receiving Notes / Condition on Dock
+            </label>
+            <textarea
+              rows={2}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              placeholder="e.g. Delivered on pallet in refrigerated transport at 3°C"
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500"
             />
           </div>
 
-          <div className="flex justify-end gap-2 pt-3 border-t border-slate-800">
-            <Button
+          <div className="flex justify-end gap-3 pt-4 border-t border-slate-800">
+            <button
               type="button"
-              variant="outline"
               onClick={onClose}
-              className="border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-white"
+              className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors"
             >
               Cancel
-            </Button>
-            <Button
+            </button>
+            <button
               type="submit"
-              disabled={isLoading}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs gap-1.5 shadow-lg shadow-emerald-600/20"
+              disabled={receiveMutation.isPending}
+              className="px-5 py-2 text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg shadow-lg shadow-emerald-600/30 transition-all disabled:opacity-50"
             >
-              {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Truck className="h-4 w-4" />}
-              Confirm Stock Receipt
-            </Button>
+              {receiveMutation.isPending ? "Recording Goods..." : "Confirm Intake & Update Stock"}
+            </button>
           </div>
         </form>
       </div>
