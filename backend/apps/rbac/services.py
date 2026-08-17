@@ -97,6 +97,13 @@ SYSTEM_PERMISSIONS = [
     ("marketing", "manage", "Update, activate, pause, and archive promotions and campaigns"),
     ("marketing", "override", "Apply managerial promotional overrides and custom discounts"),
     ("marketing", "delete", "Delete or permanently archive marketing entities"),
+
+    # Delivery Management & Order Fulfillment
+    ("delivery", "view", "View deliveries, dispatch board, drivers, and delivery zones"),
+    ("delivery", "manage", "Create and manage delivery zones, settings, and driver profiles"),
+    ("delivery", "assign", "Assign and reassign delivery orders to active drivers"),
+    ("delivery", "update", "Update delivery lifecycle statuses (pickup, out for delivery)"),
+    ("delivery", "complete", "Mark delivery orders completed, delivered, or failed"),
 ]
 
 # Role to Permission code mappings
@@ -132,6 +139,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "loyalty.view", "loyalty.manage", "loyalty.adjust",
             "gift_cards.view", "gift_cards.manage", "gift_cards.redeem",
             "marketing.view", "marketing.create", "marketing.manage", "marketing.override", "marketing.delete",
+            "delivery.view", "delivery.manage", "delivery.assign", "delivery.update", "delivery.complete",
         ],
     },
     "CASHIER": {
@@ -147,6 +155,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "loyalty.view",
             "gift_cards.view", "gift_cards.redeem",
             "marketing.view",
+            "delivery.view", "delivery.update",
         ],
     },
     "WAITER": {
@@ -170,6 +179,15 @@ SYSTEM_ROLE_DEFINITIONS = {
             "orders.view",
             "menu.view",
             "inventory.view",
+            "notifications.view",
+        ],
+    },
+    "DELIVERY_DRIVER": {
+        "name": "Delivery Driver / Courier",
+        "description": "Delivery fleet staff handling order pickup and customer fulfillment",
+        "permissions": [
+            "delivery.view", "delivery.update", "delivery.complete",
+            "orders.view",
             "notifications.view",
         ],
     },

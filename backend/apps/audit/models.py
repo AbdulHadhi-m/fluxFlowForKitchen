@@ -47,6 +47,9 @@ class AuditEntityType(models.TextChoices):
     CAMPAIGN = "CAMPAIGN", "Marketing Campaign"
     MARKETING_CONSENT = "MARKETING_CONSENT", "Marketing Consent"
     CUSTOMER_SEGMENT = "CUSTOMER_SEGMENT", "Customer Segment"
+    DELIVERY = "DELIVERY", "Delivery Order"
+    DELIVERY_ZONE = "DELIVERY_ZONE", "Delivery Zone"
+    DELIVERY_DRIVER = "DELIVERY_DRIVER", "Delivery Driver"
 
 class AuditActorType(models.TextChoices):
     USER = "USER", "Human User"

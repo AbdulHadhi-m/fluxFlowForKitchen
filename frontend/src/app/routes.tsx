@@ -37,6 +37,11 @@ import { CartPage } from "@/features/ordering/pages/CartPage";
 import { CheckoutPage } from "@/features/ordering/pages/CheckoutPage";
 import { OrderTrackingPage } from "@/features/ordering/pages/OrderTrackingPage";
 import { CustomerPortalPage } from "@/features/ordering/pages/CustomerPortalPage";
+import { DeliveryDashboardPage } from "@/features/delivery/pages/DeliveryDashboardPage";
+import { DispatchBoardPage } from "@/features/delivery/pages/DispatchBoardPage";
+import { DeliveryDetailsPage } from "@/features/delivery/pages/DeliveryDetailsPage";
+import { DeliveryZonesPage } from "@/features/delivery/pages/DeliveryZonesPage";
+import { DeliveryDriversPage } from "@/features/delivery/pages/DeliveryDriversPage";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute";
 import { PermissionRoute } from "@/features/authorization/guards/PermissionRoute";
 
@@ -343,6 +348,59 @@ export const AppRoutes: React.FC = () => {
           </ProtectedRoute>
         }
       />
+
+      {/* Delivery & Dispatch Management */}
+      <Route
+        path="/delivery"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="delivery.view">
+              <DeliveryDashboardPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/delivery/dispatch"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="delivery.view">
+              <DispatchBoardPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/delivery/:id"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="delivery.view">
+              <DeliveryDetailsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/delivery/zones"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="delivery.manage">
+              <DeliveryZonesPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/delivery/drivers"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="delivery.manage">
+              <DeliveryDriversPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+
       <Route
         path="/"
         element={

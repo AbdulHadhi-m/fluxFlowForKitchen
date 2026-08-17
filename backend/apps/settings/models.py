@@ -83,6 +83,36 @@ class RestaurantConfiguration(UUIDModel, TimeStampedModel):
         help_text="Short commercial slogan or cuisine description"
     )
 
+    # --- Delivery & Fulfillment Settings ---
+    delivery_enabled = models.BooleanField(
+        default=True,
+        help_text="Master toggle enabling doorstep delivery fulfillment"
+    )
+    default_delivery_fee = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=Decimal("5.00"),
+        help_text="Standard base delivery fee when no zone override applies"
+    )
+    free_delivery_threshold = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=Decimal("50.00"),
+        null=True,
+        blank=True,
+        help_text="Order subtotal threshold granting free delivery fee"
+    )
+    max_delivery_radius_km = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        default=Decimal("15.00"),
+        help_text="Maximum radial delivery distance coverage"
+    )
+    estimated_delivery_buffer_minutes = models.PositiveIntegerField(
+        default=15,
+        help_text="Average transit transit buffer added to preparation time for estimates"
+    )
+
     # --- Kitchen & KDS Settings ---
     default_prep_time_minutes = models.PositiveIntegerField(
         default=15,

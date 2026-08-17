@@ -20,6 +20,11 @@ class NotificationType(models.TextChoices):
     ORDER_CANCELLED = "ORDER_CANCELLED", "Order Cancelled"
     KDS_READY = "KDS_READY", "Kitchen Ticket Ready"
     PAYMENT_COMPLETED = "PAYMENT_COMPLETED", "Payment Settled"
+    DELIVERY_ASSIGNED = "DELIVERY_ASSIGNED", "Delivery Assigned"
+    DELIVERY_DISPATCHED = "DELIVERY_DISPATCHED", "Out for Delivery"
+    DELIVERY_COMPLETED = "DELIVERY_COMPLETED", "Delivery Completed"
+    DELIVERY_FAILED = "DELIVERY_FAILED", "Delivery Failed"
+    DELIVERY_DELAYED = "DELIVERY_DELAYED", "Delivery Delayed"
     SYSTEM_ALERT = "SYSTEM_ALERT", "System Alert"
 
 class Notification(UUIDModel, TimeStampedModel):
