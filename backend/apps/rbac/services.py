@@ -135,6 +135,20 @@ SYSTEM_PERMISSIONS = [
     ("finance", "bank.reconcile", "Match bank transactions and reconcile statements"),
     ("finance", "expense.create", "Submit operational expense claims"),
     ("finance", "expense.approve", "Approve, reject, and authorize expense payouts"),
+
+    # Advanced HR, Attendance, Scheduling & Payroll
+    ("hr", "view", "View employee profiles, departments, positions, and org directory"),
+    ("hr", "manage", "Create and update employee employment details, departments, positions"),
+    ("hr.attendance", "clock", "Clock in and out and record personal breaks"),
+    ("hr.attendance", "manage", "Review, approve attendance exceptions and correction requests"),
+    ("hr.shifts", "view", "View shift schedules and team availability"),
+    ("hr.shifts", "manage", "Create, publish, modify shift schedules and approve swaps"),
+    ("hr.leave", "request", "Request personal leave and view leave balances"),
+    ("hr.leave", "approve", "Approve or reject employee leave requests"),
+    ("hr.timesheet", "manage", "Review, approve, and lock employee timesheets"),
+    ("hr.payroll", "view", "View own employee payslips and compensation summary"),
+    ("hr.payroll", "manage", "Calculate, review, approve, and process payroll runs and accounting integration"),
+    ("hr.reports", "view", "View labor cost reports, workforce analytics, and staffing forecasts"),
 ]
 
 # Role to Permission code mappings
@@ -173,6 +187,8 @@ SYSTEM_ROLE_DEFINITIONS = {
             "delivery.view", "delivery.manage", "delivery.assign", "delivery.update", "delivery.complete",
             "finance.view", "finance.manage", "finance.journal.post", "finance.period.close", "finance.cash.manage",
             "finance.cash.approve_variance", "finance.bank.reconcile", "finance.expense.create", "finance.expense.approve",
+            "hr.view", "hr.manage", "hr.attendance.clock", "hr.attendance.manage", "hr.shifts.view", "hr.shifts.manage",
+            "hr.leave.request", "hr.leave.approve", "hr.timesheet.manage", "hr.payroll.view", "hr.payroll.manage", "hr.reports.view",
         ],
     },
     "CASHIER": {
@@ -190,6 +206,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "marketing.view",
             "delivery.view", "delivery.update",
             "finance.view", "finance.cash.manage", "finance.expense.create",
+            "hr.attendance.clock", "hr.shifts.view", "hr.leave.request", "hr.payroll.view",
         ],
     },
     "WAITER": {
@@ -203,6 +220,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "notifications.view",
             "customers.view",
             "reservations.view", "reservations.manage",
+            "hr.attendance.clock", "hr.shifts.view", "hr.leave.request", "hr.payroll.view",
         ],
     },
     "KITCHEN_STAFF": {
@@ -214,6 +232,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "menu.view",
             "inventory.view",
             "notifications.view",
+            "hr.attendance.clock", "hr.shifts.view", "hr.leave.request", "hr.payroll.view",
         ],
     },
     "DELIVERY_DRIVER": {
@@ -223,6 +242,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "delivery.view", "delivery.update", "delivery.complete",
             "orders.view",
             "notifications.view",
+            "hr.attendance.clock", "hr.shifts.view", "hr.leave.request", "hr.payroll.view",
         ],
     },
 }

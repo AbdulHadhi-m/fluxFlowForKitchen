@@ -67,6 +67,16 @@ class AuditEntityType(models.TextChoices):
     BANK_RECONCILIATION = "BANK_RECONCILIATION", "Bank Reconciliation"
     EXPENSE = "EXPENSE", "Expense Record"
     FINANCIAL_PERIOD = "FINANCIAL_PERIOD", "Financial Period"
+    EMPLOYEE_DETAIL = "EMPLOYEE_DETAIL", "Employee HR Details"
+    ATTENDANCE_SESSION = "ATTENDANCE_SESSION", "Attendance Session"
+    ATTENDANCE_CORRECTION = "ATTENDANCE_CORRECTION", "Attendance Correction"
+    SHIFT_SCHEDULE = "SHIFT_SCHEDULE", "Shift Schedule"
+    SHIFT_SWAP = "SHIFT_SWAP", "Shift Swap Request"
+    LEAVE_REQUEST = "LEAVE_REQUEST", "Leave Request"
+    TIMESHEET = "TIMESHEET", "Staff Timesheet"
+    PAYROLL_RUN = "PAYROLL_RUN", "Payroll Run"
+    PAYROLL_ITEM = "PAYROLL_ITEM", "Payroll Employee Record"
+    COMPENSATION = "COMPENSATION", "Staff Compensation"
 
 class AuditActorType(models.TextChoices):
     USER = "USER", "Human User"
