@@ -42,6 +42,11 @@ class AuditEntityType(models.TextChoices):
     PURCHASE_ORDER = "PURCHASE_ORDER", "Purchase Order"
     NOTIFICATION = "NOTIFICATION", "Notification"
     REPORT = "REPORT", "Report"
+    PROMOTION = "PROMOTION", "Promotion"
+    COUPON = "COUPON", "Coupon Code"
+    CAMPAIGN = "CAMPAIGN", "Marketing Campaign"
+    MARKETING_CONSENT = "MARKETING_CONSENT", "Marketing Consent"
+    CUSTOMER_SEGMENT = "CUSTOMER_SEGMENT", "Customer Segment"
 
 class AuditActorType(models.TextChoices):
     USER = "USER", "Human User"

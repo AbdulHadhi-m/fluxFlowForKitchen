@@ -25,6 +25,12 @@ import { CustomerDirectoryPage } from "@/features/customers/pages/CustomerDirect
 import { ReservationsPage } from "@/features/customers/pages/ReservationsPage";
 import { LoyaltyDashboardPage } from "@/features/loyalty/pages/LoyaltyDashboardPage";
 import { GiftCardsPage } from "@/features/loyalty/pages/GiftCardsPage";
+import { MarketingDashboardPage } from "@/features/marketing/pages/MarketingDashboardPage";
+import { PromotionsPage } from "@/features/marketing/pages/PromotionsPage";
+import { PromotionEditorPage } from "@/features/marketing/pages/PromotionEditorPage";
+import { CouponsPage } from "@/features/marketing/pages/CouponsPage";
+import { SegmentsPage } from "@/features/marketing/pages/SegmentsPage";
+import { CampaignsPage } from "@/features/marketing/pages/CampaignsPage";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute";
 import { PermissionRoute } from "@/features/authorization/guards/PermissionRoute";
 
@@ -249,6 +255,76 @@ export const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <PermissionRoute requiredPermission="gift_cards.view">
               <GiftCardsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/marketing"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="marketing.view">
+              <MarketingDashboardPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/marketing/promotions"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="marketing.view">
+              <PromotionsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/marketing/promotions/new"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="marketing.create">
+              <PromotionEditorPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/marketing/promotions/:id/edit"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="marketing.manage">
+              <PromotionEditorPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/marketing/coupons"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="marketing.view">
+              <CouponsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/marketing/segments"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="marketing.view">
+              <SegmentsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/marketing/campaigns"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="marketing.view">
+              <CampaignsPage />
             </PermissionRoute>
           </ProtectedRoute>
         }

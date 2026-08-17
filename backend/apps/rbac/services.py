@@ -90,6 +90,13 @@ SYSTEM_PERMISSIONS = [
     ("gift_cards", "view", "View gift card inventory, balances, and transaction history"),
     ("gift_cards", "manage", "Issue, adjust, and cancel gift cards"),
     ("gift_cards", "redeem", "Redeem gift cards at POS and checkout"),
+
+    # Marketing, Promotions, Discounts & Campaigns
+    ("marketing", "view", "View promotions, coupons, segments, and campaigns"),
+    ("marketing", "create", "Create promotions, coupons, segments, and campaigns"),
+    ("marketing", "manage", "Update, activate, pause, and archive promotions and campaigns"),
+    ("marketing", "override", "Apply managerial promotional overrides and custom discounts"),
+    ("marketing", "delete", "Delete or permanently archive marketing entities"),
 ]
 
 # Role to Permission code mappings
@@ -124,6 +131,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "reservations.view", "reservations.manage",
             "loyalty.view", "loyalty.manage", "loyalty.adjust",
             "gift_cards.view", "gift_cards.manage", "gift_cards.redeem",
+            "marketing.view", "marketing.create", "marketing.manage", "marketing.override", "marketing.delete",
         ],
     },
     "CASHIER": {
@@ -138,6 +146,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "customers.view", "customers.manage",
             "loyalty.view",
             "gift_cards.view", "gift_cards.redeem",
+            "marketing.view",
         ],
     },
     "WAITER": {

@@ -62,6 +62,7 @@ const NAVIGATION_GROUPS: NavGroup[] = [
       { id: "reservations", label: "Reservations", path: "/reservations", icon: Calendar, permission: "reservations.view" },
       { id: "customers", label: "Customers & CRM", path: "/customers", icon: Users, permission: "customers.view" },
       { id: "loyalty", label: "Loyalty & Rewards", path: "/loyalty", icon: Award, permission: "loyalty.view" },
+      { id: "marketing", label: "Marketing & Promos", path: "/marketing", icon: Sparkles, permission: "marketing.view" },
       { id: "gift-cards", label: "Gift Cards", path: "/gift-cards", icon: CreditCard, permission: "gift_cards.view" },
     ],
   },
