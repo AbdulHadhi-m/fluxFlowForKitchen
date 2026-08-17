@@ -1,59 +1,61 @@
-# Walkthrough: Marketing, Promotions, Discounts & Campaign Management
+# Walkthrough: Online Ordering, Customer Ordering Portal & Digital Menu
 
 ## Overview
-Implemented an enterprise marketing and promotional management subsystem for Fluxiflow for Kitchen (Prompt 24). The system features an automatic discount calculation and rule evaluation engine, unique voucher/coupon code generation, customer audience segmentation, marketing consent enforcement, broadcast campaign management, and POS evaluation.
+Implemented an end-to-end customer-facing digital ordering engine and storefront portal for Fluxiflow for Kitchen (Prompt 25). The system integrates directly with the existing core Order domain, KDS, Billing, Payments, Loyalty, and Promotions without duplicate subsystems.
 
 ---
 
-## 1. Backend Implementation
+## 1. Backend Implementation (`backend/apps/ordering/`)
 
-### Models (`backend/apps/marketing/models.py`)
-- **`Promotion`**: Percentage/fixed discounts, buy X get Y, complimentary items, priority ranking, stacking controls, spending thresholds, item/category restrictions, and schedule windows.
-- **`Coupon`**: Secure voucher generation (single and bulk batches) with usage limits and per-customer limits.
-- **`PromotionUsage`**: Atomic DB-locked redemption ledger preventing race condition double-spending, with order cancellation reversals.
-- **`CustomerSegment`**: Dynamic segmentation criteria by lifetime spend, visit frequency, inactivity, and loyalty tiers.
-- **`MarketingConsent`**: Multi-channel customer consent ledger (`EMAIL`, `SMS`, `PUSH`) with audit trail.
-- **`Campaign` & `CampaignDeliveryLog`**: Broadcast campaigns with delivery idempotency.
+### Enhanced Models & Schema
+- **`Order` Model**: Added `order_type` (`DINE_IN`, `TAKEAWAY`, `DELIVERY`), `source` (`POS`, `ONLINE`, `QR`), `customer` CRM link, `guest_name`, `guest_phone`, `guest_email`, `pickup_time`, `tracking_token`, and `qr_session_id`. Made `created_by` nullable.
+- **`RestaurantTable`**: Added `qr_code_token` with automated cryptographic token generation (`QR-XXXXXX`).
+- **`RestaurantConfiguration`**: Added online ordering master toggles, QR ordering toggle, takeaway toggle, guest checkout toggle, and min/max order spend thresholds.
+- **`CartSession`**: Optional server-side session persistence for guest and authenticated customer carts.
 
-### REST Endpoints & RBAC
-- Granular permissions: `marketing.view`, `marketing.create`, `marketing.manage`, `marketing.override`, `marketing.delete`.
-- Endpoints:
-  - `GET/POST /api/v1/marketing/promotions/`
-  - `POST /api/v1/marketing/promotions/evaluate/`
-  - `GET/POST /api/v1/marketing/coupons/`
-  - `POST /api/v1/marketing/coupons/bulk-generate/`
-  - `POST /api/v1/marketing/coupons/validate/`
-  - `GET/POST /api/v1/marketing/segments/`
-  - `GET /api/v1/marketing/segments/{id}/preview/`
-  - `GET/POST /api/v1/marketing/campaigns/`
-  - `POST /api/v1/marketing/campaigns/{id}/launch/`
-  - `GET /api/v1/marketing/analytics/`
-  - `POST /api/v1/marketing/consent/update_consent/`
+### Services (`apps/ordering/services.py`)
+- **`PublicMenuService`**: Public restaurant discovery, live opening hours evaluation, catalog category grouping, and search.
+- **`CartValidationService`**: Authoritative pricing, 86'd out-of-stock validation, min/max limits, promotion/coupon evaluation, and tax computation.
+- **`OnlineCheckoutService`**: Idempotent order placement, promotion usage recording, KDS kitchen ticket creation, billing invoice snapshotting, and staff alert dispatch.
+- **`QRTableService`**: Secure table QR code resolution and table context validation.
+- **`CustomerPortalService`**: Public order tracking by UUID token and customer order history.
+
+### Endpoints (`apps/ordering/views.py`)
+- `GET /api/v1/public/restaurants/<slug>/`
+- `GET /api/v1/public/restaurants/<slug>/menu/`
+- `GET /api/v1/ordering/qr/validate/`
+- `POST /api/v1/ordering/cart/validate/`
+- `POST /api/v1/ordering/checkout/`
+- `GET /api/v1/ordering/orders/<tracking_token>/`
+- `POST /api/v1/customer/register/`
+- `POST /api/v1/customer/login/`
+- `GET /api/v1/customer/orders/`
 
 ---
 
-## 2. Frontend Implementation (`frontend/src/features/marketing/`)
+## 2. Frontend Implementation (`frontend/src/features/ordering/`)
 
-- **Types & API**: [`types/marketing.types.ts`](file:///c:/Users/MSI/OneDrive/Desktop/fluxFlowForKitchen/frontend/src/features/marketing/types/marketing.types.ts), [`api/marketing.api.ts`](file:///c:/Users/MSI/OneDrive/Desktop/fluxFlowForKitchen/frontend/src/features/marketing/api/marketing.api.ts).
-- **Hooks**: [`hooks/useMarketing.ts`](file:///c:/Users/MSI/OneDrive/Desktop/fluxFlowForKitchen/frontend/src/features/marketing/hooks/useMarketing.ts).
+- **State Management**:
+  - `useCartStore`: Persistent Zustand store for client cart items, quantities, special instructions, and table QR context.
+  - `useOrdering`: TanStack Query hooks for public storefront data and auto-polling order tracking.
 - **Components**:
-  - `PromotionCard`, `PromotionList`, `PromotionForm` (with real-time rule simulator).
-  - `CouponList`, `CreateCouponModal`, `BulkCouponModal`.
-  - `SegmentList`, `CreateSegmentModal`.
-  - `CampaignList`, `CreateCampaignModal`.
-  - `MarketingMetricsCards`, `TopPromotionsTable`.
-- **Pages**:
-  - `MarketingDashboardPage.tsx` (`/marketing`)
-  - `PromotionsPage.tsx` (`/marketing/promotions`)
-  - `PromotionEditorPage.tsx` (`/marketing/promotions/new`, `/marketing/promotions/:id/edit`)
-  - `CouponsPage.tsx` (`/marketing/coupons`)
-  - `SegmentsPage.tsx` (`/marketing/segments`)
-  - `CampaignsPage.tsx` (`/marketing/campaigns`)
+  - `StorefrontHeader`: Branding hero, live open/closed status badge, table indicator.
+  - `CategoryNav`: Sticky category pill navigation bar.
+  - `MenuItemCard`: Dish card with price, description, out-of-stock badge, and add-to-cart actions.
+  - `ItemDetailModal`: Dish customization popup with special instructions textarea.
+  - `OrderTimeline`: Visual 4-step preparation tracker (Placed -> Preparing -> Ready -> Completed).
+- **Pages & Routes**:
+  - `/r/:restaurantSlug`: Public Restaurant Storefront & Digital Menu.
+  - `/r/:restaurantSlug/table/:qrToken`: QR Table Ordering Landing.
+  - `/r/:restaurantSlug/cart`: Cart Review & Fulfillment Selector.
+  - `/r/:restaurantSlug/checkout`: Final Checkout & Payment Selection.
+  - `/r/:restaurantSlug/order/:trackingToken/track`: Live Real-time Order Tracking.
+  - `/customer/portal`: Customer Account Sign In / Sign Up and Past Orders.
 
 ---
 
 ## 3. Verification & Test Results
 
-- **Backend Pytest**: **153 passed** across all modules (Prompts 4–24).
-- **Frontend Vitest**: **59 passed** across 40 test suites.
-- **Frontend Build**: `tsc && vite build` completed with zero errors.
+- **Backend Pytest**: **167 passed** across all modules (Prompts 4–25).
+- **Frontend Vitest**: **63 passed** across 41 test suites.
+- **Frontend Production Build**: `tsc && vite build` compiled with zero errors.

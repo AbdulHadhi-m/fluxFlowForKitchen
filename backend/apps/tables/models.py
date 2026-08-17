@@ -50,6 +50,13 @@ class RestaurantTable(UUIDModel, TimeStampedModel, StatusModel):
         db_index=True,
         help_text="Deterministic display order on POS terminals and floor grids"
     )
+    qr_code_token = models.CharField(
+        max_length=64,
+        blank=True,
+        default="",
+        db_index=True,
+        help_text="Secure token for table QR scanning and dine-in mobile ordering"
+    )
 
     class Meta:
         verbose_name = "Restaurant Table"
@@ -74,3 +81,9 @@ class RestaurantTable(UUIDModel, TimeStampedModel, StatusModel):
 
     def __str__(self):
         return f"{self.name} ({self.section} - Cap: {self.capacity}) - {self.restaurant.name}"
+
+    def save(self, *args, **kwargs):
+        if not self.qr_code_token:
+            import secrets
+            self.qr_code_token = f"QR-{secrets.token_hex(6).upper()}"
+        super().save(*args, **kwargs)

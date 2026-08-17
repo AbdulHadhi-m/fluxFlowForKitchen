@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PromotionStatusBadge } from "../components/PromotionStatusBadge";
 import { MarketingMetricsCards } from "../components/MarketingMetricsCards";
 import { TopPromotionsTable } from "../components/TopPromotionsTable";
-import { Promotion } from "../types/marketing.types";
 
 const queryClient = new QueryClient();
 

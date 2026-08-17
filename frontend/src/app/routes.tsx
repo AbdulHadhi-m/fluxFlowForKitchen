@@ -31,12 +31,26 @@ import { PromotionEditorPage } from "@/features/marketing/pages/PromotionEditorP
 import { CouponsPage } from "@/features/marketing/pages/CouponsPage";
 import { SegmentsPage } from "@/features/marketing/pages/SegmentsPage";
 import { CampaignsPage } from "@/features/marketing/pages/CampaignsPage";
+import { PublicStorefrontPage } from "@/features/ordering/pages/PublicStorefrontPage";
+import { QRTableOrderingPage } from "@/features/ordering/pages/QRTableOrderingPage";
+import { CartPage } from "@/features/ordering/pages/CartPage";
+import { CheckoutPage } from "@/features/ordering/pages/CheckoutPage";
+import { OrderTrackingPage } from "@/features/ordering/pages/OrderTrackingPage";
+import { CustomerPortalPage } from "@/features/ordering/pages/CustomerPortalPage";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute";
 import { PermissionRoute } from "@/features/authorization/guards/PermissionRoute";
 
 export const AppRoutes: React.FC = () => {
   return (
     <Routes>
+      {/* Public Customer Ordering & Storefront Routes */}
+      <Route path="/r/:restaurantSlug" element={<PublicStorefrontPage />} />
+      <Route path="/r/:restaurantSlug/table/:qrToken" element={<QRTableOrderingPage />} />
+      <Route path="/r/:restaurantSlug/cart" element={<CartPage />} />
+      <Route path="/r/:restaurantSlug/checkout" element={<CheckoutPage />} />
+      <Route path="/r/:restaurantSlug/order/:trackingToken/track" element={<OrderTrackingPage />} />
+      <Route path="/customer/portal" element={<CustomerPortalPage />} />
+
       {/* Public Auth Routes */}
       <Route path="/login" element={<LoginPage />} />
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />

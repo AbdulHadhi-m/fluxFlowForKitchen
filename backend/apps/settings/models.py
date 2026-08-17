@@ -39,6 +39,50 @@ class RestaurantConfiguration(UUIDModel, TimeStampedModel):
         help_text="Allow takeaway / parcel ordering"
     )
 
+    # --- Online & Digital Ordering Settings ---
+    online_ordering_enabled = models.BooleanField(
+        default=True,
+        help_text="Master toggle enabling customer digital ordering"
+    )
+    qr_ordering_enabled = models.BooleanField(
+        default=True,
+        help_text="Enable QR table code dine-in ordering"
+    )
+    takeaway_ordering_enabled = models.BooleanField(
+        default=True,
+        help_text="Enable online takeaway & pickup orders"
+    )
+    guest_checkout_enabled = models.BooleanField(
+        default=True,
+        help_text="Allow guest diners to place orders without creating a password account"
+    )
+    min_online_order_amount = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=Decimal("0.00"),
+        help_text="Minimum cart subtotal required for online orders"
+    )
+    max_online_order_amount = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=Decimal("1000.00"),
+        null=True,
+        blank=True,
+        help_text="Maximum cart amount allowed for online orders"
+    )
+    cover_image_url = models.CharField(
+        max_length=500,
+        blank=True,
+        default="",
+        help_text="Hero cover banner image URL for public restaurant storefront"
+    )
+    tagline = models.CharField(
+        max_length=255,
+        blank=True,
+        default="",
+        help_text="Short commercial slogan or cuisine description"
+    )
+
     # --- Kitchen & KDS Settings ---
     default_prep_time_minutes = models.PositiveIntegerField(
         default=15,

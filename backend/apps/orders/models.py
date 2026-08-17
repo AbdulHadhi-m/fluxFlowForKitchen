@@ -1,3 +1,4 @@
+import uuid
 from decimal import Decimal
 from django.db import models
 from django.conf import settings
@@ -17,6 +18,18 @@ class Order(UUIDModel, TimeStampedModel, StatusModel):
         COMPLETED = "COMPLETED", "Completed"
         CANCELLED = "CANCELLED", "Cancelled"
 
+    class OrderType(models.TextChoices):
+        DINE_IN = "DINE_IN", "Dine In"
+        TAKEAWAY = "TAKEAWAY", "Takeaway"
+        DELIVERY = "DELIVERY", "Delivery"
+
+    class OrderSource(models.TextChoices):
+        POS = "POS", "Point of Sale"
+        ONLINE = "ONLINE", "Online Web"
+        QR = "QR", "QR Table"
+        PHONE = "PHONE", "Phone"
+        MANUAL = "MANUAL", "Manual"
+
     restaurant = models.ForeignKey(
         Restaurant,
         on_delete=models.CASCADE,
@@ -28,6 +41,20 @@ class Order(UUIDModel, TimeStampedModel, StatusModel):
         db_index=True,
         help_text="Human-readable sequential order identifier (e.g. ORD-000001)"
     )
+    order_type = models.CharField(
+        max_length=20,
+        choices=OrderType.choices,
+        default=OrderType.DINE_IN,
+        db_index=True,
+        help_text="Fulfillment classification (Dine In, Takeaway, Delivery)"
+    )
+    source = models.CharField(
+        max_length=20,
+        choices=OrderSource.choices,
+        default=OrderSource.POS,
+        db_index=True,
+        help_text="Channel where order originated"
+    )
     table = models.ForeignKey(
         RestaurantTable,
         null=True,
@@ -38,9 +65,54 @@ class Order(UUIDModel, TimeStampedModel, StatusModel):
     )
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
         related_name="orders_created",
-        help_text="Authenticated staff employee who initiated the order"
+        help_text="Authenticated staff employee or registered customer who initiated the order"
+    )
+    customer = models.ForeignKey(
+        "customers.Customer",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="orders",
+        help_text="Associated customer CRM profile"
+    )
+    guest_name = models.CharField(
+        max_length=150,
+        blank=True,
+        default="",
+        help_text="Guest full name for unauthenticated/takeaway orders"
+    )
+    guest_phone = models.CharField(
+        max_length=30,
+        blank=True,
+        default="",
+        help_text="Guest contact phone for order tracking"
+    )
+    guest_email = models.EmailField(
+        max_length=255,
+        blank=True,
+        default="",
+        help_text="Guest email for invoice and receipt dispatch"
+    )
+    pickup_time = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text="Scheduled pickup time for takeaway orders"
+    )
+    tracking_token = models.UUIDField(
+        default=uuid.uuid4,
+        db_index=True,
+        editable=False,
+        help_text="Cryptographically secure token for public customer order tracking"
+    )
+    qr_session_id = models.CharField(
+        max_length=64,
+        blank=True,
+        default="",
+        help_text="QR table ordering session token"
     )
     status = models.CharField(
         max_length=20,
