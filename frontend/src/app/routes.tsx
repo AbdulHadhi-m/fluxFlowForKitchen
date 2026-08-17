@@ -15,6 +15,12 @@ import { BillingDashboardPage } from "@/features/billing/pages/BillingDashboardP
 import { BillingHistoryPage } from "@/features/billing/pages/BillingHistoryPage";
 import { InventoryListPage } from "@/features/inventory/pages/InventoryListPage";
 import { StockMovementsPage } from "@/features/inventory/pages/StockMovementsPage";
+import { RecipesPage } from "@/features/inventory/pages/RecipesPage";
+import { StockCountsPage } from "@/features/inventory/pages/StockCountsPage";
+import { TransfersPage } from "@/features/inventory/pages/TransfersPage";
+import { WasteLogPage } from "@/features/inventory/pages/WasteLogPage";
+import { FoodCostingPage } from "@/features/inventory/pages/FoodCostingPage";
+import { ReorderSuggestionsPage } from "@/features/inventory/pages/ReorderSuggestionsPage";
 import { SupplierListPage } from "@/features/procurement/pages/SupplierListPage";
 import { PurchaseOrderListPage } from "@/features/procurement/pages/PurchaseOrderListPage";
 import { ReportsDashboardPage } from "@/features/reports/pages/ReportsDashboardPage";
@@ -166,6 +172,76 @@ export const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <PermissionRoute requiredPermission="inventory.view">
               <InventoryListPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/inventory/items"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="inventory.view">
+              <InventoryListPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/inventory/recipes"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="inventory.view">
+              <RecipesPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/inventory/stock-counts"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="inventory.view">
+              <StockCountsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/inventory/transfers"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="inventory.view">
+              <TransfersPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/inventory/waste"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="inventory.view">
+              <WasteLogPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/inventory/food-cost"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="inventory.view">
+              <FoodCostingPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/inventory/reorder"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="inventory.view">
+              <ReorderSuggestionsPage />
             </PermissionRoute>
           </ProtectedRoute>
         }

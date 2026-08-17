@@ -41,7 +41,7 @@ export const PurchaseOrderListPage: React.FC = () => {
     isReceivingGoods,
   } = useProcurement(searchQuery, statusFilter);
 
-  const { items: inventoryItems } = useInventory();
+  const { data: inventoryItems = [] } = useInventory();
 
   // Metrics
   const totalPOs = purchaseOrders.length;

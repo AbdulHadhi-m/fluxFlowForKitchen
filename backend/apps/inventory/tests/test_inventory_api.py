@@ -5,6 +5,8 @@ from apps.accounts.models import User
 from apps.restaurants.services import RestaurantService
 from apps.rbac.services import RBACService
 from apps.inventory.services import InventoryService
+from apps.inventory.models import WasteRecord, StorageLocation
+
 
 class InventoryAPITests(TestCase):
     def setUp(self):
@@ -27,13 +29,17 @@ class InventoryAPITests(TestCase):
             content_type="application/json",
         )
         self.token = login_res.json()["data"]["access_token"]
-        self.auth_headers = {"HTTP_AUTHORIZATION": f"Bearer {self.token}"}
+        self.auth_headers = {
+            "HTTP_AUTHORIZATION": f"Bearer {self.token}",
+            "HTTP_X_RESTAURANT_ID": str(self.restaurant.id),
+        }
 
         self.item = InventoryService.create_item(
             restaurant=self.restaurant,
             name="San Marzano Tomatoes",
             unit="kg",
             minimum_stock_level=Decimal("10.000"),
+            cost_per_unit=Decimal("2.50"),
             initial_quantity=Decimal("50.000"),
             user=self.user,
         )
@@ -41,33 +47,39 @@ class InventoryAPITests(TestCase):
     def test_inventory_api_operations_flow(self):
         """Test listing items, intake, wastage, and movements history."""
         # 1. List
-        list_res = self.client.get(reverse("inventory_item_list_create"), **self.auth_headers)
+        list_res = self.client.get("/api/v1/inventory/items/", **self.auth_headers)
         self.assertEqual(list_res.status_code, 200)
-        self.assertEqual(len(list_res.json()["data"]), 1)
+        items_data = list_res.json().get("data", [])
+        self.assertEqual(len(items_data), 1)
 
         # 2. Receive
-        recv_url = reverse("inventory_item_receive", kwargs={"item_id": self.item.id})
+        recv_url = f"/api/v1/inventory/items/{self.item.id}/receive/"
         recv_res = self.client.post(
             recv_url,
-            {"quantity": "20.000", "unit": "kg", "reason": "Fresh batch"},
+            {"quantity": "20.000", "unit": "kg", "unit_cost": "3.0000", "reason": "Fresh batch"},
             content_type="application/json",
             **self.auth_headers,
         )
         self.assertEqual(recv_res.status_code, 200)
-        self.assertEqual(recv_res.json()["data"]["item"]["current_quantity"], "70.000")
+        self.assertEqual(recv_res.json()["item"]["current_quantity"], "70.000")
 
         # 3. Wastage
-        waste_url = reverse("inventory_item_waste", kwargs={"item_id": self.item.id})
         waste_res = self.client.post(
-            waste_url,
-            {"quantity": "5.000", "reason": "Damaged cans"},
+            "/api/v1/inventory/waste/",
+            {
+                "item_id": str(self.item.id),
+                "quantity": "5.000",
+                "reason": WasteRecord.WasteReason.DAMAGED,
+                "location": StorageLocation.KITCHEN,
+                "notes": "Damaged cans",
+            },
             content_type="application/json",
             **self.auth_headers,
         )
-        self.assertEqual(waste_res.status_code, 200)
-        self.assertEqual(waste_res.json()["data"]["item"]["current_quantity"], "65.000")
+        self.assertEqual(waste_res.status_code, 201)
 
         # 4. Movement Ledger
-        mov_res = self.client.get(reverse("stock_movement_list"), **self.auth_headers)
+        mov_res = self.client.get("/api/v1/inventory/movements/", **self.auth_headers)
         self.assertEqual(mov_res.status_code, 200)
-        self.assertEqual(len(mov_res.json()["data"]), 3) # OPENING, PURCHASE, WASTAGE
+        movs = mov_res.json().get("data", [])
+        self.assertEqual(len(movs), 3)  # OPENING, PURCHASE, WASTAGE

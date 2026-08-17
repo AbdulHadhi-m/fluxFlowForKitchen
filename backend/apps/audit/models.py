@@ -50,6 +50,10 @@ class AuditEntityType(models.TextChoices):
     DELIVERY = "DELIVERY", "Delivery Order"
     DELIVERY_ZONE = "DELIVERY_ZONE", "Delivery Zone"
     DELIVERY_DRIVER = "DELIVERY_DRIVER", "Delivery Driver"
+    RECIPE = "RECIPE", "Recipe BOM"
+    STOCK_COUNT = "STOCK_COUNT", "Physical Stock Count"
+    INVENTORY_TRANSFER = "INVENTORY_TRANSFER", "Inventory Transfer"
+    WASTE_RECORD = "WASTE_RECORD", "Waste / Spoilage Record"
 
 class AuditActorType(models.TextChoices):
     USER = "USER", "Human User"

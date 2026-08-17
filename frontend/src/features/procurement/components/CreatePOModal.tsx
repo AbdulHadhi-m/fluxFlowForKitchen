@@ -43,7 +43,7 @@ export const CreatePOModal: React.FC<CreatePOModalProps> = ({
       tax_amount: 0,
       notes: "",
       items: inventoryItems.length > 0
-        ? [{ inventory_item_id: inventoryItems[0].id, quantity_ordered: 10, unit: inventoryItems[0].unit, unit_cost: parseFloat(inventoryItems[0].cost_per_unit) || 0 }]
+        ? [{ inventory_item_id: inventoryItems[0].id, quantity_ordered: 10, unit: inventoryItems[0].unit as any, unit_cost: parseFloat(inventoryItems[0].cost_per_unit) || 0 }]
         : [],
     },
   });
@@ -131,7 +131,7 @@ export const CreatePOModal: React.FC<CreatePOModalProps> = ({
                     append({
                       inventory_item_id: inventoryItems[0].id,
                       quantity_ordered: 5,
-                      unit: inventoryItems[0].unit,
+                      unit: inventoryItems[0].unit as any,
                       unit_cost: parseFloat(inventoryItems[0].cost_per_unit) || 0,
                     });
                   }

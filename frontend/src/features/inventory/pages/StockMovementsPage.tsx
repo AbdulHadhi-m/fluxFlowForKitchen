@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useInventory } from "../hooks/useInventory";
+import { useInventoryMovements } from "../hooks/useInventory";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,20 +14,20 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { MovementType } from "../types/inventory.types";
+import { MovementType, StockMovement } from "../types/inventory.types";
 
 export const StockMovementsPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedType, setSelectedType] = useState<string>("");
 
-  const { movements, isLoadingMovements } = useInventory();
+  const { data: movements = [], isLoading: isLoadingMovements } = useInventoryMovements();
 
-  const filteredMovements = movements.filter((m) => {
+  const filteredMovements = movements.filter((m: StockMovement) => {
     const matchesSearch =
       !searchQuery ||
-      m.reason.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      m.reference_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      m.created_by_name.toLowerCase().includes(searchQuery.toLowerCase());
+      (m.reason && m.reason.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (m.reference_id && m.reference_id.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (m.created_by_name && m.created_by_name.toLowerCase().includes(searchQuery.toLowerCase()));
     const matchesType = !selectedType || m.movement_type === selectedType;
     return matchesSearch && matchesType;
   });
@@ -155,7 +155,7 @@ export const StockMovementsPage: React.FC = () => {
                   </td>
                 </tr>
               ) : (
-                filteredMovements.map((m) => (
+                filteredMovements.map((m: StockMovement) => (
                   <tr key={m.id} className="hover:bg-slate-800/30 transition-colors">
                     <td className="p-3.5 font-mono text-[11px] text-slate-400">
                       {new Date(m.created_at).toLocaleString()}

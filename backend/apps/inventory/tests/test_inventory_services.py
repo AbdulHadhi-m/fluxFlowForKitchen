@@ -40,7 +40,7 @@ class InventoryServiceTests(TestCase):
             is_available=True,
             is_active=True,
         )
-        self.recipe = Recipe.objects.create(restaurant=self.restaurant, menu_item=self.biriyani, yield_quantity=1)
+        self.recipe = Recipe.objects.create(restaurant=self.restaurant, menu_item=self.biriyani, output_quantity=Decimal("1.000"))
         RecipeItem.objects.create(recipe=self.recipe, inventory_item=self.chicken, quantity=Decimal("0.250"), unit="kg") # 250g chicken
         RecipeItem.objects.create(recipe=self.recipe, inventory_item=self.rice, quantity=Decimal("0.200"), unit="kg") # 200g rice
 

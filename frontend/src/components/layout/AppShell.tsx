@@ -30,6 +30,12 @@ import {
   Sparkles,
   ChevronLeft,
   ChevronRight,
+  ClipboardList,
+  ArrowRightLeft,
+  Trash2,
+  DollarSign,
+  ShoppingCart,
+  History,
 } from "lucide-react";
 
 interface NavItem {
@@ -74,10 +80,16 @@ const NAVIGATION_GROUPS: NavGroup[] = [
     ],
   },
   {
-    group: "INVENTORY",
+    group: "INVENTORY & FOOD COST",
     items: [
-      { id: "inventory", label: "Stock Roster", path: "/inventory", icon: Boxes, permission: "inventory.view" },
-      { id: "movements", label: "Stock Movements", path: "/inventory/movements", icon: Boxes, permission: "inventory.view" },
+      { id: "inventory", label: "Stock Items", path: "/inventory", icon: Boxes, permission: "inventory.view" },
+      { id: "recipes", label: "Recipe BOM", path: "/inventory/recipes", icon: ChefHat, permission: "inventory.view" },
+      { id: "stock-counts", label: "Stock Audits", path: "/inventory/stock-counts", icon: ClipboardList, permission: "inventory.view" },
+      { id: "transfers", label: "Transfers", path: "/inventory/transfers", icon: ArrowRightLeft, permission: "inventory.view" },
+      { id: "waste", label: "Wastage Log", path: "/inventory/waste", icon: Trash2, permission: "inventory.view" },
+      { id: "food-cost", label: "Food Costing", path: "/inventory/food-cost", icon: DollarSign, permission: "inventory.view" },
+      { id: "reorder", label: "Par Reorder", path: "/inventory/reorder", icon: ShoppingCart, permission: "inventory.view" },
+      { id: "movements", label: "Movements Ledger", path: "/inventory/movements", icon: History, permission: "inventory.view" },
       { id: "suppliers", label: "Suppliers", path: "/procurement/suppliers", icon: Truck, permission: "procurement.view" },
       { id: "po", label: "Purchase Orders", path: "/procurement/purchase-orders", icon: Truck, permission: "procurement.view" },
     ],

@@ -1,84 +1,225 @@
-import { apiClient } from "@/lib/api-client";
+import { apiClient } from '@/lib/api-client';
 import {
   InventoryItem,
+  InventoryBatch,
   StockMovement,
   Recipe,
-  CreateInventoryItemPayload,
-  ReceiveStockPayload,
-  AdjustStockPayload,
-  WastagePayload,
-} from "../types/inventory.types";
+  StockCount,
+  InventoryTransfer,
+  WasteRecord,
+  FoodCostAnalysis,
+  InventoryValuation,
+  VarianceAnalysis,
+  ReorderSuggestion,
+} from '../types/inventory.types';
 
 export const inventoryApi = {
-  async getItems(search?: string, lowStock?: boolean, isActive?: boolean): Promise<{ success: boolean; data: InventoryItem[] }> {
-    const params = {
-      ...(search ? { search } : {}),
-      ...(lowStock !== undefined ? { low_stock: lowStock } : {}),
-      ...(isActive !== undefined ? { is_active: isActive } : {}),
-    };
-    const response = await apiClient.get<{ success: boolean; data: InventoryItem[] }>("/inventory/items/", { params });
-    return response.data;
+  // Items
+  getItems: async (params?: {
+    item_type?: string;
+    storage_location?: string;
+    search?: string;
+  }): Promise<InventoryItem[]> => {
+    const res = await apiClient.get<any>('/inventory/items/', { params });
+    const payload = res.data;
+    return payload?.data?.results || payload?.data || payload?.results || payload || [];
   },
 
-  async getItem(id: string): Promise<{ success: boolean; data: InventoryItem }> {
-    const response = await apiClient.get<{ success: boolean; data: InventoryItem }>(`/inventory/items/${id}/`);
-    return response.data;
+  getItemDetail: async (id: string): Promise<InventoryItem> => {
+    const res = await apiClient.get<any>(`/inventory/items/${id}/`);
+    return res.data?.data || res.data;
   },
 
-  async createItem(payload: CreateInventoryItemPayload): Promise<{ success: boolean; data: InventoryItem }> {
-    const response = await apiClient.post<{ success: boolean; data: InventoryItem }>("/inventory/items/", payload);
-    return response.data;
+  createItem: async (data: any): Promise<InventoryItem> => {
+    const res = await apiClient.post<any>('/inventory/items/', data);
+    return res.data?.data || res.data;
   },
 
-  async receiveStock(
-    id: string,
-    payload: ReceiveStockPayload
-  ): Promise<{ success: boolean; data: { movement: StockMovement; item: InventoryItem } }> {
-    const response = await apiClient.post<{ success: boolean; data: { movement: StockMovement; item: InventoryItem } }>(
-      `/inventory/items/${id}/receive/`,
-      payload
-    );
-    return response.data;
+  updateItem: async (id: string, data: any): Promise<InventoryItem> => {
+    const res = await apiClient.patch<any>(`/inventory/items/${id}/`, data);
+    return res.data?.data || res.data;
   },
 
-  async adjustStock(
-    id: string,
-    payload: AdjustStockPayload
-  ): Promise<{ success: boolean; data: { movement: StockMovement; item: InventoryItem } }> {
-    const response = await apiClient.post<{ success: boolean; data: { movement: StockMovement; item: InventoryItem } }>(
-      `/inventory/items/${id}/adjust/`,
-      payload
-    );
-    return response.data;
+  receiveStock: async (
+    itemId: string,
+    payload: {
+      quantity: string | number;
+      unit: string;
+      unit_cost?: string | number;
+      batch_number?: string;
+      expiry_date?: string;
+      supplier_name?: string;
+      reference?: string;
+      reason?: string;
+    }
+  ) => {
+    const res = await apiClient.post<any>(`/inventory/items/${itemId}/receive/`, payload);
+    return res.data;
   },
 
-  async recordWastage(
-    id: string,
-    payload: WastagePayload
-  ): Promise<{ success: boolean; data: { movement: StockMovement; item: InventoryItem } }> {
-    const response = await apiClient.post<{ success: boolean; data: { movement: StockMovement; item: InventoryItem } }>(
-      `/inventory/items/${id}/waste/`,
-      payload
-    );
-    return response.data;
+  adjustStock: async (
+    itemId: string,
+    payload: { delta_quantity: string | number; reason: string }
+  ) => {
+    const res = await apiClient.post<any>(`/inventory/items/${itemId}/adjust/`, payload);
+    return res.data;
   },
 
-  async getMovements(itemId?: string, movementType?: string): Promise<{ success: boolean; data: StockMovement[] }> {
-    const params = {
-      ...(itemId ? { item_id: itemId } : {}),
-      ...(movementType ? { movement_type: movementType } : {}),
-    };
-    const response = await apiClient.get<{ success: boolean; data: StockMovement[] }>("/inventory/movements/", { params });
-    return response.data;
+  getItemMovements: async (itemId: string): Promise<StockMovement[]> => {
+    const res = await apiClient.get<any>(`/inventory/items/${itemId}/movements/`);
+    const payload = res.data;
+    return payload?.data || payload?.results || payload || [];
   },
 
-  async getRecipes(): Promise<{ success: boolean; data: Recipe[] }> {
-    const response = await apiClient.get<{ success: boolean; data: Recipe[] }>("/inventory/recipes/");
-    return response.data;
+  getItemBatches: async (itemId: string): Promise<InventoryBatch[]> => {
+    const res = await apiClient.get<any>(`/inventory/items/${itemId}/batches/`);
+    const payload = res.data;
+    return payload?.data || payload?.results || payload || [];
   },
 
-  async saveRecipe(payload: { menu_item_id: string; yield_quantity?: number; instructions?: string; ingredients: { inventory_item_id: string; quantity: number; unit?: string }[] }): Promise<{ success: boolean; data: Recipe }> {
-    const response = await apiClient.post<{ success: boolean; data: Recipe }>("/inventory/recipes/", payload);
-    return response.data;
+  analyzeCostImpact: async (itemId: string, newUnitCost: string | number) => {
+    const res = await apiClient.post<any>(`/inventory/items/${itemId}/impact-analysis/`, {
+      new_unit_cost: newUnitCost,
+    });
+    return res.data;
+  },
+
+  // Batches
+  getBatches: async (params?: { batch_status?: string }): Promise<InventoryBatch[]> => {
+    const res = await apiClient.get<any>('/inventory/batches/', { params });
+    const payload = res.data;
+    return payload?.data?.results || payload?.data || payload?.results || payload || [];
+  },
+
+  // Movements Ledger
+  getMovements: async (params?: { movement_type?: string }): Promise<StockMovement[]> => {
+    const res = await apiClient.get<any>('/inventory/movements/', { params });
+    const payload = res.data;
+    return payload?.data?.results || payload?.data || payload?.results || payload || [];
+  },
+
+  // Recipes
+  getRecipes: async (params?: { status?: string; recipe_type?: string }): Promise<Recipe[]> => {
+    const res = await apiClient.get<any>('/inventory/recipes/', { params });
+    const payload = res.data;
+    return payload?.data?.results || payload?.data || payload?.results || payload || [];
+  },
+
+  getRecipeDetail: async (id: string): Promise<Recipe> => {
+    const res = await apiClient.get<any>(`/inventory/recipes/${id}/`);
+    return res.data?.data || res.data;
+  },
+
+  createRecipe: async (data: any): Promise<Recipe> => {
+    const res = await apiClient.post<any>('/inventory/recipes/', data);
+    return res.data?.data || res.data;
+  },
+
+  publishRecipe: async (id: string): Promise<Recipe> => {
+    const res = await apiClient.post<any>(`/inventory/recipes/${id}/publish/`, {});
+    return res.data?.data || res.data;
+  },
+
+  archiveRecipe: async (id: string): Promise<Recipe> => {
+    const res = await apiClient.post<any>(`/inventory/recipes/${id}/archive/`, {});
+    return res.data?.data || res.data;
+  },
+
+  getMenuItemCost: async (menuItemId: string): Promise<FoodCostAnalysis> => {
+    const res = await apiClient.get<FoodCostAnalysis>(`/inventory/recipes/menu-item-cost/${menuItemId}/`);
+    return (res.data as any)?.data || res.data;
+  },
+
+  // Stock Counts
+  getStockCounts: async (): Promise<StockCount[]> => {
+    const res = await apiClient.get<any>('/inventory/stock-counts/');
+    const payload = res.data;
+    return payload?.data?.results || payload?.data || payload?.results || payload || [];
+  },
+
+  createStockCount: async (data: { location?: string; category?: string; notes?: string }): Promise<StockCount> => {
+    const res = await apiClient.post<any>('/inventory/stock-counts/', data);
+    return res.data?.data || res.data;
+  },
+
+  updateStockCountItems: async (
+    countId: string,
+    items: Array<{ item_id: string; counted_quantity: string | number; notes?: string }>
+  ): Promise<StockCount> => {
+    const res = await apiClient.post<any>(`/inventory/stock-counts/${countId}/update-items/`, { items });
+    return res.data?.data || res.data;
+  },
+
+  submitStockCount: async (countId: string): Promise<StockCount> => {
+    const res = await apiClient.post<any>(`/inventory/stock-counts/${countId}/submit/`, {});
+    return res.data?.data || res.data;
+  },
+
+  approveStockCount: async (countId: string): Promise<StockCount> => {
+    const res = await apiClient.post<any>(`/inventory/stock-counts/${countId}/approve/`, {});
+    return res.data?.data || res.data;
+  },
+
+  // Transfers
+  getTransfers: async (): Promise<InventoryTransfer[]> => {
+    const res = await apiClient.get<any>('/inventory/transfers/');
+    const payload = res.data;
+    return payload?.data?.results || payload?.data || payload?.results || payload || [];
+  },
+
+  createTransfer: async (data: {
+    source_location: string;
+    destination_location: string;
+    items: Array<{ item_id: string; quantity: string | number; unit: string; notes?: string }>;
+    notes?: string;
+  }): Promise<InventoryTransfer> => {
+    const res = await apiClient.post<any>('/inventory/transfers/', data);
+    return res.data?.data || res.data;
+  },
+
+  approveTransfer: async (transferId: string): Promise<InventoryTransfer> => {
+    const res = await apiClient.post<any>(`/inventory/transfers/${transferId}/approve/`, {});
+    return res.data?.data || res.data;
+  },
+
+  receiveTransfer: async (transferId: string): Promise<InventoryTransfer> => {
+    const res = await apiClient.post<any>(`/inventory/transfers/${transferId}/receive/`, {});
+    return res.data?.data || res.data;
+  },
+
+  // Waste Logs
+  getWasteRecords: async (): Promise<WasteRecord[]> => {
+    const res = await apiClient.get<any>('/inventory/waste/');
+    const payload = res.data;
+    return payload?.data?.results || payload?.data || payload?.results || payload || [];
+  },
+
+  createWasteRecord: async (data: {
+    item_id: string;
+    quantity: string | number;
+    reason: string;
+    location?: string;
+    batch_id?: string;
+    notes?: string;
+  }): Promise<WasteRecord> => {
+    const res = await apiClient.post<any>('/inventory/waste/', data);
+    return res.data?.data || res.data;
+  },
+
+  // Analytics & Costing
+  getValuation: async (): Promise<InventoryValuation> => {
+    const res = await apiClient.get<any>('/inventory/analytics/valuation/');
+    return res.data?.data || res.data;
+  },
+
+  getVariance: async (params?: { start_date?: string; end_date?: string }): Promise<VarianceAnalysis> => {
+    const res = await apiClient.get<any>('/inventory/analytics/variance/', { params });
+    return res.data?.data || res.data;
+  },
+
+  getReorderSuggestions: async (): Promise<ReorderSuggestion[]> => {
+    const res = await apiClient.get<any>('/inventory/analytics/reorder-suggestions/');
+    const payload = res.data;
+    return payload?.data || payload?.results || payload || [];
   },
 };

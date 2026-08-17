@@ -1,20 +1,26 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from apps.inventory.views import (
-    InventoryItemListCreateView,
-    InventoryItemDetailView,
-    InventoryItemReceiveView,
-    InventoryItemAdjustView,
-    InventoryItemWastageView,
-    StockMovementListView,
-    RecipeListCreateView,
+    InventoryItemViewSet,
+    InventoryBatchViewSet,
+    StockMovementViewSet,
+    RecipeViewSet,
+    StockCountViewSet,
+    InventoryTransferViewSet,
+    WasteRecordViewSet,
+    FoodCostAnalyticsViewSet,
 )
 
+router = DefaultRouter()
+router.register(r"items", InventoryItemViewSet, basename="inventory-items")
+router.register(r"batches", InventoryBatchViewSet, basename="inventory-batches")
+router.register(r"movements", StockMovementViewSet, basename="inventory-movements")
+router.register(r"recipes", RecipeViewSet, basename="inventory-recipes")
+router.register(r"stock-counts", StockCountViewSet, basename="inventory-stock-counts")
+router.register(r"transfers", InventoryTransferViewSet, basename="inventory-transfers")
+router.register(r"waste", WasteRecordViewSet, basename="inventory-waste")
+router.register(r"analytics", FoodCostAnalyticsViewSet, basename="inventory-analytics")
+
 urlpatterns = [
-    path("items/", InventoryItemListCreateView.as_view(), name="inventory_item_list_create"),
-    path("items/<uuid:item_id>/", InventoryItemDetailView.as_view(), name="inventory_item_detail"),
-    path("items/<uuid:item_id>/receive/", InventoryItemReceiveView.as_view(), name="inventory_item_receive"),
-    path("items/<uuid:item_id>/adjust/", InventoryItemAdjustView.as_view(), name="inventory_item_adjust"),
-    path("items/<uuid:item_id>/waste/", InventoryItemWastageView.as_view(), name="inventory_item_waste"),
-    path("movements/", StockMovementListView.as_view(), name="stock_movement_list"),
-    path("recipes/", RecipeListCreateView.as_view(), name="recipe_list_create"),
+    path("", include(router.urls)),
 ]

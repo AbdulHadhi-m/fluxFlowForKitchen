@@ -25,6 +25,10 @@ class NotificationType(models.TextChoices):
     DELIVERY_COMPLETED = "DELIVERY_COMPLETED", "Delivery Completed"
     DELIVERY_FAILED = "DELIVERY_FAILED", "Delivery Failed"
     DELIVERY_DELAYED = "DELIVERY_DELAYED", "Delivery Delayed"
+    INVENTORY_EXPIRY_WARNING = "INVENTORY_EXPIRY_WARNING", "Expiry Warning"
+    INVENTORY_EXPIRED = "INVENTORY_EXPIRED", "Expired Stock Alert"
+    STOCK_COUNT_SUBMITTED = "STOCK_COUNT_SUBMITTED", "Stock Count Submitted"
+    STOCK_TRANSFER_REQUESTED = "STOCK_TRANSFER_REQUESTED", "Stock Transfer Requested"
     SYSTEM_ALERT = "SYSTEM_ALERT", "System Alert"
 
 class Notification(UUIDModel, TimeStampedModel):

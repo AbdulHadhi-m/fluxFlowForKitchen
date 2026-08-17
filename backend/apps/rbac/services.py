@@ -46,6 +46,18 @@ SYSTEM_PERMISSIONS = [
     ("inventory", "view", "View stock levels and raw material inventory"),
     ("inventory", "update", "Record inventory intake, wastage, and adjustments"),
     ("inventory", "manage", "Configure inventory suppliers and recipe deduction maps"),
+    ("inventory", "recipe.view", "View recipes, BOMs, and sub-recipes"),
+    ("inventory", "recipe.create", "Create recipe BOM drafts and versions"),
+    ("inventory", "recipe.update", "Update recipe ingredients and instructions"),
+    ("inventory", "recipe.publish", "Publish recipe versions for active production"),
+    ("inventory", "recipe.archive", "Archive historical recipe versions"),
+    ("inventory", "cost.view", "View raw material unit costs, recipe food costs, and supplier prices"),
+    ("inventory", "adjustment.create", "Create inventory adjustments and waste records"),
+    ("inventory", "adjustment.approve", "Approve physical stock count variances and adjustments"),
+    ("inventory", "stock_count.create", "Create and conduct physical stock count audit sessions"),
+    ("inventory", "stock_count.approve", "Approve stock count audits and post inventory adjustments"),
+    ("inventory", "transfer.manage", "Create, approve, and receive inter-location stock transfers"),
+    ("inventory", "waste.create", "Log inventory waste, spoilage, and preparation loss"),
     
     # Procurement & Suppliers
     ("procurement", "view", "View suppliers and purchase orders"),

@@ -1,303 +1,336 @@
-import React, { useState } from "react";
-import { useInventory } from "../hooks/useInventory";
-import { StockStatusBadge } from "../components/StockStatusBadge";
-import { CreateInventoryItemModal } from "../components/CreateInventoryItemModal";
-import { ReceiveStockModal } from "../components/ReceiveStockModal";
-import { AdjustStockModal } from "../components/AdjustStockModal";
-import { WastageModal } from "../components/WastageModal";
-import { InventoryItem } from "../types/inventory.types";
-import { Can } from "@/features/authorization/components/Can";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
+import React, { useState } from 'react';
 import {
-  Boxes,
-  PackagePlus,
-  ArrowDownLeft,
-  SlidersHorizontal,
-  Trash2,
+  Plus,
   Search,
-  AlertTriangle,
-  History,
-  CheckCircle2,
-  XCircle,
-} from "lucide-react";
-import { Link } from "react-router-dom";
+  Package,
+  RefreshCw,
+  Box,
+  TrendingUp,
+} from 'lucide-react';
+import {
+  useInventoryItems,
+  useInventoryValuation,
+  useVarianceAnalysis,
+  useCreateInventoryItem,
+  useReceiveStock,
+  useAdjustStock,
+} from '../hooks/useInventory';
+import { FoodCostKPICards } from '../components/FoodCostKPICards';
+import { StockStatusBadge } from '../components/StockStatusBadge';
+import { CreateInventoryItemModal } from '../components/CreateInventoryItemModal';
+import { ReceiveStockModal } from '../components/ReceiveStockModal';
+import { AdjustStockModal } from '../components/AdjustStockModal';
+import { LogWasteModal } from '../components/LogWasteModal';
+import { BatchTrackerModal } from '../components/BatchTrackerModal';
+import { ImpactAnalysisModal } from '../components/ImpactAnalysisModal';
+import { InventoryItem } from '../types/inventory.types';
 
 export const InventoryListPage: React.FC = () => {
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [lowStockOnly, setLowStockOnly] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [typeFilter, setTypeFilter] = useState<string>('ALL');
+  const [locationFilter, setLocationFilter] = useState<string>('ALL');
 
   // Modals state
-  const [isCreateOpen, setIsCreateOpen] = useState<boolean>(false);
-  const [selectedReceiveItem, setSelectedReceiveItem] = useState<InventoryItem | null>(null);
-  const [selectedAdjustItem, setSelectedAdjustItem] = useState<InventoryItem | null>(null);
-  const [selectedWasteItem, setSelectedWasteItem] = useState<InventoryItem | null>(null);
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [receiveItem, setReceiveItem] = useState<InventoryItem | null>(null);
+  const [adjustItem, setAdjustItem] = useState<InventoryItem | null>(null);
+  const [wasteItem, setWasteItem] = useState<InventoryItem | null>(null);
+  const [batchItem, setBatchItem] = useState<InventoryItem | null>(null);
+  const [impactItem, setImpactItem] = useState<InventoryItem | null>(null);
 
-  const {
-    items,
-    isLoadingItems,
-    createItem,
-    isCreatingItem,
-    receiveStock,
-    isReceivingStock,
-    adjustStock,
-    isAdjustingStock,
-    recordWastage,
-    isRecordingWastage,
-  } = useInventory(searchQuery, lowStockOnly);
+  const { data: items = [], isLoading, refetch } = useInventoryItems({
+    item_type: typeFilter !== 'ALL' ? typeFilter : undefined,
+    storage_location: locationFilter !== 'ALL' ? locationFilter : undefined,
+    search: searchTerm || undefined,
+  });
 
-  const totalItems = items.length;
-  const lowStockCount = items.filter((i) => i.stock_status === "LOW_STOCK").length;
-  const outOfStockCount = items.filter((i) => i.stock_status === "OUT_OF_STOCK").length;
-  const inStockCount = items.filter((i) => i.stock_status === "IN_STOCK").length;
+  const createItemMutation = useCreateInventoryItem();
+  const receiveStockMutation = useReceiveStock();
+  const adjustStockMutation = useAdjustStock();
+
+  const { data: valuation } = useInventoryValuation();
+  const { data: variance } = useVarianceAnalysis();
+
+  const lowStockCount = items.filter((i) => i.stock_status === 'LOW_STOCK').length;
+  const outOfStockCount = items.filter((i) => i.stock_status === 'OUT_OF_STOCK').length;
 
   return (
-    <div className="space-y-6 animate-in fade-in duration-300">
+    <div className="p-6 max-w-7xl mx-auto space-y-6">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
-              <Boxes className="h-4 w-4" />
-            </div>
-            <h1 className="text-xl font-black tracking-tight text-white">Inventory & Raw Material Stock</h1>
-          </div>
-          <p className="text-xs text-slate-400 mt-1">
-            Track ingredients, low-stock reorder thresholds, intake receipts, adjustments, and order recipe deductions.
+          <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2.5">
+            <Package className="w-7 h-7 text-emerald-400" />
+            Inventory & Food Costing
+          </h1>
+          <p className="text-sm text-slate-400 mt-1">
+            Master ingredient catalog, real-time stock levels, valuations & recipes
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Link to="/inventory/movements">
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-slate-800 text-slate-300 hover:bg-slate-800 text-xs gap-1.5"
-            >
-              <History className="h-3.5 w-3.5 text-indigo-400" /> Stock Audit Ledger
-            </Button>
-          </Link>
+        <div className="flex items-center gap-2.5">
+          <button
+            onClick={() => refetch()}
+            className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 transition-colors"
+            title="Refresh Stock Data"
+          >
+            <RefreshCw className="w-4 h-4" />
+          </button>
 
-          <Can permission="inventory.update">
-            <Button
-              onClick={() => setIsCreateOpen(true)}
-              size="sm"
-              className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs gap-1.5 shadow-lg shadow-indigo-600/20"
-            >
-              <PackagePlus className="h-3.5 w-3.5" /> Add Inventory Item
-            </Button>
-          </Can>
+          <button
+            onClick={() => setIsCreateOpen(true)}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500 text-slate-950 hover:bg-emerald-400 font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20"
+          >
+            <Plus className="w-4 h-4" />
+            Add Master Item
+          </button>
         </div>
       </div>
 
-      {/* KPI Metrics */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <Card className="bg-slate-900/60 border-slate-800/80">
-          <CardContent className="p-4 flex items-center justify-between">
-            <div>
-              <p className="text-[11px] font-medium text-slate-400">Total Items</p>
-              <p className="text-xl font-black text-white mt-0.5">{totalItems}</p>
-            </div>
-            <div className="h-8 w-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center">
-              <Boxes className="h-4 w-4" />
-            </div>
-          </CardContent>
-        </Card>
+      {/* KPI Metric Cards */}
+      <FoodCostKPICards
+        valuation={valuation}
+        variance={variance}
+        lowStockCount={lowStockCount}
+        outOfStockCount={outOfStockCount}
+      />
 
-        <Card className="bg-slate-900/60 border-slate-800/80">
-          <CardContent className="p-4 flex items-center justify-between">
-            <div>
-              <p className="text-[11px] font-medium text-slate-400">In Stock</p>
-              <p className="text-xl font-black text-emerald-400 mt-0.5">{inStockCount}</p>
-            </div>
-            <div className="h-8 w-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
-              <CheckCircle2 className="h-4 w-4" />
-            </div>
-          </CardContent>
-        </Card>
+      {/* Filters Bar */}
+      <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-md flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-3 flex-1 min-w-[280px]">
+          <div className="relative flex-1">
+            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+            <input
+              type="text"
+              placeholder="Search by ingredient name or SKU..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-9 pr-4 py-2 rounded-lg bg-slate-950 border border-slate-800 text-sm text-slate-200 focus:outline-none focus:border-emerald-500 placeholder:text-slate-600"
+            />
+          </div>
 
-        <Card className="bg-slate-900/60 border-slate-800/80">
-          <CardContent className="p-4 flex items-center justify-between">
-            <div>
-              <p className="text-[11px] font-medium text-slate-400">Low Stock Alert</p>
-              <p className="text-xl font-black text-amber-400 mt-0.5">{lowStockCount}</p>
-            </div>
-            <div className="h-8 w-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center">
-              <AlertTriangle className="h-4 w-4" />
-            </div>
-          </CardContent>
-        </Card>
+          <select
+            value={typeFilter}
+            onChange={(e) => setTypeFilter(e.target.value)}
+            className="px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 text-sm focus:outline-none focus:border-emerald-500"
+          >
+            <option value="ALL">All Item Types</option>
+            <option value="RAW_INGREDIENT">Raw Ingredients</option>
+            <option value="PACKAGING">Packaging</option>
+            <option value="CONSUMABLE">Consumables</option>
+            <option value="SEMI_FINISHED">Semi-finished / Preps</option>
+            <option value="FINISHED_GOOD">Finished Goods</option>
+          </select>
 
-        <Card className="bg-slate-900/60 border-slate-800/80">
-          <CardContent className="p-4 flex items-center justify-between">
-            <div>
-              <p className="text-[11px] font-medium text-slate-400">Out of Stock</p>
-              <p className="text-xl font-black text-rose-400 mt-0.5">{outOfStockCount}</p>
-            </div>
-            <div className="h-8 w-8 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center">
-              <XCircle className="h-4 w-4" />
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Filter and Search Bar */}
-      <div className="flex flex-col sm:flex-row gap-3 items-center justify-between bg-slate-900/40 p-3 rounded-xl border border-slate-800/60">
-        <div className="relative w-full sm:w-80">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-500" />
-          <Input
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search ingredients or SKU..."
-            className="pl-9 bg-slate-950 border-slate-800 text-xs text-slate-200 h-9"
-          />
+          <select
+            value={locationFilter}
+            onChange={(e) => setLocationFilter(e.target.value)}
+            className="px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 text-sm focus:outline-none focus:border-emerald-500"
+          >
+            <option value="ALL">All Storage Locations</option>
+            <option value="MAIN_STORE">Main Store</option>
+            <option value="KITCHEN">Kitchen Line</option>
+            <option value="BAR">Bar Station</option>
+            <option value="WALK_IN_FREEZER">Walk-in Freezer</option>
+            <option value="DRY_STORAGE">Dry Storage</option>
+          </select>
         </div>
-
-        <button
-          type="button"
-          onClick={() => setLowStockOnly(!lowStockOnly)}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold transition-all ${
-            lowStockOnly
-              ? "bg-amber-500/20 border-amber-500/40 text-amber-300"
-              : "bg-slate-950 border-slate-800 text-slate-400 hover:text-white"
-          }`}
-        >
-          <AlertTriangle className="h-3.5 w-3.5" />
-          Low Stock Only ({lowStockCount + outOfStockCount})
-        </button>
       </div>
 
-      {/* Inventory Items Table */}
-      <Card className="bg-slate-900/60 border-slate-800 overflow-hidden">
+      {/* Items Table */}
+      <div className="rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-md overflow-hidden shadow-xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-950 text-slate-400 border-b border-slate-800 font-semibold">
+            <thead className="bg-slate-950/80 text-slate-400 uppercase tracking-wider border-b border-slate-800">
               <tr>
-                <th className="p-3.5">Item Name & SKU</th>
-                <th className="p-3.5">Unit</th>
-                <th className="p-3.5">Current Stock</th>
-                <th className="p-3.5">Min Alert Level</th>
-                <th className="p-3.5">Cost / Unit</th>
-                <th className="p-3.5">Status</th>
-                <th className="p-3.5 text-right">Quick Stock Actions</th>
+                <th className="py-3.5 px-4 font-semibold">Item & SKU</th>
+                <th className="py-3.5 px-4 font-semibold">Type / Location</th>
+                <th className="py-3.5 px-4 font-semibold">Current Stock</th>
+                <th className="py-3.5 px-4 font-semibold">Par Level</th>
+                <th className="py-3.5 px-4 font-semibold">Avg Cost</th>
+                <th className="py-3.5 px-4 font-semibold">Total Value</th>
+                <th className="py-3.5 px-4 font-semibold">Status</th>
+                <th className="py-3.5 px-4 font-semibold text-right">Quick Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 text-slate-300">
-              {isLoadingItems ? (
+            <tbody className="divide-y divide-slate-800/60 font-medium">
+              {isLoading ? (
                 <tr>
-                  <td colSpan={7} className="p-8 text-center text-slate-500">
+                  <td colSpan={8} className="py-8 text-center text-slate-400">
                     Loading inventory catalog...
                   </td>
                 </tr>
               ) : items.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="p-8 text-center text-slate-500">
-                    No inventory items found. Add ingredients using the button above.
+                  <td colSpan={8} className="py-8 text-center text-slate-500">
+                    No inventory items found matching filters.
                   </td>
                 </tr>
               ) : (
-                items.map((item) => (
-                  <tr key={item.id} className="hover:bg-slate-800/30 transition-colors">
-                    <td className="p-3.5">
-                      <div className="font-bold text-white text-sm">{item.name}</div>
-                      {item.sku && (
-                        <div className="font-mono text-[10px] text-slate-500">{item.sku}</div>
-                      )}
-                    </td>
-                    <td className="p-3.5 font-mono uppercase text-slate-400">{item.unit}</td>
-                    <td className="p-3.5 font-mono font-bold text-white text-sm">
-                      {item.current_quantity}{" "}
-                      <span className="text-[10px] font-normal text-slate-400">{item.unit}</span>
-                    </td>
-                    <td className="p-3.5 font-mono text-slate-400">
-                      {item.minimum_stock_level} {item.unit}
-                    </td>
-                    <td className="p-3.5 font-mono text-slate-400">${item.cost_per_unit}</td>
-                    <td className="p-3.5">
-                      <StockStatusBadge status={item.stock_status} />
-                    </td>
-                    <td className="p-3.5 text-right">
-                      <div className="flex items-center justify-end gap-1.5">
-                        <Can permission="inventory.update">
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => setSelectedReceiveItem(item)}
-                            className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 h-7 text-[11px] px-2 gap-1 font-semibold"
+                items.map((item) => {
+                  const qty = Number(item.current_quantity);
+                  const cost = Number(item.weighted_average_cost || item.cost_per_unit || 0);
+                  const valuationVal = qty * cost;
+
+                  return (
+                    <tr key={item.id} className="hover:bg-slate-800/30 transition-colors">
+                      <td className="py-3.5 px-4">
+                        <div className="font-semibold text-slate-200 text-sm">{item.name}</div>
+                        <div className="text-slate-500 font-mono text-[11px] mt-0.5">
+                          {item.sku || 'NO-SKU'}
+                        </div>
+                      </td>
+
+                      <td className="py-3.5 px-4">
+                        <span className="text-slate-300 block">{item.item_type.replace('_', ' ')}</span>
+                        <span className="text-slate-500 text-[10px] block">
+                          {item.storage_location.replace('_', ' ')}
+                        </span>
+                      </td>
+
+                      <td className="py-3.5 px-4">
+                        <div className="font-mono text-slate-200 text-sm font-bold">
+                          {qty.toFixed(3)} <span className="text-xs font-normal text-slate-400">{item.unit}</span>
+                        </div>
+                      </td>
+
+                      <td className="py-3.5 px-4 font-mono text-slate-400">
+                        {Number(item.par_level || 0).toFixed(1)} {item.unit}
+                      </td>
+
+                      <td className="py-3.5 px-4 font-mono text-slate-300">
+                        ${cost.toFixed(2)}
+                        <span className="text-slate-500 text-[10px] block">/{item.unit}</span>
+                      </td>
+
+                      <td className="py-3.5 px-4 font-mono font-semibold text-emerald-400">
+                        ${valuationVal.toFixed(2)}
+                      </td>
+
+                      <td className="py-3.5 px-4">
+                        <StockStatusBadge status={item.stock_status} />
+                      </td>
+
+                      <td className="py-3.5 px-4 text-right">
+                        <div className="flex items-center justify-end gap-1.5">
+                          <button
+                            onClick={() => setReceiveItem(item)}
+                            className="px-2 py-1 rounded-md bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 text-xs font-semibold transition-colors"
+                            title="Receive Stock Intake"
                           >
-                            <ArrowDownLeft className="h-3 w-3" /> Receive
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => setSelectedAdjustItem(item)}
-                            className="border-amber-500/30 text-amber-400 hover:bg-amber-500/10 h-7 text-[11px] px-2 gap-1 font-semibold"
+                            + Intake
+                          </button>
+
+                          <button
+                            onClick={() => setAdjustItem(item)}
+                            className="px-2 py-1 rounded-md bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs transition-colors"
+                            title="Adjust Stock Balance"
                           >
-                            <SlidersHorizontal className="h-3 w-3" /> Adjust
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => setSelectedWasteItem(item)}
-                            className="border-rose-500/30 text-rose-400 hover:bg-rose-500/10 h-7 text-[11px] px-2 gap-1 font-semibold"
+                            Adjust
+                          </button>
+
+                          <button
+                            onClick={() => setWasteItem(item)}
+                            className="px-2 py-1 rounded-md bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 text-xs transition-colors"
+                            title="Log Waste"
                           >
-                            <Trash2 className="h-3 w-3" /> Waste
-                          </Button>
-                        </Can>
-                      </div>
-                    </td>
-                  </tr>
-                ))
+                            Waste
+                          </button>
+
+                          {(item.track_batch || item.track_expiry) && (
+                            <button
+                              onClick={() => setBatchItem(item)}
+                              className="px-2 py-1 rounded-md bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 text-xs font-semibold transition-colors"
+                              title="View Batches / Expiry"
+                            >
+                              <Box className="w-3.5 h-3.5" />
+                            </button>
+                          )}
+
+                          <button
+                            onClick={() => setImpactItem(item)}
+                            className="px-2 py-1 rounded-md bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 text-xs font-semibold transition-colors"
+                            title="Cost Change Impact Simulation"
+                          >
+                            <TrendingUp className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })
               )}
             </tbody>
           </table>
         </div>
-      </Card>
+      </div>
 
       {/* Modals */}
-      <CreateInventoryItemModal
-        isOpen={isCreateOpen}
-        onClose={() => setIsCreateOpen(false)}
-        onSubmit={async (values) => {
-          await createItem(values);
-          setIsCreateOpen(false);
-        }}
-        isLoading={isCreatingItem}
-      />
+      {isCreateOpen && (
+        <CreateInventoryItemModal
+          isOpen={isCreateOpen}
+          onClose={() => setIsCreateOpen(false)}
+          onSubmit={async (values) => {
+            await createItemMutation.mutateAsync(values);
+            setIsCreateOpen(false);
+          }}
+          isLoading={createItemMutation.isPending}
+        />
+      )}
 
-      <ReceiveStockModal
-        isOpen={!!selectedReceiveItem}
-        onClose={() => setSelectedReceiveItem(null)}
-        item={selectedReceiveItem}
-        onSubmit={async (id, values) => {
-          await receiveStock({ id, payload: values });
-          setSelectedReceiveItem(null);
-        }}
-        isLoading={isReceivingStock}
-      />
+      {receiveItem && (
+        <ReceiveStockModal
+          item={receiveItem}
+          isOpen={!!receiveItem}
+          onClose={() => setReceiveItem(null)}
+          onSubmit={async (values) => {
+            await receiveStockMutation.mutateAsync({ itemId: receiveItem.id, payload: values });
+            setReceiveItem(null);
+          }}
+          isLoading={receiveStockMutation.isPending}
+        />
+      )}
 
-      <AdjustStockModal
-        isOpen={!!selectedAdjustItem}
-        onClose={() => setSelectedAdjustItem(null)}
-        item={selectedAdjustItem}
-        onSubmit={async (id, values) => {
-          await adjustStock({ id, payload: values });
-          setSelectedAdjustItem(null);
-        }}
-        isLoading={isAdjustingStock}
-      />
+      {adjustItem && (
+        <AdjustStockModal
+          item={adjustItem}
+          isOpen={!!adjustItem}
+          onClose={() => setAdjustItem(null)}
+          onSubmit={async (values) => {
+            await adjustStockMutation.mutateAsync({ itemId: adjustItem.id, payload: values });
+            setAdjustItem(null);
+          }}
+          isLoading={adjustStockMutation.isPending}
+        />
+      )}
 
-      <WastageModal
-        isOpen={!!selectedWasteItem}
-        onClose={() => setSelectedWasteItem(null)}
-        item={selectedWasteItem}
-        onSubmit={async (id, values) => {
-          await recordWastage({ id, payload: values });
-          setSelectedWasteItem(null);
-        }}
-        isLoading={isRecordingWastage}
-      />
+      {wasteItem && (
+        <LogWasteModal
+          isOpen={!!wasteItem}
+          onClose={() => setWasteItem(null)}
+          defaultItemId={wasteItem.id}
+        />
+      )}
+
+      {batchItem && (
+        <BatchTrackerModal
+          itemId={batchItem.id}
+          itemName={batchItem.name}
+          isOpen={!!batchItem}
+          onClose={() => setBatchItem(null)}
+        />
+      )}
+
+      {impactItem && (
+        <ImpactAnalysisModal
+          itemId={impactItem.id}
+          itemName={impactItem.name}
+          currentCost={impactItem.weighted_average_cost || impactItem.cost_per_unit || '0'}
+          unit={impactItem.unit}
+          isOpen={!!impactItem}
+          onClose={() => setImpactItem(null)}
+        />
+      )}
     </div>
   );
 };

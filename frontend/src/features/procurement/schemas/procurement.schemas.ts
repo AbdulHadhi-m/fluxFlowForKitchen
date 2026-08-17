@@ -14,7 +14,7 @@ export type CreateSupplierFormValues = z.infer<typeof createSupplierSchema>;
 export const createPOItemSchema = z.object({
   inventory_item_id: z.string().uuid("Please select an inventory item."),
   quantity_ordered: z.coerce.number().min(0.001, "Quantity must be greater than zero."),
-  unit: z.enum(["kg", "g", "l", "ml", "piece", "pack", "bottle", "box"]),
+  unit: z.enum(["kg", "g", "l", "ml", "piece", "portion", "pack", "bottle", "box", "oz", "lb"]),
   unit_cost: z.coerce.number().min(0, "Cost cannot be negative."),
 });
 
