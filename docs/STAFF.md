@@ -75,3 +75,10 @@ frontend/src/features/staff/
 - **Tenant Scope Resolution**: Staff list and individual member operations resolve strictly from `request.user`'s current active restaurant.
 - **Foreign UUID Rejection**: Supplying an employee UUID from another restaurant results in `404 Not Found`.
 - **RBAC Gating**: `Restaurant Admin` and authorized `Manager` (`staff.view`, `staff.create`, `staff.update`, `staff.remove`) have staff administration privileges; operational roles (`Waiter`, `Kitchen Staff`, `Cashier`) receive `403 Forbidden`.
+
+---
+
+## 7. Automation Integration
+
+- `EMPLOYEE_ABSENCE_RECORDED` (from leave requests) and `PAYROLL_COMPLETED` (from payroll runs) events drive HR workflows such as `EMPLOYEE_ABSENCE_ALERT` (notify shift managers + create coverage task).
+- See [AUTOMATION.md](AUTOMATION.md) and [BUSINESS_RULES.md](BUSINESS_RULES.md).

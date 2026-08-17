@@ -55,6 +55,11 @@ class NotificationType(models.TextChoices):
     PAYROLL_PROCESSED = "PAYROLL_PROCESSED", "Payroll Processed"
     PAYSLIP_AVAILABLE = "PAYSLIP_AVAILABLE", "New Payslip Available"
     STAFFING_GAP_ALERT = "STAFFING_GAP_ALERT", "Staffing Gap Alert"
+    WORKFLOW_EXECUTION_FAILED = "WORKFLOW_EXECUTION_FAILED", "Workflow Execution Failed"
+    WORKFLOW_ACTION_FAILED = "WORKFLOW_ACTION_FAILED", "Workflow Action Failed"
+    WORKFLOW_APPROVAL_REQUESTED = "WORKFLOW_APPROVAL_REQUESTED", "Workflow Approval Requested"
+    WORKFLOW_APPROVAL_ESCALATED = "WORKFLOW_APPROVAL_ESCALATED", "Workflow Approval Escalated"
+    WORKFLOW_COMPLETED = "WORKFLOW_COMPLETED", "Workflow Completed"
     SYSTEM_ALERT = "SYSTEM_ALERT", "System Alert"
 
 class Notification(UUIDModel, TimeStampedModel):

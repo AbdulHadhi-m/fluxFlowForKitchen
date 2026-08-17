@@ -149,6 +149,18 @@ SYSTEM_PERMISSIONS = [
     ("hr.payroll", "view", "View own employee payslips and compensation summary"),
     ("hr.payroll", "manage", "Calculate, review, approve, and process payroll runs and accounting integration"),
     ("hr.reports", "view", "View labor cost reports, workforce analytics, and staffing forecasts"),
+
+    # Workflow Automation & Business Rules
+    ("workflows", "view", "View workflows, executions, and approval requests"),
+    ("workflows", "create", "Create workflow definitions and templates"),
+    ("workflows", "edit", "Edit draft workflow definitions"),
+    ("workflows", "publish", "Publish workflow versions for activation"),
+    ("workflows", "pause", "Pause, resume, and archive workflows"),
+    ("workflows", "execute", "Execute workflows manually and manage executions"),
+    ("workflows", "cancel", "Cancel or pause running workflow executions"),
+    ("workflows", "retry", "Retry failed workflow executions"),
+    ("workflows", "approve", "Approve or reject workflow approval requests"),
+    ("automation.analytics", "view", "View automation performance and workflow analytics"),
 ]
 
 # Role to Permission code mappings
@@ -189,6 +201,9 @@ SYSTEM_ROLE_DEFINITIONS = {
             "finance.cash.approve_variance", "finance.bank.reconcile", "finance.expense.create", "finance.expense.approve",
             "hr.view", "hr.manage", "hr.attendance.clock", "hr.attendance.manage", "hr.shifts.view", "hr.shifts.manage",
             "hr.leave.request", "hr.leave.approve", "hr.timesheet.manage", "hr.payroll.view", "hr.payroll.manage", "hr.reports.view",
+            "workflows.view", "workflows.create", "workflows.edit", "workflows.publish", "workflows.pause",
+            "workflows.execute", "workflows.cancel", "workflows.retry", "workflows.approve",
+            "automation.analytics.view",
         ],
     },
     "CASHIER": {

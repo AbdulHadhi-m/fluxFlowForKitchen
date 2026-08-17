@@ -38,3 +38,11 @@ Hierarchical classification adhering to GAAP accounting standards:
 - **Statement of Cash Flows**: Operating, investing, and financing cash movements.
 - **Trial Balance**: Equilibrium validation across all active debit and credit accounts.
 - **General Ledger**: Chronological running balances.
+
+---
+
+## 6. Automation Integration
+
+- `PAYMENT_COMPLETED` / `PAYMENT_FAILED` / `BILL_VOIDED` events drive payment workflows (e.g. `PAYMENT_FAILED_ALERT`, `LARGE_REFUND_APPROVAL`).
+- `INVOICE_OVERDUE` is published by the scheduled `detect_overdue_invoices` task for OPEN/PARTIALLY_PAID/OVERDUE receivables (via `balance_due`); conditions may reference `invoice.balance_due`.
+- See [AUTOMATION.md](AUTOMATION.md) and [BUSINESS_RULES.md](BUSINESS_RULES.md).

@@ -77,6 +77,9 @@ class AuditEntityType(models.TextChoices):
     PAYROLL_RUN = "PAYROLL_RUN", "Payroll Run"
     PAYROLL_ITEM = "PAYROLL_ITEM", "Payroll Employee Record"
     COMPENSATION = "COMPENSATION", "Staff Compensation"
+    WORKFLOW = "WORKFLOW", "Automation Workflow"
+    WORKFLOW_EXECUTION = "WORKFLOW_EXECUTION", "Workflow Execution"
+    WORKFLOW_APPROVAL = "WORKFLOW_APPROVAL", "Workflow Approval Request"
 
 class AuditActorType(models.TextChoices):
     USER = "USER", "Human User"

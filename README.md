@@ -8,7 +8,7 @@
 
 Fluxiflow for Kitchen is a reactive, event-driven restaurant operations management system designed to connect Front-of-House (FOH) and Back-of-House (BOH) operations in real-time. It unifies order management, table occupancy, kitchen display systems (KDS), split-tender billing, inventory recipe depletion, operational reporting, and immutable audit logging.
 
-> **Status**: Prompt 4 Foundation Complete. Feature modules are not implemented yet. Development progresses iteratively via the approved roadmap.
+> **Status**: Production feature set across operations, finance, inventory, procurement, customers, loyalty, marketing, delivery, reporting, and the configurable automation/workflow engine (`apps/workflows`). See [docs/AUTOMATION.md](docs/AUTOMATION.md) for the automation subsystem.
 
 ---
 
@@ -41,7 +41,9 @@ fluxFlowForKitchen/
 │   ├── pytest.ini                # Pytest configuration
 │   ├── config/                   # Django settings, ASGI, Celery, URLs, Routing
 │   └── apps/
-│       └── core/                 # Abstract Tenant models, managers, Health API
+│       ├── core/                 # Abstract Tenant models, managers, Health API
+│       ├── workflows/            # Automation & workflow engine (events, conditions, actions, runner, tasks)
+│       └── ...                   # Domain apps (orders, billing, inventory, procurement, finance, HR, marketing, …)
 ├── frontend/
 │   ├── package.json              # NPM dependencies & scripts
 │   ├── tsconfig.json             # TypeScript compiler settings
@@ -50,10 +52,12 @@ fluxFlowForKitchen/
 │   └── src/
 │       ├── app/                  # Application root & providers
 │       ├── components/           # UI primitives & layout
+│       ├── features/             # Feature modules (…, automation/, marketing/, finance/, …)
 │       ├── lib/                  # Utilities & API client
 │       ├── services/             # HTTP API services
 │       ├── stores/               # Zustand stores
 │       └── types/                # TypeScript interface contracts
+├── docs/                         # Feature documentation (AUTOMATION.md, WORKFLOW_ENGINE.md, …)
 └── README.md
 ```
 

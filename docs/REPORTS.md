@@ -104,3 +104,9 @@ frontend/src/features/reports/
 └── types/
     └── reports.types.ts              # TypeScript interfaces
 ```
+
+---
+
+## 6. Automation Analytics
+
+The automation subsystem ships its own analytics surface (`/automation/analytics`) covering execution success rates, average durations, retries, pending approvals, escalations, most-used workflows, and action failure hotspots — see [AUTOMATION_ANALYTICS.md](AUTOMATION_ANALYTICS.md).

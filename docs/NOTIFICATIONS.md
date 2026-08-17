@@ -104,3 +104,13 @@ frontend/src/features/notifications/
 └── types/
     └── notifications.types.ts        # TypeScript interfaces
 ```
+
+---
+
+## 6. Automation Integration
+
+The workflow engine uses the notification service as a first-class action target:
+
+- `SEND_NOTIFICATION` action: notifies a specific user or all staff holding a permission (`NotificationService.create_notification` with deduplication keys / `notify_users_with_permission` with `deduplication_key_prefix`).
+- Workflow activity also generates notifications for `WORKFLOW_*` notification types (approval required, execution failures, task assignments).
+- See [AUTOMATION.md](AUTOMATION.md) and [WORKFLOW_ACTIONS.md](WORKFLOW_ACTIONS.md).

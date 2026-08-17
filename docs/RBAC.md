@@ -73,3 +73,11 @@ Permissions follow the canonical format: `<resource>.<action>`
 # Seed all permissions and system roles
 python manage.py seed_rbac
 ```
+
+---
+
+## 7. Automation Permissions
+
+Workflow engine permissions (`workflows.view/create/edit/publish/pause/execute/cancel/retry/approve`, `automation.analytics.view`) are seeded with the system roles above (MANAGER grants workflow management; RESTAURANT_ADMIN inherits all). Re-run `seed_rbac` after upgrading to ensure new permission codes exist.
+
+The approval inbox resolves the caller's approver eligibility from `TenantMembership.active_role` + `assigned_roles` (plus RESTAURANT_ADMIN) — see [APPROVAL_WORKFLOWS.md](APPROVAL_WORKFLOWS.md) and [AUTOMATION_SECURITY.md](AUTOMATION_SECURITY.md).

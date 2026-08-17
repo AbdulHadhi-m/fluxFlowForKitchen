@@ -241,4 +241,24 @@ class PaymentService:
 
             locked_bill.save(update_fields=["total_paid", "balance_due", "status", "updated_at"])
 
+            def emit_payment_completed():
+                from apps.workflows.events import publish_event_via_bus
+                publish_event_via_bus(
+                    restaurant=restaurant,
+                    event_type="PAYMENT_COMPLETED",
+                    entity_type="BILL",
+                    entity_id=str(locked_bill.id),
+                    payload={
+                        "payment_id": str(payment.id),
+                        "bill_id": str(locked_bill.id),
+                        "order_id": str(locked_bill.order_id) if locked_bill.order_id else "",
+                        "customer_id": str(locked_bill.customer_id) if getattr(locked_bill, "customer_id", None) else "",
+                        "amount": str(pay_amount),
+                        "payment_method": payment_method,
+                        "bill_status": locked_bill.status,
+                        "grand_total": str(locked_bill.grand_total),
+                    },
+                )
+            transaction.on_commit(emit_payment_completed)
+
             return payment

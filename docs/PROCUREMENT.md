@@ -123,3 +123,14 @@ frontend/src/features/procurement/
 └── types/
     └── procurement.types.ts          # TypeScript interfaces
 ```
+
+---
+
+## 6. Automation Integration
+
+Procurement emits domain events consumed by the workflow engine:
+
+- `PURCHASE_ORDER_CREATED` / `PURCHASE_ORDER_RECEIVED` are published (transaction.on_commit) from `create_purchase_order` / `receive_goods`.
+- The `LARGE_PURCHASE_APPROVAL` template gates large POs with a RESTAURANT_ADMIN approval step; `CREATE_PURCHASE_REQUEST` / `CREATE_DRAFT_PURCHASE_ORDER` actions orchestrate requisitions and draft POs.
+- Conditions can reference `purchase_order.status` / payload amounts.
+- See [AUTOMATION.md](AUTOMATION.md) and [WORKFLOW_ACTIONS.md](WORKFLOW_ACTIONS.md).

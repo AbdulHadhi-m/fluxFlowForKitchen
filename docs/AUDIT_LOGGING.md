@@ -106,3 +106,14 @@ frontend/src/features/audit/
 └── types/
     └── audit.types.ts           # TypeScript interfaces
 ```
+
+---
+
+## 6. Automation Integration
+
+Workflow engine operations are fully auditable:
+
+- `AuditLog` entity types `WORKFLOW*` capture workflow create/update/publish/state changes with `actor` attribution.
+- Every execution records its trigger source (`triggered_by` for manual runs, originating `event_id` otherwise) and immutable `WorkflowVersion.published_by`/`published_at`.
+- Approval responses record `responded_by`, `responded_at`, and `response_note`.
+- See [AUTOMATION.md](AUTOMATION.md) and [AUTOMATION_SECURITY.md](AUTOMATION_SECURITY.md).

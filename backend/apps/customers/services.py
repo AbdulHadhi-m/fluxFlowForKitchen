@@ -71,6 +71,23 @@ class CustomerService:
             actor_user=actor_user,
         )
 
+        def emit_customer_created():
+            from apps.workflows.events import publish_event_via_bus
+            publish_event_via_bus(
+                restaurant=restaurant,
+                event_type="CUSTOMER_CREATED",
+                entity_type="CUSTOMER",
+                entity_id=str(customer.id),
+                payload={
+                    "customer_id": str(customer.id),
+                    "first_name": customer.first_name,
+                    "last_name": customer.last_name,
+                    "phone_masked": (customer.phone[:3] + "***" + customer.phone[-3:]) if len(customer.phone) >= 6 else "***",
+                    "email": customer.email,
+                },
+            )
+        transaction.on_commit(emit_customer_created)
+
         return customer
 
     @classmethod
@@ -267,6 +284,25 @@ class ReservationService:
             actor_user=actor_user,
         )
 
+        def emit_reservation_created():
+            from apps.workflows.events import publish_event_via_bus
+            publish_event_via_bus(
+                restaurant=restaurant,
+                event_type="RESERVATION_CREATED",
+                entity_type="RESERVATION",
+                entity_id=str(reservation.id),
+                payload={
+                    "reservation_id": str(reservation.id),
+                    "reservation_number": res_number,
+                    "customer_id": str(customer.id),
+                    "party_size": party_size,
+                    "reservation_date": reservation_date.isoformat(),
+                    "reservation_time": reservation_time.isoformat(),
+                    "table_id": str(table.id) if table else "",
+                },
+            )
+        transaction.on_commit(emit_reservation_created)
+
         return reservation
 
     @classmethod
@@ -293,6 +329,24 @@ class ReservationService:
                 table=reservation.table,
                 notes=f"Reservation {reservation.reservation_number}",
             )
+
+        def emit_reservation_cancelled():
+            if new_status != ReservationStatus.CANCELLED:
+                return
+            from apps.workflows.events import publish_event_via_bus
+            publish_event_via_bus(
+                restaurant=reservation.restaurant,
+                event_type="RESERVATION_CANCELLED",
+                entity_type="RESERVATION",
+                entity_id=str(reservation.id),
+                payload={
+                    "reservation_id": str(reservation.id),
+                    "reservation_number": reservation.reservation_number,
+                    "customer_id": str(reservation.customer_id),
+                    "cancellation_reason": cancellation_reason,
+                },
+            )
+        transaction.on_commit(emit_reservation_cancelled)
 
         AuditLogService.record(
             action=AuditAction.STATUS_CHANGED,

@@ -145,6 +145,28 @@ class OrderService:
                 from apps.kitchen.services import KitchenService
                 KitchenService.create_ticket_for_order(order)
 
+            # 7. Publish domain event for workflow automation (after commit)
+            def emit_order_created():
+                from apps.workflows.events import publish_event_via_bus
+                publish_event_via_bus(
+                    restaurant=restaurant,
+                    event_type="ORDER_CREATED",
+                    entity_type="ORDER",
+                    entity_id=str(order.id),
+                    payload={
+                        "order_id": str(order.id),
+                        "order_number": order.order_number,
+                        "total_amount": str(order.total),
+                        "status": order.status,
+                        "order_type": order.order_type,
+                        "source": order.source,
+                        "customer_id": str(order.customer_id) if order.customer_id else "",
+                        "table_id": str(order.table_id) if order.table_id else "",
+                        "is_active": order.is_active,
+                    },
+                )
+            transaction.on_commit(emit_order_created)
+
             return order
 
     @classmethod
@@ -228,6 +250,22 @@ class OrderService:
             order.status = Order.OrderStatus.CANCELLED
             order.save(update_fields=["status", "updated_at"])
             cls._sync_table_occupancy_on_order_finish(order.table)
+
+            def emit_order_cancelled():
+                from apps.workflows.events import publish_event_via_bus
+                publish_event_via_bus(
+                    restaurant=order.restaurant,
+                    event_type="ORDER_CANCELLED",
+                    entity_type="ORDER",
+                    entity_id=str(order.id),
+                    payload={
+                        "order_id": str(order.id),
+                        "order_number": order.order_number,
+                        "total_amount": str(order.total),
+                        "customer_id": str(order.customer_id) if order.customer_id else "",
+                    },
+                )
+            transaction.on_commit(emit_order_cancelled)
             return order
 
     @classmethod
@@ -240,4 +278,20 @@ class OrderService:
             order.status = Order.OrderStatus.COMPLETED
             order.save(update_fields=["status", "updated_at"])
             cls._sync_table_occupancy_on_order_finish(order.table)
+
+            def emit_order_completed():
+                from apps.workflows.events import publish_event_via_bus
+                publish_event_via_bus(
+                    restaurant=order.restaurant,
+                    event_type="ORDER_COMPLETED",
+                    entity_type="ORDER",
+                    entity_id=str(order.id),
+                    payload={
+                        "order_id": str(order.id),
+                        "order_number": order.order_number,
+                        "total_amount": str(order.total),
+                        "customer_id": str(order.customer_id) if order.customer_id else "",
+                    },
+                )
+            transaction.on_commit(emit_order_completed)
             return order

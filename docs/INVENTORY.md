@@ -110,3 +110,13 @@ frontend/src/features/inventory/
 └── types/
     └── inventory.types.ts          # TypeScript interfaces
 ```
+
+---
+
+## 6. Automation Integration
+
+Inventory signals drive the workflow engine:
+
+- `INVENTORY_LOW` / `INVENTORY_OUT` events are published by the scheduled detection task (`detect_low_stock`) when `quantity_on_hand` falls to/below `par_level`.
+- The `LOW_STOCK_REORDER` template creates a purchase requisition for the low item at par level; conditions can reference `inventory_item.quantity_on_hand` and `inventory_item.par_level`.
+- See [AUTOMATION.md](AUTOMATION.md) and [BUSINESS_RULES.md](BUSINESS_RULES.md).

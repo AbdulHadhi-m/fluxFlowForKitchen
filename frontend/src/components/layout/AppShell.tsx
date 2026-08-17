@@ -43,6 +43,7 @@ import {
   TrendingUp,
   Landmark,
   Scale,
+  Zap,
 } from "lucide-react";
 
 interface NavItem {
@@ -78,6 +79,7 @@ const NAVIGATION_GROUPS: NavGroup[] = [
       { id: "loyalty", label: "Loyalty & Rewards", path: "/loyalty", icon: Award, permission: "loyalty.view" },
       { id: "marketing", label: "Marketing & Promos", path: "/marketing", icon: Sparkles, permission: "marketing.view" },
       { id: "gift-cards", label: "Gift Cards", path: "/gift-cards", icon: CreditCard, permission: "gift_cards.view" },
+      { id: "automation", label: "Automation", path: "/automation", icon: Zap, permission: "workflows.view" },
     ],
   },
   {

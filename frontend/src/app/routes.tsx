@@ -57,6 +57,16 @@ import { PromotionEditorPage } from "@/features/marketing/pages/PromotionEditorP
 import { CouponsPage } from "@/features/marketing/pages/CouponsPage";
 import { SegmentsPage } from "@/features/marketing/pages/SegmentsPage";
 import { CampaignsPage } from "@/features/marketing/pages/CampaignsPage";
+import { AutomationDashboardPage } from "@/features/automation/pages/AutomationDashboardPage";
+import { WorkflowListPage } from "@/features/automation/pages/WorkflowListPage";
+import { WorkflowBuilderPage } from "@/features/automation/pages/WorkflowBuilderPage";
+import { WorkflowDetailPage } from "@/features/automation/pages/WorkflowDetailPage";
+import { ExecutionListPage } from "@/features/automation/pages/ExecutionListPage";
+import { ExecutionDetailPage } from "@/features/automation/pages/ExecutionDetailPage";
+import { ApprovalInboxPage } from "@/features/automation/pages/ApprovalInboxPage";
+import { TemplatesPage } from "@/features/automation/pages/TemplatesPage";
+import { AnalyticsPage } from "@/features/automation/pages/AnalyticsPage";
+import { TasksPage } from "@/features/automation/pages/TasksPage";
 import { PublicStorefrontPage } from "@/features/ordering/pages/PublicStorefrontPage";
 import { QRTableOrderingPage } from "@/features/ordering/pages/QRTableOrderingPage";
 import { CartPage } from "@/features/ordering/pages/CartPage";
@@ -670,6 +680,118 @@ export const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <PermissionRoute requiredPermission="marketing.view">
               <CampaignsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Automation & Workflows */}
+      <Route
+        path="/automation"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="workflows.view">
+              <AutomationDashboardPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/automation/workflows"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="workflows.view">
+              <WorkflowListPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/automation/workflows/new"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="workflows.create">
+              <WorkflowBuilderPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/automation/workflows/:id"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="workflows.view">
+              <WorkflowDetailPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/automation/workflows/:id/edit"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="workflows.edit">
+              <WorkflowBuilderPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/automation/executions"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="workflows.view">
+              <ExecutionListPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/automation/executions/:id"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="workflows.view">
+              <ExecutionDetailPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/automation/approvals"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="workflows.view">
+              <ApprovalInboxPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/automation/tasks"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="workflows.view">
+              <TasksPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/automation/templates"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="workflows.view">
+              <TemplatesPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/automation/analytics"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="automation.analytics.view">
+              <AnalyticsPage />
             </PermissionRoute>
           </ProtectedRoute>
         }

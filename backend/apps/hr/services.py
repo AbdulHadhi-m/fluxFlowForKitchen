@@ -440,7 +440,7 @@ class LeaveManagementService:
         allocation.pending_days += days_count
         allocation.save(update_fields=["pending_days", "updated_at"])
 
-        return LeaveRequest.objects.create(
+        leave_request = LeaveRequest.objects.create(
             restaurant=restaurant,
             staff_profile=staff_profile,
             leave_type=leave_type,
@@ -450,6 +450,28 @@ class LeaveManagementService:
             reason=reason,
             status=LeaveRequest.Status.SUBMITTED,
         )
+
+        def emit_absence_recorded():
+            from apps.workflows.events import publish_event_via_bus
+            publish_event_via_bus(
+                restaurant=restaurant,
+                event_type="EMPLOYEE_ABSENCE_RECORDED",
+                entity_type="LEAVE_REQUEST",
+                entity_id=str(leave_request.id),
+                payload={
+                    "leave_request_id": str(leave_request.id),
+                    "staff_id": str(staff_profile.id),
+                    "staff_name": f"{staff_profile.user.first_name} {staff_profile.user.last_name}".strip(),
+                    "leave_type": leave_type.code,
+                    "start_date": start_date.isoformat(),
+                    "end_date": end_date.isoformat(),
+                    "days": str(days_count),
+                    "reason": reason,
+                },
+            )
+        transaction.on_commit(emit_absence_recorded)
+
+        return leave_request
 
     @staticmethod
     @transaction.atomic
@@ -710,6 +732,26 @@ class PayrollService:
                 "journal_id": str(payroll_run.journal_entry.id) if payroll_run.journal_entry else None,
             },
         )
+
+        def emit_payroll_completed():
+            from apps.workflows.events import publish_event_via_bus
+            publish_event_via_bus(
+                restaurant=payroll_run.restaurant,
+                event_type="PAYROLL_COMPLETED",
+                entity_type="PAYROLL_RUN",
+                entity_id=str(payroll_run.id),
+                payload={
+                    "payroll_run_id": str(payroll_run.id),
+                    "run_number": payroll_run.run_number,
+                    "period": payroll_run.payroll_period.name,
+                    "total_gross_pay": str(payroll_run.total_gross_pay),
+                    "total_net_pay": str(payroll_run.total_net_pay),
+                    "total_deductions": str(payroll_run.total_deductions),
+                    "employee_count": payroll_run.items.count(),
+                },
+            )
+        transaction.on_commit(emit_payroll_completed)
+
         return payroll_run
 
 

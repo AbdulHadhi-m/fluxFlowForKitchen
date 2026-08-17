@@ -756,6 +756,25 @@ class CampaignService:
                 }
             )
 
+            def emit_campaign_completed():
+                from apps.workflows.events import publish_event_via_bus
+                publish_event_via_bus(
+                    restaurant=locked_campaign.restaurant,
+                    event_type="CAMPAIGN_COMPLETED",
+                    entity_type="CAMPAIGN",
+                    entity_id=str(locked_campaign.id),
+                    payload={
+                        "campaign_id": str(locked_campaign.id),
+                        "name": locked_campaign.name,
+                        "channel": locked_campaign.channel,
+                        "sent_count": sent_count,
+                        "skipped_count": skipped_count,
+                        "failed_count": failed_count,
+                        "total_audience": len(customers),
+                    },
+                )
+            transaction.on_commit(emit_campaign_completed)
+
         return {
             "campaign_id": str(locked_campaign.id),
             "status": locked_campaign.status,

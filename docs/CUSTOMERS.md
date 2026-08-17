@@ -96,3 +96,11 @@ frontend/src/features/customers/
 └── types/
     └── customers.types.ts           # TypeScript interfaces
 ```
+
+---
+
+## 6. Automation Integration
+
+- `CUSTOMER_CREATED`, `RESERVATION_CREATED`, `RESERVATION_CANCELLED`, and `CUSTOMER_FEEDBACK_SUBMITTED` events drive customer-experience workflows (e.g. `CUSTOMER_FEEDBACK_FOLLOW_UP`).
+- Conditions can reference `customer.*` entity fields (e.g. `customer.total_spend`).
+- See [AUTOMATION.md](AUTOMATION.md) and [WORKFLOW_CONDITIONS.md](WORKFLOW_CONDITIONS.md).

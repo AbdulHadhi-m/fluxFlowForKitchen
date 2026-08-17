@@ -70,6 +70,7 @@ LOCAL_APPS = [
     "apps.delivery",
     "apps.finance",
     "apps.hr",
+    "apps.workflows",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -260,3 +261,37 @@ LOGGING = {
         },
     },
 }
+
+# Celery Beat Schedule (Workflow Automation jobs)
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    "workflows-process-scheduled": {
+        "task": "apps.workflows.tasks.process_scheduled_workflows",
+        "schedule": 60.0,
+        "options": {"expires": 90},
+    },
+    "workflows-resume-waiting": {
+        "task": "apps.workflows.tasks.process_waiting_executions",
+        "schedule": 60.0,
+        "options": {"expires": 90},
+    },
+    "workflows-approval-deadlines": {
+        "task": "apps.workflows.tasks.process_approval_deadlines",
+        "schedule": 300.0,
+        "options": {"expires": 360},
+    },
+    "workflows-low-stock-scan": {
+        "task": "apps.workflows.tasks.detect_low_stock_events",
+        "schedule": crontab(minute="*/15"),
+        "options": {"expires": 600},
+    },
+    "workflows-overdue-invoices-scan": {
+        "task": "apps.workflows.tasks.detect_overdue_invoices",
+        "schedule": crontab(minute="0", hour="*"),
+        "options": {"expires": 1800},
+    },
+}
+
+# Workflow webhook credential references (secrets resolved at runtime; never stored in DB)
+FLUXIFLOW_WEBHOOK_CREDENTIALS = {}

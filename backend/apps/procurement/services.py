@@ -464,6 +464,24 @@ class PurchaseOrderService:
                 actor=creator,
                 description=f"Created PO '{po.po_number}' to {supplier.name} for ${po.total_amount}",
             )
+
+            def emit_po_created():
+                from apps.workflows.events import publish_event_via_bus
+                publish_event_via_bus(
+                    restaurant=restaurant,
+                    event_type="PURCHASE_ORDER_CREATED",
+                    entity_type="PURCHASE_ORDER",
+                    entity_id=str(po.id),
+                    payload={
+                        "po_id": str(po.id),
+                        "po_number": po.po_number,
+                        "supplier_id": str(supplier.id),
+                        "supplier_name": supplier.name,
+                        "total_amount": str(po.total_amount),
+                        "status": po.status,
+                    },
+                )
+            transaction.on_commit(emit_po_created)
             return po
 
     @classmethod
@@ -689,6 +707,24 @@ class PurchaseOrderService:
                 actor=received_by,
                 description=f"Received delivery for PO '{po.po_number}' under receipt '{receipt.receipt_number}'",
             )
+
+            def emit_po_received():
+                from apps.workflows.events import publish_event_via_bus
+                publish_event_via_bus(
+                    restaurant=po.restaurant,
+                    event_type="PURCHASE_ORDER_RECEIVED",
+                    entity_type="PURCHASE_ORDER",
+                    entity_id=str(po.id),
+                    payload={
+                        "po_id": str(po.id),
+                        "po_number": po.po_number,
+                        "receipt_id": str(receipt.id),
+                        "receipt_number": receipt.receipt_number,
+                        "status": po.status,
+                        "supplier_id": str(po.supplier_id),
+                    },
+                )
+            transaction.on_commit(emit_po_received)
             return receipt
 
 
