@@ -29,6 +29,20 @@ import { PurchaseReturnsPage } from "@/features/procurement/pages/PurchaseReturn
 import { InvoiceMatchingPage } from "@/features/procurement/pages/InvoiceMatchingPage";
 import { ProcurementBudgetsPage } from "@/features/procurement/pages/ProcurementBudgetsPage";
 import { PurchasePlanningPage } from "@/features/procurement/pages/PurchasePlanningPage";
+import { FinanceDashboardPage } from "@/features/finance/pages/FinanceDashboardPage";
+import { ChartOfAccountsPage } from "@/features/finance/pages/ChartOfAccountsPage";
+import { JournalEntriesPage } from "@/features/finance/pages/JournalEntriesPage";
+import { GeneralLedgerPage } from "@/features/finance/pages/GeneralLedgerPage";
+import { ProfitAndLossPage } from "@/features/finance/pages/ProfitAndLossPage";
+import { BalanceSheetPage } from "@/features/finance/pages/BalanceSheetPage";
+import { CashFlowStatementPage } from "@/features/finance/pages/CashFlowStatementPage";
+import { TrialBalancePage } from "@/features/finance/pages/TrialBalancePage";
+import { AccountsReceivablePage } from "@/features/finance/pages/AccountsReceivablePage";
+import { AccountsPayablePage } from "@/features/finance/pages/AccountsPayablePage";
+import { ExpenseManagementPage } from "@/features/finance/pages/ExpenseManagementPage";
+import { CashManagementPage } from "@/features/finance/pages/CashManagementPage";
+import { BankReconciliationPage } from "@/features/finance/pages/BankReconciliationPage";
+import { FinancialPeriodsPage } from "@/features/finance/pages/FinancialPeriodsPage";
 import { ReportsDashboardPage } from "@/features/reports/pages/ReportsDashboardPage";
 import { NotificationCenterPage } from "@/features/notifications/pages/NotificationCenterPage";
 import { AuditLogsPage } from "@/features/audit/pages/AuditLogsPage";
@@ -348,6 +362,166 @@ export const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <PermissionRoute requiredPermission="procurement.view">
               <PurchasePlanningPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <FinanceDashboardPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance/dashboard"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <FinanceDashboardPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance/accounts"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <ChartOfAccountsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance/journal"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <JournalEntriesPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance/ledger"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <GeneralLedgerPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance/profit-loss"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <ProfitAndLossPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance/balance-sheet"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <BalanceSheetPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance/cash-flow"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <CashFlowStatementPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance/trial-balance"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <TrialBalancePage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance/receivables"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <AccountsReceivablePage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance/payables"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <AccountsPayablePage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance/expenses"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <ExpenseManagementPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance/cash"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <CashManagementPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance/bank"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <BankReconciliationPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance/reconciliation"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <BankReconciliationPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/finance/periods"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="finance.view">
+              <FinancialPeriodsPage />
             </PermissionRoute>
           </ProtectedRoute>
         }

@@ -39,6 +39,10 @@ import {
   Building2,
   RotateCcw,
   FileCheck,
+  BookOpen,
+  TrendingUp,
+  Landmark,
+  Scale,
 } from "lucide-react";
 
 interface NavItem {
@@ -109,8 +113,22 @@ const NAVIGATION_GROUPS: NavGroup[] = [
     ],
   },
   {
-    group: "FINANCE",
+    group: "FINANCE & ACCOUNTING",
     items: [
+      { id: "finance-hub", label: "Finance Hub", path: "/finance", icon: DollarSign, permission: "finance.view" },
+      { id: "coa", label: "Chart of Accounts", path: "/finance/accounts", icon: BookOpen, permission: "finance.view" },
+      { id: "journals", label: "General Journal", path: "/finance/journal", icon: Scale, permission: "finance.view" },
+      { id: "ledger", label: "General Ledger", path: "/finance/ledger", icon: History, permission: "finance.view" },
+      { id: "pnl", label: "Profit & Loss", path: "/finance/profit-loss", icon: TrendingUp, permission: "finance.view" },
+      { id: "balance-sheet", label: "Balance Sheet", path: "/finance/balance-sheet", icon: Scale, permission: "finance.view" },
+      { id: "cash-flow", label: "Cash Flow", path: "/finance/cash-flow", icon: ArrowRightLeft, permission: "finance.view" },
+      { id: "trial-balance", label: "Trial Balance", path: "/finance/trial-balance", icon: Scale, permission: "finance.view" },
+      { id: "cash-drawers", label: "Cash Drawers", path: "/finance/cash", icon: Landmark, permission: "finance.cash.manage" },
+      { id: "expenses", label: "Expenses", path: "/finance/expenses", icon: Receipt, permission: "finance.view" },
+      { id: "receivables", label: "Receivables (AR)", path: "/finance/receivables", icon: CreditCard, permission: "finance.view" },
+      { id: "payables", label: "Payables (AP)", path: "/finance/payables", icon: Building2, permission: "finance.view" },
+      { id: "bank-recon", label: "Bank Reconciliation", path: "/finance/bank", icon: Landmark, permission: "finance.view" },
+      { id: "periods", label: "Accounting Periods", path: "/finance/periods", icon: Calendar, permission: "finance.view" },
       { id: "billing", label: "Billing & Cashier", path: "/billing", icon: Receipt, permission: "billing.view" },
       { id: "billing-history", label: "Invoice History", path: "/billing/history", icon: Receipt, permission: "billing.view" },
       { id: "reports", label: "Analytics & Reports", path: "/reports", icon: BarChart3, permission: "reports.view" },

@@ -36,6 +36,12 @@ class NotificationType(models.TextChoices):
     PURCHASE_RETURN_CREATED = "PURCHASE_RETURN_CREATED", "Purchase Return Initiated"
     BUDGET_THRESHOLD_REACHED = "BUDGET_THRESHOLD_REACHED", "Procurement Budget Warning"
     INVOICE_VARIANCE_DETECTED = "INVOICE_VARIANCE_DETECTED", "Invoice Match Discrepancy"
+    CASH_DRAWER_VARIANCE = "CASH_DRAWER_VARIANCE", "Cash Drawer Variance Alert"
+    EXPENSE_PENDING_APPROVAL = "EXPENSE_PENDING_APPROVAL", "Expense Claim Pending Approval"
+    EXPENSE_APPROVED = "EXPENSE_APPROVED", "Expense Claim Approved"
+    PERIOD_CLOSE_REQUIRED = "PERIOD_CLOSE_REQUIRED", "Financial Period Close Due"
+    INVOICE_OVERDUE = "INVOICE_OVERDUE", "Receivable / Payable Overdue"
+    UNBALANCED_JOURNAL_ALERT = "UNBALANCED_JOURNAL_ALERT", "Accounting Integrity Discrepancy"
     SYSTEM_ALERT = "SYSTEM_ALERT", "System Alert"
 
 class Notification(UUIDModel, TimeStampedModel):

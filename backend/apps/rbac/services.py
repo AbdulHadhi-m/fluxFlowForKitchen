@@ -123,6 +123,18 @@ SYSTEM_PERMISSIONS = [
     ("delivery", "assign", "Assign and reassign delivery orders to active drivers"),
     ("delivery", "update", "Update delivery lifecycle statuses (pickup, out for delivery)"),
     ("delivery", "complete", "Mark delivery orders completed, delivered, or failed"),
+
+    # Advanced Finance, Accounting & Cash Management
+    ("finance", "view", "View chart of accounts, journals, ledger, and financial statements"),
+    ("finance", "manage", "Create and modify accounts, cost centers, and financial configurations"),
+    ("finance", "journal.post", "Post, adjust, and void general journal entries"),
+    ("finance", "period.close", "Perform accounting period closing and lock transactions"),
+    ("finance", "period.reopen", "Reopen closed accounting periods (restricted)"),
+    ("finance", "cash.manage", "Open, count, payout, and close cash drawer sessions"),
+    ("finance", "cash.approve_variance", "Approve cash overage and shortage variances exceeding threshold"),
+    ("finance", "bank.reconcile", "Match bank transactions and reconcile statements"),
+    ("finance", "expense.create", "Submit operational expense claims"),
+    ("finance", "expense.approve", "Approve, reject, and authorize expense payouts"),
 ]
 
 # Role to Permission code mappings
@@ -159,6 +171,8 @@ SYSTEM_ROLE_DEFINITIONS = {
             "gift_cards.view", "gift_cards.manage", "gift_cards.redeem",
             "marketing.view", "marketing.create", "marketing.manage", "marketing.override", "marketing.delete",
             "delivery.view", "delivery.manage", "delivery.assign", "delivery.update", "delivery.complete",
+            "finance.view", "finance.manage", "finance.journal.post", "finance.period.close", "finance.cash.manage",
+            "finance.cash.approve_variance", "finance.bank.reconcile", "finance.expense.create", "finance.expense.approve",
         ],
     },
     "CASHIER": {
@@ -175,6 +189,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "gift_cards.view", "gift_cards.redeem",
             "marketing.view",
             "delivery.view", "delivery.update",
+            "finance.view", "finance.cash.manage", "finance.expense.create",
         ],
     },
     "WAITER": {

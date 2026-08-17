@@ -60,6 +60,13 @@ class AuditEntityType(models.TextChoices):
     SUPPLIER_INVOICE = "SUPPLIER_INVOICE", "Supplier Invoice"
     SUPPLIER_CREDIT = "SUPPLIER_CREDIT", "Supplier Credit"
     PROCUREMENT_BUDGET = "PROCUREMENT_BUDGET", "Procurement Budget"
+    ACCOUNT = "ACCOUNT", "Chart of Accounts"
+    JOURNAL_ENTRY = "JOURNAL_ENTRY", "General Journal Entry"
+    CASH_SESSION = "CASH_SESSION", "Cash Drawer Session"
+    BANK_ACCOUNT = "BANK_ACCOUNT", "Bank Account"
+    BANK_RECONCILIATION = "BANK_RECONCILIATION", "Bank Reconciliation"
+    EXPENSE = "EXPENSE", "Expense Record"
+    FINANCIAL_PERIOD = "FINANCIAL_PERIOD", "Financial Period"
 
 class AuditActorType(models.TextChoices):
     USER = "USER", "Human User"
