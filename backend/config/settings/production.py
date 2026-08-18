@@ -45,20 +45,25 @@ CONTENT_SECURITY_POLICY = (
     "frame-ancestors 'none'"
 )
 
-# --- Logging for production ---
+# --- Logging for production (structured JSON, context-enriched, safe) ---
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    "filters": {
+        "request_context": {
+            "()": "apps.core.logging.RequestContextFilter",
+        },
+    },
     "formatters": {
         "json": {
-            "format": "[%(asctime)s] [%(levelname)s] [%(name)s] %(message)s",
-            "datefmt": "%Y-%m-%d %H:%M:%S",
+            "()": "apps.core.logging.FluxiflowJsonFormatter",
         },
     },
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
             "formatter": "json",
+            "filters": ["request_context"],
         },
     },
     "loggers": {
@@ -77,5 +82,36 @@ LOGGING = {
             "level": "INFO",
             "propagate": False,
         },
+        "fluxiflow.monitoring": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "fluxiflow.api": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
     },
 }
+
+# Optional rotating JSON file output for container/local deployments (safe retention)
+if os.environ.get("FLUXIFLOW_LOG_FILE"):
+    LOGGING["handlers"]["file"] = {
+        "class": "logging.handlers.RotatingFileHandler",
+        "filename": os.environ["FLUXIFLOW_LOG_FILE"],
+        "maxBytes": 10 * 1024 * 1024,  # 10 MB per file
+        "backupCount": 5,
+        "formatter": "json",
+        "filters": ["request_context"],
+    }
+    for _logger_name in LOGGING["loggers"]:
+        LOGGING["loggers"][_logger_name]["handlers"] = ["console", "file"]
+
+# --- Startup configuration validation (fail fast on critical misconfig) ---
+try:
+    from apps.core.startup import run_config_checks
+
+    run_config_checks(fail_fast=False)
+except Exception:  # pragma: no cover - never block boot on optional checks
+    pass

@@ -44,6 +44,13 @@ import {
   Landmark,
   Scale,
   Zap,
+  Activity,
+  Bug,
+  HeartPulse,
+  Cpu,
+  Cable,
+  BellRing,
+  Siren,
 } from "lucide-react";
 
 interface NavItem {
@@ -143,6 +150,18 @@ const NAVIGATION_GROUPS: NavGroup[] = [
       { id: "notifications", label: "Notification Center", path: "/notifications", icon: Bell },
       { id: "audit", label: "Security Audit", path: "/audit-logs", icon: Shield, permission: "audit.view" },
       { id: "settings", label: "Settings", path: "/settings", icon: Settings, permission: "settings.view" },
+    ],
+  },
+  {
+    group: "MONITORING & RELIABILITY",
+    items: [
+      { id: "monitoring", label: "Monitoring Overview", path: "/monitoring", icon: Activity, permission: "monitoring.view" },
+      { id: "error-tracking", label: "Error Tracking", path: "/monitoring/errors", icon: Bug, permission: "monitoring.view" },
+      { id: "system-health", label: "System Health", path: "/monitoring/health", icon: HeartPulse, permission: "monitoring.view" },
+      { id: "jobs", label: "Background Jobs", path: "/monitoring/jobs", icon: Cpu, permission: "monitoring.manage" },
+      { id: "integrations", label: "Integrations", path: "/monitoring/integrations", icon: Cable, permission: "monitoring.manage" },
+      { id: "alerts", label: "Alerts", path: "/monitoring/alerts", icon: BellRing, permission: "monitoring.manage" },
+      { id: "incidents", label: "Incidents", path: "/monitoring/incidents", icon: Siren, permission: "monitoring.manage" },
     ],
   },
 ];

@@ -80,6 +80,11 @@ class AuditEntityType(models.TextChoices):
     WORKFLOW = "WORKFLOW", "Automation Workflow"
     WORKFLOW_EXECUTION = "WORKFLOW_EXECUTION", "Workflow Execution"
     WORKFLOW_APPROVAL = "WORKFLOW_APPROVAL", "Workflow Approval Request"
+    ALERT = "ALERT", "Monitoring Alert"
+    ALERT_RULE = "ALERT_RULE", "Monitoring Alert Rule"
+    MONITORING_INCIDENT = "MONITORING_INCIDENT", "Monitoring Incident"
+    MONITORING_CONFIG = "MONITORING_CONFIG", "Monitoring Configuration"
+    ERROR_EVENT = "ERROR_EVENT", "Aggregated Error Event"
 
 class AuditActorType(models.TextChoices):
     USER = "USER", "Human User"

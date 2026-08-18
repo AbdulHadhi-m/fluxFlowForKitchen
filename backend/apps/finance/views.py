@@ -49,10 +49,9 @@ def _get_restaurant(request) -> Restaurant:
     restaurant_id = request.headers.get("X-Restaurant-ID") or request.query_params.get("restaurant_id")
     if restaurant_id:
         return Restaurant.objects.filter(id=restaurant_id).first()
-    # Fallback to user's first tenant membership
     membership = request.user.memberships.first()
-    if membership:
-        return membership.tenant
+    if membership and membership.tenant_id:
+        return Restaurant.objects.filter(id=membership.tenant_id).first()
     return Restaurant.objects.first()
 
 

@@ -64,7 +64,7 @@ The **Audit Logging Domain** (`apps.audit` and `frontend/src/features/audit`) pr
 - `actor_role`: Active role snapshot
 - `actor_type`: `USER` vs `SYSTEM`
 - `action`: `CREATE`, `UPDATE`, `DELETE`, `LOGIN`, `LOGOUT`, `LOGIN_FAILED`, `PASSWORD_CHANGED`, `ROLE_CHANGED`, `PERMISSION_CHANGED`, `STATUS_CHANGED`, `APPROVED`, `CANCELLED`, `PAYMENT_COMPLETED`, `PAYMENT_FAILED`, `STOCK_ADJUSTED`, `STOCK_RECEIVED`, `STOCK_WASTED`, `EXPORT`.
-- `entity_type`: `USER`, `STAFF`, `RESTAURANT`, `ROLE`, `MENU_ITEM`, `MENU_CATEGORY`, `TABLE`, `ORDER`, `BILL`, `PAYMENT`, `INVENTORY_ITEM`, `STOCK_MOVEMENT`, `SUPPLIER`, `PURCHASE_ORDER`, `NOTIFICATION`, `REPORT`.
+- `entity_type`: `USER`, `STAFF`, `RESTAURANT`, `ROLE`, `MENU_ITEM`, `MENU_CATEGORY`, `TABLE`, `ORDER`, `BILL`, `PAYMENT`, `INVENTORY_ITEM`, `STOCK_MOVEMENT`, `SUPPLIER`, `PURCHASE_ORDER`, `NOTIFICATION`, `REPORT`, `ALERT`, `ALERT_RULE`, `MONITORING_INCIDENT`, `MONITORING_CONFIG`, `ERROR_EVENT`.
 - `entity_id`: String identifier of modified entity
 - `description`: Textual summary
 - `before_data`: Sanitized JSON snapshot

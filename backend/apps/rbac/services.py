@@ -167,6 +167,10 @@ SYSTEM_PERMISSIONS = [
     ("security", "manage", "Manage tenant security policies, MFA requirements, and retention rules"),
     ("security", "incidents", "Create, investigate, update, and resolve security incidents"),
     ("security", "admin_sessions", "Revoke active sessions and force logout for staff accounts"),
+
+    # Production Monitoring, Observability & Reliability
+    ("monitoring", "view", "View monitoring dashboards, health, metrics, errors, and alerts"),
+    ("monitoring", "manage", "Manage alert rules, resolve alerts/incidents, and configure monitoring"),
 ]
 
 # Role to Permission code mappings
@@ -211,6 +215,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "workflows.execute", "workflows.cancel", "workflows.retry", "workflows.approve",
             "automation.analytics.view",
             "security.view", "security.incidents",
+            "monitoring.view",
         ],
     },
     "CASHIER": {

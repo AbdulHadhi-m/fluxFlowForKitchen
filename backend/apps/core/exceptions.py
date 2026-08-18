@@ -88,6 +88,14 @@ def custom_exception_handler(exc, context):
     # Handle unhandled 500 server errors safely without leaking stack trace
     logger.exception("Unhandled server error: %s", exc, extra={"correlation_id": correlation_id})
 
+    # Error aggregation (fingerprinted) — never breaks the response path
+    try:
+        from apps.monitoring.services import ErrorTrackingService
+
+        ErrorTrackingService.record_exception(exc, request)
+    except Exception:
+        pass
+
     return Response(
         {
             "success": False,

@@ -118,7 +118,23 @@ class NotificationService:
                             "data": payload,
                         },
                     )
+                    from apps.monitoring.constants import DeliveryChannel, DeliveryStatus
+                    from apps.monitoring.services import NotificationDeliveryRecorder
+
+                    NotificationDeliveryRecorder.record(
+                        channel=DeliveryChannel.REALTIME,
+                        notification_type=notification_type,
+                        status=DeliveryStatus.SENT,
+                    )
             except Exception as e:
+                from apps.monitoring.constants import DeliveryChannel, DeliveryStatus
+                from apps.monitoring.services import NotificationDeliveryRecorder
+
+                NotificationDeliveryRecorder.record(
+                    channel=DeliveryChannel.REALTIME,
+                    notification_type=notification_type,
+                    status=DeliveryStatus.FAILED,
+                )
                 logger.error(f"Failed to dispatch real-time notification: {e}")
 
         transaction.on_commit(dispatch_ws)

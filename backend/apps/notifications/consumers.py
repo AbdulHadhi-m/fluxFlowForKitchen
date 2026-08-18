@@ -7,7 +7,7 @@ logger = logging.getLogger("fluxiflow.notifications.ws")
 
 class NotificationConsumer(AsyncJsonWebsocketConsumer):
     """
-    WebSocket consumer for user-scoped real-time alerts.
+    WebSocket consumer for user-scoped real-time alerts and system alerts.
     """
 
     async def connect(self):
@@ -25,6 +25,9 @@ class NotificationConsumer(AsyncJsonWebsocketConsumer):
             self.channel_name,
         )
         await self.accept()
+        from apps.monitoring.ws_monitor import WSMonitor
+
+        await WSMonitor.track_connect("notifications")
         logger.info(f"User {user.email} connected to notification channel {self.user_group}.")
 
     async def disconnect(self, close_code):
@@ -33,6 +36,9 @@ class NotificationConsumer(AsyncJsonWebsocketConsumer):
                 self.user_group,
                 self.channel_name,
             )
+        from apps.monitoring.ws_monitor import WSMonitor
+
+        await WSMonitor.track_disconnect("notifications")
 
     async def receive_json(self, content, **kwargs):
         # Heartbeat ping/pong support
@@ -43,5 +49,12 @@ class NotificationConsumer(AsyncJsonWebsocketConsumer):
         """Dispatches notification to client."""
         await self.send_json({
             "type": "notification.created",
+            "data": event.get("data", {}),
+        })
+
+    async def system_alert(self, event):
+        """Dispatches a system-wide alert (monitoring, superuser channels)."""
+        await self.send_json({
+            "type": "system.alert",
             "data": event.get("data", {}),
         })

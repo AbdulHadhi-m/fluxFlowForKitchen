@@ -47,3 +47,8 @@ Emitting services: orders, billing, customers, inventory (tasks), procurement, H
 - [APPROVAL_WORKFLOWS.md](APPROVAL_WORKFLOWS.md) — human approval gates
 - [AUTOMATION_SECURITY.md](AUTOMATION_SECURITY.md) — permissions & secrets
 - [AUTOMATION_ANALYTICS.md](AUTOMATION_ANALYTICS.md) — KPIs & observability
+
+## Observability Integration
+- Every workflow execution records a `CeleryTaskRun` (runner execution) with correlation IDs propagated from the triggering HTTP request — traceable end-to-end.
+- `handle_webhook` actions record `WebhookDelivery` metrics; `SEND_EMAIL` records delivery metrics (see [RELIABILITY.md](RELIABILITY.md)).
+- Failures surface in Error Tracking (`/monitoring/errors`) with module `workflows` and can trigger alert rules keyed on `celery_failure_rate` or webhook failure rates (see [ALERTING.md](ALERTING.md)).

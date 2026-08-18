@@ -32,3 +32,12 @@ We take the security of Fluxiflow and our restaurant partners seriously. If you 
 | Application Security | SSRF Protection | Private IP, loopback, and metadata endpoint blocking |
 | Application Security | File Uploads | Extension whitelisting, MIME check, size caps |
 | Data & Privacy | PII Sanitization | Audit log sanitizer & API masking utilities |
+| Observability | Secret Redaction | All log lines and error reports redact tokens, passwords, JWTs, emails at format time |
+| Observability | Safe Error Reporting | Frontend reports only allowlisted fields (never DOM/localStorage) via whitelist-only ingestion |
+| Observability | Unauthenticated Health API | Health probes expose names/status/latency only — never configuration or secrets |
+
+## 5. Observability Security
+- **Logging**: `FluxiflowTextFormatter`/`FluxiflowJsonFormatter` redact `bearer` tokens, `password`/`token`/`secret`/`api_key` keys, authorization headers, and emails before output (see [docs/LOGGING.md](docs/LOGGING.md)).
+- **Error ingestion**: `POST /monitoring/errors/` accepts only allowlisted fields; repeated identical reports are deduplicated, and payloads are capped.
+- **Health endpoints**: `/api/v1/health/*` are unauthenticated by design for orchestrator probes; they return no settings, no configuration, and no PII. Readiness reveals only dependency status.
+- **Permissions**: `monitoring.view` (restaurant-scoped) vs `monitoring.manage` (system-wide) keep infrastructure data away from non-operator roles; MANAGER cannot access Jobs/Integrations/Alerts/Incidents/Config.

@@ -84,6 +84,13 @@ import { DispatchBoardPage } from "@/features/delivery/pages/DispatchBoardPage";
 import { DeliveryDetailsPage } from "@/features/delivery/pages/DeliveryDetailsPage";
 import { DeliveryZonesPage } from "@/features/delivery/pages/DeliveryZonesPage";
 import { DeliveryDriversPage } from "@/features/delivery/pages/DeliveryDriversPage";
+import { MonitoringOverviewPage } from "@/features/monitoring/pages/MonitoringOverviewPage";
+import { ErrorTrackingPage } from "@/features/monitoring/pages/ErrorTrackingPage";
+import { BackgroundJobsPage } from "@/features/monitoring/pages/BackgroundJobsPage";
+import { IntegrationsPage } from "@/features/monitoring/pages/IntegrationsPage";
+import { AlertsPage } from "@/features/monitoring/pages/AlertsPage";
+import { IncidentsPage } from "@/features/monitoring/pages/IncidentsPage";
+import { HealthPage } from "@/features/monitoring/pages/HealthPage";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute";
 import { PermissionRoute } from "@/features/authorization/guards/PermissionRoute";
 
@@ -908,6 +915,78 @@ export const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <PermissionRoute requiredPermission="delivery.manage">
               <DeliveryDriversPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Monitoring & Observability */}
+      <Route
+        path="/monitoring"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="monitoring.view">
+              <MonitoringOverviewPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/monitoring/errors"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="monitoring.view">
+              <ErrorTrackingPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/monitoring/health"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="monitoring.view">
+              <HealthPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/monitoring/jobs"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="monitoring.manage">
+              <BackgroundJobsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/monitoring/integrations"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="monitoring.manage">
+              <IntegrationsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/monitoring/alerts"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="monitoring.manage">
+              <AlertsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/monitoring/incidents"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="monitoring.manage">
+              <IncidentsPage />
             </PermissionRoute>
           </ProtectedRoute>
         }

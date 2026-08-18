@@ -33,5 +33,11 @@ def send_password_reset_email(user_email: str, reset_token: str, reset_url: str)
         logger.info("Password reset email sent to %s", user_email)
         return True
     except Exception as exc:
+        from apps.monitoring.constants import ExternalCallStatus
+        from apps.monitoring.services import ExternalCallRecorder
+
+        ExternalCallRecorder.record(
+            service="EMAIL", status=ExternalCallStatus.FAILURE, duration_ms=0,
+        )
         logger.error("Failed to send password reset email to %s: %s", user_email, exc)
         raise exc

@@ -78,6 +78,7 @@ LOCAL_APPS = [
     "apps.hr",
     "apps.workflows",
     "apps.security",
+    "apps.monitoring",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -92,6 +93,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "apps.security.middleware.SecureTenantContextMiddleware",  # After auth, validates tenant
+    "apps.monitoring.middleware.RequestMetricsMiddleware",  # Metrics, latency samples, request logs
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -244,8 +246,14 @@ CORS_ALLOW_CREDENTIALS = True
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    "filters": {
+        "request_context": {
+            "()": "apps.core.logging.RequestContextFilter",
+        },
+    },
     "formatters": {
         "standard": {
+            "()": "apps.core.logging.FluxiflowTextFormatter",
             "format": "[%(asctime)s] [%(levelname)s] [%(name)s] %(message)s",
             "datefmt": "%Y-%m-%d %H:%M:%S",
         },
@@ -254,6 +262,7 @@ LOGGING = {
         "console": {
             "class": "logging.StreamHandler",
             "formatter": "standard",
+            "filters": ["request_context"],
         },
     },
     "loggers": {
@@ -320,7 +329,62 @@ CELERY_BEAT_SCHEDULE = {
         "schedule": crontab(minute="0", hour="5"),  # Daily at 5 AM
         "options": {"expires": 3600},
     },
+    # Monitoring & observability
+    "monitoring-evaluate-alerts": {
+        "task": "monitoring.evaluate_alerts",
+        "schedule": 60.0,  # Every minute
+        "options": {"expires": 90},
+    },
+    "monitoring-detect-stuck-tasks": {
+        "task": "monitoring.detect_stuck_tasks",
+        "schedule": 300.0,  # Every 5 minutes
+        "options": {"expires": 360},
+    },
+    "monitoring-evaluate-slos": {
+        "task": "monitoring.evaluate_slos",
+        "schedule": 3600.0,  # Hourly
+        "options": {"expires": 1800},
+    },
+    "monitoring-cleanup": {
+        "task": "monitoring.cleanup_monitoring_data",
+        "schedule": crontab(minute="0", hour="2"),  # Daily at 2 AM
+        "options": {"expires": 3600},
+    },
 }
 
 # Workflow webhook credential references (secrets resolved at runtime; never stored in DB)
 FLUXIFLOW_WEBHOOK_CREDENTIALS = {}
+
+# ---------------------------------------------------------------------------
+# Monitoring & Observability
+# ---------------------------------------------------------------------------
+ENVIRONMENT = os.environ.get("FLUXIFLOW_ENVIRONMENT", "development")
+
+APP_BUILD_INFO = {
+    "version": os.environ.get("FLUXIFLOW_VERSION", "dev"),
+    "commit_sha": os.environ.get("FLUXIFLOW_COMMIT_SHA", "unknown")[:12],
+    "build_timestamp": os.environ.get("FLUXIFLOW_BUILD_TIMESTAMP", ""),
+    "environment": ENVIRONMENT,
+}
+
+# Master switches for the observability layer
+MONITORING_ENABLED = os.environ.get("FLUXIFLOW_MONITORING_ENABLED", "True").lower() in ("true", "1", "yes")
+MONITORING_METRICS_ENABLED = True
+MONITORING_REQUEST_LOGGING = True
+MONITORING_LATENCY_SAMPLE_RATE = float(os.environ.get("FLUXIFLOW_LATENCY_SAMPLE_RATE", "0.1"))
+MONITORING_SLOW_QUERY_THRESHOLD_MS = int(os.environ.get("FLUXIFLOW_SLOW_QUERY_THRESHOLD_MS", "500"))
+MONITORING_STUCK_TASK_THRESHOLD_MINUTES = int(
+    os.environ.get("FLUXIFLOW_STUCK_TASK_THRESHOLD_MINUTES", "15")
+)
+
+# Critical dependencies gate the readiness endpoint
+MONITORING_CRITICAL_DEPENDENCIES = {
+    "postgres": True,
+    "redis": False,
+}
+
+# Fail fast on critical configuration problems (production only)
+FLUXIFLOW_FAIL_FAST = os.environ.get("FLUXIFLOW_FAIL_FAST", "").lower() in ("true", "1", "yes")
+
+# Optional JSON log file output (container/local deployments). Path empty = console only.
+MONITORING_LOG_FILE = os.environ.get("FLUXIFLOW_LOG_FILE", "")

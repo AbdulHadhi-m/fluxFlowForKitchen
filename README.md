@@ -8,7 +8,7 @@
 
 Fluxiflow for Kitchen is a reactive, event-driven restaurant operations management system designed to connect Front-of-House (FOH) and Back-of-House (BOH) operations in real-time. It unifies order management, table occupancy, kitchen display systems (KDS), split-tender billing, inventory recipe depletion, operational reporting, and immutable audit logging.
 
-> **Status**: Production feature set across operations, finance, inventory, procurement, customers, loyalty, marketing, delivery, reporting, and the configurable automation/workflow engine (`apps/workflows`). See [docs/AUTOMATION.md](docs/AUTOMATION.md) for the automation subsystem.
+> **Status**: Production feature set across operations, finance, inventory, procurement, customers, loyalty, marketing, delivery, reporting, the configurable automation/workflow engine (`apps/workflows`), and a full production observability stack (`apps/monitoring`). See [docs/AUTOMATION.md](docs/AUTOMATION.md) for the automation subsystem and [docs/OBSERVABILITY.md](docs/OBSERVABILITY.md) for monitoring, health checks, alerting, incidents, and SLOs.
 
 ---
 
@@ -43,6 +43,7 @@ fluxFlowForKitchen/
 │   └── apps/
 │       ├── core/                 # Abstract Tenant models, managers, Health API
 │       ├── workflows/            # Automation & workflow engine (events, conditions, actions, runner, tasks)
+│       ├── monitoring/           # Observability: metrics, errors, alerts, incidents, SLOs, health probes
 │       └── ...                   # Domain apps (orders, billing, inventory, procurement, finance, HR, marketing, …)
 ├── frontend/
 │   ├── package.json              # NPM dependencies & scripts
@@ -140,3 +141,6 @@ npm run build
     }
   }
   ```
+
+- **Liveness / Readiness / Dependencies**: `GET /api/v1/health/live/`, `GET /api/v1/health/ready/`, `GET /api/v1/health/dependencies/` — used by orchestrator probes (ready returns 503 only when a critical dependency is unhealthy).
+- **Monitoring UI**: `/monitoring` (Overview, Error Tracking, System Health) and `/monitoring/{jobs,integrations,alerts,incidents}` for system operators. See [docs/OPERATIONS_RUNBOOK.md](docs/OPERATIONS_RUNBOOK.md).

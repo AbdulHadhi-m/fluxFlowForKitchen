@@ -101,6 +101,41 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "celery -A config inspect ping -d celery@$$HOSTNAME -t 3 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    networks:
+      - fluxiflow_network
+
+  celery_beat:
+    build:
+      context: ..
+      dockerfile: docker/backend.Dockerfile
+    container_name: fluxiflow_celery_beat
+    restart: unless-stopped
+    command: celery -A config beat -l info --pidfile /tmp/celerybeat.pid
+    volumes:
+      - ../backend:/app
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.local
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:-insecure-dev-secret-key-change-in-production-fluxiflow}
+      - POSTGRES_DB=${POSTGRES_DB:-fluxiflow_db}
+      - POSTGRES_USER=${POSTGRES_USER:-fluxiflow_user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-fluxiflow_password}
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/1
+    depends_on:
+      backend:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - fluxiflow_network
 

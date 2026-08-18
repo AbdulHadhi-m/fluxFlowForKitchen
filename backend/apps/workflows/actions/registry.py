@@ -166,7 +166,24 @@ def handle_send_email(step_config, context, execution):
         raise ActionError("SEND_EMAIL requires 'to'", "NO_RECIPIENT")
 
     from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "no-reply@fluxiflow.com")
-    send_mail(subject=subject, message=body, from_email=from_email, recipient_list=[to], fail_silently=False)
+    import time as _time
+
+    _start = _time.perf_counter()
+    try:
+        send_mail(subject=subject, message=body, from_email=from_email, recipient_list=[to], fail_silently=False)
+        success = True
+    except Exception:
+        success = False
+        raise
+    finally:
+        from apps.monitoring.constants import ExternalCallStatus
+        from apps.monitoring.services import ExternalCallRecorder
+
+        ExternalCallRecorder.record(
+            service="EMAIL",
+            status=ExternalCallStatus.SUCCESS if success else ExternalCallStatus.FAILURE,
+            duration_ms=int((_time.perf_counter() - _start) * 1000),
+        )
     return {"to": to}
 
 
@@ -509,6 +526,15 @@ def handle_webhook(step_config, context, execution):
         json=payload,
         headers=headers,
         timeout=15,
+    )
+    from apps.monitoring.constants import ExternalCallStatus
+    from apps.monitoring.services import ExternalCallRecorder
+
+    ExternalCallRecorder.record(
+        service="WEBHOOK",
+        status=ExternalCallStatus.SUCCESS if response.status_code < 400 else ExternalCallStatus.FAILURE,
+        duration_ms=int(response.elapsed.total_seconds() * 1000),
+        error_code=f"HTTP {response.status_code}" if response.status_code >= 400 else "",
     )
     if response.status_code >= 400:
         raise ActionError(

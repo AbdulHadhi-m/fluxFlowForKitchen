@@ -50,6 +50,9 @@ class KitchenConsumer(AsyncJsonWebsocketConsumer):
             "restaurant_id": str(restaurant.id),
             "restaurant_name": restaurant.name,
         })
+        from apps.monitoring.ws_monitor import WSMonitor
+
+        await WSMonitor.track_connect("kitchen")
         logger.info(f"User {user.email} joined kitchen stream for {restaurant.name}")
 
     async def disconnect(self, close_code):
@@ -58,6 +61,9 @@ class KitchenConsumer(AsyncJsonWebsocketConsumer):
                 self.group_name,
                 self.channel_name
             )
+            from apps.monitoring.ws_monitor import WSMonitor
+
+            await WSMonitor.track_disconnect("kitchen")
             logger.info(f"WebSocket disconnected from {self.group_name}")
 
     async def kitchen_event(self, event):

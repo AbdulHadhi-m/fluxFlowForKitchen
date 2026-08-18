@@ -1,6 +1,7 @@
 import { Component, ErrorInfo, ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { AlertTriangle, RotateCcw } from "lucide-react";
+import { reportError, toErrorMessage } from "@/lib/monitor";
 
 interface Props {
   children?: ReactNode;
@@ -22,6 +23,17 @@ export class ErrorBoundary extends Component<Props, State> {
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error("Uncaught frontend error:", error, errorInfo);
+    try {
+      reportError({
+        message: toErrorMessage(error),
+        stack: errorInfo?.componentStack || error?.stack || "",
+        url: typeof window !== "undefined" ? window.location.pathname : "",
+        component: "ErrorBoundary",
+        severity: "HIGH",
+      });
+    } catch {
+      // Reporting must never break the boundary
+    }
   }
 
   public render() {
