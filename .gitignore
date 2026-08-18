@@ -1,7 +1,10 @@
 # Environment variables
 .env
+.env.*
 .env.local
 .env.*.local
+.env.production
+.env.staging
 
 # Python & Virtual Environments
 __pycache__/
@@ -68,3 +71,25 @@ Thumbs.db
 # Docker volumes
 postgres_data/
 redis_data/
+
+# Security — private keys, certificates, credentials
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.csr
+credentials/
+secrets/
+*.keystore
+*.jks
+
+# Backup files
+*.sql
+*.dump
+*.bak
+*.backup
+
+# Debug & generated files
+*.prof
+*.pid

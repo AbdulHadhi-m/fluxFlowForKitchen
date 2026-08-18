@@ -14,6 +14,12 @@ load_dotenv(ROOT_DIR / ".env")
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "insecure-dev-secret-key-change-in-production-fluxiflow")
 DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() in ("true", "1", "yes")
 
+# Separate JWT signing key — falls back to SECRET_KEY if not configured
+JWT_SIGNING_KEY = os.environ.get("JWT_SIGNING_KEY", SECRET_KEY)
+
+# MFA encryption key for TOTP secrets
+MFA_ENCRYPTION_KEY = os.environ.get("MFA_ENCRYPTION_KEY", "")
+
 ALLOWED_HOSTS = [
     host.strip()
     for host in os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,backend,0.0.0.0").split(",")
@@ -71,19 +77,21 @@ LOCAL_APPS = [
     "apps.finance",
     "apps.hr",
     "apps.workflows",
+    "apps.security",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     "apps.core.middleware.CorrelationIDMiddleware",  # Correlation ID first
-    "apps.core.middleware.TenantContextMiddleware",
+    "apps.security.middleware.SecurityHeadersMiddleware",  # Security headers early
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "apps.security.middleware.SecureTenantContextMiddleware",  # After auth, validates tenant
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -158,7 +166,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.AllowAny",
+        "rest_framework.permissions.IsAuthenticated",
     ),
     "DEFAULT_FILTER_BACKENDS": (
         "django_filters.rest_framework.DjangoFilterBackend",
@@ -187,7 +195,7 @@ SIMPLE_JWT = {
     "BLACKLIST_AFTER_ROTATION": False,
     "UPDATE_LAST_LOGIN": True,
     "ALGORITHM": "HS256",
-    "SIGNING_KEY": SECRET_KEY,
+    "SIGNING_KEY": JWT_SIGNING_KEY,
     "AUTH_HEADER_TYPES": ("Bearer",),
     "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
     "USER_ID_FIELD": "id",
@@ -290,6 +298,27 @@ CELERY_BEAT_SCHEDULE = {
         "task": "apps.workflows.tasks.detect_overdue_invoices",
         "schedule": crontab(minute="0", hour="*"),
         "options": {"expires": 1800},
+    },
+    # Security tasks
+    "security-suspicious-activity-scan": {
+        "task": "security.detect_suspicious_activity",
+        "schedule": 300.0,  # Every 5 minutes
+        "options": {"expires": 360},
+    },
+    "security-data-retention": {
+        "task": "security.enforce_data_retention",
+        "schedule": crontab(minute="0", hour="3"),  # Daily at 3 AM
+        "options": {"expires": 3600},
+    },
+    "security-session-cleanup": {
+        "task": "security.cleanup_expired_sessions",
+        "schedule": crontab(minute="0", hour="4"),  # Daily at 4 AM
+        "options": {"expires": 3600},
+    },
+    "security-login-attempt-cleanup": {
+        "task": "security.cleanup_login_attempts",
+        "schedule": crontab(minute="0", hour="5"),  # Daily at 5 AM
+        "options": {"expires": 3600},
     },
 }
 

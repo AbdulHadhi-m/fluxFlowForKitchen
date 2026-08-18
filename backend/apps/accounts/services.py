@@ -2,6 +2,8 @@ import secrets
 import uuid
 from datetime import timedelta
 from django.conf import settings
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError as DjangoValidationError
 from django.utils import timezone
 from rest_framework.exceptions import AuthenticationFailed, ValidationError, NotFound
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -33,7 +35,22 @@ class AuthService:
 
         if not user.check_password(password):
             user.register_failed_login(max_attempts=5, lockout_minutes=15)
+
+            # Record security event for failed login
+            cls._record_security_event(
+                "AUTH_LOGIN_FAILED", f"Failed login for {email}",
+                "MEDIUM", user=user, ip=ip_address, ua=user_agent,
+                meta={"reason": "invalid_credentials"},
+            )
+            cls._record_login_attempt(
+                email, False, user, ip_address, user_agent, "invalid_credentials"
+            )
+
             if user.is_locked_out():
+                cls._record_security_event(
+                    "ACCOUNT_LOCKED", f"Account locked for {email} after failed attempts",
+                    "HIGH", user=user, ip=ip_address, ua=user_agent,
+                )
                 raise AuthenticationFailed(
                     "Account locked due to 5 consecutive failed login attempts. Please try again in 15 minutes.",
                     code="account_locked"
@@ -71,6 +88,13 @@ class AuthService:
             device_info=device_info,
             expires_at=session_expires_at,
         )
+
+        # Record security event for successful login
+        cls._record_security_event(
+            "AUTH_LOGIN_SUCCESS", f"Successful login for {user.email}",
+            "LOW", user=user, ip=ip_address, ua=user_agent,
+        )
+        cls._record_login_attempt(email, True, user, ip_address, user_agent)
 
         return user, session, access_token, refresh_token
 
@@ -148,6 +172,13 @@ class AuthService:
             raise ValidationError({"token": ["Invalid, expired, or already used reset token."]})
 
         user = reset_token.user
+
+        # Validate against Django password validators
+        try:
+            validate_password(new_password, user)
+        except DjangoValidationError as e:
+            raise ValidationError({"password": list(e.messages)})
+
         user.set_password(new_password)
         user.save(update_fields=["password"])
 
@@ -157,4 +188,44 @@ class AuthService:
         # Security: Revoke all existing sessions upon password reset
         UserSession.objects.filter(user=user, is_revoked=False).update(is_revoked=True)
 
+        # Record security event
+        cls._record_security_event(
+            "PASSWORD_RESET_COMPLETED", f"Password reset completed for {user.email}",
+            "MEDIUM", user=user,
+        )
+
         return user
+
+    # --- Internal Security Event Helpers ---
+
+    @classmethod
+    def _record_security_event(
+        cls, event_type, description, severity,
+        user=None, ip="", ua="", meta=None,
+    ):
+        """Record a security event without importing at module level to avoid circular imports."""
+        try:
+            from apps.security.services import SecurityEventService
+            SecurityEventService.record(
+                event_type=event_type,
+                description=description,
+                severity=severity,
+                user=user,
+                metadata=meta or {},
+            )
+        except Exception:
+            pass  # Don't block auth flow if security event recording fails
+
+    @classmethod
+    def _record_login_attempt(
+        cls, email, success, user=None, ip="", ua="", reason="",
+    ):
+        """Record a login attempt for suspicious activity detection."""
+        try:
+            from apps.security.services import LoginAttemptService
+            LoginAttemptService.record_attempt(
+                email=email, success=success, user=user,
+                ip_address=ip, user_agent=ua, failure_reason=reason,
+            )
+        except Exception:
+            pass  # Don't block auth flow

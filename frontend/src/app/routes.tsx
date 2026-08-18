@@ -46,6 +46,12 @@ import { FinancialPeriodsPage } from "@/features/finance/pages/FinancialPeriodsP
 import { ReportsDashboardPage } from "@/features/reports/pages/ReportsDashboardPage";
 import { NotificationCenterPage } from "@/features/notifications/pages/NotificationCenterPage";
 import { AuditLogsPage } from "@/features/audit/pages/AuditLogsPage";
+import { SecurityDashboardPage } from "@/features/security/pages/SecurityDashboardPage";
+import { SecurityEventsPage } from "@/features/security/pages/SecurityEventsPage";
+import { SecurityIncidentsPage } from "@/features/security/pages/SecurityIncidentsPage";
+import { MFASetupPage } from "@/features/security/pages/MFASetupPage";
+import { SecuritySettingsPage } from "@/features/security/pages/SecuritySettingsPage";
+import { AccessReviewPage } from "@/features/security/pages/AccessReviewPage";
 import { SettingsPage } from "@/features/settings/pages/SettingsPage";
 import { CustomerDirectoryPage } from "@/features/customers/pages/CustomerDirectoryPage";
 import { ReservationsPage } from "@/features/customers/pages/ReservationsPage";
@@ -560,6 +566,64 @@ export const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <PermissionRoute requiredPermission="audit.view">
               <AuditLogsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/security"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="security.view">
+              <SecurityDashboardPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/security/events"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="security.view">
+              <SecurityEventsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/security/incidents"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="security.view">
+              <SecurityIncidentsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/security/mfa"
+        element={
+          <ProtectedRoute>
+            <MFASetupPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/security/settings"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="security.manage">
+              <SecuritySettingsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/security/access-review"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="security.view">
+              <AccessReviewPage />
             </PermissionRoute>
           </ProtectedRoute>
         }

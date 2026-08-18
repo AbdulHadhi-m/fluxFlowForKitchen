@@ -1,9 +1,11 @@
 from django.test import TestCase, RequestFactory
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 from apps.core.pagination import FluxiflowPagination
 
 class DummyListView(APIView):
+    permission_classes = [AllowAny]
     pagination_class = FluxiflowPagination
 
     def get(self, request):

@@ -161,6 +161,12 @@ SYSTEM_PERMISSIONS = [
     ("workflows", "retry", "Retry failed workflow executions"),
     ("workflows", "approve", "Approve or reject workflow approval requests"),
     ("automation.analytics", "view", "View automation performance and workflow analytics"),
+
+    # Platform Security, Compliance & Governance
+    ("security", "view", "View security dashboard, events, access reviews, and alerts"),
+    ("security", "manage", "Manage tenant security policies, MFA requirements, and retention rules"),
+    ("security", "incidents", "Create, investigate, update, and resolve security incidents"),
+    ("security", "admin_sessions", "Revoke active sessions and force logout for staff accounts"),
 ]
 
 # Role to Permission code mappings
@@ -204,6 +210,7 @@ SYSTEM_ROLE_DEFINITIONS = {
             "workflows.view", "workflows.create", "workflows.edit", "workflows.publish", "workflows.pause",
             "workflows.execute", "workflows.cancel", "workflows.retry", "workflows.approve",
             "automation.analytics.view",
+            "security.view", "security.incidents",
         ],
     },
     "CASHIER": {
