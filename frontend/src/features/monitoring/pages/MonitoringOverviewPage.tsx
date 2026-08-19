@@ -26,15 +26,15 @@ export const MonitoringOverviewPage: React.FC = () => {
             <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
               <Activity className="h-4 w-4" />
             </div>
-            <h1 className="text-xl font-black tracking-tight text-white">Monitoring Overview</h1>
+            <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Monitoring Overview</h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Platform health, API performance, error tracking, and reliability posture (auto-refreshes every 30s).
           </p>
         </div>
         <div className="flex items-center gap-2">
           <Link to="/monitoring/health">
-            <Button variant="outline" size="sm" className="border-slate-800 text-slate-300 hover:bg-slate-800 text-xs gap-1.5">
+            <Button variant="outline" size="sm" className="border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 text-xs gap-1.5">
               <Gauge className="h-3.5 w-3.5" /> System Health
             </Button>
           </Link>
@@ -91,9 +91,9 @@ export const MonitoringOverviewPage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-slate-900/60 border-slate-800 p-4">
+            <Card className="bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-4">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm font-bold text-white">Dependencies</h3>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white">Dependencies</h3>
                 <Link to="/monitoring/health" className="text-[11px] text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
                   Details <ArrowUpRight className="h-3 w-3" />
                 </Link>
@@ -102,7 +102,7 @@ export const MonitoringOverviewPage: React.FC = () => {
                 <div className="space-y-2">
                   {Object.entries(overview.dependencies).map(([name, dep]) => (
                     <div key={name} className="flex items-center justify-between">
-                      <span className="text-xs text-slate-300 capitalize">{name.replace("_", " ")}</span>
+                      <span className="text-xs text-slate-600 dark:text-slate-300 capitalize">{name.replace("_", " ")}</span>
                       <div className="flex items-center gap-2">
                         {dep.critical && <span className="text-[10px] text-amber-400 font-bold">CRITICAL</span>}
                         <HealthBadge status={dep.status} />
@@ -115,9 +115,9 @@ export const MonitoringOverviewPage: React.FC = () => {
               )}
             </Card>
 
-            <Card className="bg-slate-900/60 border-slate-800 p-4">
+            <Card className="bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-4">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm font-bold text-white">Open Incidents</h3>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white">Open Incidents</h3>
                 <Link to="/monitoring/incidents" className="text-[11px] text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
                   View all <ArrowUpRight className="h-3 w-3" />
                 </Link>
@@ -129,7 +129,7 @@ export const MonitoringOverviewPage: React.FC = () => {
                   {overview.incidents.recent.map((incident) => (
                     <div key={incident.id} className="flex items-center justify-between">
                       <div className="min-w-0">
-                        <div className="text-xs text-slate-200 font-medium truncate">{incident.title}</div>
+                        <div className="text-xs text-slate-700 dark:text-slate-200 font-medium truncate">{incident.title}</div>
                         <div className="text-[10px] text-slate-500">{incident.affected_service}</div>
                       </div>
                       <div className="flex items-center gap-2">

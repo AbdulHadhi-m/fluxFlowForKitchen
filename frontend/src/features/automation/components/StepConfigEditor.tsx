@@ -4,7 +4,7 @@ import { WorkflowStep } from "../types/automation.types";
 import { ConditionEditor } from "./ConditionEditor";
 
 const inputCls =
-  "bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500 w-full";
+  "bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500 w-full";
 const labelCls = "text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-1 block";
 
 interface Props {

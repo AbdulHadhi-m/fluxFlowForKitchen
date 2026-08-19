@@ -49,7 +49,7 @@ export const CustomerDirectoryPage: React.FC = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by name, phone, or email..."
-            className="bg-slate-900 border-slate-800 pl-9 text-xs text-slate-200 placeholder:text-slate-500"
+            className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 pl-9 text-xs text-slate-700 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500"
           />
         </div>
       </div>

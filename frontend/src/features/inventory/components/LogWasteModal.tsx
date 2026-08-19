@@ -47,21 +47,21 @@ export const LogWasteModal: React.FC<LogWasteModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md flex flex-col shadow-2xl overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md flex flex-col shadow-2xl overflow-hidden">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/40">
+        <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-100/70 dark:bg-slate-950/40">
           <div className="flex items-center gap-2.5">
             <div className="p-2 rounded-lg bg-rose-500/10 text-rose-400">
               <AlertOctagon className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-slate-100">Log Wastage & Spoilage</h2>
-              <p className="text-xs text-slate-400">Track shrinkage and cost loss</p>
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Log Wastage & Spoilage</h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Track shrinkage and cost loss</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-colors"
+            className="p-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -70,14 +70,14 @@ export const LogWasteModal: React.FC<LogWasteModalProps> = ({
         {/* Content */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
               Inventory Item *
             </label>
             <select
               value={itemId}
               onChange={(e) => setItemId(e.target.value)}
               required
-              className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-sm focus:border-rose-500"
+              className="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm focus:border-rose-500"
             >
               <option value="">Select item...</option>
               {items.map((i) => (
@@ -90,7 +90,7 @@ export const LogWasteModal: React.FC<LogWasteModalProps> = ({
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 Wasted Quantity *
               </label>
               <input
@@ -100,18 +100,18 @@ export const LogWasteModal: React.FC<LogWasteModalProps> = ({
                 value={quantity}
                 onChange={(e) => setQuantity(Number(e.target.value))}
                 required
-                className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-sm font-mono focus:border-rose-500"
+                className="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm font-mono focus:border-rose-500"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 Location
               </label>
               <select
                 value={location}
                 onChange={(e) => setLocation(e.target.value as StorageLocation)}
-                className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-sm focus:border-rose-500"
+                className="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm focus:border-rose-500"
               >
                 <option value="KITCHEN">Kitchen</option>
                 <option value="BAR">Bar</option>
@@ -123,13 +123,13 @@ export const LogWasteModal: React.FC<LogWasteModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
               Waste Reason *
             </label>
             <select
               value={reason}
               onChange={(e) => setReason(e.target.value as WasteReason)}
-              className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-sm focus:border-rose-500"
+              className="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm focus:border-rose-500"
             >
               <option value="SPOILAGE">Expired / Spoiled</option>
               <option value="PREPARATION_WASTE">Prep Trimming / Peeling Waste</option>
@@ -143,7 +143,7 @@ export const LogWasteModal: React.FC<LogWasteModalProps> = ({
           </div>
 
           {selectedItem && (
-            <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-xs text-rose-300 flex justify-between">
+            <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-xs text-rose-600 dark:text-rose-300 flex justify-between">
               <span>Estimated Cost Loss:</span>
               <span className="font-bold">
                 ${(quantity * Number(selectedItem.weighted_average_cost || selectedItem.cost_per_unit || 0)).toFixed(2)}
@@ -152,7 +152,7 @@ export const LogWasteModal: React.FC<LogWasteModalProps> = ({
           )}
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
               Notes & Root Cause
             </label>
             <input
@@ -160,15 +160,15 @@ export const LogWasteModal: React.FC<LogWasteModalProps> = ({
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="e.g. Fridge temperature fluctuation during power outage"
-              className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-sm focus:border-rose-500 placeholder:text-slate-600"
+              className="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm focus:border-rose-500 placeholder:text-slate-400 dark:placeholder:text-slate-600"
             />
           </div>
 
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-slate-800 text-sm font-semibold transition-colors"
+              className="px-4 py-2 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800 text-sm font-semibold transition-colors"
             >
               Cancel
             </button>

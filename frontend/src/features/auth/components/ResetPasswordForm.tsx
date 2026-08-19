@@ -50,16 +50,16 @@ export const ResetPasswordForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       {success ? (
-        <div className="p-4 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs space-y-2">
-          <div className="flex items-center gap-2 font-medium text-emerald-400">
+        <div className="p-4 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-600 dark:text-emerald-300 text-xs space-y-2">
+          <div className="flex items-center gap-2 font-medium text-emerald-600 dark:text-emerald-400">
             <CheckCircle2 className="h-4 w-4" />
             Password Reset Successful!
           </div>
-          <p className="text-slate-400">
+          <p className="text-slate-500 dark:text-slate-400">
             Your password has been updated. Redirecting to login in a moment...
           </p>
           <div className="pt-2">
-            <Link to="/login" className="text-blue-400 hover:underline">
+            <Link to="/login" className="text-blue-600 dark:text-blue-400 hover:underline">
               Click here to sign in immediately &rarr;
             </Link>
           </div>
@@ -67,15 +67,15 @@ export const ResetPasswordForm: React.FC = () => {
       ) : (
         <>
           {errorMessage && (
-            <div className="p-3 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
+            <div className="p-3 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-600 dark:text-rose-300 text-xs flex items-center gap-2">
               <AlertCircle className="h-4 w-4 shrink-0 text-rose-400" />
               <span>{errorMessage}</span>
             </div>
           )}
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-slate-300 flex items-center gap-1.5">
-              <Lock className="h-3.5 w-3.5 text-slate-400" />
+            <label className="text-xs font-medium text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
+              <Lock className="h-3.5 w-3.5 text-slate-500 dark:text-slate-400" />
               New Password
             </label>
             <Input
@@ -83,7 +83,7 @@ export const ResetPasswordForm: React.FC = () => {
               placeholder="At least 8 characters"
               {...register("password")}
               disabled={isSubmittingReset}
-              className="bg-slate-900/60 border-slate-800 focus-visible:ring-blue-500 text-slate-100"
+              className="bg-white dark:bg-slate-900/60 border-slate-300 dark:border-slate-800 focus-visible:ring-blue-500 text-slate-900 dark:text-slate-100"
             />
             {errors.password && (
               <p className="text-xs text-rose-400">{errors.password.message}</p>
@@ -91,8 +91,8 @@ export const ResetPasswordForm: React.FC = () => {
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-slate-300 flex items-center gap-1.5">
-              <Lock className="h-3.5 w-3.5 text-slate-400" />
+            <label className="text-xs font-medium text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
+              <Lock className="h-3.5 w-3.5 text-slate-500 dark:text-slate-400" />
               Confirm New Password
             </label>
             <Input
@@ -100,7 +100,7 @@ export const ResetPasswordForm: React.FC = () => {
               placeholder="Repeat password"
               {...register("confirmPassword")}
               disabled={isSubmittingReset}
-              className="bg-slate-900/60 border-slate-800 focus-visible:ring-blue-500 text-slate-100"
+              className="bg-white dark:bg-slate-900/60 border-slate-300 dark:border-slate-800 focus-visible:ring-blue-500 text-slate-900 dark:text-slate-100"
             />
             {errors.confirmPassword && (
               <p className="text-xs text-rose-400">{errors.confirmPassword.message}</p>
@@ -125,7 +125,7 @@ export const ResetPasswordForm: React.FC = () => {
           <div className="text-center pt-2">
             <Link
               to="/login"
-              className="text-xs text-slate-400 hover:text-slate-200 inline-flex items-center gap-1.5"
+              className="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 inline-flex items-center gap-1.5"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               Back to Login

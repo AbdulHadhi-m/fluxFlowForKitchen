@@ -63,23 +63,23 @@ export const CustomerPortalPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 py-12 px-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 py-12 px-4 transition-colors duration-200">
       <div className="max-w-md mx-auto">
         {userProfile ? (
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
             <div className="flex items-center gap-4">
               <div className="w-14 h-14 rounded-2xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold text-xl">
                 {userProfile.name?.charAt(0) || 'C'}
               </div>
               <div>
-                <h1 className="text-xl font-bold text-white">{userProfile.name}</h1>
-                <p className="text-xs text-slate-400">{userProfile.email}</p>
-                {userProfile.phone && <p className="text-xs text-slate-400">{userProfile.phone}</p>}
+                <h1 className="text-xl font-bold text-slate-900 dark:text-white">{userProfile.name}</h1>
+                <p className="text-xs text-slate-500 dark:text-slate-400">{userProfile.email}</p>
+                {userProfile.phone && <p className="text-xs text-slate-500 dark:text-slate-400">{userProfile.phone}</p>}
               </div>
             </div>
 
-            <div className="border-t border-slate-800 pt-6">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4 flex items-center gap-2">
+            <div className="border-t border-slate-200 dark:border-slate-800 pt-6">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4 flex items-center gap-2">
                 <ShoppingBag className="w-4 h-4 text-amber-500" /> Your Order History
               </h2>
 
@@ -88,11 +88,11 @@ export const CustomerPortalPage: React.FC = () => {
                   {orders.map((o) => (
                     <div
                       key={o.order_id}
-                      className="bg-slate-950 border border-slate-800 p-4 rounded-2xl flex items-center justify-between"
+                      className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-4 rounded-2xl flex items-center justify-between"
                     >
                       <div>
-                        <h3 className="text-sm font-bold text-white">#{o.order_number}</h3>
-                        <p className="text-xs text-slate-400">
+                        <h3 className="text-sm font-bold text-slate-900 dark:text-white">#{o.order_number}</h3>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">
                           {new Date(o.created_at).toLocaleDateString()} • {o.items_count} items
                         </p>
                       </div>
@@ -100,7 +100,7 @@ export const CustomerPortalPage: React.FC = () => {
                         <p className="text-sm font-extrabold text-amber-400">${o.total}</p>
                         <Link
                           to={`/r/${restaurantSlug}/order/${o.tracking_token}/track`}
-                          className="text-xs text-slate-400 hover:text-white inline-flex items-center gap-1 mt-1"
+                          className="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white inline-flex items-center gap-1 mt-1"
                         >
                           Track <ArrowRight className="w-3 h-3" />
                         </Link>
@@ -121,15 +121,15 @@ export const CustomerPortalPage: React.FC = () => {
             </Link>
           </div>
         ) : (
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
             {/* Tabs */}
-            <div className="flex bg-slate-950 p-1 rounded-2xl border border-slate-800 mb-6">
+            <div className="flex bg-slate-100 dark:bg-slate-950 p-1 rounded-2xl border border-slate-200 dark:border-slate-800 mb-6">
               <button
                 onClick={() => setActiveTab('login')}
                 className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
                   activeTab === 'login'
                     ? 'bg-amber-500 text-slate-950'
-                    : 'text-slate-400 hover:text-white'
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
                 Customer Sign In
@@ -139,7 +139,7 @@ export const CustomerPortalPage: React.FC = () => {
                 className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
                   activeTab === 'register'
                     ? 'bg-amber-500 text-slate-950'
-                    : 'text-slate-400 hover:text-white'
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
                 Create Account
@@ -156,7 +156,7 @@ export const CustomerPortalPage: React.FC = () => {
             {activeTab === 'login' ? (
               <form onSubmit={handleLogin} className="space-y-4">
                 <div>
-                  <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                     Email Address
                   </label>
                   <div className="relative mt-1.5">
@@ -167,13 +167,13 @@ export const CustomerPortalPage: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="your@email.com"
-                      className="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-amber-500"
+                      className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-sm text-slate-900 dark:text-white focus:outline-none focus:border-amber-500"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                     Password
                   </label>
                   <div className="relative mt-1.5">
@@ -184,7 +184,7 @@ export const CustomerPortalPage: React.FC = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-amber-500"
+                      className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-sm text-slate-900 dark:text-white focus:outline-none focus:border-amber-500"
                     />
                   </div>
                 </div>
@@ -201,7 +201,7 @@ export const CustomerPortalPage: React.FC = () => {
               <form onSubmit={handleRegister} className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                       First Name
                     </label>
                     <input
@@ -209,24 +209,24 @@ export const CustomerPortalPage: React.FC = () => {
                       required
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
-                      className="mt-1.5 w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-amber-500"
+                      className="mt-1.5 w-full px-3.5 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-sm text-slate-900 dark:text-white focus:outline-none focus:border-amber-500"
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                       Last Name
                     </label>
                     <input
                       type="text"
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
-                      className="mt-1.5 w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-amber-500"
+                      className="mt-1.5 w-full px-3.5 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-sm text-slate-900 dark:text-white focus:outline-none focus:border-amber-500"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                     Phone Number
                   </label>
                   <input
@@ -235,12 +235,12 @@ export const CustomerPortalPage: React.FC = () => {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+1 555-0199"
-                    className="mt-1.5 w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-amber-500"
+                    className="mt-1.5 w-full px-3.5 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-sm text-slate-900 dark:text-white focus:outline-none focus:border-amber-500"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                     Email Address
                   </label>
                   <input
@@ -249,12 +249,12 @@ export const CustomerPortalPage: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your@email.com"
-                    className="mt-1.5 w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-amber-500"
+                    className="mt-1.5 w-full px-3.5 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-sm text-slate-900 dark:text-white focus:outline-none focus:border-amber-500"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                     Password (min 6 chars)
                   </label>
                   <input
@@ -264,7 +264,7 @@ export const CustomerPortalPage: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="mt-1.5 w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-amber-500"
+                    className="mt-1.5 w-full px-3.5 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-sm text-slate-900 dark:text-white focus:outline-none focus:border-amber-500"
                   />
                 </div>
 

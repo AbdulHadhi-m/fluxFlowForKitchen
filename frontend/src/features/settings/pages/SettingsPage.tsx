@@ -32,15 +32,15 @@ export const SettingsPage: React.FC = () => {
           <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
             <Settings className="h-4 w-4" />
           </div>
-          <h1 className="text-xl font-black tracking-tight text-white">System Settings & Configuration</h1>
+          <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">System Settings & Configuration</h1>
         </div>
-        <p className="text-xs text-slate-400 mt-1">
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Configure restaurant operational rules, tax rates, KDS timers, and personal dashboard preferences.
         </p>
       </div>
 
       {/* Navigation Tabs */}
-      <div className="flex items-center gap-2 bg-slate-900/60 p-2 rounded-xl border border-slate-800">
+      <div className="flex items-center gap-2 bg-white dark:bg-slate-900/60 p-2 rounded-xl border border-slate-200 dark:border-slate-800">
         <Button
           variant={activeTab === "OPERATIONAL" ? "default" : "ghost"}
           size="sm"
@@ -48,7 +48,7 @@ export const SettingsPage: React.FC = () => {
           className={`h-8 px-3 text-xs rounded-lg font-medium gap-1.5 transition-all ${
             activeTab === "OPERATIONAL"
               ? "bg-indigo-600 text-white font-bold shadow-sm"
-              : "text-slate-400 hover:text-white hover:bg-slate-800/60"
+              : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
           }`}
         >
           <Sliders className="h-3.5 w-3.5" /> Operational Policies & Taxes
@@ -61,7 +61,7 @@ export const SettingsPage: React.FC = () => {
           className={`h-8 px-3 text-xs rounded-lg font-medium gap-1.5 transition-all ${
             activeTab === "PREFERENCES"
               ? "bg-indigo-600 text-white font-bold shadow-sm"
-              : "text-slate-400 hover:text-white hover:bg-slate-800/60"
+              : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
           }`}
         >
           <User className="h-3.5 w-3.5" /> User Preferences

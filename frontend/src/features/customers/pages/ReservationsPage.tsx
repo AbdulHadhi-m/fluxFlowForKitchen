@@ -44,12 +44,12 @@ export const ReservationsPage: React.FC = () => {
       {/* Date Filter */}
       <div className="flex items-center gap-3">
         <div className="space-y-1">
-          <label className="text-[10px] font-bold uppercase text-slate-400">Reservation Date</label>
+          <label className="text-[10px] font-bold uppercase text-slate-500 dark:text-slate-400">Reservation Date</label>
           <Input
             type="date"
             value={selectedDate}
             onChange={(e) => setSelectedDate(e.target.value)}
-            className="bg-slate-900 border-slate-800 text-xs text-slate-200 w-44"
+            className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200 w-44"
           />
         </div>
       </div>

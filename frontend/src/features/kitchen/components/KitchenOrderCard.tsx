@@ -49,15 +49,15 @@ export const KitchenOrderCard: React.FC<KitchenOrderCardProps> = ({
   };
 
   return (
-    <div className="rounded-2xl bg-slate-900 border border-slate-800 p-4 flex flex-col justify-between shadow-xl backdrop-blur-sm transition-all hover:border-slate-700 min-h-[300px]">
+    <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 flex flex-col justify-between shadow-xl backdrop-blur-sm transition-all hover:border-slate-300 dark:hover:border-slate-700 min-h-[300px]">
       {/* Ticket Header */}
       <div>
-        <div className="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-800">
+        <div className="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-200 dark:border-slate-800">
           <div>
-            <div className="text-base font-black font-mono text-white tracking-wide flex items-center gap-1.5">
+            <div className="text-base font-black font-mono text-slate-900 dark:text-white tracking-wide flex items-center gap-1.5">
               {ticket.order_number}
             </div>
-            <div className="text-xs font-bold text-blue-300">
+            <div className="text-xs font-bold text-blue-600 dark:text-blue-300">
               {ticket.table_name ? `Table ${ticket.table_name}` : "Takeaway / Direct"}
             </div>
           </div>
@@ -76,22 +76,22 @@ export const KitchenOrderCard: React.FC<KitchenOrderCardProps> = ({
 
         {/* Order-level note banner if present */}
         {ticket.notes && (
-          <div className="my-2 p-2 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-300 text-[11px] font-medium flex items-center gap-1.5">
+          <div className="my-2 p-2 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-300 text-[11px] font-medium flex items-center gap-1.5">
             <AlertTriangle className="h-3.5 w-3.5 shrink-0" />
             <span className="line-clamp-2">Order Note: {ticket.notes}</span>
           </div>
         )}
 
         {/* Item Lines */}
-        <div className="py-3 space-y-2.5 divide-y divide-slate-800/50">
+        <div className="py-3 space-y-2.5 divide-y divide-slate-200 dark:divide-slate-800/50">
           {ticket.items.map((item) => (
             <div key={item.id} className="pt-2 first:pt-0">
               <div className="flex items-start gap-2">
-                <span className="h-6 w-6 rounded-md bg-slate-800 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">
+                <span className="h-6 w-6 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">
                   {item.quantity}
                 </span>
                 <div className="flex-1">
-                  <div className="text-xs font-bold text-slate-100 leading-tight">
+                  <div className="text-xs font-bold text-slate-900 dark:text-slate-100 leading-tight">
                     {item.name}
                   </div>
                   {item.notes && (
@@ -107,7 +107,7 @@ export const KitchenOrderCard: React.FC<KitchenOrderCardProps> = ({
       </div>
 
       {/* Bump Bar Action Button */}
-      <div className="pt-3 border-t border-slate-800">
+      <div className="pt-3 border-t border-slate-200 dark:border-slate-800">
         {ticket.status === "NEW" && (
           <Button
             type="button"

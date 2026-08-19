@@ -6,11 +6,11 @@ import { Users, Repeat, DollarSign, Award } from "lucide-react";
 export const CRMStatsCards: React.FC<{ analytics?: CRMAnalytics }> = ({ analytics }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <Card className="bg-slate-900/60 border-slate-800">
+      <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800">
         <CardContent className="p-4 flex items-center justify-between">
           <div>
             <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Total Customers</span>
-            <div className="text-xl font-black text-white mt-1">{analytics?.total_customers ?? 0}</div>
+            <div className="text-xl font-black text-slate-900 dark:text-white mt-1">{analytics?.total_customers ?? 0}</div>
           </div>
           <div className="h-9 w-9 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
             <Users className="h-4 w-4" />
@@ -18,7 +18,7 @@ export const CRMStatsCards: React.FC<{ analytics?: CRMAnalytics }> = ({ analytic
         </CardContent>
       </Card>
 
-      <Card className="bg-slate-900/60 border-slate-800">
+      <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800">
         <CardContent className="p-4 flex items-center justify-between">
           <div>
             <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Repeat Rate</span>
@@ -30,11 +30,11 @@ export const CRMStatsCards: React.FC<{ analytics?: CRMAnalytics }> = ({ analytic
         </CardContent>
       </Card>
 
-      <Card className="bg-slate-900/60 border-slate-800">
+      <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800">
         <CardContent className="p-4 flex items-center justify-between">
           <div>
             <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Total CRM Spend</span>
-            <div className="text-xl font-black text-indigo-300 mt-1">${analytics?.total_spend ?? "0.00"}</div>
+            <div className="text-xl font-black text-indigo-600 dark:text-indigo-300 mt-1">${analytics?.total_spend ?? "0.00"}</div>
           </div>
           <div className="h-9 w-9 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
             <DollarSign className="h-4 w-4" />
@@ -42,7 +42,7 @@ export const CRMStatsCards: React.FC<{ analytics?: CRMAnalytics }> = ({ analytic
         </CardContent>
       </Card>
 
-      <Card className="bg-slate-900/60 border-slate-800">
+      <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800">
         <CardContent className="p-4 flex items-center justify-between">
           <div>
             <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Avg Spend / Guest</span>

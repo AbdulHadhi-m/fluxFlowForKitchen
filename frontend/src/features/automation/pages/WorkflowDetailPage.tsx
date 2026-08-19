@@ -24,7 +24,7 @@ import { WORKFLOW_CATEGORY_LABELS, WORKFLOW_TRIGGER_LABELS } from "../constants/
 import { ConditionEditor } from "../components/ConditionEditor";
 
 const actionBtn =
-  "px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-bold transition-colors flex items-center gap-1.5";
+  "px-2.5 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-[11px] font-bold transition-colors flex items-center gap-1.5";
 
 export const WorkflowDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -62,8 +62,8 @@ export const WorkflowDetailPage: React.FC = () => {
   if (isLoading || !workflow) {
     return (
       <div className="p-6 max-w-7xl mx-auto space-y-4">
-        <div className="h-10 w-64 rounded-xl bg-slate-900/40 border border-slate-800 animate-pulse" />
-        <div className="h-96 rounded-2xl bg-slate-900/40 border border-slate-800 animate-pulse" />
+        <div className="h-10 w-64 rounded-xl bg-slate-100/70 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 animate-pulse" />
+        <div className="h-96 rounded-2xl bg-slate-100/70 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 animate-pulse" />
       </div>
     );
   }
@@ -73,13 +73,13 @@ export const WorkflowDetailPage: React.FC = () => {
       <div className="flex items-center gap-3">
         <Link
           to="/automation/workflows"
-          className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors"
+          className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
         </Link>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h1 className="text-xl font-black text-white tracking-tight truncate">{workflow.name}</h1>
+            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight truncate">{workflow.name}</h1>
             <StatusBadge kind="workflow" status={workflow.status} />
           </div>
           <p className="text-[11px] text-slate-500 font-mono">
@@ -122,16 +122,16 @@ export const WorkflowDetailPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2 space-y-4">
-          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80">
-            <h3 className="text-xs font-bold text-white uppercase tracking-wider mb-2">Description</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
+          <div className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80">
+            <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-2">Description</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
               {workflow.description || "No description provided."}
             </p>
           </div>
 
           {workflow.steps && workflow.steps.length > 0 && (
-            <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80">
-              <h3 className="text-xs font-bold text-white uppercase tracking-wider mb-3">Steps ({workflow.steps.length})</h3>
+            <div className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80">
+              <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">Steps ({workflow.steps.length})</h3>
               <div className="space-y-2">
                 {workflow.steps.map((step, i) => (
                   <StepNode key={`${step.code}-${i}`} step={step} index={i} />
@@ -142,55 +142,55 @@ export const WorkflowDetailPage: React.FC = () => {
         </div>
 
         <div className="space-y-4">
-          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-2.5 text-xs">
-            <h3 className="text-xs font-bold text-white uppercase tracking-wider">Configuration</h3>
-            <div className="flex justify-between text-slate-400">
+          <div className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 space-y-2.5 text-xs">
+            <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Configuration</h3>
+            <div className="flex justify-between text-slate-500 dark:text-slate-400">
               <span>Version</span>
-              <span className="text-white font-mono">
+              <span className="text-slate-900 dark:text-white font-mono">
                 {workflow.active_version_number ? `v${workflow.active_version_number}` : "Unpublished"}
               </span>
             </div>
-            <div className="flex justify-between text-slate-400">
+            <div className="flex justify-between text-slate-500 dark:text-slate-400">
               <span>Versions</span>
-              <span className="text-white">{workflow.version_count}</span>
+              <span className="text-slate-900 dark:text-white">{workflow.version_count}</span>
             </div>
-            <div className="flex justify-between text-slate-400">
+            <div className="flex justify-between text-slate-500 dark:text-slate-400">
               <span>Runs</span>
-              <span className="text-white">{workflow.execution_count}</span>
+              <span className="text-slate-900 dark:text-white">{workflow.execution_count}</span>
             </div>
-            <div className="flex justify-between text-slate-400">
+            <div className="flex justify-between text-slate-500 dark:text-slate-400">
               <span>Timeout</span>
-              <span className="text-white">{workflow.timeout_minutes} min</span>
+              <span className="text-slate-900 dark:text-white">{workflow.timeout_minutes} min</span>
             </div>
-            <div className="flex justify-between text-slate-400">
+            <div className="flex justify-between text-slate-500 dark:text-slate-400">
               <span>Max Steps</span>
-              <span className="text-white">{workflow.max_steps}</span>
+              <span className="text-slate-900 dark:text-white">{workflow.max_steps}</span>
             </div>
-            <div className="flex justify-between text-slate-400">
+            <div className="flex justify-between text-slate-500 dark:text-slate-400">
               <span>Max Retries</span>
-              <span className="text-white">{workflow.max_retries}</span>
+              <span className="text-slate-900 dark:text-white">{workflow.max_retries}</span>
             </div>
-            <div className="flex justify-between text-slate-400">
+            <div className="flex justify-between text-slate-500 dark:text-slate-400">
               <span>Updated</span>
-              <span className="text-white">{new Date(workflow.updated_at).toLocaleString()}</span>
+              <span className="text-slate-900 dark:text-white">{new Date(workflow.updated_at).toLocaleString()}</span>
             </div>
             {workflow.created_by_name && (
-              <div className="flex justify-between text-slate-400">
+              <div className="flex justify-between text-slate-500 dark:text-slate-400">
                 <span>Created By</span>
-                <span className="text-white">{workflow.created_by_name}</span>
+                <span className="text-slate-900 dark:text-white">{workflow.created_by_name}</span>
               </div>
             )}
           </div>
 
           {Object.keys(workflow.conditions || {}).length > 0 && (
-            <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80">
-              <h3 className="text-xs font-bold text-white uppercase tracking-wider mb-2">Preconditions</h3>
+            <div className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80">
+              <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-2">Preconditions</h3>
               <ConditionEditor value={workflow.conditions} onChange={() => {}} />
             </div>
           )}
 
-          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80">
-            <h3 className="text-xs font-bold text-white uppercase tracking-wider mb-3 flex items-center gap-1.5">
+          <div className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80">
+            <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-1.5">
               <GitBranch className="h-3.5 w-3.5 text-cyan-400" /> Recent Executions
             </h3>
             {recentExecutions.length === 0 ? (
@@ -201,9 +201,9 @@ export const WorkflowDetailPage: React.FC = () => {
                   <Link
                     key={ex.id}
                     to={`/automation/executions/${ex.id}`}
-                    className="flex items-center justify-between p-2 rounded-xl bg-slate-800/60 hover:bg-slate-800 transition-colors"
+                    className="flex items-center justify-between p-2 rounded-xl bg-slate-200 dark:bg-slate-800/60 hover:bg-slate-200/70 dark:hover:bg-slate-800 transition-colors"
                   >
-                    <span className="text-[11px] text-slate-300 font-mono truncate">{ex.id.slice(0, 8)}</span>
+                    <span className="text-[11px] text-slate-600 dark:text-slate-300 font-mono truncate">{ex.id.slice(0, 8)}</span>
                     <span className="text-[10px] text-slate-500">{ex.trigger}</span>
                     <StatusBadge kind="execution" status={ex.status} />
                   </Link>

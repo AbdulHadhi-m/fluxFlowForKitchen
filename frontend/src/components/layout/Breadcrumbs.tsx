@@ -33,14 +33,14 @@ export const Breadcrumbs: React.FC = () => {
     return (
       <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
         <Home className="h-3.5 w-3.5 text-indigo-400" />
-        <span className="text-white font-bold">Dashboard</span>
+        <span className="text-slate-900 dark:text-white font-bold">Dashboard</span>
       </div>
     );
   }
 
   return (
     <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
-      <Link to="/dashboard" className="hover:text-white transition-colors flex items-center gap-1">
+      <Link to="/dashboard" className="hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1">
         <Home className="h-3.5 w-3.5 text-slate-500 hover:text-indigo-400" />
       </Link>
 
@@ -53,9 +53,9 @@ export const Breadcrumbs: React.FC = () => {
           <React.Fragment key={targetPath}>
             <ChevronRight className="h-3 w-3 text-slate-600 shrink-0" />
             {isLast ? (
-              <span className="text-white font-bold truncate max-w-[150px] sm:max-w-none">{label}</span>
+              <span className="text-slate-900 dark:text-white font-bold truncate max-w-[150px] sm:max-w-none">{label}</span>
             ) : (
-              <Link to={targetPath} className="hover:text-white transition-colors truncate max-w-[100px] sm:max-w-none">
+              <Link to={targetPath} className="hover:text-slate-900 dark:hover:text-white transition-colors truncate max-w-[100px] sm:max-w-none">
                 {label}
               </Link>
             )}

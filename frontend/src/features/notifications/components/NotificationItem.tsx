@@ -50,17 +50,17 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({
       onClick={handleClick}
       className={`p-3 rounded-xl border transition-all cursor-pointer space-y-1.5 ${
         notification.is_read
-          ? "bg-slate-950/40 border-slate-800/60 hover:bg-slate-850 opacity-75"
-          : "bg-slate-900 border-slate-700/80 hover:border-slate-600 shadow-md"
+          ? "bg-slate-100/70 dark:bg-slate-950/40 border-slate-200 dark:border-slate-800/60 hover:bg-slate-200/70 dark:hover:bg-slate-850 opacity-75"
+          : "bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-700/80 hover:border-slate-400 dark:hover:border-slate-600 shadow-md"
       }`}
     >
       <div className="flex justify-between items-start gap-2">
         <div className="flex items-center gap-2">
-          <div className="h-7 w-7 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-center">
+          <div className="h-7 w-7 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
             {getIcon()}
           </div>
           <div>
-            <h4 className={`text-xs font-bold ${notification.is_read ? "text-slate-300" : "text-white"}`}>
+            <h4 className={`text-xs font-bold ${notification.is_read ? "text-slate-600 dark:text-slate-300" : "text-slate-900 dark:text-white"}`}>
               {notification.title}
             </h4>
             <span className="text-[10px] text-slate-500 font-mono">
@@ -77,7 +77,7 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({
         </div>
       </div>
 
-      <p className="text-[11px] text-slate-400 line-clamp-2 pl-9">
+      <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2 pl-9">
         {notification.message}
       </p>
     </div>

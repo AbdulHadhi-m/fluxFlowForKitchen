@@ -22,9 +22,9 @@ export const IncidentsPage: React.FC = () => {
           <div className="h-8 w-8 rounded-lg bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400">
             <Siren className="h-4 w-4" />
           </div>
-          <h1 className="text-xl font-black tracking-tight text-white">Incidents</h1>
+          <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Incidents</h1>
         </div>
-        <p className="text-xs text-slate-400 mt-1">
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Operational incident lifecycle with MTTA/MTTR tracking and timeline notes (auto-refreshes every 30s).
         </p>
       </div>
@@ -46,11 +46,11 @@ export const IncidentsPage: React.FC = () => {
 
       <div className="space-y-3">
         {incidents.map((incident) => (
-          <Card key={incident.id} className="bg-slate-900/60 border-slate-800 p-4">
+          <Card key={incident.id} className="bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-4">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-sm font-bold text-white">{incident.title}</span>
+                  <span className="text-sm font-bold text-slate-900 dark:text-white">{incident.title}</span>
                   <SeverityBadge severity={incident.severity} />
                   <StatusBadge status={incident.status} />
                 </div>
@@ -66,7 +66,7 @@ export const IncidentsPage: React.FC = () => {
                 <Button
                   size="sm"
                   variant="outline"
-                  className="border-slate-800 text-slate-300 hover:bg-slate-800 text-xs shrink-0"
+                  className="border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 text-xs shrink-0"
                   onClick={() => acknowledge.mutate(incident.id)}
                 >
                   Acknowledge
@@ -79,12 +79,12 @@ export const IncidentsPage: React.FC = () => {
                     placeholder="Note…"
                     value={noteInput[incident.id] || ""}
                     onChange={(e) => setNoteInput((prev) => ({ ...prev, [incident.id]: e.target.value }))}
-                    className="rounded-lg border border-slate-800 bg-slate-900/60 px-2 py-1.5 text-[11px] text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 w-40"
+                    className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-2 py-1.5 text-[11px] text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 w-40"
                   />
                   <Button
                     size="sm"
                     variant="outline"
-                    className="border-slate-800 text-slate-300 hover:bg-slate-800 text-xs gap-1"
+                    className="border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 text-xs gap-1"
                     onClick={() => {
                       if (noteInput[incident.id]) {
                         addNote.mutate({ id: incident.id, text: noteInput[incident.id] });
@@ -98,7 +98,7 @@ export const IncidentsPage: React.FC = () => {
                     placeholder="Resolution notes…"
                     value={noteText[incident.id] || ""}
                     onChange={(e) => setNoteText((prev) => ({ ...prev, [incident.id]: e.target.value }))}
-                    className="rounded-lg border border-slate-800 bg-slate-900/60 px-2 py-1.5 text-[11px] text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 w-40"
+                    className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-2 py-1.5 text-[11px] text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 w-40"
                   />
                   <Button
                     size="sm"
@@ -118,13 +118,13 @@ export const IncidentsPage: React.FC = () => {
       </div>
 
       {slos.data?.data?.length ? (
-        <Card className="bg-slate-900/60 border-slate-800 p-4">
-          <h3 className="text-sm font-bold text-white mb-3">Service-Level Objectives (internal targets)</h3>
+        <Card className="bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-4">
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-3">Service-Level Objectives (internal targets)</h3>
           <div className="space-y-2">
             {slos.data.data.map((slo) => (
               <div key={slo.id} className="flex items-center justify-between">
                 <div className="min-w-0">
-                  <div className="text-xs text-slate-200 font-medium">
+                  <div className="text-xs text-slate-700 dark:text-slate-200 font-medium">
                     {slo.name} <span className="text-[10px] text-slate-500">({slo.service})</span>
                   </div>
                   <div className="text-[10px] text-slate-500">
@@ -134,9 +134,9 @@ export const IncidentsPage: React.FC = () => {
                 <div className="flex items-center gap-3">
                   {slo.latest_sli != null ? (
                     <>
-                      <span className="text-[11px] text-slate-300">SLI: {slo.latest_sli}%</span>
+                      <span className="text-[11px] text-slate-600 dark:text-slate-300">SLI: {slo.latest_sli}%</span>
                       <span
-                        className={`text-[11px] font-bold ${slo.latest_error_budget_remaining != null && slo.latest_error_budget_remaining <= 0 ? "text-rose-300" : "text-emerald-300"}`}
+                        className={`text-[11px] font-bold ${slo.latest_error_budget_remaining != null && slo.latest_error_budget_remaining <= 0 ? "text-rose-600 dark:text-rose-300" : "text-emerald-600 dark:text-emerald-300"}`}
                       >
                         Budget: {slo.latest_error_budget_remaining != null ? `${slo.latest_error_budget_remaining}%` : "—"}
                       </span>

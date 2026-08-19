@@ -51,9 +51,9 @@ export const AuditLogsPage: React.FC = () => {
             <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
               <Shield className="h-4 w-4" />
             </div>
-            <h1 className="text-xl font-black tracking-tight text-white">Security & Activity Audit Logs</h1>
+            <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Security & Activity Audit Logs</h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Immutable system-wide ledger of staff actions, security events, authentication records, and operational changes.
           </p>
         </div>
@@ -63,7 +63,7 @@ export const AuditLogsPage: React.FC = () => {
           disabled={isExporting}
           variant="outline"
           size="sm"
-          className="border-slate-800 text-slate-300 hover:bg-slate-800 hover:text-white text-xs gap-1.5 self-start sm:self-auto"
+          className="border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white text-xs gap-1.5 self-start sm:self-auto"
         >
           {isExporting ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Download className="h-3.5 w-3.5" />}
           Export CSV Ledger
@@ -71,7 +71,7 @@ export const AuditLogsPage: React.FC = () => {
       </div>
 
       {/* Category Tabs */}
-      <div className="flex items-center gap-1.5 overflow-x-auto bg-slate-900/60 p-2 rounded-xl border border-slate-800">
+      <div className="flex items-center gap-1.5 overflow-x-auto bg-white dark:bg-slate-900/60 p-2 rounded-xl border border-slate-200 dark:border-slate-800">
         {[
           { id: "ALL", label: "All Audit Trails" },
           { id: "SECURITY", label: "Security & Auth" },
@@ -89,7 +89,7 @@ export const AuditLogsPage: React.FC = () => {
             className={`h-7 px-3 text-xs rounded-lg font-medium transition-all ${
               categoryTab === tab.id
                 ? "bg-indigo-600 text-white font-bold shadow-sm"
-                : "text-slate-400 hover:text-white hover:bg-slate-800/60"
+                : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
             }`}
           >
             {tab.label}
@@ -98,21 +98,21 @@ export const AuditLogsPage: React.FC = () => {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-2.5 bg-slate-900/40 p-3 rounded-xl border border-slate-800/60">
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-2.5 bg-white dark:bg-slate-900/40 p-3 rounded-xl border border-slate-200 dark:border-slate-800/60">
         <div className="relative sm:col-span-2">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-500" />
           <Input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search description, actor, entity ID..."
-            className="pl-9 bg-slate-950 border-slate-800 text-xs text-slate-200 h-9"
+            className="pl-9 bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200 h-9"
           />
         </div>
 
         <select
           value={presetFilter}
           onChange={(e) => setPresetFilter(e.target.value)}
-          className="bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-indigo-500 h-9"
+          className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500 h-9"
         >
           <option value="TODAY">Today</option>
           <option value="YESTERDAY">Yesterday</option>
@@ -124,7 +124,7 @@ export const AuditLogsPage: React.FC = () => {
         <select
           value={entityFilter}
           onChange={(e) => setEntityFilter(e.target.value)}
-          className="bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-indigo-500 h-9"
+          className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500 h-9"
         >
           <option value="">All Entity Types</option>
           <option value="USER">User / Auth</option>
@@ -138,10 +138,10 @@ export const AuditLogsPage: React.FC = () => {
       </div>
 
       {/* Audit Log Table */}
-      <Card className="bg-slate-900/60 border-slate-800 overflow-hidden">
+      <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-950 text-slate-400 border-b border-slate-800 font-semibold">
+            <thead className="bg-slate-100 dark:bg-slate-950 text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800 font-semibold">
               <tr>
                 <th className="p-3.5">Timestamp</th>
                 <th className="p-3.5">Actor</th>
@@ -151,7 +151,7 @@ export const AuditLogsPage: React.FC = () => {
                 <th className="p-3.5 text-right">Details</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 text-slate-300">
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60 text-slate-600 dark:text-slate-300">
               {isLoadingLogs ? (
                 <tr>
                   <td colSpan={6} className="p-8 text-center text-slate-500">
@@ -169,13 +169,13 @@ export const AuditLogsPage: React.FC = () => {
                   <tr
                     key={log.id}
                     onClick={() => setSelectedLog(log)}
-                    className="hover:bg-slate-800/30 transition-colors cursor-pointer"
+                    className="hover:bg-slate-200/70 dark:hover:bg-slate-800/30 transition-colors cursor-pointer"
                   >
-                    <td className="p-3.5 font-mono text-[11px] text-slate-400 whitespace-nowrap">
+                    <td className="p-3.5 font-mono text-[11px] text-slate-500 dark:text-slate-400 whitespace-nowrap">
                       {new Date(log.created_at).toLocaleString()}
                     </td>
                     <td className="p-3.5">
-                      <div className="font-bold text-white text-xs">{log.actor_email || log.actor_type}</div>
+                      <div className="font-bold text-slate-900 dark:text-white text-xs">{log.actor_email || log.actor_type}</div>
                       {log.actor_role && (
                         <div className="text-[10px] text-indigo-400 font-mono">{log.actor_role}</div>
                       )}
@@ -183,20 +183,20 @@ export const AuditLogsPage: React.FC = () => {
                     <td className="p-3.5">
                       <AuditActionBadge action={log.action} />
                     </td>
-                    <td className="p-3.5 font-bold text-slate-200">
+                    <td className="p-3.5 font-bold text-slate-700 dark:text-slate-200">
                       <div>{log.entity_type}</div>
                       {log.entity_id && (
                         <div className="text-[10px] text-slate-500 font-mono">{log.entity_id}</div>
                       )}
                     </td>
-                    <td className="p-3.5 text-slate-300 max-w-xs truncate">
+                    <td className="p-3.5 text-slate-600 dark:text-slate-300 max-w-xs truncate">
                       {log.description}
                     </td>
                     <td className="p-3.5 text-right">
                       <Button
                         size="sm"
                         variant="ghost"
-                        className="h-7 text-xs text-indigo-400 hover:text-white p-1"
+                        className="h-7 text-xs text-indigo-400 hover:text-slate-900 dark:hover:text-white p-1"
                       >
                         <Eye className="h-3.5 w-3.5" />
                       </Button>

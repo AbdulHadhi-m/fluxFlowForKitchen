@@ -6,7 +6,7 @@ import { Zap } from "lucide-react";
 
 export const LoginPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-4 selection:bg-blue-500/30">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center p-4 selection:bg-blue-500/30 transition-colors duration-200">
       {/* Background radial glow */}
       <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-blue-600/10 blur-[120px] rounded-full" />
@@ -17,7 +17,7 @@ export const LoginPage: React.FC = () => {
           <div className="inline-flex h-12 w-12 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 items-center justify-center shadow-lg shadow-blue-500/25 mb-2">
             <Zap className="h-6 w-6 text-white" />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-white flex items-center justify-center gap-2">
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center justify-center gap-2">
             Fluxiflow for Kitchen
           </h1>
           <p className="text-xs text-slate-400">
@@ -25,15 +25,15 @@ export const LoginPage: React.FC = () => {
           </p>
         </div>
 
-        <Card className="bg-slate-900/80 border-slate-800 backdrop-blur-xl shadow-2xl">
+        <Card className="bg-white/80 dark:bg-slate-900/80 border-slate-200 dark:border-slate-800 backdrop-blur-xl shadow-2xl">
           <CardHeader className="space-y-1 pb-4">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-base font-semibold text-white">Staff Sign In</CardTitle>
-              <Badge variant="outline" className="text-[10px] border-blue-500/30 text-blue-400 bg-blue-500/10">
+              <CardTitle className="text-base font-semibold text-slate-900 dark:text-white">Staff Sign In</CardTitle>
+              <Badge variant="outline" className="text-[10px] border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-500/10">
                 JWT Auth
               </Badge>
             </div>
-            <CardDescription className="text-xs text-slate-400">
+            <CardDescription className="text-xs text-slate-500 dark:text-slate-400">
               Enter your credentials to access the kitchen & dining terminals.
             </CardDescription>
           </CardHeader>
@@ -42,7 +42,7 @@ export const LoginPage: React.FC = () => {
           </CardContent>
         </Card>
 
-        <p className="text-center text-[11px] text-slate-600">
+        <p className="text-center text-[11px] text-slate-500 dark:text-slate-600">
           Protected by Enterprise Lockout Controls &bull; 256-bit Encryption
         </p>
       </div>

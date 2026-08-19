@@ -20,9 +20,9 @@ export const KitchenTicketGrid: React.FC<KitchenTicketGridProps> = ({
 }) => {
   if (tickets.length === 0) {
     return (
-      <div className="py-28 text-center border border-dashed border-slate-800 rounded-3xl bg-slate-900/30 flex-1 flex flex-col items-center justify-center">
+      <div className="py-28 text-center border border-dashed border-slate-200 dark:border-slate-800 rounded-3xl bg-slate-100/70 dark:bg-slate-900/30 flex-1 flex flex-col items-center justify-center">
         <ChefHat className="h-12 w-12 text-slate-700 mx-auto mb-3" />
-        <h3 className="text-base font-bold text-slate-300">Kitchen Pass is Clear</h3>
+        <h3 className="text-base font-bold text-slate-600 dark:text-slate-300">Kitchen Pass is Clear</h3>
         <p className="text-xs text-slate-500 max-w-sm mx-auto mt-1">
           No pending orders in the kitchen queue. Incoming tickets from POS will appear automatically in real-time.
         </p>

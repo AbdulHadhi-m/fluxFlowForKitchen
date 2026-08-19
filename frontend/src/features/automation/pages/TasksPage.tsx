@@ -29,16 +29,16 @@ export const TasksPage: React.FC = () => {
       <div className="flex items-center gap-3">
         <Link
           to="/automation"
-          className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors"
+          className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
         </Link>
         <div className="flex-1">
-          <h1 className="text-xl font-black text-white tracking-tight flex items-center gap-2">
+          <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <ClipboardList className="h-5 w-5 text-pink-400" />
             <span>Automation Tasks</span>
           </h1>
-          <p className="text-xs text-slate-400">Follow-up tasks created by workflows — click status to cycle it</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Follow-up tasks created by workflows — click status to cycle it</p>
         </div>
       </div>
 
@@ -50,7 +50,7 @@ export const TasksPage: React.FC = () => {
             className={`px-3 py-1.5 rounded-xl text-[11px] font-bold transition-colors border ${
               statusFilter === s
                 ? "bg-pink-500/20 border-pink-500/40 text-pink-300"
-                : "bg-slate-900 border-slate-800 text-slate-400 hover:text-white"
+                : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
             {s || "ALL"}
@@ -61,11 +61,11 @@ export const TasksPage: React.FC = () => {
       {isLoading ? (
         <div className="space-y-3">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="h-20 rounded-2xl bg-slate-900/40 border border-slate-800 animate-pulse" />
+            <div key={i} className="h-20 rounded-2xl bg-slate-100/70 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 animate-pulse" />
           ))}
         </div>
       ) : (tasks || []).length === 0 ? (
-        <div className="py-10 text-center rounded-2xl bg-slate-900/40 border border-slate-800 text-xs text-slate-500">
+        <div className="py-10 text-center rounded-2xl bg-slate-100/70 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 text-xs text-slate-500">
           No tasks found.
         </div>
       ) : (
@@ -73,7 +73,7 @@ export const TasksPage: React.FC = () => {
           {(tasks || []).map((t) => (
             <div
               key={t.id}
-              className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-pink-500/30 transition-all"
+              className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-pink-500/30 transition-all"
             >
               <div className="flex flex-wrap items-start gap-3">
                 <button
@@ -84,8 +84,8 @@ export const TasksPage: React.FC = () => {
                   <StatusBadge kind="approval" status={t.status as any} />
                 </button>
                 <div className="flex-1 min-w-[200px]">
-                  <div className="text-sm font-bold text-white">{t.title}</div>
-                  {t.description && <p className="text-[11px] text-slate-400 mt-1">{t.description}</p>}
+                  <div className="text-sm font-bold text-slate-900 dark:text-white">{t.title}</div>
+                  {t.description && <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">{t.description}</p>}
                   <div className="text-[10px] text-slate-600 mt-2 flex flex-wrap gap-x-3">
                     <span className="font-mono">{t.id.slice(0, 8)}</span>
                     <span>{t.category}</span>

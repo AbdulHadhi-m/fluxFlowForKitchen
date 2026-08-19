@@ -111,19 +111,19 @@ export const CheckoutPage: React.FC = () => {
   const validation = cartValidationMutation.data;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 pb-24 pt-6">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 pb-24 pt-6 transition-colors duration-200">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         {/* Navigation */}
         <div className="mb-6">
           <Link
             to={`/r/${restaurantSlug}/cart`}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" /> Back to Cart
           </Link>
         </div>
 
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-white mb-6">Finalize Checkout</h1>
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-6">Finalize Checkout</h1>
 
         {formError && (
           <div className="p-4 rounded-2xl bg-rose-500/15 border border-rose-500/30 text-rose-400 text-sm flex items-center gap-3 mb-6">
@@ -134,13 +134,13 @@ export const CheckoutPage: React.FC = () => {
 
         <form onSubmit={handlePlaceOrder} className="space-y-6">
           {/* Customer Contact Details */}
-          <div className="bg-slate-900/70 border border-slate-800 rounded-3xl p-6 space-y-4">
-            <h2 className="text-base font-bold text-white flex items-center gap-2">
+          <div className="bg-white/80 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 space-y-4">
+            <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <User className="w-4 h-4 text-amber-500" /> Customer Information
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Full Name *
                 </label>
                 <div className="relative mt-1.5">
@@ -151,13 +151,13 @@ export const CheckoutPage: React.FC = () => {
                     value={guestName}
                     onChange={(e) => setGuestName(e.target.value)}
                     placeholder="Jane Doe"
-                    className="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-amber-500"
+                    className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-sm text-slate-900 dark:text-white focus:outline-none focus:border-amber-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Phone Number {orderType === 'TAKEAWAY' && '*'}
                 </label>
                 <div className="relative mt-1.5">
@@ -168,13 +168,13 @@ export const CheckoutPage: React.FC = () => {
                     value={guestPhone}
                     onChange={(e) => setGuestPhone(e.target.value)}
                     placeholder="+1 555-0199"
-                    className="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-amber-500"
+                    className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-sm text-slate-900 dark:text-white focus:outline-none focus:border-amber-500"
                   />
                 </div>
               </div>
 
               <div className="sm:col-span-2">
-                <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                <label className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Email (Optional for receipt)
                 </label>
                 <div className="relative mt-1.5">
@@ -184,7 +184,7 @@ export const CheckoutPage: React.FC = () => {
                     value={guestEmail}
                     onChange={(e) => setGuestEmail(e.target.value)}
                     placeholder="jane@example.com"
-                    className="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-amber-500"
+                    className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-sm text-slate-900 dark:text-white focus:outline-none focus:border-amber-500"
                   />
                 </div>
               </div>
@@ -192,8 +192,8 @@ export const CheckoutPage: React.FC = () => {
           </div>
 
           {/* Payment Method Selector */}
-          <div className="bg-slate-900/70 border border-slate-800 rounded-3xl p-6">
-            <h2 className="text-base font-bold text-white flex items-center gap-2 mb-4">
+          <div className="bg-white/80 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 rounded-3xl p-6">
+            <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-4">
               <CreditCard className="w-4 h-4 text-amber-500" /> Select Payment Method
             </h2>
 
@@ -202,7 +202,7 @@ export const CheckoutPage: React.FC = () => {
                 className={`flex flex-col items-center justify-center p-4 rounded-2xl border cursor-pointer transition-all ${
                   paymentMethod === 'PAY_AT_COUNTER'
                     ? 'bg-amber-500/10 border-amber-500 text-amber-400 font-bold'
-                    : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                    : 'bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-700'
                 }`}
               >
                 <input
@@ -220,7 +220,7 @@ export const CheckoutPage: React.FC = () => {
                 className={`flex flex-col items-center justify-center p-4 rounded-2xl border cursor-pointer transition-all ${
                   paymentMethod === 'ONLINE_CARD'
                     ? 'bg-amber-500/10 border-amber-500 text-amber-400 font-bold'
-                    : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                    : 'bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-700'
                 }`}
               >
                 <input
@@ -238,7 +238,7 @@ export const CheckoutPage: React.FC = () => {
                 className={`flex flex-col items-center justify-center p-4 rounded-2xl border cursor-pointer transition-all ${
                   paymentMethod === 'CASH'
                     ? 'bg-amber-500/10 border-amber-500 text-amber-400 font-bold'
-                    : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                    : 'bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-700'
                 }`}
               >
                 <input
@@ -255,19 +255,19 @@ export const CheckoutPage: React.FC = () => {
           </div>
 
           {/* Authoritative Order Summary */}
-          <div className="bg-slate-900/70 border border-slate-800 rounded-3xl p-6 space-y-3">
-            <h2 className="text-base font-bold text-white mb-2">Authoritative Order Summary</h2>
+          <div className="bg-white/80 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 space-y-3">
+            <h2 className="text-base font-bold text-slate-900 dark:text-white mb-2">Authoritative Order Summary</h2>
 
             {cartValidationMutation.isPending ? (
-              <div className="py-6 flex items-center justify-center gap-2 text-slate-400 text-sm">
+              <div className="py-6 flex items-center justify-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
                 <Loader2 className="w-5 h-5 animate-spin text-amber-500" />
                 Calculating authoritative taxes & totals...
               </div>
             ) : validation ? (
               <>
-                <div className="flex items-center justify-between text-sm text-slate-400">
+                <div className="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
                   <span>Items Subtotal</span>
-                  <span className="font-semibold text-white">${validation.subtotal}</span>
+                  <span className="font-semibold text-slate-900 dark:text-white">${validation.subtotal}</span>
                 </div>
 
                 {parseFloat(validation.discount_amount) > 0 && (
@@ -277,15 +277,15 @@ export const CheckoutPage: React.FC = () => {
                   </div>
                 )}
 
-                <div className="flex items-center justify-between text-sm text-slate-400">
+                <div className="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
                   <span>Taxes ({validation.tax_rate}%)</span>
-                  <span className="font-semibold text-white">${validation.tax_amount}</span>
+                  <span className="font-semibold text-slate-900 dark:text-white">${validation.tax_amount}</span>
                 </div>
 
-                <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
+                <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
                   <div>
-                    <span className="text-lg font-bold text-white">Grand Total</span>
-                    <p className="text-xs text-slate-400">
+                    <span className="text-lg font-bold text-slate-900 dark:text-white">Grand Total</span>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                       Est. Prep Time: {validation.estimated_prep_time_minutes} mins
                     </p>
                   </div>

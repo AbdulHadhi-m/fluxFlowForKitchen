@@ -55,13 +55,13 @@ export const CreateBillModal: React.FC<CreateBillModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md shadow-2xl overflow-hidden text-slate-100 p-6 space-y-4">
-        <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-          <h2 className="text-lg font-bold flex items-center gap-2 text-white">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md shadow-2xl overflow-hidden text-slate-900 dark:text-slate-100 p-6 space-y-4">
+        <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+          <h2 className="text-lg font-bold flex items-center gap-2 text-slate-900 dark:text-white">
             <Receipt className="h-5 w-5 text-emerald-400" />
             Generate Bill / Invoice
           </h2>
-          <button onClick={onClose} className="text-slate-400 hover:text-white">
+          <button onClick={onClose} className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -69,10 +69,10 @@ export const CreateBillModal: React.FC<CreateBillModalProps> = ({
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 pt-1">
           {/* Order Selector */}
           <div className="space-y-1.5">
-            <label className="text-xs text-slate-300">Target Customer Order</label>
+            <label className="text-xs text-slate-600 dark:text-slate-300">Target Customer Order</label>
             <select
               {...register("order_id")}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-emerald-500 font-mono"
+              className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-emerald-500 font-mono"
             >
               {orders.length === 0 && <option value="">No eligible active orders</option>}
               {orders.map((ord) => (
@@ -87,10 +87,10 @@ export const CreateBillModal: React.FC<CreateBillModalProps> = ({
           {/* Discount Type */}
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <label className="text-xs text-slate-300">Discount Type</label>
+              <label className="text-xs text-slate-600 dark:text-slate-300">Discount Type</label>
               <select
                 {...register("discount_type")}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-emerald-500"
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-emerald-500"
               >
                 <option value="NONE">No Discount</option>
                 <option value="PERCENTAGE">Percentage (%)</option>
@@ -100,14 +100,14 @@ export const CreateBillModal: React.FC<CreateBillModalProps> = ({
 
             {discountType !== "NONE" && (
               <div className="space-y-1.5">
-                <label className="text-xs text-slate-300">
+                <label className="text-xs text-slate-600 dark:text-slate-300">
                   {discountType === "PERCENTAGE" ? "Discount (%)" : "Discount ($)"}
                 </label>
                 <Input
                   type="number"
                   step="0.01"
                   {...register("discount_value")}
-                  className="bg-slate-950 border-slate-800 text-slate-200 text-sm"
+                  className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm"
                   placeholder="0.00"
                 />
                 {errors.discount_value && (
@@ -119,12 +119,12 @@ export const CreateBillModal: React.FC<CreateBillModalProps> = ({
 
           {/* Service Charge */}
           <div className="space-y-1.5">
-            <label className="text-xs text-slate-300">Service Charge (%)</label>
+            <label className="text-xs text-slate-600 dark:text-slate-300">Service Charge (%)</label>
             <Input
               type="number"
               step="0.01"
               {...register("service_charge_rate")}
-              className="bg-slate-950 border-slate-800 text-slate-200 text-sm"
+              className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm"
               placeholder="0.00"
             />
             {errors.service_charge_rate && (
@@ -134,20 +134,20 @@ export const CreateBillModal: React.FC<CreateBillModalProps> = ({
 
           {/* Billing Notes */}
           <div className="space-y-1.5">
-            <label className="text-xs text-slate-300">Billing Notes / Customer Remarks</label>
+            <label className="text-xs text-slate-600 dark:text-slate-300">Billing Notes / Customer Remarks</label>
             <Input
               {...register("notes")}
-              className="bg-slate-950 border-slate-800 text-slate-200 text-sm"
+              className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm"
               placeholder="e.g. VIP guest, split receipt"
             />
           </div>
 
-          <div className="flex justify-end gap-2 pt-3 border-t border-slate-800">
+          <div className="flex justify-end gap-2 pt-3 border-t border-slate-200 dark:border-slate-800">
             <Button
               type="button"
               variant="outline"
               onClick={onClose}
-              className="border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-white"
+              className="border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white"
             >
               Cancel
             </Button>

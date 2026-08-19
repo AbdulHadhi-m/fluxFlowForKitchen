@@ -62,15 +62,15 @@ export const CreateCustomerModal: React.FC<CreateCustomerModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md shadow-2xl p-6 space-y-4 text-slate-100 animate-in zoom-in-95">
-        <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md shadow-2xl p-6 space-y-4 text-slate-900 dark:text-slate-100 animate-in zoom-in-95">
+        <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
               <UserPlus className="h-4 w-4" />
             </div>
-            <h3 className="text-sm font-bold text-white">Add Customer Profile</h3>
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">Add Customer Profile</h3>
           </div>
-          <button onClick={onClose} className="text-slate-500 hover:text-white">
+          <button onClick={onClose} className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -78,61 +78,61 @@ export const CreateCustomerModal: React.FC<CreateCustomerModalProps> = ({
         <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-slate-300">First Name *</label>
+              <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">First Name *</label>
               <Input
                 {...register("first_name")}
                 placeholder="John"
-                className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+                className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
               />
               {errors.first_name && <span className="text-[10px] text-rose-400">{errors.first_name.message}</span>}
             </div>
 
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-slate-300">Last Name</label>
+              <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Last Name</label>
               <Input
                 {...register("last_name")}
                 placeholder="Doe"
-                className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+                className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
               />
             </div>
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-slate-300">Phone Number *</label>
+            <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Phone Number *</label>
             <Input
               {...register("phone")}
               placeholder="+1 (555) 000-0000"
-              className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+              className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
             />
             {errors.phone && <span className="text-[10px] text-rose-400">{errors.phone.message}</span>}
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-slate-300">Email Address</label>
+            <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Email Address</label>
             <Input
               {...register("email")}
               placeholder="customer@example.com"
-              className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+              className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
             />
             {errors.email && <span className="text-[10px] text-rose-400">{errors.email.message}</span>}
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-slate-300">Internal Notes / Preferences</label>
+            <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Internal Notes / Preferences</label>
             <Input
               {...register("internal_notes")}
               placeholder="e.g. VIP guest, prefers booth seating"
-              className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+              className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
             />
           </div>
 
-          <div className="flex justify-end gap-2 pt-3 border-t border-slate-800">
+          <div className="flex justify-end gap-2 pt-3 border-t border-slate-200 dark:border-slate-800">
             <Button
               type="button"
               variant="outline"
               size="sm"
               onClick={onClose}
-              className="border-slate-800 text-slate-300 hover:bg-slate-800 text-xs"
+              className="border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 text-xs"
             >
               Cancel
             </Button>

@@ -19,7 +19,7 @@ import {
 import { WorkflowPayload, WorkflowStep, WorkflowStatus } from "../types/automation.types";
 
 const inputCls =
-  "bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-2 text-xs text-white focus:outline-none focus:border-cyan-500 w-full";
+  "bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 w-full";
 const labelCls = "text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-1 block";
 
 const emptyCondition = { operator: "AND", conditions: [] };
@@ -142,8 +142,8 @@ export const WorkflowBuilderPage: React.FC = () => {
   if (isEdit && isLoadingExisting) {
     return (
       <div className="p-6 max-w-7xl mx-auto space-y-4">
-        <div className="h-10 w-64 rounded-xl bg-slate-900/40 border border-slate-800 animate-pulse" />
-        <div className="h-96 rounded-2xl bg-slate-900/40 border border-slate-800 animate-pulse" />
+        <div className="h-10 w-64 rounded-xl bg-slate-100/70 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 animate-pulse" />
+        <div className="h-96 rounded-2xl bg-slate-100/70 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 animate-pulse" />
       </div>
     );
   }
@@ -153,15 +153,15 @@ export const WorkflowBuilderPage: React.FC = () => {
       <div className="flex items-center gap-3 mb-5">
         <Link
           to={isEdit ? `/automation/workflows/${id}` : "/automation/workflows"}
-          className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors"
+          className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
         </Link>
         <div className="flex-1">
-          <h1 className="text-xl font-black text-white tracking-tight">
+          <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
             {isEdit ? `Edit: ${existing?.name || ""}` : "New Workflow"}
           </h1>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500 dark:text-slate-400">
             Define a trigger, optional preconditions, then chain steps (actions, conditions, approvals, waits).
           </p>
         </div>
@@ -169,7 +169,7 @@ export const WorkflowBuilderPage: React.FC = () => {
           {isEdit && (
             <button
               onClick={handleValidate}
-              className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-colors flex items-center gap-1.5"
+              className="px-3 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-white text-xs font-bold transition-colors flex items-center gap-1.5"
             >
               <CheckCircle2 className="h-4 w-4" />
               <span>Validate</span>
@@ -195,7 +195,7 @@ export const WorkflowBuilderPage: React.FC = () => {
       </div>
 
       {error && (
-        <div className="mb-4 px-4 py-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
+        <div className="mb-4 px-4 py-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-300 text-xs flex items-center gap-2">
           <AlertTriangle className="h-4 w-4" /> {error}
         </div>
       )}
@@ -203,8 +203,8 @@ export const WorkflowBuilderPage: React.FC = () => {
         <div
           className={`mb-4 px-4 py-3 rounded-xl border text-xs ${
             validation.valid
-              ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-300"
-              : "bg-rose-500/10 border-rose-500/30 text-rose-300"
+              ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-600 dark:text-emerald-300"
+              : "bg-rose-500/10 border-rose-500/30 text-rose-600 dark:text-rose-300"
           }`}
         >
           {validation.valid ? (
@@ -225,7 +225,7 @@ export const WorkflowBuilderPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-5">
         <div className="space-y-4">
-          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-3">
+          <div className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 space-y-3">
             <div>
               <label className={labelCls}>Name *</label>
               <input
@@ -303,7 +303,7 @@ export const WorkflowBuilderPage: React.FC = () => {
                 <label className={labelCls}>Event Types</label>
                 <div className="max-h-40 overflow-y-auto space-y-1 pr-1">
                   {WORKFLOW_EVENT_TYPES.map((evt) => (
-                    <label key={evt} className="flex items-center gap-2 text-[11px] text-slate-400 cursor-pointer hover:text-white transition-colors">
+                    <label key={evt} className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors">
                       <input
                         type="checkbox"
                         className="accent-cyan-500"
@@ -342,15 +342,15 @@ export const WorkflowBuilderPage: React.FC = () => {
         </div>
 
         <div className="space-y-4">
-          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+          <div className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-xs font-bold text-white uppercase tracking-wider">Steps</h3>
+              <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Steps</h3>
               <div className="flex items-center gap-1.5">
                 {(["ACTION", "CONDITION", "APPROVAL", "WAIT", "BRANCH", "END"] as const).map((type) => (
                   <button
                     key={type}
                     onClick={() => addStep(newStepFor(type, steps.length))}
-                    className="px-2 py-1 rounded-lg bg-slate-800 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 text-[10px] font-bold transition-colors"
+                    className="px-2 py-1 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-cyan-500/20 text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-300 text-[10px] font-bold transition-colors"
                   >
                     + {type}
                   </button>
@@ -359,7 +359,7 @@ export const WorkflowBuilderPage: React.FC = () => {
             </div>
 
             {steps.length === 0 ? (
-              <div className="py-10 text-center text-xs text-slate-500 border border-dashed border-slate-700 rounded-xl">
+              <div className="py-10 text-center text-xs text-slate-500 border border-dashed border-slate-300 dark:border-slate-700 rounded-xl">
                 No steps yet. Add an ACTION, CONDITION, APPROVAL, WAIT, BRANCH or END step above.
               </div>
             ) : (
@@ -383,8 +383,8 @@ export const WorkflowBuilderPage: React.FC = () => {
           </div>
 
           {selectedStep && (
-            <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80">
-              <h3 className="text-xs font-bold text-white uppercase tracking-wider mb-3">
+            <div className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80">
+              <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
                 Configure: {selectedStep.name}
               </h3>
               <StepConfigEditor

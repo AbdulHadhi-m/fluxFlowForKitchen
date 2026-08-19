@@ -40,7 +40,7 @@ export const NotificationBell: React.FC = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Open notifications"
-        className="relative p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-850 transition-colors focus:outline-none"
+        className="relative p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-850 transition-colors focus:outline-none"
       >
         <Bell className="h-4 w-4" />
         {unreadCount > 0 && (
@@ -52,10 +52,10 @@ export const NotificationBell: React.FC = () => {
 
       {/* Notification Dropdown Panel */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200 text-slate-100">
-          <div className="p-3.5 border-b border-slate-800 flex items-center justify-between">
+        <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200 text-slate-900 dark:text-slate-100">
+          <div className="p-3.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <h3 className="font-bold text-xs text-white">Notifications</h3>
+              <h3 className="font-bold text-xs text-slate-900 dark:text-white">Notifications</h3>
               {unreadCount > 0 && (
                 <span className="text-[10px] bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-1.5 py-0.2 rounded font-bold">
                   {unreadCount} new
@@ -67,7 +67,7 @@ export const NotificationBell: React.FC = () => {
               <button
                 onClick={() => markAllAsRead()}
                 disabled={isMarkingAllRead}
-                className="text-[11px] text-slate-400 hover:text-white flex items-center gap-1 font-medium transition-colors"
+                className="text-[11px] text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1 font-medium transition-colors"
               >
                 {isMarkingAllRead ? (
                   <Loader2 className="h-3 w-3 animate-spin" />
@@ -99,7 +99,7 @@ export const NotificationBell: React.FC = () => {
             )}
           </div>
 
-          <div className="p-2.5 border-t border-slate-800 bg-slate-950/60 text-center">
+          <div className="p-2.5 border-t border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-950/60 text-center">
             <Link
               to="/notifications"
               onClick={() => setIsOpen(false)}

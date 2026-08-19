@@ -14,18 +14,18 @@ export const CustomerListTable: React.FC<CustomerListTableProps> = ({
 }) => {
   if (customers.length === 0) {
     return (
-      <div className="py-12 text-center text-xs text-slate-500 bg-slate-900/40 rounded-2xl border border-slate-800">
+      <div className="py-12 text-center text-xs text-slate-500 bg-slate-100/70 dark:bg-slate-900/40 rounded-2xl border border-slate-200 dark:border-slate-800">
         No matching customer profiles found.
       </div>
     );
   }
 
   return (
-    <Card className="bg-slate-900/60 border-slate-800 overflow-hidden">
+    <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 overflow-hidden">
       <CardContent className="p-0">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-slate-300">
-            <thead className="bg-slate-950/80 text-[10px] uppercase font-bold text-slate-400 border-b border-slate-800">
+          <table className="w-full text-left text-xs text-slate-600 dark:text-slate-300">
+            <thead className="bg-slate-100 dark:bg-slate-950/80 text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
               <tr>
                 <th className="px-4 py-3">Customer</th>
                 <th className="px-4 py-3">Contact</th>
@@ -35,14 +35,14 @@ export const CustomerListTable: React.FC<CustomerListTableProps> = ({
                 <th className="px-4 py-3 text-right">Last Visit</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
               {customers.map((c) => (
                 <tr
                   key={c.id}
                   onClick={() => onSelectCustomer?.(c)}
-                  className="hover:bg-slate-800/40 transition-colors cursor-pointer"
+                  className="hover:bg-slate-200/60 dark:hover:bg-slate-800/40 transition-colors cursor-pointer"
                 >
-                  <td className="px-4 py-3 font-semibold text-white">
+                  <td className="px-4 py-3 font-semibold text-slate-900 dark:text-white">
                     <div className="flex items-center gap-2">
                       <div className="h-7 w-7 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
                         <User className="h-3.5 w-3.5" />
@@ -60,7 +60,7 @@ export const CustomerListTable: React.FC<CustomerListTableProps> = ({
 
                   <td className="px-4 py-3">
                     <div className="space-y-0.5">
-                      <div className="flex items-center gap-1.5 text-slate-300">
+                      <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300">
                         <Phone className="h-3 w-3 text-slate-500" />
                         <span>{c.phone}</span>
                       </div>
@@ -78,7 +78,7 @@ export const CustomerListTable: React.FC<CustomerListTableProps> = ({
                       {c.tags.map((t) => (
                         <span
                           key={t.id}
-                          className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20"
+                          className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 border border-indigo-500/20"
                         >
                           {t.name}
                         </span>
@@ -86,7 +86,7 @@ export const CustomerListTable: React.FC<CustomerListTableProps> = ({
                       {c.allergies.map((a) => (
                         <span
                           key={a}
-                          className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-500/10 text-rose-300 border border-rose-500/20"
+                          className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-500/10 text-rose-600 dark:text-rose-300 border border-rose-500/20"
                         >
                           Allergy: {a}
                         </span>
@@ -94,15 +94,15 @@ export const CustomerListTable: React.FC<CustomerListTableProps> = ({
                     </div>
                   </td>
 
-                  <td className="px-4 py-3 text-center font-bold text-white">
+                  <td className="px-4 py-3 text-center font-bold text-slate-900 dark:text-white">
                     {c.total_visits}
                   </td>
 
-                  <td className="px-4 py-3 text-right font-black text-indigo-300">
+                  <td className="px-4 py-3 text-right font-black text-indigo-600 dark:text-indigo-300">
                     ${c.total_spend}
                   </td>
 
-                  <td className="px-4 py-3 text-right text-[11px] text-slate-400">
+                  <td className="px-4 py-3 text-right text-[11px] text-slate-500 dark:text-slate-400">
                     {c.last_visit_at
                       ? new Date(c.last_visit_at).toLocaleDateString()
                       : "Never"}

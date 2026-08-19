@@ -34,9 +34,9 @@ export const NotificationCenterPage: React.FC = () => {
             <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
               <Bell className="h-4 w-4" />
             </div>
-            <h1 className="text-xl font-black tracking-tight text-white">Notification Center</h1>
+            <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Notification Center</h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Centralized operational notices, inventory threshold triggers, and real-time restaurant alerts.
           </p>
         </div>
@@ -59,7 +59,7 @@ export const NotificationCenterPage: React.FC = () => {
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-white/80 dark:bg-slate-900/60 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800">
         <div className="flex items-center gap-1.5">
           {["ALL", "UNREAD", "READ"].map((status) => (
             <Button
@@ -70,7 +70,7 @@ export const NotificationCenterPage: React.FC = () => {
               className={`h-7 px-3 text-xs rounded-lg font-medium transition-all ${
                 readFilter === status
                   ? "bg-indigo-600 text-white font-bold shadow-sm"
-                  : "text-slate-400 hover:text-white hover:bg-slate-800/60"
+                  : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
               }`}
             >
               {status.charAt(0) + status.slice(1).toLowerCase()}
@@ -83,7 +83,7 @@ export const NotificationCenterPage: React.FC = () => {
           <select
             value={severityFilter}
             onChange={(e) => setSeverityFilter(e.target.value)}
-            className="bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1 text-xs text-slate-300 focus:outline-none focus:border-indigo-500"
+            className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500"
           >
             <option value="">All Severities</option>
             <option value="CRITICAL">Critical Only</option>
@@ -95,7 +95,7 @@ export const NotificationCenterPage: React.FC = () => {
       </div>
 
       {/* Notifications List */}
-      <Card className="bg-slate-900/60 border-slate-800 overflow-hidden">
+      <Card className="bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 overflow-hidden">
         <CardContent className="p-4 space-y-2">
           {isLoadingNotifications ? (
             <div className="py-12 text-center text-slate-500 text-xs">

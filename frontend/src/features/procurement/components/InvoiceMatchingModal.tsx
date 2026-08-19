@@ -110,19 +110,19 @@ export const InvoiceMatchingModal: React.FC<InvoiceMatchingModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950/40">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/40">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
               <FileCheck className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white">3-Way Invoice Matching</h2>
-              <p className="text-xs text-slate-400">Reconcile Vendor Invoice against PO and Goods Intake</p>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">3-Way Invoice Matching</h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Reconcile Vendor Invoice against PO and Goods Intake</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
+          <button onClick={onClose} className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -131,13 +131,13 @@ export const InvoiceMatchingModal: React.FC<InvoiceMatchingModalProps> = ({
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-6">
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 Purchase Order
               </label>
               <select
                 value={selectedPoId}
                 onChange={(e) => setSelectedPoId(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500"
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500"
                 required
               >
                 <option value="">Select PO to match...</option>
@@ -150,7 +150,7 @@ export const InvoiceMatchingModal: React.FC<InvoiceMatchingModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 Invoice Number
               </label>
               <input
@@ -158,20 +158,20 @@ export const InvoiceMatchingModal: React.FC<InvoiceMatchingModalProps> = ({
                 value={invoiceNumber}
                 onChange={(e) => setInvoiceNumber(e.target.value)}
                 placeholder="e.g. INV-90219"
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500 font-mono"
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 font-mono"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 Invoice Date
               </label>
               <input
                 type="date"
                 value={invoiceDate}
                 onChange={(e) => setInvoiceDate(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500 font-mono"
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 font-mono"
                 required
               />
             </div>
@@ -205,7 +205,7 @@ export const InvoiceMatchingModal: React.FC<InvoiceMatchingModalProps> = ({
           {/* Item Matching Table */}
           {items.length > 0 && (
             <div className="space-y-3">
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
                 Line Items Reconciliation
               </label>
 
@@ -213,10 +213,10 @@ export const InvoiceMatchingModal: React.FC<InvoiceMatchingModalProps> = ({
                 {items.map((item, idx) => (
                   <div
                     key={item.inventory_item_id}
-                    className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 space-y-2"
+                    className="p-3.5 rounded-xl bg-white dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-2"
                   >
-                    <div className="flex items-center justify-between text-xs text-slate-400">
-                      <span className="font-semibold text-white text-sm">{item.item_name}</span>
+                    <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                      <span className="font-semibold text-slate-900 dark:text-white text-sm">{item.item_name}</span>
                       <span className="font-mono">
                         PO Qty: {item.quantity_ordered} | Received: {item.quantity_received} | PO Cost: ${item.unit_cost_po}
                       </span>
@@ -224,32 +224,32 @@ export const InvoiceMatchingModal: React.FC<InvoiceMatchingModalProps> = ({
 
                     <div className="grid grid-cols-3 gap-3">
                       <div>
-                        <label className="block text-[11px] text-slate-400 mb-1">Invoiced Qty</label>
+                        <label className="block text-[11px] text-slate-500 dark:text-slate-400 mb-1">Invoiced Qty</label>
                         <input
                           type="number"
                           step="0.001"
                           value={item.quantity_invoiced}
                           onChange={(e) => handleItemChange(idx, "quantity_invoiced", e.target.value)}
-                          className="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono focus:border-cyan-500"
+                          className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white font-mono focus:border-cyan-500"
                           required
                         />
                       </div>
 
                       <div>
-                        <label className="block text-[11px] text-slate-400 mb-1">Invoiced Unit Price ($)</label>
+                        <label className="block text-[11px] text-slate-500 dark:text-slate-400 mb-1">Invoiced Unit Price ($)</label>
                         <input
                           type="number"
                           step="0.01"
                           value={item.unit_price}
                           onChange={(e) => handleItemChange(idx, "unit_price", e.target.value)}
-                          className="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono focus:border-cyan-500"
+                          className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white font-mono focus:border-cyan-500"
                           required
                         />
                       </div>
 
                       <div>
-                        <label className="block text-[11px] text-slate-400 mb-1">Line Total</label>
-                        <div className="w-full bg-slate-900/50 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-cyan-400 font-mono">
+                        <label className="block text-[11px] text-slate-500 dark:text-slate-400 mb-1">Line Total</label>
+                        <div className="w-full bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-cyan-400 font-mono">
                           ${((parseFloat(item.quantity_invoiced) || 0) * (parseFloat(item.unit_price) || 0)).toFixed(2)}
                         </div>
                       </div>
@@ -261,7 +261,7 @@ export const InvoiceMatchingModal: React.FC<InvoiceMatchingModalProps> = ({
           )}
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
               Reviewer Notes / Variance Explanation
             </label>
             <textarea
@@ -269,15 +269,15 @@ export const InvoiceMatchingModal: React.FC<InvoiceMatchingModalProps> = ({
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="e.g. Price increase approved per seasonal contract amendment"
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500"
+              className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500"
             />
           </div>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg"
+              className="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-lg"
             >
               Cancel
             </button>

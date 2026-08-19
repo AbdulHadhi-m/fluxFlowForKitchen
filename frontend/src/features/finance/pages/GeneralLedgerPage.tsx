@@ -25,22 +25,22 @@ export const GeneralLedgerPage: React.FC = () => {
             <div className="h-9 w-9 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
               <BookOpen className="h-5 w-5" />
             </div>
-            <h1 className="text-2xl font-black tracking-tight text-white">General Ledger Running Balances</h1>
+            <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">General Ledger Running Balances</h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Detailed chronological transaction entries with running balances per account
           </p>
         </div>
       </div>
 
       {/* Filter Bar */}
-      <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-md flex flex-wrap gap-4 items-center justify-between">
+      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 backdrop-blur-md flex flex-wrap gap-4 items-center justify-between">
         <div className="flex flex-wrap gap-3 items-center">
           <div className="w-64">
             <select
               value={selectedAccountId}
               onChange={(e) => setSelectedAccountId(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
+              className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
             >
               <option value="">-- All General Ledger Accounts --</option>
               {accounts.map((a) => (
@@ -51,36 +51,36 @@ export const GeneralLedgerPage: React.FC = () => {
             </select>
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-slate-400">
+          <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
             <span>From:</span>
             <input
               type="date"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
-              className="bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500"
+              className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-xl px-3 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
             />
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-slate-400">
+          <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
             <span>To:</span>
             <input
               type="date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
-              className="bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500"
+              className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-xl px-3 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
             />
           </div>
         </div>
 
-        <div className="text-xs text-slate-400 font-medium">
-          Showing <strong className="text-white">{ledger?.total_records || 0}</strong> posted entries
+        <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+          Showing <strong className="text-slate-900 dark:text-white">{ledger?.total_records || 0}</strong> posted entries
         </div>
       </div>
 
       {/* Ledger Table */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-md overflow-hidden">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 backdrop-blur-md overflow-hidden">
         <table className="w-full text-xs text-left">
-          <thead className="bg-slate-950/80 border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider">
+          <thead className="bg-slate-100 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
             <tr>
               <th className="p-4 w-28">Date</th>
               <th className="p-4 w-32">JE #</th>
@@ -92,7 +92,7 @@ export const GeneralLedgerPage: React.FC = () => {
               <th className="p-4 w-32 font-mono text-right">Running Balance</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/60">
+          <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
             {isLoading ? (
               <tr>
                 <td colSpan={8} className="p-12 text-center text-slate-500">
@@ -107,22 +107,22 @@ export const GeneralLedgerPage: React.FC = () => {
               </tr>
             ) : (
               ledger.lines.map((l) => (
-                <tr key={l.id} className="hover:bg-slate-900/40 transition-colors">
-                  <td className="p-4 font-mono text-slate-300">{l.date}</td>
+                <tr key={l.id} className="hover:bg-slate-100/70 dark:hover:bg-slate-900/40 transition-colors">
+                  <td className="p-4 font-mono text-slate-600 dark:text-slate-300">{l.date}</td>
                   <td className="p-4 font-mono font-bold text-indigo-400">{l.entry_number}</td>
-                  <td className="p-4 font-medium text-slate-200">
-                    <span className="font-mono text-slate-400 mr-2">{l.account_code}</span>
+                  <td className="p-4 font-medium text-slate-700 dark:text-slate-200">
+                    <span className="font-mono text-slate-500 dark:text-slate-400 mr-2">{l.account_code}</span>
                     {l.account_name}
                   </td>
-                  <td className="p-4 text-slate-300 truncate max-w-xs">{l.description || "—"}</td>
+                  <td className="p-4 text-slate-600 dark:text-slate-300 truncate max-w-xs">{l.description || "—"}</td>
                   <td className="p-4 font-mono text-right text-emerald-400">
                     {parseFloat(l.debit) > 0 ? `$${parseFloat(l.debit).toFixed(2)}` : "—"}
                   </td>
                   <td className="p-4 font-mono text-right text-indigo-400">
                     {parseFloat(l.credit) > 0 ? `$${parseFloat(l.credit).toFixed(2)}` : "—"}
                   </td>
-                  <td className="p-4 text-slate-400">{l.cost_center}</td>
-                  <td className="p-4 font-mono text-right font-bold text-white">
+                  <td className="p-4 text-slate-500 dark:text-slate-400">{l.cost_center}</td>
+                  <td className="p-4 font-mono text-right font-bold text-slate-900 dark:text-white">
                     ${parseFloat(l.running_balance).toFixed(2)}
                   </td>
                 </tr>

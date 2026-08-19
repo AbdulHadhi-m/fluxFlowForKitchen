@@ -26,21 +26,21 @@ export const TrialBalancePage: React.FC = () => {
             <div className="h-9 w-9 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
               <Scale className="h-5 w-5" />
             </div>
-            <h1 className="text-2xl font-black tracking-tight text-white">General Ledger Trial Balance</h1>
+            <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">General Ledger Trial Balance</h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Verification of arithmetic equality across all active debit and credit accounts
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 p-1.5 rounded-xl text-xs">
+        <div className="flex items-center gap-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-1.5 rounded-xl text-xs">
           <Calendar className="w-4 h-4 text-slate-500 ml-1.5" />
-          <span className="text-slate-400">As of Date:</span>
+          <span className="text-slate-500 dark:text-slate-400">As of Date:</span>
           <input
             type="date"
             value={asOfDate}
             onChange={(e) => setAsOfDate(e.target.value)}
-            className="bg-transparent text-white focus:outline-none"
+            className="bg-transparent text-slate-900 dark:text-white focus:outline-none"
           />
         </div>
       </div>
@@ -48,8 +48,8 @@ export const TrialBalancePage: React.FC = () => {
       {/* Trial Balance Health Banner */}
       <div className={`p-4 rounded-2xl border flex items-center justify-between ${
         tb?.is_balanced
-          ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-300"
-          : "bg-rose-500/10 border-rose-500/20 text-rose-300"
+          ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-300"
+          : "bg-rose-500/10 border-rose-500/20 text-rose-600 dark:text-rose-300"
       }`}>
         <div className="flex items-center gap-3">
           {tb?.is_balanced ? (
@@ -69,9 +69,9 @@ export const TrialBalancePage: React.FC = () => {
       </div>
 
       {/* Trial Balance Grid */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-md overflow-hidden">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 backdrop-blur-md overflow-hidden">
         <table className="w-full text-xs text-left">
-          <thead className="bg-slate-950/80 border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider">
+          <thead className="bg-slate-100 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
             <tr>
               <th className="p-4 w-28">Code</th>
               <th className="p-4">Account Title</th>
@@ -80,7 +80,7 @@ export const TrialBalancePage: React.FC = () => {
               <th className="p-4 w-32 font-mono text-right">Credit Balance ($)</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/60">
+          <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
             {!tb || tb.accounts.length === 0 ? (
               <tr>
                 <td colSpan={5} className="p-12 text-center text-slate-500">
@@ -89,10 +89,10 @@ export const TrialBalancePage: React.FC = () => {
               </tr>
             ) : (
               tb.accounts.map((acc) => (
-                <tr key={acc.account_id} className="hover:bg-slate-900/40 transition-colors">
-                  <td className="p-4 font-mono font-bold text-white">{acc.code}</td>
-                  <td className="p-4 font-semibold text-slate-200">{acc.name}</td>
-                  <td className="p-4 text-slate-400">{acc.category}</td>
+                <tr key={acc.account_id} className="hover:bg-slate-100/70 dark:hover:bg-slate-900/40 transition-colors">
+                  <td className="p-4 font-mono font-bold text-slate-900 dark:text-white">{acc.code}</td>
+                  <td className="p-4 font-semibold text-slate-700 dark:text-slate-200">{acc.name}</td>
+                  <td className="p-4 text-slate-500 dark:text-slate-400">{acc.category}</td>
                   <td className="p-4 font-mono text-right text-emerald-400 font-medium">
                     {parseFloat(acc.total_debit) > 0 ? `$${parseFloat(acc.total_debit).toFixed(2)}` : "—"}
                   </td>
@@ -103,7 +103,7 @@ export const TrialBalancePage: React.FC = () => {
               ))
             )}
           </tbody>
-          <tfoot className="bg-slate-950 border-t-2 border-slate-800 text-xs font-bold text-white">
+          <tfoot className="bg-slate-100 dark:bg-slate-950 border-t-2 border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white">
             <tr>
               <td colSpan={3} className="p-4 uppercase tracking-wider">Total Equilibrium Verification</td>
               <td className="p-4 font-mono text-right text-emerald-400 text-sm">${totalDebits.toFixed(2)}</td>

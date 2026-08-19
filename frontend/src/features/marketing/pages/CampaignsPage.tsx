@@ -17,16 +17,16 @@ export const CampaignsPage: React.FC = () => {
       <div className="flex items-center gap-3">
         <Link
           to="/marketing"
-          className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors"
+          className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
         </Link>
         <div>
-          <h1 className="text-xl font-black text-white tracking-tight flex items-center gap-2">
+          <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <Send className="h-5 w-5 text-cyan-400" />
             <span>Marketing Campaigns</span>
           </h1>
-          <p className="text-xs text-slate-400">Launch personalized in-app, SMS, and email marketing broadcasts</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Launch personalized in-app, SMS, and email marketing broadcasts</p>
         </div>
       </div>
 

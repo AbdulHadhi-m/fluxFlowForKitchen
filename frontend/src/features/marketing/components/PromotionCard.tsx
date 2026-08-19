@@ -18,7 +18,7 @@ export const PromotionCard: React.FC<Props> = ({ promotion }) => {
   const isFixed = promotion.promotion_type === "FIXED_DISCOUNT";
 
   return (
-    <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700/80 transition-all flex flex-col justify-between group">
+    <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700/80 transition-all flex flex-col justify-between group">
       <div>
         <div className="flex items-start justify-between gap-2 mb-2.5">
           <div className="flex items-center gap-2">
@@ -26,7 +26,7 @@ export const PromotionCard: React.FC<Props> = ({ promotion }) => {
               {isPercentage ? <Percent className="h-4 w-4" /> : isFixed ? <DollarSign className="h-4 w-4" /> : <Tag className="h-4 w-4" />}
             </div>
             <div>
-              <h4 className="text-sm font-bold text-white group-hover:text-indigo-300 transition-colors leading-tight">
+              <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors leading-tight">
                 {promotion.name}
               </h4>
               <div className="text-[10px] text-slate-500 font-medium">
@@ -38,13 +38,13 @@ export const PromotionCard: React.FC<Props> = ({ promotion }) => {
         </div>
 
         {promotion.description && (
-          <p className="text-xs text-slate-400 line-clamp-2 mb-3 leading-relaxed">{promotion.description}</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-3 leading-relaxed">{promotion.description}</p>
         )}
 
-        <div className="grid grid-cols-2 gap-2 p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/50 text-[11px] mb-3">
+        <div className="grid grid-cols-2 gap-2 p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800/50 text-[11px] mb-3">
           <div>
             <span className="text-slate-500 block text-[10px]">Discount Value</span>
-            <span className="font-bold text-indigo-300">
+            <span className="font-bold text-indigo-600 dark:text-indigo-300">
               {isPercentage ? `${promotion.discount_value}%` : `$${promotion.discount_value}`}
               {promotion.max_discount_amount && (
                 <span className="text-[10px] text-slate-500 font-normal ml-1">(Cap ${promotion.max_discount_amount})</span>
@@ -62,14 +62,14 @@ export const PromotionCard: React.FC<Props> = ({ promotion }) => {
 
           <div>
             <span className="text-slate-500 block text-[10px]">Min Spend</span>
-            <span className="font-semibold text-slate-300">
+            <span className="font-semibold text-slate-600 dark:text-slate-300">
               {Number(promotion.min_order_value) > 0 ? `$${promotion.min_order_value}` : "No min"}
             </span>
           </div>
 
           <div>
             <span className="text-slate-500 block text-[10px]">Audience</span>
-            <span className="font-semibold text-slate-300 truncate block">
+            <span className="font-semibold text-slate-600 dark:text-slate-300 truncate block">
               {promotion.target_audience_type.replace(/_/g, " ")}
             </span>
           </div>
@@ -91,7 +91,7 @@ export const PromotionCard: React.FC<Props> = ({ promotion }) => {
         </div>
       </div>
 
-      <div className="flex items-center justify-between pt-3 mt-3 border-t border-slate-800/80 gap-2">
+      <div className="flex items-center justify-between pt-3 mt-3 border-t border-slate-200 dark:border-slate-800/80 gap-2">
         <div className="flex items-center gap-1.5">
           {promotion.status === "ACTIVE" ? (
             <button
@@ -117,7 +117,7 @@ export const PromotionCard: React.FC<Props> = ({ promotion }) => {
         <div className="flex items-center gap-1">
           <Link
             to={`/marketing/promotions/${promotion.id}/edit`}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
             title="Edit Rule"
           >
             <Edit3 className="h-3.5 w-3.5" />

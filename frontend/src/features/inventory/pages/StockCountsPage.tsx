@@ -32,11 +32,11 @@ export const StockCountsPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2.5">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2.5">
             <ClipboardList className="w-7 h-7 text-emerald-400" />
             Physical Stock Audits & Variance Reconciliation
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             Conduct periodic physical stocktaking sessions and auto-reconcile book balances
           </p>
         </div>
@@ -51,10 +51,10 @@ export const StockCountsPage: React.FC = () => {
       </div>
 
       {/* Stock Count List Table */}
-      <div className="rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-md overflow-hidden shadow-xl">
+      <div className="rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 backdrop-blur-md overflow-hidden shadow-xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-950/80 text-slate-400 uppercase tracking-wider border-b border-slate-800">
+            <thead className="bg-slate-100 dark:bg-slate-950/80 text-slate-500 dark:text-slate-400 uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
               <tr>
                 <th className="py-3.5 px-4 font-semibold">Audit Session #</th>
                 <th className="py-3.5 px-4 font-semibold">Location</th>
@@ -66,10 +66,10 @@ export const StockCountsPage: React.FC = () => {
                 <th className="py-3.5 px-4 font-semibold text-right">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 font-medium">
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60 font-medium">
               {isLoading ? (
                 <tr>
-                  <td colSpan={8} className="py-8 text-center text-slate-400">
+                  <td colSpan={8} className="py-8 text-center text-slate-500 dark:text-slate-400">
                     Loading stock count sessions...
                   </td>
                 </tr>
@@ -81,12 +81,12 @@ export const StockCountsPage: React.FC = () => {
                 </tr>
               ) : (
                 counts.map((c) => (
-                  <tr key={c.id} className="hover:bg-slate-800/30 transition-colors">
-                    <td className="py-3.5 px-4 font-mono font-bold text-slate-200">
+                  <tr key={c.id} className="hover:bg-slate-200/70 dark:hover:bg-slate-800/30 transition-colors">
+                    <td className="py-3.5 px-4 font-mono font-bold text-slate-700 dark:text-slate-200">
                       {c.count_number}
                     </td>
 
-                    <td className="py-3.5 px-4 text-slate-300">
+                    <td className="py-3.5 px-4 text-slate-600 dark:text-slate-300">
                       {c.location}
                     </td>
 
@@ -104,15 +104,15 @@ export const StockCountsPage: React.FC = () => {
                       </span>
                     </td>
 
-                    <td className="py-3.5 px-4 text-slate-300 font-mono">
+                    <td className="py-3.5 px-4 text-slate-600 dark:text-slate-300 font-mono">
                       {c.items?.length || 0} items
                     </td>
 
-                    <td className="py-3.5 px-4 text-slate-400">
+                    <td className="py-3.5 px-4 text-slate-500 dark:text-slate-400">
                       {c.counted_by_name || '—'}
                     </td>
 
-                    <td className="py-3.5 px-4 text-slate-400">
+                    <td className="py-3.5 px-4 text-slate-500 dark:text-slate-400">
                       {c.approved_by_name || '—'}
                     </td>
 
@@ -123,7 +123,7 @@ export const StockCountsPage: React.FC = () => {
                     <td className="py-3.5 px-4 text-right">
                       <button
                         onClick={() => setSelectedCount(c)}
-                        className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 text-xs font-semibold transition-colors"
+                        className="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 text-xs font-semibold transition-colors"
                       >
                         {c.status === 'APPROVED' ? 'View Audit' : 'Enter / Review'}
                       </button>
@@ -139,17 +139,17 @@ export const StockCountsPage: React.FC = () => {
       {/* Create Audit Modal */}
       {isCreateOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-6 space-y-4 shadow-2xl">
-            <h2 className="text-lg font-semibold text-slate-100">Initialize Stock Count Audit</h2>
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md p-6 space-y-4 shadow-2xl">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Initialize Stock Count Audit</h2>
             <form onSubmit={handleCreateSession} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                   Storage Location
                 </label>
                 <select
                   value={newLocation}
                   onChange={(e) => setNewLocation(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-sm focus:border-emerald-500"
+                  className="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm focus:border-emerald-500"
                 >
                   <option value="ALL">Entire Restaurant (All Locations)</option>
                   <option value="MAIN_STORE">Main Store</option>
@@ -161,7 +161,7 @@ export const StockCountsPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                   Audit Notes / Shift
                 </label>
                 <input
@@ -169,7 +169,7 @@ export const StockCountsPage: React.FC = () => {
                   value={newNotes}
                   onChange={(e) => setNewNotes(e.target.value)}
                   placeholder="e.g. End of Month Inventory Audit"
-                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-sm focus:border-emerald-500 placeholder:text-slate-600"
+                  className="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm focus:border-emerald-500 placeholder:text-slate-400 dark:placeholder:text-slate-600"
                 />
               </div>
 
@@ -177,7 +177,7 @@ export const StockCountsPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsCreateOpen(false)}
-                  className="px-4 py-2 rounded-xl text-slate-400 hover:text-slate-200 text-sm font-semibold"
+                  className="px-4 py-2 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 text-sm font-semibold"
                 >
                   Cancel
                 </button>

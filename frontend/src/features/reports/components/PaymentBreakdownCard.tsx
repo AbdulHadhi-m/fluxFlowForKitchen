@@ -26,13 +26,13 @@ export const PaymentBreakdownCard: React.FC<PaymentBreakdownCardProps> = ({ paym
   };
 
   return (
-    <Card className="bg-slate-900/60 border-slate-800">
+    <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800">
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-bold text-white flex items-center justify-between">
+        <CardTitle className="text-sm font-bold text-slate-900 dark:text-white flex items-center justify-between">
           <span className="flex items-center gap-2">
             <CreditCard className="h-4 w-4 text-purple-400" /> Payment Tenders
           </span>
-          <span className="font-mono text-xs text-slate-400">Total: ${total.toFixed(2)}</span>
+          <span className="font-mono text-xs text-slate-500 dark:text-slate-400">Total: ${total.toFixed(2)}</span>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3 pt-2">
@@ -50,17 +50,17 @@ export const PaymentBreakdownCard: React.FC<PaymentBreakdownCardProps> = ({ paym
                 <div className="flex justify-between items-center text-xs">
                   <div className="flex items-center gap-2">
                     {getMethodIcon(p.payment_method)}
-                    <span className="font-bold text-slate-200">{p.payment_method}</span>
+                    <span className="font-bold text-slate-700 dark:text-slate-200">{p.payment_method}</span>
                     <span className="text-slate-500 text-[10px]">({p.count} txns)</span>
                   </div>
                   <div className="font-mono text-right">
-                    <span className="text-white font-bold">${p.total_amount}</span>
+                    <span className="text-slate-900 dark:text-white font-bold">${p.total_amount}</span>
                     <span className="text-slate-500 text-[10px] ml-1.5">({pct.toFixed(1)}%)</span>
                   </div>
                 </div>
 
                 {/* Progress bar */}
-                <div className="h-1.5 w-full bg-slate-950 rounded-full overflow-hidden">
+                <div className="h-1.5 w-full bg-slate-100 dark:bg-slate-950 rounded-full overflow-hidden">
                   <div
                     style={{ width: `${pct}%` }}
                     className="h-full bg-gradient-to-r from-purple-600 to-indigo-500 rounded-full"

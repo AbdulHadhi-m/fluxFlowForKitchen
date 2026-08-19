@@ -16,7 +16,7 @@ export const ReservationListTable: React.FC<ReservationListTableProps> = ({
 }) => {
   if (reservations.length === 0) {
     return (
-      <div className="py-12 text-center text-xs text-slate-500 bg-slate-900/40 rounded-2xl border border-slate-800">
+      <div className="py-12 text-center text-xs text-slate-500 bg-slate-100/70 dark:bg-slate-900/40 rounded-2xl border border-slate-200 dark:border-slate-800">
         No table bookings scheduled for this date.
       </div>
     );
@@ -40,11 +40,11 @@ export const ReservationListTable: React.FC<ReservationListTableProps> = ({
   };
 
   return (
-    <Card className="bg-slate-900/60 border-slate-800 overflow-hidden">
+    <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 overflow-hidden">
       <CardContent className="p-0">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-slate-300">
-            <thead className="bg-slate-950/80 text-[10px] uppercase font-bold text-slate-400 border-b border-slate-800">
+          <table className="w-full text-left text-xs text-slate-600 dark:text-slate-300">
+            <thead className="bg-slate-100 dark:bg-slate-950/80 text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
               <tr>
                 <th className="px-4 py-3">Reservation #</th>
                 <th className="px-4 py-3">Customer</th>
@@ -55,14 +55,14 @@ export const ReservationListTable: React.FC<ReservationListTableProps> = ({
                 <th className="px-4 py-3 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
               {reservations.map((r) => (
-                <tr key={r.id} className="hover:bg-slate-800/40 transition-colors">
+                <tr key={r.id} className="hover:bg-slate-200/60 dark:hover:bg-slate-800/40 transition-colors">
                   <td className="px-4 py-3 font-mono font-bold text-indigo-400">
                     {r.reservation_number}
                   </td>
 
-                  <td className="px-4 py-3 font-semibold text-white">
+                  <td className="px-4 py-3 font-semibold text-slate-900 dark:text-white">
                     <div>{r.customer_name}</div>
                     <div className="text-[10px] text-slate-500 font-normal">{r.customer_phone}</div>
                   </td>
@@ -76,13 +76,13 @@ export const ReservationListTable: React.FC<ReservationListTableProps> = ({
                     </div>
                   </td>
 
-                  <td className="px-4 py-3 text-center font-bold text-white">
+                  <td className="px-4 py-3 text-center font-bold text-slate-900 dark:text-white">
                     <span className="inline-flex items-center gap-1">
                       <Users className="h-3 w-3 text-slate-500" /> {r.party_size}
                     </span>
                   </td>
 
-                  <td className="px-4 py-3 font-medium text-slate-200">
+                  <td className="px-4 py-3 font-medium text-slate-700 dark:text-slate-200">
                     {r.table_name || <span className="text-slate-500 italic">Unassigned</span>}
                   </td>
 
@@ -95,7 +95,7 @@ export const ReservationListTable: React.FC<ReservationListTableProps> = ({
                           size="sm"
                           variant="outline"
                           onClick={() => onUpdateStatus(r.id, "CHECKED_IN")}
-                          className="h-7 px-2 text-[10px] bg-blue-500/10 text-blue-300 border-blue-500/30 hover:bg-blue-500/20"
+                          className="h-7 px-2 text-[10px] bg-blue-500/10 text-blue-600 dark:text-blue-300 border-blue-500/30 hover:bg-blue-500/20"
                         >
                           <LogIn className="h-3 w-3 mr-1" /> Check In
                         </Button>
@@ -103,7 +103,7 @@ export const ReservationListTable: React.FC<ReservationListTableProps> = ({
                           size="sm"
                           variant="outline"
                           onClick={() => onUpdateStatus(r.id, "CANCELLED")}
-                          className="h-7 px-2 text-[10px] bg-rose-500/10 text-rose-300 border-rose-500/30 hover:bg-rose-500/20"
+                          className="h-7 px-2 text-[10px] bg-rose-500/10 text-rose-600 dark:text-rose-300 border-rose-500/30 hover:bg-rose-500/20"
                         >
                           <XCircle className="h-3 w-3 mr-1" /> Cancel
                         </Button>
@@ -114,7 +114,7 @@ export const ReservationListTable: React.FC<ReservationListTableProps> = ({
                         size="sm"
                         variant="outline"
                         onClick={() => onUpdateStatus(r.id, "COMPLETED")}
-                        className="h-7 px-2 text-[10px] bg-emerald-500/10 text-emerald-300 border-emerald-500/30 hover:bg-emerald-500/20"
+                        className="h-7 px-2 text-[10px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-300 border-emerald-500/30 hover:bg-emerald-500/20"
                       >
                         <CheckCircle className="h-3 w-3 mr-1" /> Complete
                       </Button>

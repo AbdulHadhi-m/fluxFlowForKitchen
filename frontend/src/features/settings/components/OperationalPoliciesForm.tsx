@@ -67,32 +67,32 @@ export const OperationalPoliciesForm: React.FC<OperationalPoliciesFormProps> = (
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {/* Billing & Tax Configuration */}
-      <Card className="bg-slate-900/60 border-slate-800">
+      <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-bold text-white flex items-center gap-2">
+          <CardTitle className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <Receipt className="h-4 w-4 text-emerald-400" />
             Billing & Tax Configuration
           </CardTitle>
-          <CardDescription className="text-xs text-slate-400">
+          <CardDescription className="text-xs text-slate-500 dark:text-slate-400">
             Define tax rates, official tax identifiers, and receipt numbering prefixes.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-300">Tax Name</label>
+              <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Tax Name</label>
               <Input
                 {...register("tax_name")}
-                className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+                className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
               />
               {errors.tax_name && <span className="text-[10px] text-rose-400">{errors.tax_name.message}</span>}
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-300">Default Tax Rate (%)</label>
+              <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Default Tax Rate (%)</label>
               <Input
                 {...register("default_tax_rate")}
-                className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+                className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
               />
               {errors.default_tax_rate && (
                 <span className="text-[10px] text-rose-400">{errors.default_tax_rate.message}</span>
@@ -100,18 +100,18 @@ export const OperationalPoliciesForm: React.FC<OperationalPoliciesFormProps> = (
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-300">Invoice Prefix</label>
+              <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Invoice Prefix</label>
               <Input
                 {...register("invoice_prefix")}
-                className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+                className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-300">Receipt Prefix</label>
+              <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Receipt Prefix</label>
               <Input
                 {...register("receipt_prefix")}
-                className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+                className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
               />
             </div>
           </div>
@@ -119,42 +119,42 @@ export const OperationalPoliciesForm: React.FC<OperationalPoliciesFormProps> = (
       </Card>
 
       {/* Kitchen & KDS Parameters */}
-      <Card className="bg-slate-900/60 border-slate-800">
+      <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-bold text-white flex items-center gap-2">
+          <CardTitle className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <Utensils className="h-4 w-4 text-amber-400" />
             Kitchen Display System (KDS) Parameters
           </CardTitle>
-          <CardDescription className="text-xs text-slate-400">
+          <CardDescription className="text-xs text-slate-500 dark:text-slate-400">
             Configure order preparation time goals and alert delay thresholds.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-300">Target Prep Time (Mins)</label>
+              <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Target Prep Time (Mins)</label>
               <Input
                 type="number"
                 {...register("default_prep_time_minutes")}
-                className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+                className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-300">Warning Threshold (Mins)</label>
+              <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Warning Threshold (Mins)</label>
               <Input
                 type="number"
                 {...register("kds_warning_threshold_minutes")}
-                className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+                className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-300">Critical Threshold (Mins)</label>
+              <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Critical Threshold (Mins)</label>
               <Input
                 type="number"
                 {...register("kds_critical_threshold_minutes")}
-                className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+                className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
               />
             </div>
           </div>
@@ -162,23 +162,23 @@ export const OperationalPoliciesForm: React.FC<OperationalPoliciesFormProps> = (
       </Card>
 
       {/* Procurement & PO Approval Rules */}
-      <Card className="bg-slate-900/60 border-slate-800">
+      <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-bold text-white flex items-center gap-2">
+          <CardTitle className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <ShoppingCart className="h-4 w-4 text-purple-400" />
             Procurement & Purchase Orders
           </CardTitle>
-          <CardDescription className="text-xs text-slate-400">
+          <CardDescription className="text-xs text-slate-500 dark:text-slate-400">
             Set spend thresholds that strictly mandate manager approval before goods intake.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-300">Mandatory Approval Threshold</label>
+              <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Mandatory Approval Threshold</label>
               <Input
                 {...register("po_approval_threshold")}
-                className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+                className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
               />
             </div>
           </div>

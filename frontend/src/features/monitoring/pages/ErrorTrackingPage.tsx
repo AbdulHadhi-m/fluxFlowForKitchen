@@ -43,9 +43,9 @@ export const ErrorTrackingPage: React.FC = () => {
           <div className="h-8 w-8 rounded-lg bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400">
             <Bug className="h-4 w-4" />
           </div>
-          <h1 className="text-xl font-black tracking-tight text-white">Error Tracking</h1>
+          <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Error Tracking</h1>
         </div>
-        <p className="text-xs text-slate-400 mt-1">
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Fingerprint-grouped application errors from the API, background jobs, and the frontend.
         </p>
       </div>
@@ -57,13 +57,13 @@ export const ErrorTrackingPage: React.FC = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search message or error type…"
-            className="w-full rounded-lg border border-slate-800 bg-slate-900/60 pl-9 pr-3 py-2 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500"
+            className="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 pl-9 pr-3 py-2 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-indigo-500"
           />
         </div>
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
-          className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-xs text-slate-300 focus:outline-none focus:border-indigo-500"
+          className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-3 py-2 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500"
         >
           {STATUS_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -72,7 +72,7 @@ export const ErrorTrackingPage: React.FC = () => {
         <select
           value={severity}
           onChange={(e) => setSeverity(e.target.value)}
-          className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-xs text-slate-300 focus:outline-none focus:border-indigo-500"
+          className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-3 py-2 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500"
         >
           {SEVERITY_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -81,7 +81,7 @@ export const ErrorTrackingPage: React.FC = () => {
         <select
           value={preset}
           onChange={(e) => setPreset(e.target.value)}
-          className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-xs text-slate-300 focus:outline-none focus:border-indigo-500"
+          className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-3 py-2 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500"
         >
           <option value="">All Time</option>
           <option value="24h">Last 24 hours</option>
@@ -96,7 +96,7 @@ export const ErrorTrackingPage: React.FC = () => {
             setSeverity("");
             setPreset("");
           }}
-          className="border-slate-800 text-slate-300 hover:bg-slate-800 text-xs gap-1.5"
+          className="border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 text-xs gap-1.5"
         >
           <RefreshCw className="h-3 w-3" /> Reset
         </Button>
@@ -106,16 +106,16 @@ export const ErrorTrackingPage: React.FC = () => {
 
       <div className="space-y-3">
         {(data?.data || []).map((event) => (
-          <Card key={event.id} className="bg-slate-900/60 border-slate-800 p-4">
+          <Card key={event.id} className="bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-4">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-sm font-bold text-white">{event.error_type || "Unknown"}</span>
+                  <span className="text-sm font-bold text-slate-900 dark:text-white">{event.error_type || "Unknown"}</span>
                   <SeverityBadge severity={event.severity} />
                   <StatusBadge status={event.status} />
                   <span className="text-[10px] text-slate-500">{event.module}</span>
                 </div>
-                <p className="text-xs text-slate-400 mt-1.5 break-words line-clamp-2">{event.message}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 break-words line-clamp-2">{event.message}</p>
                 <div className="text-[11px] text-slate-500 mt-2 flex items-center gap-3 flex-wrap">
                   <span>x{event.count} occurrences</span>
                   <span>{event.endpoint || "no endpoint"}</span>
@@ -127,7 +127,7 @@ export const ErrorTrackingPage: React.FC = () => {
               <select
                 value={event.status}
                 onChange={(e) => updateStatus.mutate({ id: event.id, status: e.target.value as ErrorStatus })}
-                className="shrink-0 rounded-lg border border-slate-800 bg-slate-900/60 px-2 py-1.5 text-[11px] text-slate-300 focus:outline-none focus:border-indigo-500"
+                className="shrink-0 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-2 py-1.5 text-[11px] text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500"
               >
                 {STATUS_OPTIONS.filter((opt) => opt.value !== "").map((opt) => (
                   <option key={opt.value} value={opt.value}>{opt.label}</option>

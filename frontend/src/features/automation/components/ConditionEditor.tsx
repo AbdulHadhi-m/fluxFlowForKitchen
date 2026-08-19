@@ -12,7 +12,7 @@ interface Props {
 }
 
 const inputCls =
-  "bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500 w-full";
+  "bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500 w-full";
 
 const isSingleCondition = (node: ConditionSpec): boolean =>
   Boolean(node && typeof node === "object" && node.field !== undefined);
@@ -22,7 +22,7 @@ export const ConditionEditor: React.FC<Props> = ({ value, onChange, depth = 0 })
 
   if (isSingleCondition(node)) {
     return (
-      <div className={`flex flex-wrap items-center gap-2 ${depth > 0 ? "pl-3 border-l-2 border-slate-700 ml-2" : ""}`}>
+      <div className={`flex flex-wrap items-center gap-2 ${depth > 0 ? "pl-3 border-l-2 border-slate-300 dark:border-slate-700 ml-2" : ""}`}>
         <input
           className={inputCls + " flex-1 min-w-[160px]"}
           list="condition-fields"
@@ -75,7 +75,7 @@ export const ConditionEditor: React.FC<Props> = ({ value, onChange, depth = 0 })
         />
         <button
           onClick={() => onChange({ operator: "AND", conditions: [] })}
-          className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400"
+          className="p-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400"
           title="Convert to group"
         >
           <Plus className="h-3.5 w-3.5" />
@@ -95,7 +95,7 @@ export const ConditionEditor: React.FC<Props> = ({ value, onChange, depth = 0 })
   const children: ConditionSpec[] = Array.isArray(node.conditions) ? node.conditions : [];
 
   return (
-    <div className={`space-y-2 ${depth > 0 ? "pl-3 border-l-2 border-slate-700 ml-2" : ""}`}>
+    <div className={`space-y-2 ${depth > 0 ? "pl-3 border-l-2 border-slate-300 dark:border-slate-700 ml-2" : ""}`}>
       <div className="flex items-center gap-2">
         <select
           className={inputCls + " w-[90px]"}
@@ -117,7 +117,7 @@ export const ConditionEditor: React.FC<Props> = ({ value, onChange, depth = 0 })
         </button>
         <button
           onClick={() => onChange({ ...node, conditions: [...children, { field: "", operator: "EQUALS", value: "" }] })}
-          className="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] font-bold"
+          className="px-2 py-1 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold"
         >
           + Add Rule
         </button>
@@ -141,7 +141,7 @@ export const ConditionEditor: React.FC<Props> = ({ value, onChange, depth = 0 })
               const nextChildren = children.filter((_, idx) => idx !== i);
               onChange({ ...node, conditions: nextChildren });
             }}
-            className="absolute -right-2 top-1/2 -translate-y-1/2 p-1 rounded-md bg-slate-800 hover:bg-rose-500/20 text-slate-500 hover:text-rose-400"
+            className="absolute -right-2 top-1/2 -translate-y-1/2 p-1 rounded-md bg-slate-200 dark:bg-slate-800 hover:bg-rose-500/20 text-slate-500 hover:text-rose-400"
             title="Remove"
           >
             <Trash2 className="h-3 w-3" />

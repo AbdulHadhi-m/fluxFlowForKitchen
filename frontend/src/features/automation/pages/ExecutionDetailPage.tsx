@@ -5,7 +5,7 @@ import { useExecution, useExecutionAction } from "../hooks/useAutomation";
 import { StatusBadge } from "../components/StatusBadge";
 
 const actionBtn =
-  "px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-bold transition-colors flex items-center gap-1.5";
+  "px-2.5 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-[11px] font-bold transition-colors flex items-center gap-1.5";
 
 export const ExecutionDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -20,8 +20,8 @@ export const ExecutionDetailPage: React.FC = () => {
   if (isLoading || !execution) {
     return (
       <div className="p-6 max-w-7xl mx-auto space-y-4">
-        <div className="h-10 w-64 rounded-xl bg-slate-900/40 border border-slate-800 animate-pulse" />
-        <div className="h-96 rounded-2xl bg-slate-900/40 border border-slate-800 animate-pulse" />
+        <div className="h-10 w-64 rounded-xl bg-slate-100/70 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 animate-pulse" />
+        <div className="h-96 rounded-2xl bg-slate-100/70 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 animate-pulse" />
       </div>
     );
   }
@@ -36,13 +36,13 @@ export const ExecutionDetailPage: React.FC = () => {
       <div className="flex items-center gap-3">
         <Link
           to="/automation/executions"
-          className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors"
+          className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
         </Link>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h1 className="text-xl font-black text-white tracking-tight truncate">{execution.workflow_name}</h1>
+            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight truncate">{execution.workflow_name}</h1>
             <StatusBadge kind="execution" status={execution.status} />
           </div>
           <p className="text-[11px] text-slate-500 font-mono">
@@ -80,8 +80,8 @@ export const ExecutionDetailPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2 space-y-4">
-          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80">
-            <h3 className="text-xs font-bold text-white uppercase tracking-wider mb-3">Step Trace</h3>
+          <div className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80">
+            <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">Step Trace</h3>
             {execution.step_executions.length === 0 ? (
               <div className="text-[11px] text-slate-600">No step executions recorded yet.</div>
             ) : (
@@ -89,11 +89,11 @@ export const ExecutionDetailPage: React.FC = () => {
                 {execution.step_executions.map((step) => (
                   <div
                     key={step.id}
-                    className="p-3 rounded-xl bg-slate-800/50 border border-slate-700/50"
+                    className="p-3 rounded-xl bg-slate-200 dark:bg-slate-800/50 border border-slate-300 dark:border-slate-700/50"
                   >
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-[11px] font-bold text-white font-mono">{step.step_code}</span>
-                      <span className="text-[11px] text-slate-400">{step.step_name}</span>
+                      <span className="text-[11px] font-bold text-slate-900 dark:text-white font-mono">{step.step_code}</span>
+                      <span className="text-[11px] text-slate-500 dark:text-slate-400">{step.step_name}</span>
                       <span className="ml-auto">
                         <StatusBadge kind="step" status={step.status} />
                       </span>
@@ -105,12 +105,12 @@ export const ExecutionDetailPage: React.FC = () => {
                       {step.retry_count > 0 && <span className="text-amber-400">{step.retry_count} retries</span>}
                     </div>
                     {Object.keys(step.output || {}).length > 0 && (
-                      <pre className="mt-2 p-2 rounded-lg bg-slate-900 text-[10px] text-slate-500 font-mono whitespace-pre-wrap break-all">
+                      <pre className="mt-2 p-2 rounded-lg bg-white dark:bg-slate-900 text-[10px] text-slate-500 font-mono whitespace-pre-wrap break-all">
                         {JSON.stringify(step.output, null, 2)}
                       </pre>
                     )}
                     {Object.keys(step.error || {}).length > 0 && (
-                      <pre className="mt-2 p-2 rounded-lg bg-rose-500/5 border border-rose-500/20 text-[10px] text-rose-300 font-mono whitespace-pre-wrap break-all">
+                      <pre className="mt-2 p-2 rounded-lg bg-rose-500/5 border border-rose-500/20 text-[10px] text-rose-600 dark:text-rose-300 font-mono whitespace-pre-wrap break-all">
                         {JSON.stringify(step.error, null, 2)}
                       </pre>
                     )}
@@ -121,14 +121,14 @@ export const ExecutionDetailPage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80">
-              <h3 className="text-xs font-bold text-white uppercase tracking-wider mb-2">Input</h3>
+            <div className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80">
+              <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-2">Input</h3>
               <pre className="text-[10px] text-slate-500 font-mono whitespace-pre-wrap break-all">
                 {JSON.stringify(execution.input, null, 2) || "{}"}
               </pre>
             </div>
-            <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80">
-              <h3 className="text-xs font-bold text-white uppercase tracking-wider mb-2">Output</h3>
+            <div className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80">
+              <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-2">Output</h3>
               <pre className="text-[10px] text-slate-500 font-mono whitespace-pre-wrap break-all">
                 {JSON.stringify(execution.output, null, 2) || "{}"}
               </pre>
@@ -137,52 +137,52 @@ export const ExecutionDetailPage: React.FC = () => {
 
           {Object.keys(execution.error || {}).length > 0 && (
             <div className="p-4 rounded-2xl bg-rose-500/5 border border-rose-500/20">
-              <h3 className="text-xs font-bold text-rose-300 uppercase tracking-wider mb-2">Error</h3>
-              <pre className="text-[10px] text-rose-300/80 font-mono whitespace-pre-wrap break-all">
+              <h3 className="text-xs font-bold text-rose-600 dark:text-rose-300 uppercase tracking-wider mb-2">Error</h3>
+              <pre className="text-[10px] text-rose-600/80 dark:text-rose-300/80 font-mono whitespace-pre-wrap break-all">
                 {JSON.stringify(execution.error, null, 2)}
               </pre>
             </div>
           )}
         </div>
 
-        <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 h-fit space-y-2.5 text-xs">
-          <h3 className="text-xs font-bold text-white uppercase tracking-wider">Execution Details</h3>
-          <div className="flex justify-between text-slate-400">
+        <div className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 h-fit space-y-2.5 text-xs">
+          <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Execution Details</h3>
+          <div className="flex justify-between text-slate-500 dark:text-slate-400">
             <span>Trigger</span>
-            <span className="text-white">{execution.trigger}</span>
+            <span className="text-slate-900 dark:text-white">{execution.trigger}</span>
           </div>
-          <div className="flex justify-between text-slate-400">
+          <div className="flex justify-between text-slate-500 dark:text-slate-400">
             <span>Event ID</span>
-            <span className="text-white font-mono text-[10px]">{execution.event_id || "—"}</span>
+            <span className="text-slate-900 dark:text-white font-mono text-[10px]">{execution.event_id || "—"}</span>
           </div>
-          <div className="flex justify-between text-slate-400">
+          <div className="flex justify-between text-slate-500 dark:text-slate-400">
             <span>Started</span>
-            <span className="text-white">{execution.started_at ? new Date(execution.started_at).toLocaleString() : "—"}</span>
+            <span className="text-slate-900 dark:text-white">{execution.started_at ? new Date(execution.started_at).toLocaleString() : "—"}</span>
           </div>
-          <div className="flex justify-between text-slate-400">
+          <div className="flex justify-between text-slate-500 dark:text-slate-400">
             <span>Completed</span>
-            <span className="text-white">{execution.completed_at ? new Date(execution.completed_at).toLocaleString() : "—"}</span>
+            <span className="text-slate-900 dark:text-white">{execution.completed_at ? new Date(execution.completed_at).toLocaleString() : "—"}</span>
           </div>
-          <div className="flex justify-between text-slate-400">
+          <div className="flex justify-between text-slate-500 dark:text-slate-400">
             <span>Duration</span>
-            <span className="text-white">{duration}</span>
+            <span className="text-slate-900 dark:text-white">{duration}</span>
           </div>
-          <div className="flex justify-between text-slate-400">
+          <div className="flex justify-between text-slate-500 dark:text-slate-400">
             <span>Attempts</span>
-            <span className="text-white">{execution.attempt_count}</span>
+            <span className="text-slate-900 dark:text-white">{execution.attempt_count}</span>
           </div>
-          <div className="flex justify-between text-slate-400">
+          <div className="flex justify-between text-slate-500 dark:text-slate-400">
             <span>Depth</span>
-            <span className="text-white">{execution.depth}</span>
+            <span className="text-slate-900 dark:text-white">{execution.depth}</span>
           </div>
-          <div className="flex justify-between text-slate-400">
+          <div className="flex justify-between text-slate-500 dark:text-slate-400">
             <span>Resume At</span>
-            <span className="text-white">{execution.resume_at ? new Date(execution.resume_at).toLocaleString() : "—"}</span>
+            <span className="text-slate-900 dark:text-white">{execution.resume_at ? new Date(execution.resume_at).toLocaleString() : "—"}</span>
           </div>
           {execution.triggered_by_name && (
-            <div className="flex justify-between text-slate-400">
+            <div className="flex justify-between text-slate-500 dark:text-slate-400">
               <span>Triggered By</span>
-              <span className="text-white">{execution.triggered_by_name}</span>
+              <span className="text-slate-900 dark:text-white">{execution.triggered_by_name}</span>
             </div>
           )}
         </div>

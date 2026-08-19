@@ -16,7 +16,7 @@ export const RecipeVersionBadge: React.FC<RecipeVersionBadgeProps> = ({ status, 
       case 'ARCHIVED':
         return 'bg-slate-500/10 text-slate-400 border-slate-500/20';
       default:
-        return 'bg-slate-800 text-slate-300 border-slate-700';
+        return 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-700';
     }
   };
 

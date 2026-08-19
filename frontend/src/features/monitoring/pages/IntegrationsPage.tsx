@@ -16,9 +16,9 @@ export const IntegrationsPage: React.FC = () => {
           <div className="h-8 w-8 rounded-lg bg-violet-500/10 border border-violet-500/30 flex items-center justify-center text-violet-400">
             <Cable className="h-4 w-4" />
           </div>
-          <h1 className="text-xl font-black tracking-tight text-white">Integrations</h1>
+          <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Integrations</h1>
         </div>
-        <p className="text-xs text-slate-400 mt-1">
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           External service calls, webhook deliveries, and WebSocket connectivity (auto-refreshes every 30s).
         </p>
       </div>
@@ -44,10 +44,10 @@ export const IntegrationsPage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-slate-900/60 border-slate-800 p-4">
+            <Card className="bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-4">
               <div className="flex items-center gap-2 mb-3">
                 <Globe className="h-3.5 w-3.5 text-violet-400" />
-                <h3 className="text-sm font-bold text-white">External Services</h3>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white">External Services</h3>
               </div>
               {integrations.external.length === 0 ? (
                 <div className="text-xs text-slate-500">No external calls recorded in the window.</div>
@@ -55,11 +55,11 @@ export const IntegrationsPage: React.FC = () => {
                 <div className="space-y-2">
                   {integrations.external.map((row) => (
                     <div key={row.service} className="flex items-center justify-between">
-                      <span className="text-xs text-slate-300">{row.service}</span>
+                      <span className="text-xs text-slate-600 dark:text-slate-300">{row.service}</span>
                       <div className="flex items-center gap-3">
                         <span className="text-[11px] text-slate-500">{row.total} calls</span>
                         <span
-                          className={`text-[11px] font-bold ${row.failure_rate > 10 ? "text-rose-300" : "text-emerald-300"}`}
+                          className={`text-[11px] font-bold ${row.failure_rate > 10 ? "text-rose-600 dark:text-rose-300" : "text-emerald-600 dark:text-emerald-300"}`}
                         >
                           {row.failure_rate.toFixed(1)}% failed
                         </span>
@@ -70,10 +70,10 @@ export const IntegrationsPage: React.FC = () => {
               )}
             </Card>
 
-            <Card className="bg-slate-900/60 border-slate-800 p-4">
+            <Card className="bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-4">
               <div className="flex items-center gap-2 mb-3">
                 <Wifi className="h-3.5 w-3.5 text-violet-400" />
-                <h3 className="text-sm font-bold text-white">Active WebSocket Streams</h3>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white">Active WebSocket Streams</h3>
               </div>
               {Object.keys(integrations.websockets.active_by_type).length === 0 ? (
                 <div className="text-xs text-slate-500">No active streams (Redis unavailable or idle).</div>
@@ -81,15 +81,15 @@ export const IntegrationsPage: React.FC = () => {
                 <div className="space-y-2">
                   {Object.entries(integrations.websockets.active_by_type).map(([type, count]) => (
                     <div key={type} className="flex items-center justify-between">
-                      <span className="text-xs text-slate-300 capitalize">{type}</span>
-                      <span className="text-xs font-bold text-white">{count}</span>
+                      <span className="text-xs text-slate-600 dark:text-slate-300 capitalize">{type}</span>
+                      <span className="text-xs font-bold text-slate-900 dark:text-white">{count}</span>
                     </div>
                   ))}
                 </div>
               )}
-              <div className="mt-4 pt-3 border-t border-slate-800">
+              <div className="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-slate-300">Stream status</span>
+                  <span className="text-xs text-slate-600 dark:text-slate-300">Stream status</span>
                   <HealthBadge status={integrations.websockets.status === "healthy" ? "HEALTHY" : "DEGRADED"} />
                 </div>
               </div>

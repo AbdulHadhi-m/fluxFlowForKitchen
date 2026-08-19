@@ -87,21 +87,21 @@ export const ReceiveGoodsModal: React.FC<ReceiveGoodsModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950/40">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/40">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               <PackageCheck className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white">Receive Goods Intake — {purchaseOrder.po_number}</h2>
-              <p className="text-xs text-slate-400">Supplier: {purchaseOrder.supplier_name} | Location: {purchaseOrder.location}</p>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">Receive Goods Intake — {purchaseOrder.po_number}</h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Supplier: {purchaseOrder.supplier_name} | Location: {purchaseOrder.location}</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -111,7 +111,7 @@ export const ReceiveGoodsModal: React.FC<ReceiveGoodsModalProps> = ({
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-6">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 Vendor Delivery Note / Waybill #
               </label>
               <input
@@ -119,11 +119,11 @@ export const ReceiveGoodsModal: React.FC<ReceiveGoodsModalProps> = ({
                 value={deliveryNoteNumber}
                 onChange={(e) => setDeliveryNoteNumber(e.target.value)}
                 placeholder="e.g. DN-998201"
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500"
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 Supplier Invoice Number (Optional)
               </label>
               <input
@@ -131,14 +131,14 @@ export const ReceiveGoodsModal: React.FC<ReceiveGoodsModalProps> = ({
                 value={invoiceNumber}
                 onChange={(e) => setInvoiceNumber(e.target.value)}
                 placeholder="e.g. INV-2026-0812"
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500"
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
           </div>
 
           {/* Line Items Receiving Table */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-3">
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-3">
               Inspection & Quantity Breakdown
             </label>
 
@@ -146,12 +146,12 @@ export const ReceiveGoodsModal: React.FC<ReceiveGoodsModalProps> = ({
               {receivedLines.map((line, idx) => (
                 <div
                   key={line.purchase_order_item_id}
-                  className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 space-y-3"
+                  className="p-4 rounded-xl bg-white dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-3"
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="font-semibold text-white text-sm">{line.item_name}</span>
-                      <span className="text-xs text-slate-400 ml-2 font-mono">
+                      <span className="font-semibold text-slate-900 dark:text-white text-sm">{line.item_name}</span>
+                      <span className="text-xs text-slate-500 dark:text-slate-400 ml-2 font-mono">
                         (Remaining: {line.remaining_quantity} {line.unit})
                       </span>
                     </div>
@@ -159,7 +159,7 @@ export const ReceiveGoodsModal: React.FC<ReceiveGoodsModalProps> = ({
 
                   <div className="grid grid-cols-5 gap-3">
                     <div>
-                      <label className="block text-[11px] text-slate-400 mb-1">Delivered Qty</label>
+                      <label className="block text-[11px] text-slate-500 dark:text-slate-400 mb-1">Delivered Qty</label>
                       <input
                         type="number"
                         step="0.001"
@@ -167,7 +167,7 @@ export const ReceiveGoodsModal: React.FC<ReceiveGoodsModalProps> = ({
                         max={line.remaining_quantity}
                         value={line.quantity_received}
                         onChange={(e) => handleLineChange(idx, "quantity_received", e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500 font-mono"
+                        className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 font-mono"
                         required
                       />
                     </div>
@@ -180,7 +180,7 @@ export const ReceiveGoodsModal: React.FC<ReceiveGoodsModalProps> = ({
                         min="0"
                         value={line.quantity_accepted}
                         onChange={(e) => handleLineChange(idx, "quantity_accepted", e.target.value)}
-                        className="w-full bg-slate-900 border border-emerald-500/40 rounded-lg px-2.5 py-1.5 text-xs text-emerald-400 focus:outline-none focus:border-emerald-500 font-mono"
+                        className="w-full bg-white dark:bg-slate-900 border border-emerald-500/40 rounded-lg px-2.5 py-1.5 text-xs text-emerald-600 dark:text-emerald-400 focus:outline-none focus:border-emerald-500 font-mono"
                         required
                       />
                     </div>
@@ -193,40 +193,40 @@ export const ReceiveGoodsModal: React.FC<ReceiveGoodsModalProps> = ({
                         min="0"
                         value={line.quantity_rejected}
                         onChange={(e) => handleLineChange(idx, "quantity_rejected", e.target.value)}
-                        className="w-full bg-slate-900 border border-rose-500/40 rounded-lg px-2.5 py-1.5 text-xs text-rose-400 focus:outline-none focus:border-rose-500 font-mono"
+                        className="w-full bg-white dark:bg-slate-900 border border-rose-500/40 rounded-lg px-2.5 py-1.5 text-xs text-rose-600 dark:text-rose-400 focus:outline-none focus:border-rose-500 font-mono"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] text-slate-400 mb-1">Batch / Lot #</label>
+                      <label className="block text-[11px] text-slate-500 dark:text-slate-400 mb-1">Batch / Lot #</label>
                       <input
                         type="text"
                         value={line.batch_number}
                         onChange={(e) => handleLineChange(idx, "batch_number", e.target.value)}
                         placeholder="LOT-..."
-                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500 font-mono"
+                        className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 font-mono"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] text-slate-400 mb-1">Expiry Date</label>
+                      <label className="block text-[11px] text-slate-500 dark:text-slate-400 mb-1">Expiry Date</label>
                       <input
                         type="date"
                         value={line.expiry_date}
                         onChange={(e) => handleLineChange(idx, "expiry_date", e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500 font-mono"
+                        className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 font-mono"
                       />
                     </div>
                   </div>
 
                   {parseFloat(line.quantity_rejected) > 0 && (
-                    <div className="flex items-center gap-3 pt-2 border-t border-slate-800/80">
+                    <div className="flex items-center gap-3 pt-2 border-t border-slate-200 dark:border-slate-800/80">
                       <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
                       <div className="flex-1">
                         <select
                           value={line.rejection_reason}
                           onChange={(e) => handleLineChange(idx, "rejection_reason", e.target.value)}
-                          className="w-full bg-slate-900 border border-rose-500/40 rounded-lg px-2.5 py-1 text-xs text-rose-300 focus:outline-none"
+                          className="w-full bg-white dark:bg-slate-900 border border-rose-500/40 rounded-lg px-2.5 py-1 text-xs text-rose-600 dark:text-rose-300 focus:outline-none"
                         >
                           <option value="DAMAGED">Damaged / Broken Packaging</option>
                           <option value="EXPIRED">Expired / Near Expiry</option>
@@ -244,7 +244,7 @@ export const ReceiveGoodsModal: React.FC<ReceiveGoodsModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
               Receiving Notes / Condition on Dock
             </label>
             <textarea
@@ -252,15 +252,15 @@ export const ReceiveGoodsModal: React.FC<ReceiveGoodsModalProps> = ({
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="e.g. Delivered on pallet in refrigerated transport at 3°C"
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500"
+              className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
             />
           </div>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors"
+              className="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-lg transition-colors"
             >
               Cancel
             </button>

@@ -24,22 +24,22 @@ export const QRTableOrderingPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-6 text-white text-center">
+<div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center p-6 text-slate-900 dark:text-white text-center transition-colors duration-200">
         <div className="w-16 h-16 rounded-3xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-6 animate-pulse">
           <QrCode className="w-8 h-8" />
         </div>
-        <h2 className="text-xl font-bold text-white mb-2">Verifying Table QR Code...</h2>
-        <p className="text-slate-400 text-sm max-w-sm">Connecting your table to the digital menu</p>
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Verifying Table QR Code...</h2>
+        <p className="text-slate-500 dark:text-slate-400 text-sm max-w-sm">Connecting your table to the digital menu</p>
         <Loader2 className="w-6 h-6 animate-spin text-amber-500 mt-6" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-6 text-white text-center">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center p-6 text-slate-900 dark:text-white text-center transition-colors duration-200">
       <AlertCircle className="w-14 h-14 text-rose-400 mb-4" />
-      <h2 className="text-2xl font-bold text-white">Invalid Table Code</h2>
-      <p className="text-slate-400 text-sm mt-2 max-w-md">
+      <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Invalid Table Code</h2>
+      <p className="text-slate-500 dark:text-slate-400 text-sm mt-2 max-w-md">
         This QR code is either expired, invalid, or belongs to another restaurant.
       </p>
     </div>

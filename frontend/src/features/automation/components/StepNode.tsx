@@ -33,8 +33,8 @@ export const StepNode: React.FC<{
       onClick={onSelect}
       className={`p-3 rounded-xl border transition-all cursor-pointer group ${
         selected
-          ? "bg-slate-900 border-indigo-500/60 shadow-lg shadow-indigo-500/10"
-          : "bg-slate-900/60 border-slate-800 hover:border-slate-600"
+          ? "bg-white dark:bg-slate-900 border-indigo-500/60 shadow-lg shadow-indigo-500/10"
+          : "bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-600"
       }`}
     >
       <div className="flex items-center gap-2.5">
@@ -46,7 +46,7 @@ export const StepNode: React.FC<{
           {STEP_ICONS[step.type] || "•"}
         </span>
         <div className="flex-1 min-w-0">
-          <div className="text-xs font-bold text-white truncate">{step.name}</div>
+          <div className="text-xs font-bold text-slate-900 dark:text-white truncate">{step.name}</div>
           <div className="text-[10px] text-slate-500 truncate font-mono">
             {index + 1}. {step.code} · {step.type}
           </div>
@@ -58,7 +58,7 @@ export const StepNode: React.FC<{
                 e.stopPropagation();
                 onMoveUp();
               }}
-              className="p-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs"
+              className="p-1 rounded-md bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 text-xs"
               title="Move up"
             >
               ↑
@@ -70,7 +70,7 @@ export const StepNode: React.FC<{
                 e.stopPropagation();
                 onMoveDown();
               }}
-              className="p-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs"
+              className="p-1 rounded-md bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 text-xs"
               title="Move down"
             >
               ↓
@@ -91,7 +91,7 @@ export const StepNode: React.FC<{
         </div>
       </div>
       {step.config && Object.keys(step.config).length > 0 && (
-        <div className="mt-2 pt-2 border-t border-slate-800">
+        <div className="mt-2 pt-2 border-t border-slate-200 dark:border-slate-800">
           <pre className="text-[10px] text-slate-500 font-mono whitespace-pre-wrap break-all line-clamp-2">
             {JSON.stringify(step.config)}
           </pre>

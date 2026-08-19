@@ -66,9 +66,9 @@ export const JournalEntriesPage: React.FC = () => {
             <div className="h-9 w-9 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
               <Scale className="h-5 w-5" />
             </div>
-            <h1 className="text-2xl font-black tracking-tight text-white">General Journal Entries</h1>
+            <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">General Journal Entries</h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Immutable double-entry transaction ledger, automatic sales & expense postings
           </p>
         </div>
@@ -92,7 +92,7 @@ export const JournalEntriesPage: React.FC = () => {
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
                 statusFilter === st
                   ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/20"
-                  : "bg-slate-900 border border-slate-800 text-slate-400 hover:text-white"
+                  : "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
               {st ? st : "All Statuses"}
@@ -107,15 +107,15 @@ export const JournalEntriesPage: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search JE number, type, notes..."
-            className="w-full pl-9 pr-4 py-2 text-xs bg-slate-950 border border-slate-800 rounded-xl text-slate-200 focus:outline-none focus:border-indigo-500"
+            className="w-full pl-9 pr-4 py-2 text-xs bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
           />
         </div>
       </div>
 
       {/* Journal Table */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-md overflow-hidden">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 backdrop-blur-md overflow-hidden">
         <table className="w-full text-xs text-left">
-          <thead className="bg-slate-950/80 border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider">
+          <thead className="bg-slate-100 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
             <tr>
               <th className="p-4 w-10"></th>
               <th className="p-4 w-32">Entry #</th>
@@ -128,7 +128,7 @@ export const JournalEntriesPage: React.FC = () => {
               <th className="p-4 w-32 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/60">
+          <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
             {isLoading ? (
               <tr>
                 <td colSpan={9} className="p-12 text-center text-slate-500">
@@ -146,25 +146,25 @@ export const JournalEntriesPage: React.FC = () => {
                 const isExpanded = expandedJournalId === j.id;
                 return (
                   <React.Fragment key={j.id}>
-                    <tr className="hover:bg-slate-900/40 transition-colors">
+                    <tr className="hover:bg-slate-100/70 dark:hover:bg-slate-900/40 transition-colors">
                       <td className="p-4 text-center">
                         <button
                           onClick={() => setExpandedJournalId(isExpanded ? null : j.id)}
-                          className="p-1 rounded text-slate-400 hover:text-white"
+                          className="p-1 rounded text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                         >
                           {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                         </button>
                       </td>
-                      <td className="p-4 font-mono font-bold text-white">{j.entry_number}</td>
-                      <td className="p-4 font-mono text-slate-300">{j.entry_date}</td>
+                      <td className="p-4 font-mono font-bold text-slate-900 dark:text-white">{j.entry_number}</td>
+                      <td className="p-4 font-mono text-slate-600 dark:text-slate-300">{j.entry_date}</td>
                       <td className="p-4">
-                        <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 border border-slate-700 text-slate-300">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300">
                           {j.source_document_type}
                         </span>
                       </td>
-                      <td className="p-4 text-slate-300 truncate max-w-xs">{j.notes || "—"}</td>
-                      <td className="p-4 font-mono text-right font-bold text-white">${parseFloat(j.total_debit).toFixed(2)}</td>
-                      <td className="p-4 font-mono text-right font-bold text-white">${parseFloat(j.total_credit).toFixed(2)}</td>
+                      <td className="p-4 text-slate-600 dark:text-slate-300 truncate max-w-xs">{j.notes || "—"}</td>
+                      <td className="p-4 font-mono text-right font-bold text-slate-900 dark:text-white">${parseFloat(j.total_debit).toFixed(2)}</td>
+                      <td className="p-4 font-mono text-right font-bold text-slate-900 dark:text-white">${parseFloat(j.total_credit).toFixed(2)}</td>
                       <td className="p-4 text-center">
                         <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${getStatusBadge(j.status)}`}>
                           {j.status}
@@ -183,7 +183,7 @@ export const JournalEntriesPage: React.FC = () => {
                           {j.status === "POSTED" && (
                             <button
                               onClick={() => handleVoid(j.id)}
-                              className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
+                              className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
                               title="Void & Reverse Entry"
                             >
                               <RotateCcw className="w-3.5 h-3.5" />
@@ -195,12 +195,12 @@ export const JournalEntriesPage: React.FC = () => {
 
                     {/* Line Items Inspector */}
                     {isExpanded && (
-                      <tr className="bg-slate-950/60 border-t border-slate-800">
+                      <tr className="bg-slate-100/80 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800">
                         <td colSpan={9} className="p-4 pl-12 space-y-2">
-                          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Debit & Credit Legs</p>
-                          <div className="border border-slate-800 rounded-xl overflow-hidden">
+                          <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Debit & Credit Legs</p>
+                          <div className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
                             <table className="w-full text-xs text-left">
-                              <thead className="bg-slate-900 border-b border-slate-800 text-slate-400">
+                              <thead className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400">
                                 <tr>
                                   <th className="p-2.5">Account</th>
                                   <th className="p-2.5 w-28 text-right font-mono">Debit ($)</th>
@@ -209,10 +209,10 @@ export const JournalEntriesPage: React.FC = () => {
                                   <th className="p-2.5 w-28">Cost Center</th>
                                 </tr>
                               </thead>
-                              <tbody className="divide-y divide-slate-800/60 bg-slate-950/30">
+                              <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60 bg-slate-100/60 dark:bg-slate-950/30">
                                 {j.lines.map((l, idx) => (
                                   <tr key={idx}>
-                                    <td className="p-2.5 font-medium text-slate-200">
+                                    <td className="p-2.5 font-medium text-slate-700 dark:text-slate-200">
                                       <span className="font-mono text-indigo-400 font-bold mr-2">{l.account_code}</span>
                                       {l.account_name}
                                     </td>
@@ -222,8 +222,8 @@ export const JournalEntriesPage: React.FC = () => {
                                     <td className="p-2.5 font-mono text-right text-indigo-400">
                                       {parseFloat(l.credit) > 0 ? `$${parseFloat(l.credit).toFixed(2)}` : "—"}
                                     </td>
-                                    <td className="p-2.5 text-slate-400">{l.description || "—"}</td>
-                                    <td className="p-2.5 text-slate-400">{l.cost_center}</td>
+                                    <td className="p-2.5 text-slate-500 dark:text-slate-400">{l.description || "—"}</td>
+                                    <td className="p-2.5 text-slate-500 dark:text-slate-400">{l.cost_center}</td>
                                   </tr>
                                 ))}
                               </tbody>

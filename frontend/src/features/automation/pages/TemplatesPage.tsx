@@ -24,27 +24,27 @@ export const TemplatesPage: React.FC = () => {
       <div className="flex items-center gap-3">
         <Link
           to="/automation"
-          className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors"
+          className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
         </Link>
         <div className="flex-1">
-          <h1 className="text-xl font-black text-white tracking-tight flex items-center gap-2">
+          <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <LayoutTemplate className="h-5 w-5 text-pink-400" />
             <span>Workflow Templates</span>
           </h1>
-          <p className="text-xs text-slate-400">Battle-tested automation blueprints — instantiate, customize, publish</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Battle-tested automation blueprints — instantiate, customize, publish</p>
         </div>
       </div>
 
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="h-52 rounded-2xl bg-slate-900/40 border border-slate-800 animate-pulse" />
+            <div key={i} className="h-52 rounded-2xl bg-slate-100/70 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 animate-pulse" />
           ))}
         </div>
       ) : (templates || []).length === 0 ? (
-        <div className="py-10 text-center rounded-2xl bg-slate-900/40 border border-slate-800 text-xs text-slate-500">
+        <div className="py-10 text-center rounded-2xl bg-slate-100/70 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 text-xs text-slate-500">
           No templates available.
         </div>
       ) : (
@@ -52,7 +52,7 @@ export const TemplatesPage: React.FC = () => {
           {(templates || []).map((t) => (
             <div
               key={t.code}
-              className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-pink-500/40 transition-all flex flex-col"
+              className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-pink-500/40 transition-all flex flex-col"
             >
               <div className="flex items-start justify-between gap-2 mb-2">
                 <div className="p-2 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-400">
@@ -60,8 +60,8 @@ export const TemplatesPage: React.FC = () => {
                 </div>
                 <span className="text-[10px] text-slate-500 font-mono">{t.code}</span>
               </div>
-              <h3 className="text-sm font-bold text-white">{t.name}</h3>
-              <p className="text-[11px] text-slate-400 mt-1 mb-3 flex-1">{t.description}</p>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white">{t.name}</h3>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 mb-3 flex-1">{t.description}</p>
               <div className="text-[10px] text-slate-500 mb-3">
                 {WORKFLOW_CATEGORY_LABELS[t.category] || t.category} ·{" "}
                 {WORKFLOW_TRIGGER_LABELS[t.trigger_type] || t.trigger_type} · {t.steps.length} steps
@@ -70,7 +70,7 @@ export const TemplatesPage: React.FC = () => {
                 {t.steps.map((s) => (
                   <span
                     key={s.code}
-                    className="px-1.5 py-0.5 rounded-md bg-slate-800 text-[9px] font-mono text-slate-400"
+                    className="px-1.5 py-0.5 rounded-md bg-slate-200 dark:bg-slate-800 text-[9px] font-mono text-slate-500 dark:text-slate-400"
                   >
                     {s.type}
                   </span>

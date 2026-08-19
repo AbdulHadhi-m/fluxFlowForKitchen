@@ -11,7 +11,7 @@ export const OrderTimeline: React.FC<OrderTimelineProps> = ({ stage }) => {
       <div className="p-6 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-center my-6">
         <XCircle className="w-12 h-12 text-rose-400 mx-auto mb-2" />
         <h3 className="text-lg font-bold text-rose-400">Order Cancelled</h3>
-        <p className="text-xs text-rose-300 mt-1">This order has been voided or cancelled.</p>
+        <p className="text-xs text-rose-600 dark:text-rose-300 mt-1">This order has been voided or cancelled.</p>
       </div>
     );
   }
@@ -27,7 +27,7 @@ export const OrderTimeline: React.FC<OrderTimelineProps> = ({ stage }) => {
   const currentIndex = stageOrder.indexOf(stage);
 
   return (
-    <div className="py-6 px-4 bg-slate-950/60 border border-slate-800 rounded-3xl my-6">
+    <div className="py-6 px-4 bg-slate-100/80 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-3xl my-6">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 relative">
         {steps.map((step, idx) => {
           const isPassed = idx <= currentIndex;
@@ -42,7 +42,7 @@ export const OrderTimeline: React.FC<OrderTimelineProps> = ({ stage }) => {
                     ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/30 scale-110'
                     : isPassed
                     ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-                    : 'bg-slate-900 text-slate-600 border border-slate-800'
+                    : 'bg-white dark:bg-slate-900 text-slate-600 border border-slate-200 dark:border-slate-800'
                 }`}
               >
                 <Icon className="w-6 h-6" />

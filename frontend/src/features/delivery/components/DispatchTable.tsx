@@ -29,10 +29,10 @@ export const DispatchTable: React.FC<DispatchTableProps> = ({
 }) => {
   if (deliveries.length === 0) {
     return (
-      <div className="bg-slate-900 border border-slate-800 rounded-3xl p-12 text-center">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-12 text-center">
         <Package className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-        <h3 className="text-base font-bold text-white">No Deliveries Found</h3>
-        <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
+        <h3 className="text-base font-bold text-slate-900 dark:text-white">No Deliveries Found</h3>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-sm mx-auto">
           There are currently no active delivery fulfillment orders matching the current filter.
         </p>
       </div>
@@ -40,11 +40,11 @@ export const DispatchTable: React.FC<DispatchTableProps> = ({
   }
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-xl">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-xl">
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-slate-800 bg-slate-950/50 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+            <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-950/50 text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
               <th className="py-4 px-5">Order</th>
               <th className="py-4 px-5">Customer & Address</th>
               <th className="py-4 px-5">Zone / Fee</th>
@@ -53,9 +53,9 @@ export const DispatchTable: React.FC<DispatchTableProps> = ({
               <th className="py-4 px-5 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/60 text-xs text-slate-300">
+          <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60 text-xs text-slate-600 dark:text-slate-300">
             {deliveries.map((d) => (
-              <tr key={d.id} className="hover:bg-slate-800/40 transition-colors">
+              <tr key={d.id} className="hover:bg-slate-200/70 dark:hover:bg-slate-800/40 transition-colors">
                 {/* Order Number & Total */}
                 <td className="py-4 px-5 whitespace-nowrap">
                   <div className="flex items-center gap-2">
@@ -67,13 +67,13 @@ export const DispatchTable: React.FC<DispatchTableProps> = ({
                       <ArrowUpRight className="w-3 h-3" />
                     </Link>
                   </div>
-                  <span className="text-[11px] font-extrabold text-white">${d.order_total}</span>
+                  <span className="text-[11px] font-extrabold text-slate-900 dark:text-white">${d.order_total}</span>
                 </td>
 
                 {/* Customer & Address */}
                 <td className="py-4 px-5">
-                  <p className="font-bold text-white">{d.recipient_name}</p>
-                  <p className="text-[11px] text-slate-400 flex items-center gap-1 mt-0.5">
+                  <p className="font-bold text-slate-900 dark:text-white">{d.recipient_name}</p>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-0.5">
                     <MapPin className="w-3 h-3 text-slate-500 flex-shrink-0" />
                     {d.address_line_1}, {d.city} ({d.postal_code})
                   </p>
@@ -86,8 +86,8 @@ export const DispatchTable: React.FC<DispatchTableProps> = ({
 
                 {/* Zone & Fee */}
                 <td className="py-4 px-5 whitespace-nowrap">
-                  <span className="font-medium text-slate-200">{d.zone_name || 'Standard'}</span>
-                  <p className="text-[11px] text-slate-400">${d.delivery_fee} fee</p>
+                  <span className="font-medium text-slate-700 dark:text-slate-200">{d.zone_name || 'Standard'}</span>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400">${d.delivery_fee} fee</p>
                 </td>
 
                 {/* Status */}
@@ -98,7 +98,7 @@ export const DispatchTable: React.FC<DispatchTableProps> = ({
                 {/* Courier */}
                 <td className="py-4 px-5 whitespace-nowrap">
                   {d.driver_name ? (
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-slate-800/80 px-2.5 py-1 rounded-xl border border-slate-700">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-900 dark:text-white bg-slate-200 dark:bg-slate-800/80 px-2.5 py-1 rounded-xl border border-slate-300 dark:border-slate-700">
                       <Truck className="w-3.5 h-3.5 text-amber-400" />
                       {d.driver_name}
                     </span>
@@ -153,7 +153,7 @@ export const DispatchTable: React.FC<DispatchTableProps> = ({
 
                     <Link
                       to={`/delivery/${d.id}`}
-                      className="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition-colors"
+                      className="px-2.5 py-1.5 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold transition-colors"
                     >
                       Details
                     </Link>

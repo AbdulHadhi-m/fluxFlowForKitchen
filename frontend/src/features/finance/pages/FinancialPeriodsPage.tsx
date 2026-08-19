@@ -60,9 +60,9 @@ export const FinancialPeriodsPage: React.FC = () => {
             <div className="h-9 w-9 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
               <Calendar className="h-5 w-5" />
             </div>
-            <h1 className="text-2xl font-black tracking-tight text-white">Financial Periods & Close Controls</h1>
+            <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Financial Periods & Close Controls</h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Accounting period calendar, locking closed periods against backdated postings
           </p>
         </div>
@@ -78,11 +78,11 @@ export const FinancialPeriodsPage: React.FC = () => {
 
       {/* Creation Box */}
       {isCreating && (
-        <form onSubmit={handleCreate} className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
-          <h3 className="text-sm font-bold text-white">New Financial Accounting Period</h3>
+        <form onSubmit={handleCreate} className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4">
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white">New Financial Accounting Period</h3>
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 Period Name
               </label>
               <input
@@ -90,31 +90,31 @@ export const FinancialPeriodsPage: React.FC = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. FY2026-M09 September"
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                 required
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 Start Date
               </label>
               <input
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                 required
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 End Date
               </label>
               <input
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                 required
               />
             </div>
@@ -123,7 +123,7 @@ export const FinancialPeriodsPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsCreating(false)}
-              className="px-3 py-1.5 text-xs text-slate-400 hover:text-white"
+              className="px-3 py-1.5 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
             >
               Cancel
             </button>
@@ -139,9 +139,9 @@ export const FinancialPeriodsPage: React.FC = () => {
       )}
 
       {/* Periods Table */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-md overflow-hidden">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 backdrop-blur-md overflow-hidden">
         <table className="w-full text-xs text-left">
-          <thead className="bg-slate-950/80 border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider">
+          <thead className="bg-slate-100 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
             <tr>
               <th className="p-4">Period Name</th>
               <th className="p-4 w-32">Start Date</th>
@@ -152,7 +152,7 @@ export const FinancialPeriodsPage: React.FC = () => {
               <th className="p-4 w-28 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/60">
+          <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
             {isLoading ? (
               <tr>
                 <td colSpan={7} className="p-12 text-center text-slate-500">
@@ -167,10 +167,10 @@ export const FinancialPeriodsPage: React.FC = () => {
               </tr>
             ) : (
               periods.map((p) => (
-                <tr key={p.id} className="hover:bg-slate-900/40 transition-colors">
-                  <td className="p-4 font-bold text-white text-sm">{p.name}</td>
-                  <td className="p-4 font-mono text-slate-300">{p.start_date}</td>
-                  <td className="p-4 font-mono text-slate-300">{p.end_date}</td>
+                <tr key={p.id} className="hover:bg-slate-100/70 dark:hover:bg-slate-900/40 transition-colors">
+                  <td className="p-4 font-bold text-slate-900 dark:text-white text-sm">{p.name}</td>
+                  <td className="p-4 font-mono text-slate-600 dark:text-slate-300">{p.start_date}</td>
+                  <td className="p-4 font-mono text-slate-600 dark:text-slate-300">{p.end_date}</td>
                   <td className="p-4 text-center">
                     <span
                       className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${
@@ -182,8 +182,8 @@ export const FinancialPeriodsPage: React.FC = () => {
                       {p.status === "OPEN" ? "Open" : "Locked / Closed"}
                     </span>
                   </td>
-                  <td className="p-4 text-slate-300">{p.closed_by_name || "—"}</td>
-                  <td className="p-4 text-slate-400 truncate max-w-xs">{p.notes || "—"}</td>
+                  <td className="p-4 text-slate-600 dark:text-slate-300">{p.closed_by_name || "—"}</td>
+                  <td className="p-4 text-slate-500 dark:text-slate-400 truncate max-w-xs">{p.notes || "—"}</td>
                   <td className="p-4 text-right">
                     {p.status === "OPEN" ? (
                       <button
@@ -195,7 +195,7 @@ export const FinancialPeriodsPage: React.FC = () => {
                     ) : (
                       <button
                         onClick={() => handleReopen(p.id)}
-                        className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white transition-colors"
+                        className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white transition-colors"
                       >
                         <Unlock className="w-3 h-3 text-amber-400" /> Reopen
                       </button>

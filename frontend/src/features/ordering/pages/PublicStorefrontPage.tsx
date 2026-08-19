@@ -42,19 +42,19 @@ export const PublicStorefrontPage: React.FC = () => {
 
   if (isLoadingRest) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-6 text-white">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center p-6 text-slate-900 dark:text-white transition-colors duration-200">
         <Loader2 className="w-10 h-10 animate-spin text-amber-500 mb-4" />
-        <p className="text-slate-400 font-medium">Loading restaurant catalog...</p>
+        <p className="text-slate-500 dark:text-slate-400 font-medium">Loading restaurant catalog...</p>
       </div>
     );
   }
 
   if (restError || !restaurant) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-6 text-white text-center">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center p-6 text-slate-900 dark:text-white text-center transition-colors duration-200">
         <AlertCircle className="w-14 h-14 text-rose-400 mb-4" />
-        <h2 className="text-2xl font-bold text-white">Restaurant Not Found</h2>
-        <p className="text-slate-400 text-sm mt-2 max-w-md">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Restaurant Not Found</h2>
+        <p className="text-slate-500 dark:text-slate-400 text-sm mt-2 max-w-md">
           The requested restaurant could not be found or digital ordering is currently offline.
         </p>
       </div>
@@ -80,7 +80,7 @@ export const PublicStorefrontPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 pb-32">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 pb-32 transition-colors duration-200">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-6">
         {/* Restaurant Header */}
         <StorefrontHeader
@@ -90,13 +90,13 @@ export const PublicStorefrontPage: React.FC = () => {
 
         {/* Search Bar */}
         <div className="relative mb-6">
-          <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
+          <Search className="w-5 h-5 text-slate-500 dark:text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search menu for dishes, ingredients, or drinks..."
-            className="w-full pl-12 pr-4 py-3.5 bg-slate-900 border border-slate-800 rounded-2xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all shadow-inner"
+            className="w-full pl-12 pr-4 py-3.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all shadow-inner"
           />
         </div>
 
@@ -118,10 +118,10 @@ export const PublicStorefrontPage: React.FC = () => {
           <div className="space-y-10">
             {menuData.categories.map((category) => (
               <section key={category.id} className="space-y-4">
-                <div className="border-b border-slate-800/80 pb-2">
-                  <h2 className="text-xl font-extrabold text-white tracking-tight">{category.name}</h2>
+                <div className="border-b border-slate-200 dark:border-slate-800/80 pb-2">
+                  <h2 className="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">{category.name}</h2>
                   {category.description && (
-                    <p className="text-xs text-slate-400 mt-1">{category.description}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{category.description}</p>
                   )}
                 </div>
 
@@ -141,8 +141,8 @@ export const PublicStorefrontPage: React.FC = () => {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 bg-slate-900/40 rounded-3xl border border-slate-800/60 p-8">
-            <p className="text-slate-400 font-medium">No dishes match your search criteria.</p>
+          <div className="text-center py-20 bg-slate-100/60 dark:bg-slate-900/40 rounded-3xl border border-slate-200 dark:border-slate-800/60 p-8">
+            <p className="text-slate-500 dark:text-slate-400 font-medium">No dishes match your search criteria.</p>
           </div>
         )}
       </div>
@@ -157,14 +157,14 @@ export const PublicStorefrontPage: React.FC = () => {
       {/* Floating Bottom Cart Bar */}
       {totalCount > 0 && (
         <div className="fixed bottom-6 inset-x-0 z-40 max-w-lg mx-auto px-4 animate-in slide-in-from-bottom-6 duration-300">
-          <div className="bg-slate-900/95 backdrop-blur-xl border border-amber-500/40 rounded-3xl p-4 shadow-2xl shadow-amber-500/10 flex items-center justify-between gap-4">
+          <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-amber-500/40 rounded-3xl p-4 shadow-2xl shadow-amber-500/10 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-2xl bg-amber-500 flex items-center justify-center text-slate-950 font-black text-lg shadow-md shadow-amber-500/30">
                 {totalCount}
               </div>
               <div>
-                <span className="text-xs text-slate-400">Total items</span>
-                <p className="text-lg font-black text-white">${subtotal.toFixed(2)}</p>
+                <span className="text-xs text-slate-500 dark:text-slate-400">Total items</span>
+                <p className="text-lg font-black text-slate-900 dark:text-white">${subtotal.toFixed(2)}</p>
               </div>
             </div>
 

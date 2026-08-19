@@ -16,11 +16,11 @@ export const InvoiceMatchingPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black tracking-tight text-white flex items-center gap-2.5">
+          <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
             <FileCheck className="w-7 h-7 text-cyan-400" />
             3-Way Invoice Matching
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             Automated reconciliation between Purchase Orders, Dock Intake Receipts, and Vendor Invoices
           </p>
         </div>
@@ -35,12 +35,12 @@ export const InvoiceMatchingPage: React.FC = () => {
       </div>
 
       {/* Filter Bar */}
-      <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-md">
-        <Filter className="w-4 h-4 text-slate-400 ml-2" />
+      <div className="flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 backdrop-blur-md">
+        <Filter className="w-4 h-4 text-slate-500 dark:text-slate-400 ml-2" />
         <select
           value={matchStatusFilter}
           onChange={(e) => setMatchStatusFilter(e.target.value)}
-          className="bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+          className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500"
         >
           <option value="">All Reconciliation Statuses</option>
           <option value="MATCHED">Matched (Zero Variance)</option>
@@ -49,14 +49,14 @@ export const InvoiceMatchingPage: React.FC = () => {
       </div>
 
       {/* Invoices List */}
-      <div className="rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md overflow-hidden">
+      <div className="rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md overflow-hidden">
         {isLoading ? (
-          <div className="py-16 text-center text-slate-400 text-sm">Loading invoice matches...</div>
+          <div className="py-16 text-center text-slate-500 dark:text-slate-400 text-sm">Loading invoice matches...</div>
         ) : invoices && invoices.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-slate-800 text-slate-400 uppercase tracking-wider text-[10px]">
+                <tr className="border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 uppercase tracking-wider text-[10px]">
                   <th className="p-4 font-semibold">Invoice #</th>
                   <th className="p-4 font-semibold">PO Number</th>
                   <th className="p-4 font-semibold">Vendor</th>
@@ -66,15 +66,15 @@ export const InvoiceMatchingPage: React.FC = () => {
                   <th className="p-4 font-semibold">Variance Summary</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60">
+              <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
                 {invoices.map((inv) => {
                   const isMatched = inv.match_status === "MATCHED";
                   return (
-                    <tr key={inv.id} className="hover:bg-slate-800/20">
-                      <td className="p-4 font-mono font-bold text-white">{inv.invoice_number}</td>
+                    <tr key={inv.id} className="hover:bg-slate-200/70 dark:hover:bg-slate-800/20">
+                      <td className="p-4 font-mono font-bold text-slate-900 dark:text-white">{inv.invoice_number}</td>
                       <td className="p-4 font-mono text-cyan-400">{inv.po_number || "-"}</td>
-                      <td className="p-4 font-semibold text-slate-200">{inv.supplier_name}</td>
-                      <td className="p-4 text-slate-400">{inv.invoice_date}</td>
+                      <td className="p-4 font-semibold text-slate-700 dark:text-slate-200">{inv.supplier_name}</td>
+                      <td className="p-4 text-slate-500 dark:text-slate-400">{inv.invoice_date}</td>
                       <td className="p-4 font-mono font-bold text-emerald-400">${inv.total_amount}</td>
                       <td className="p-4">
                         <span

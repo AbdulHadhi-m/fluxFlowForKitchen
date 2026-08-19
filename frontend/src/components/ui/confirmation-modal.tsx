@@ -29,7 +29,7 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md shadow-2xl p-6 space-y-4 text-slate-100 animate-in zoom-in-95">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md shadow-2xl p-6 space-y-4 text-slate-900 dark:text-slate-100 animate-in zoom-in-95">
         <div className="flex items-center gap-3">
           <div
             className={`h-10 w-10 rounded-xl flex items-center justify-center shrink-0 ${
@@ -41,19 +41,19 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
             <AlertTriangle className="h-5 w-5" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-white">{title}</h3>
-            <p className="text-xs text-slate-400 mt-0.5">{description}</p>
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">{title}</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{description}</p>
           </div>
         </div>
 
-        <div className="flex justify-end items-center gap-2 pt-3 border-t border-slate-800">
+        <div className="flex justify-end items-center gap-2 pt-3 border-t border-slate-200 dark:border-slate-800">
           <Button
             type="button"
             variant="outline"
             size="sm"
             onClick={onClose}
             disabled={isLoading}
-            className="border-slate-800 text-slate-300 hover:bg-slate-800 text-xs"
+            className="border-slate-300 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs"
           >
             {cancelLabel}
           </Button>

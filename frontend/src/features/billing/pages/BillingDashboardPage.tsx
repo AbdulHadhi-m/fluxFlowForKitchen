@@ -58,22 +58,22 @@ export const BillingDashboardPage: React.FC = () => {
   const unpaidBills = bills.filter((b) => b.status === "FINALIZED" || b.status === "PARTIALLY_PAID");
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-6 flex flex-col justify-between">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-4 md:p-6 flex flex-col justify-between transition-colors duration-200">
       <div className="max-w-7xl mx-auto w-full space-y-6 flex-1 flex flex-col">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-3">
             <Link to="/dashboard">
-              <Button variant="outline" size="sm" className="h-9 w-9 p-0 border-slate-800 hover:bg-slate-900 text-slate-300">
+              <Button variant="outline" size="sm" className="h-9 w-9 p-0 border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-300">
                 <ArrowLeft className="h-4 w-4" />
               </Button>
             </Link>
             <div>
-              <h1 className="text-xl font-bold text-white flex items-center gap-2">
+              <h1 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <Receipt className="h-6 w-6 text-emerald-400" />
                 POS Billing & Cashier Register
               </h1>
-              <p className="text-xs text-slate-400 mt-0.5">
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                 Generate invoices, apply discounts, and process customer split payments.
               </p>
             </div>
@@ -81,8 +81,8 @@ export const BillingDashboardPage: React.FC = () => {
 
           <div className="flex items-center gap-2">
             <Link to="/billing/history">
-              <Button variant="outline" size="sm" className="border-slate-800 text-slate-300 hover:bg-slate-900 text-xs gap-1.5">
-                <FileText className="h-4 w-4 text-slate-400" /> Invoices & History
+              <Button variant="outline" size="sm" className="border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 text-xs gap-1.5">
+                <FileText className="h-4 w-4 text-slate-500 dark:text-slate-400" /> Invoices & History
               </Button>
             </Link>
             <Button
@@ -103,7 +103,7 @@ export const BillingDashboardPage: React.FC = () => {
           {/* Left Column: Orders Awaiting Bill Generation */}
           <div className="lg:col-span-5 space-y-3">
             <div className="flex items-center justify-between">
-              <h2 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+              <h2 className="text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
                 <Clock className="h-3.5 w-3.5 text-amber-400" /> Unbilled Active Orders ({eligibleOrders.length})
               </h2>
             </div>
@@ -112,23 +112,23 @@ export const BillingDashboardPage: React.FC = () => {
               {isLoadingEligibleOrders ? (
                 <div className="py-12 text-center text-slate-500 font-mono text-xs">Loading eligible orders...</div>
               ) : eligibleOrders.length === 0 ? (
-                <div className="py-16 text-center border border-dashed border-slate-800 rounded-2xl bg-slate-900/30 text-slate-500 text-xs">
+                <div className="py-16 text-center border border-dashed border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-100/70 dark:bg-slate-900/30 text-slate-500 text-xs">
                   All active orders are billed.
                 </div>
               ) : (
                 eligibleOrders.map((ord) => (
                   <div
                     key={ord.id}
-                    className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all flex items-center justify-between gap-3 shadow-md"
+                    className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all flex items-center justify-between gap-3 shadow-md"
                   >
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-mono font-bold text-white text-sm">{ord.order_number}</span>
-                        <Badge variant="outline" className="text-[10px] border-slate-700 text-slate-300 py-0">
+                        <span className="font-mono font-bold text-slate-900 dark:text-white text-sm">{ord.order_number}</span>
+                        <Badge variant="outline" className="text-[10px] border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 py-0">
                           {ord.table_name ? `Table ${ord.table_name}` : "Takeaway"}
                         </Badge>
                       </div>
-                      <div className="text-xs text-slate-400 mt-1">
+                      <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                         {ord.items.length} {ord.items.length === 1 ? "Item" : "Items"} &bull; Total:{" "}
                         <b className="text-emerald-400">${ord.total}</b>
                       </div>
@@ -150,7 +150,7 @@ export const BillingDashboardPage: React.FC = () => {
           {/* Right Column: Active Bills & Payment Desk */}
           <div className="lg:col-span-7 space-y-3">
             <div className="flex items-center justify-between">
-              <h2 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+              <h2 className="text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
                 <DollarSign className="h-3.5 w-3.5 text-emerald-400" /> Pending Bills & Settlement ({unpaidBills.length})
               </h2>
             </div>
@@ -159,38 +159,38 @@ export const BillingDashboardPage: React.FC = () => {
               {isLoadingBills ? (
                 <div className="py-12 text-center text-slate-500 font-mono text-xs">Loading billing register...</div>
               ) : unpaidBills.length === 0 ? (
-                <div className="py-24 text-center border border-dashed border-slate-800 rounded-2xl bg-slate-900/30 text-slate-500 text-xs">
+                <div className="py-24 text-center border border-dashed border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-100/70 dark:bg-slate-900/30 text-slate-500 text-xs">
                   No unpaid bills in register.
                 </div>
               ) : (
                 unpaidBills.map((bill) => (
                   <div
                     key={bill.id}
-                    className="p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl flex flex-col justify-between gap-3"
+                    className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col justify-between gap-3"
                   >
-                    <div className="flex items-start justify-between gap-2 border-b border-slate-800 pb-2.5">
+                    <div className="flex items-start justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-2.5">
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-mono font-black text-white text-base">{bill.bill_number}</span>
+                          <span className="font-mono font-black text-slate-900 dark:text-white text-base">{bill.bill_number}</span>
                           <BillStatusBadge status={bill.status} />
                         </div>
-                        <div className="text-xs text-slate-400 mt-0.5">
-                          Order: <b className="text-slate-200">{bill.order_number}</b> &bull;{" "}
+                        <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                          Order: <b className="text-slate-700 dark:text-slate-200">{bill.order_number}</b> &bull;{" "}
                           {bill.table_name ? `Table ${bill.table_name}` : "Takeaway"}
                         </div>
                       </div>
 
                       <div className="text-right font-mono">
-                        <div className="text-xs text-slate-400">Balance Due</div>
+                        <div className="text-xs text-slate-500 dark:text-slate-400">Balance Due</div>
                         <div className="text-lg font-black text-amber-400">${bill.balance_due}</div>
                       </div>
                     </div>
 
                     {/* Breakdown */}
-                    <div className="flex justify-between text-xs text-slate-400 font-mono bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+                    <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400 font-mono bg-white dark:bg-slate-950 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800/80">
                       <div>Subtotal: ${bill.subtotal}</div>
                       <div>Tax: +${bill.tax_amount}</div>
-                      <div>Total: <b className="text-white">${bill.grand_total}</b></div>
+                      <div>Total: <b className="text-slate-900 dark:text-white">${bill.grand_total}</b></div>
                       <div>Paid: <b className="text-emerald-400">${bill.total_paid}</b></div>
                     </div>
 
@@ -208,7 +208,7 @@ export const BillingDashboardPage: React.FC = () => {
                         size="sm"
                         variant="outline"
                         onClick={() => setActiveReceiptBill(bill)}
-                        className="border-slate-800 text-slate-300 hover:bg-slate-800 text-xs gap-1"
+                        className="border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 text-xs gap-1"
                       >
                         <Receipt className="h-3.5 w-3.5" /> Receipt
                       </Button>

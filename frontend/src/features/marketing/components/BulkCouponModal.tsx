@@ -49,25 +49,25 @@ export const BulkCouponModal: React.FC<Props> = ({ isOpen, onClose, promotions }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-      <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden">
-        <div className="flex items-center justify-between p-4 border-b border-slate-800">
+      <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden">
+        <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2">
             <div className="p-1.5 rounded-lg bg-violet-500/10 border border-violet-500/20 text-violet-400">
               <Layers className="h-4 w-4" />
             </div>
-            <h3 className="text-sm font-bold text-white">Bulk Voucher Code Generator</h3>
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">Bulk Voucher Code Generator</h3>
           </div>
-          <button onClick={onClose} className="text-slate-400 hover:text-white p-1 rounded-lg">
+          <button onClick={onClose} className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-1 rounded-lg">
             <X className="h-4 w-4" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="p-5 space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">Target Promotion *</label>
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Target Promotion *</label>
             <select
               {...register("promotion_id", { required: "Please select a promotion" })}
-              className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
             >
               <option value="">Select promotion...</option>
               {promotions.map((p) => (
@@ -81,59 +81,59 @@ export const BulkCouponModal: React.FC<Props> = ({ isOpen, onClose, promotions }
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Quantity (1-500) *</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Quantity (1-500) *</label>
               <input
                 type="number"
                 min="1"
                 max="500"
                 {...register("count", { required: true, min: 1, max: 500 })}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Code Prefix *</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Code Prefix *</label>
               <input
                 type="text"
                 placeholder="e.g. SUMMER"
                 {...register("prefix", { required: true })}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white uppercase font-mono font-bold focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white uppercase font-mono font-bold focus:outline-none focus:border-indigo-500"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Usage Limit per Code</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Usage Limit per Code</label>
               <input
                 type="number"
                 min="1"
                 defaultValue="1"
                 placeholder="1 (single-use)"
                 {...register("usage_limit")}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Per Customer Limit</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Per Customer Limit</label>
               <input
                 type="number"
                 min="1"
                 defaultValue="1"
                 {...register("per_customer_limit")}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
               />
             </div>
           </div>
 
-          <p className="text-[11px] text-slate-500 bg-slate-950/50 p-2.5 rounded-xl border border-slate-800">
+          <p className="text-[11px] text-slate-500 bg-slate-100/80 dark:bg-slate-950/50 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800">
             💡 Codes are generated securely with collision checks (e.g. <code>SUMMER-A9K42L</code>).
           </p>
 
-          <div className="pt-3 border-t border-slate-800 flex justify-end gap-2">
+          <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex justify-end gap-2">
             <button
               type="button"
               onClick={onClose}
-              className="px-3.5 py-1.5 rounded-xl text-xs text-slate-400 hover:text-white"
+              className="px-3.5 py-1.5 rounded-xl text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
             >
               Cancel
             </button>

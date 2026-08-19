@@ -99,47 +99,47 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
         {/* Main Settings Column */}
         <div className="lg:col-span-2 space-y-6">
           {/* Basic Details */}
-          <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-4">
-            <div className="flex items-center gap-2 pb-2 border-b border-slate-800">
+          <div className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 space-y-4">
+            <div className="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
               <Tag className="h-4 w-4 text-indigo-400" />
-              <h3 className="text-sm font-bold text-white">Promotion Identity</h3>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white">Promotion Identity</h3>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1.5">Promotion Name *</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Promotion Name *</label>
               <input
                 type="text"
                 placeholder="e.g. 20% Happy Hour Dinner Deal"
                 {...register("name", { required: "Name is required" })}
-                className="w-full px-3.5 py-2 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500"
+                className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-indigo-500"
               />
               {errors.name && <p className="text-rose-400 text-[10px] mt-1">{errors.name.message}</p>}
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1.5">Description</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Description</label>
               <textarea
                 rows={2}
                 placeholder="Explain the promotional deal or terms..."
                 {...register("description")}
-                className="w-full px-3.5 py-2 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500"
+                className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-indigo-500"
               />
             </div>
           </div>
 
           {/* Discount Logic */}
-          <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-4">
-            <div className="flex items-center gap-2 pb-2 border-b border-slate-800">
+          <div className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 space-y-4">
+            <div className="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
               <Percent className="h-4 w-4 text-indigo-400" />
-              <h3 className="text-sm font-bold text-white">Discount Rule Engine</h3>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white">Discount Rule Engine</h3>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">Promotion Type *</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Promotion Type *</label>
                 <select
                   {...register("promotion_type")}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                 >
                   <option value="PERCENTAGE_DISCOUNT">Percentage Discount (%)</option>
                   <option value="FIXED_DISCOUNT">Fixed Currency Amount ($)</option>
@@ -149,7 +149,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">
                   {watchedType === "PERCENTAGE_DISCOUNT" ? "Discount Percentage (%) *" : "Discount Amount ($) *"}
                 </label>
                 <input
@@ -157,49 +157,49 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
                   step="0.01"
                   min="0"
                   {...register("discount_value", { required: "Discount value required" })}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500 font-bold"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500 font-bold"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">Minimum Order Spend ($)</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Minimum Order Spend ($)</label>
                 <input
                   type="number"
                   step="0.01"
                   min="0"
                   placeholder="0.00 (no min)"
                   {...register("min_order_value")}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">Maximum Discount Cap ($)</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Maximum Discount Cap ($)</label>
                 <input
                   type="number"
                   step="0.01"
                   min="0"
                   placeholder="Optional ceiling limit"
                   {...register("max_discount_amount")}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                 />
               </div>
             </div>
           </div>
 
           {/* Audience & Targeting */}
-          <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-4">
-            <div className="flex items-center gap-2 pb-2 border-b border-slate-800">
+          <div className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 space-y-4">
+            <div className="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
               <Users className="h-4 w-4 text-indigo-400" />
-              <h3 className="text-sm font-bold text-white">Target Audience</h3>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white">Target Audience</h3>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">Target Audience Type</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Target Audience Type</label>
                 <select
                   {...register("target_audience_type")}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                 >
                   <option value="ALL">All Customers</option>
                   <option value="FIRST_ORDER">First-Time Diners Only</option>
@@ -211,10 +211,10 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
 
               {watch("target_audience_type") === "CUSTOMER_SEGMENT" && (
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">Select Segment</label>
+                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Select Segment</label>
                   <select
                     {...register("target_segment")}
-                    className="w-full px-3.5 py-2 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                   >
                     <option value="">Choose segment...</option>
                     {segments?.map((s) => (
@@ -229,69 +229,69 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
           </div>
 
           {/* Schedule & Limits */}
-          <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-4">
-            <div className="flex items-center gap-2 pb-2 border-b border-slate-800">
+          <div className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 space-y-4">
+            <div className="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
               <Calendar className="h-4 w-4 text-indigo-400" />
-              <h3 className="text-sm font-bold text-white">Schedule & Usage Limits</h3>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white">Schedule & Usage Limits</h3>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">Start Date & Time *</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Start Date & Time *</label>
                 <input
                   type="datetime-local"
                   {...register("start_at", { required: "Start date is required" })}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">End Date & Time</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">End Date & Time</label>
                 <input
                   type="datetime-local"
                   {...register("end_at")}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">Total Redemptions Limit</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Total Redemptions Limit</label>
                 <input
                   type="number"
                   min="1"
                   placeholder="Unlimited"
                   {...register("total_usage_limit")}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">Limit Per Customer</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Limit Per Customer</label>
                 <input
                   type="number"
                   min="1"
                   defaultValue="1"
                   {...register("per_customer_limit")}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                 />
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4 pt-2 border-t border-slate-800">
-              <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-slate-300">
+            <div className="flex flex-wrap gap-4 pt-2 border-t border-slate-200 dark:border-slate-800">
+              <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-slate-600 dark:text-slate-300">
                 <input
                   type="checkbox"
                   {...register("coupon_required")}
-                  className="rounded border-slate-700 bg-slate-950 text-indigo-600 focus:ring-0"
+                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-indigo-600 focus:ring-0"
                 />
                 Requires Coupon Code at Checkout
               </label>
 
-              <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-slate-300">
+              <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-slate-600 dark:text-slate-300">
                 <input
                   type="checkbox"
                   {...register("stackable")}
-                  className="rounded border-slate-700 bg-slate-950 text-indigo-600 focus:ring-0"
+                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-indigo-600 focus:ring-0"
                 />
                 Allow Stacking with Other Discounts
               </label>
@@ -304,7 +304,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
           <div className="sticky top-20 p-5 rounded-2xl bg-gradient-to-b from-indigo-950/40 to-slate-900/80 border border-indigo-500/20 shadow-xl space-y-4">
             <div className="flex items-center gap-2 pb-2 border-b border-indigo-500/20">
               <Eye className="h-4 w-4 text-indigo-400" />
-              <h3 className="text-sm font-bold text-white">Live Rule Simulator</h3>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white">Live Rule Simulator</h3>
             </div>
 
             <div className="space-y-3">

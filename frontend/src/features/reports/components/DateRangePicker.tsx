@@ -29,7 +29,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
   ];
 
   return (
-    <div className="flex flex-wrap items-center gap-2 bg-slate-900/60 p-2 rounded-xl border border-slate-800">
+    <div className="flex flex-wrap items-center gap-2 bg-white dark:bg-slate-900/60 p-2 rounded-xl border border-slate-200 dark:border-slate-800">
       <div className="flex items-center gap-1.5 overflow-x-auto">
         {presets.map((p) => (
           <Button
@@ -40,7 +40,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
             className={`h-7 px-2.5 text-xs rounded-lg font-medium transition-all ${
               preset === p.id
                 ? "bg-indigo-600 text-white font-bold shadow-sm shadow-indigo-600/30"
-                : "text-slate-400 hover:text-white hover:bg-slate-800/60"
+                : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
             }`}
           >
             {p.label}
@@ -49,20 +49,20 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
       </div>
 
       {preset === "CUSTOM" && (
-        <div className="flex items-center gap-2 pl-2 border-l border-slate-800 animate-in fade-in">
+        <div className="flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-800 animate-in fade-in">
           <Calendar className="h-3.5 w-3.5 text-indigo-400" />
           <Input
             type="date"
             value={startDate || ""}
             onChange={(e) => onCustomRangeChange(e.target.value, endDate || "")}
-            className="h-7 text-xs bg-slate-950 border-slate-700 text-slate-200 w-32"
+            className="h-7 text-xs bg-white dark:bg-slate-950 border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 w-32"
           />
           <span className="text-slate-500 text-xs">to</span>
           <Input
             type="date"
             value={endDate || ""}
             onChange={(e) => onCustomRangeChange(startDate || "", e.target.value)}
-            className="h-7 text-xs bg-slate-950 border-slate-700 text-slate-200 w-32"
+            className="h-7 text-xs bg-white dark:bg-slate-950 border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 w-32"
           />
         </div>
       )}

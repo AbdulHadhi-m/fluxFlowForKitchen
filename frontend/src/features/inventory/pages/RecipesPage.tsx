@@ -28,11 +28,11 @@ export const RecipesPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2.5">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2.5">
             <ChefHat className="w-7 h-7 text-emerald-400" />
             Recipe & Bill of Materials (BOM)
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             Menu recipe versioning, nested sub-recipes, loss percentages & food costing
           </p>
         </div>
@@ -49,15 +49,15 @@ export const RecipesPage: React.FC = () => {
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
+      <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
         {['ALL', 'PUBLISHED', 'DRAFT', 'ARCHIVED'].map((st) => (
           <button
             key={st}
             onClick={() => setStatusFilter(st)}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
               statusFilter === st
-                ? 'bg-slate-800 text-emerald-400 border border-slate-700'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+                ? 'bg-slate-200 dark:bg-slate-800 text-emerald-400 border border-slate-300 dark:border-slate-700'
+                : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900'
             }`}
           >
             {st}
@@ -67,9 +67,9 @@ export const RecipesPage: React.FC = () => {
 
       {/* Recipe Cards Grid */}
       {isLoading ? (
-        <div className="p-12 text-center text-sm text-slate-400">Loading recipe catalog...</div>
+        <div className="p-12 text-center text-sm text-slate-500 dark:text-slate-400">Loading recipe catalog...</div>
       ) : recipes.length === 0 ? (
-        <div className="p-12 text-center text-sm text-slate-500 rounded-2xl border border-dashed border-slate-800 bg-slate-900/20">
+        <div className="p-12 text-center text-sm text-slate-500 rounded-2xl border border-dashed border-slate-200 dark:border-slate-800 bg-slate-100/60 dark:bg-slate-900/20">
           No recipes found. Click "Create Recipe BOM" to build your first standard dish recipe.
         </div>
       ) : (
@@ -80,15 +80,15 @@ export const RecipesPage: React.FC = () => {
             return (
               <div
                 key={recipe.id}
-                className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-md flex flex-col justify-between hover:border-slate-700 transition-all shadow-lg group"
+                className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 backdrop-blur-md flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 transition-all shadow-lg group"
               >
                 <div>
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <h3 className="text-base font-bold text-slate-100 group-hover:text-emerald-400 transition-colors">
+                      <h3 className="text-base font-bold text-slate-900 dark:text-slate-100 group-hover:text-emerald-400 transition-colors">
                         {recipe.name || recipe.menu_item_name || 'Recipe'}
                       </h3>
-                      <span className="text-xs text-slate-400">
+                      <span className="text-xs text-slate-500 dark:text-slate-400">
                         {recipe.recipe_type === 'SUB_RECIPE' ? 'Sub-Recipe Prep' : 'Menu Dish BOM'}
                       </span>
                     </div>
@@ -97,7 +97,7 @@ export const RecipesPage: React.FC = () => {
                   </div>
 
                   {/* Cost & Yield */}
-                  <div className="mt-4 p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center justify-between">
+                  <div className="mt-4 p-3 rounded-xl bg-slate-100/80 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800/80 flex items-center justify-between">
                     <div>
                       <span className="text-[10px] text-slate-500 uppercase tracking-wider block">
                         Cost / {recipe.output_unit}
@@ -111,7 +111,7 @@ export const RecipesPage: React.FC = () => {
                       <span className="text-[10px] text-slate-500 uppercase tracking-wider block">
                         Batch Output
                       </span>
-                      <span className="text-xs font-mono text-slate-300">
+                      <span className="text-xs font-mono text-slate-600 dark:text-slate-300">
                         {Number(recipe.output_quantity).toFixed(1)} {recipe.output_unit}
                       </span>
                     </div>
@@ -119,19 +119,19 @@ export const RecipesPage: React.FC = () => {
 
                   {/* Ingredients preview */}
                   <div className="mt-4">
-                    <span className="text-xs font-semibold text-slate-400 block mb-2">
+                    <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 block mb-2">
                       Ingredients ({recipe.ingredients?.length || 0})
                     </span>
                     <div className="space-y-1 max-h-28 overflow-y-auto pr-1">
                       {recipe.ingredients?.map((ing) => (
                         <div
                           key={ing.id}
-                          className="flex items-center justify-between text-xs text-slate-300 py-0.5 border-b border-slate-800/30"
+                          className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-300 py-0.5 border-b border-slate-200 dark:border-slate-800/30"
                         >
                           <span className="truncate pr-2">
                             {ing.inventory_item_name || ing.sub_recipe_name}
                           </span>
-                          <span className="font-mono text-slate-400 flex-shrink-0">
+                          <span className="font-mono text-slate-500 dark:text-slate-400 flex-shrink-0">
                             {Number(ing.quantity).toFixed(2)} {ing.unit}
                           </span>
                         </div>
@@ -141,7 +141,7 @@ export const RecipesPage: React.FC = () => {
                 </div>
 
                 {/* Actions */}
-                <div className="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between gap-2">
+                <div className="mt-5 pt-3 border-t border-slate-200 dark:border-slate-800/60 flex items-center justify-between gap-2">
                   <span className="text-[10px] text-slate-500">
                     Updated {new Date(recipe.updated_at).toLocaleDateString()}
                   </span>
@@ -161,7 +161,7 @@ export const RecipesPage: React.FC = () => {
                       <button
                         onClick={() => handleArchive(recipe.id)}
                         disabled={archiveMutation.isPending}
-                        className="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-slate-200 text-xs font-semibold transition-colors"
+                        className="px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 text-xs font-semibold transition-colors"
                       >
                         Archive
                       </button>

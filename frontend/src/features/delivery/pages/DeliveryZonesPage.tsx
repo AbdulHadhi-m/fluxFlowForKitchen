@@ -32,7 +32,7 @@ export const DeliveryZonesPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black tracking-tight text-white flex items-center gap-2.5">
+          <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
             <MapPin className="w-7 h-7 text-amber-500" /> Geographic Delivery Zones
           </h1>
           <p className="text-xs text-slate-400 mt-1">
@@ -50,14 +50,14 @@ export const DeliveryZonesPage: React.FC = () => {
 
       {/* Zones Grid */}
       {isLoading ? (
-        <div className="p-16 text-center bg-slate-900 border border-slate-800 rounded-3xl">
+        <div className="p-16 text-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl">
           <Loader2 className="w-8 h-8 animate-spin text-amber-500 mx-auto mb-3" />
           <p className="text-xs text-slate-400">Loading delivery zones...</p>
         </div>
       ) : zones.length === 0 ? (
-        <div className="p-12 text-center bg-slate-900 border border-slate-800 rounded-3xl">
+        <div className="p-12 text-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl">
           <MapPin className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-          <h3 className="text-base font-bold text-white">No Delivery Zones Configured</h3>
+          <h3 className="text-base font-bold text-slate-900 dark:text-white">No Delivery Zones Configured</h3>
           <p className="text-xs text-slate-400 mt-1 mb-4 max-w-sm mx-auto">
             Create custom delivery zones with specific postal codes and fees to enable doorstep delivery.
           </p>
@@ -73,13 +73,13 @@ export const DeliveryZonesPage: React.FC = () => {
           {zones.map((z) => (
             <div
               key={z.id}
-              className="bg-slate-900 border border-slate-800 hover:border-slate-700 p-5 rounded-3xl space-y-4 shadow-xl transition-all"
+              className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-600 p-5 rounded-3xl space-y-4 shadow-xl transition-all"
             >
               <div className="flex items-start justify-between">
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="text-base font-bold text-white">{z.name}</h3>
-                    <span className="text-[10px] font-mono text-slate-400 bg-slate-950 px-2 py-0.5 rounded-md border border-slate-800">
+                    <h3 className="text-base font-bold text-slate-900 dark:text-white">{z.name}</h3>
+                    <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-950 px-2 py-0.5 rounded-md border border-slate-200 dark:border-slate-800">
                       P-{z.priority}
                     </span>
                   </div>

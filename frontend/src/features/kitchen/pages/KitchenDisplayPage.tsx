@@ -26,7 +26,7 @@ export const KitchenDisplayPage: React.FC = () => {
   const isUpdating = isStarting || isReadying || isCompleting;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-6 flex flex-col justify-between select-none">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-4 md:p-6 flex flex-col justify-between select-none transition-colors duration-200">
       <div className="max-w-7xl mx-auto w-full space-y-4 flex-1 flex flex-col">
         {/* Top KDS Header */}
         <KitchenHeader

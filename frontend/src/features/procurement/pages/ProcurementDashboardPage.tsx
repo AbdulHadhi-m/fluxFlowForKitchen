@@ -45,11 +45,11 @@ export const ProcurementDashboardPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black tracking-tight text-white flex items-center gap-2.5">
+          <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
             <ShoppingCart className="w-7 h-7 text-indigo-400" />
             Procurement & Purchasing
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             Supplier management, purchase orders, 3-way matching, and automated reordering
           </p>
         </div>
@@ -57,7 +57,7 @@ export const ProcurementDashboardPage: React.FC = () => {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsRequisitionModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-xl border border-slate-700/60 transition-colors shadow-sm"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-xl border border-slate-300 dark:border-slate-700/60 transition-colors shadow-sm"
           >
             <Plus className="w-4 h-4 text-indigo-400" />
             New Requisition
@@ -74,20 +74,20 @@ export const ProcurementDashboardPage: React.FC = () => {
 
       {/* Metric Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md space-y-3">
+        <div className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">Open POs</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Open POs</span>
             <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
               <Truck className="w-4 h-4" />
             </div>
           </div>
-          <p className="text-3xl font-black text-white">{reportsLoading ? "..." : totalOpenPos}</p>
+          <p className="text-3xl font-black text-slate-900 dark:text-white">{reportsLoading ? "..." : totalOpenPos}</p>
           <p className="text-xs text-slate-500">Active pipeline orders</p>
         </div>
 
-        <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md space-y-3">
+        <div className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">Pending Approvals</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Pending Approvals</span>
             <div className="p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
               <Clock className="w-4 h-4" />
             </div>
@@ -96,9 +96,9 @@ export const ProcurementDashboardPage: React.FC = () => {
           <p className="text-xs text-slate-500">Awaiting manager review</p>
         </div>
 
-        <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md space-y-3">
+        <div className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">Overdue Deliveries</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Overdue Deliveries</span>
             <div className="p-2 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20">
               <AlertCircle className="w-4 h-4" />
             </div>
@@ -107,9 +107,9 @@ export const ProcurementDashboardPage: React.FC = () => {
           <p className="text-xs text-slate-500">Past expected delivery date</p>
         </div>
 
-        <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md space-y-3">
+        <div className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">Committed Spend</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Committed Spend</span>
             <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               <DollarSign className="w-4 h-4" />
             </div>
@@ -122,13 +122,13 @@ export const ProcurementDashboardPage: React.FC = () => {
       {/* Main Grid: Reorder Suggestions & Budgets */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Automated Purchase Recommendations */}
-        <div className="lg:col-span-2 p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md space-y-4">
+        <div className="lg:col-span-2 p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400">
                 <Sparkles className="w-4 h-4" />
               </div>
-              <h2 className="text-base font-bold text-white">Automated Reorder Suggestions</h2>
+              <h2 className="text-base font-bold text-slate-900 dark:text-white">Automated Reorder Suggestions</h2>
             </div>
             <Link
               to="/procurement/planning"
@@ -140,11 +140,11 @@ export const ProcurementDashboardPage: React.FC = () => {
 
           <div className="overflow-x-auto">
             {recsLoading ? (
-              <div className="py-8 text-center text-slate-400 text-xs">Loading reorder suggestions...</div>
+              <div className="py-8 text-center text-slate-500 dark:text-slate-400 text-xs">Loading reorder suggestions...</div>
             ) : recommendations && recommendations.length > 0 ? (
               <table className="w-full text-left text-xs">
                 <thead>
-                  <tr className="border-b border-slate-800 text-slate-400 uppercase tracking-wider text-[10px]">
+                  <tr className="border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 uppercase tracking-wider text-[10px]">
                     <th className="pb-3 font-semibold">Item & SKU</th>
                     <th className="pb-3 font-semibold">On-Hand</th>
                     <th className="pb-3 font-semibold">Suggested Qty</th>
@@ -152,20 +152,20 @@ export const ProcurementDashboardPage: React.FC = () => {
                     <th className="pb-3 font-semibold">Est. Cost</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60">
+                <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
                   {recommendations.slice(0, 5).map((rec) => (
-                    <tr key={rec.inventory_item_id} className="hover:bg-slate-800/30">
+                    <tr key={rec.inventory_item_id} className="hover:bg-slate-200/70 dark:hover:bg-slate-800/30">
                       <td className="py-3">
-                        <span className="font-semibold text-white">{rec.item_name}</span>
+                        <span className="font-semibold text-slate-900 dark:text-white">{rec.item_name}</span>
                         <span className="block text-[10px] text-slate-500">{rec.sku}</span>
                       </td>
-                      <td className="py-3 font-mono text-slate-300">
+                      <td className="py-3 font-mono text-slate-600 dark:text-slate-300">
                         {rec.current_stock} {rec.unit}
                       </td>
                       <td className="py-3 font-mono font-bold text-indigo-400">
                         {rec.suggested_quantity} {rec.unit}
                       </td>
-                      <td className="py-3 text-slate-300">{rec.preferred_supplier_name}</td>
+                      <td className="py-3 text-slate-600 dark:text-slate-300">{rec.preferred_supplier_name}</td>
                       <td className="py-3 font-mono font-semibold text-emerald-400">
                         ${rec.estimated_total_cost}
                       </td>
@@ -182,13 +182,13 @@ export const ProcurementDashboardPage: React.FC = () => {
         </div>
 
         {/* Budget Utilization Widget */}
-        <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md space-y-4">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400">
                 <DollarSign className="w-4 h-4" />
               </div>
-              <h2 className="text-base font-bold text-white">Budgets & Limits</h2>
+              <h2 className="text-base font-bold text-slate-900 dark:text-white">Budgets & Limits</h2>
             </div>
             <Link
               to="/procurement/budgets"
@@ -203,14 +203,14 @@ export const ProcurementDashboardPage: React.FC = () => {
               budgets.slice(0, 3).map((b) => {
                 const pct = parseFloat(b.utilization_percentage || "0");
                 return (
-                  <div key={b.id} className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 space-y-2">
+                  <div key={b.id} className="p-3.5 rounded-xl bg-white dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-2">
                     <div className="flex items-center justify-between text-xs">
-                      <span className="font-semibold text-white">{b.name}</span>
-                      <span className="font-mono text-slate-400">
+                      <span className="font-semibold text-slate-900 dark:text-white">{b.name}</span>
+                      <span className="font-mono text-slate-500 dark:text-slate-400">
                         ${b.committed_amount} / ${b.allocated_amount}
                       </span>
                     </div>
-                    <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div className="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
                       <div
                         className={`h-full rounded-full ${
                           pct >= 90 ? "bg-rose-500" : pct >= 75 ? "bg-amber-500" : "bg-emerald-500"
@@ -233,9 +233,9 @@ export const ProcurementDashboardPage: React.FC = () => {
       </div>
 
       {/* Recent POs */}
-      <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md space-y-4">
+      <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-base font-bold text-white">Recent Purchase Orders</h2>
+          <h2 className="text-base font-bold text-slate-900 dark:text-white">Recent Purchase Orders</h2>
           <Link
             to="/procurement/purchase-orders"
             className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1"
@@ -247,7 +247,7 @@ export const ProcurementDashboardPage: React.FC = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-slate-800 text-slate-400 uppercase tracking-wider text-[10px]">
+              <tr className="border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 uppercase tracking-wider text-[10px]">
                 <th className="pb-3 font-semibold">PO Number</th>
                 <th className="pb-3 font-semibold">Vendor</th>
                 <th className="pb-3 font-semibold">Status</th>
@@ -256,16 +256,16 @@ export const ProcurementDashboardPage: React.FC = () => {
                 <th className="pb-3 font-semibold">Total</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
               {recentOrders?.slice(0, 5).map((po) => (
-                <tr key={po.id} className="hover:bg-slate-800/30">
+                <tr key={po.id} className="hover:bg-slate-200/70 dark:hover:bg-slate-800/30">
                   <td className="py-3 font-mono font-bold text-indigo-400">{po.po_number}</td>
-                  <td className="py-3 text-white font-medium">{po.supplier_name}</td>
+                  <td className="py-3 text-slate-900 dark:text-white font-medium">{po.supplier_name}</td>
                   <td className="py-3">
                     <POStatusBadge status={po.status} />
                   </td>
-                  <td className="py-3 text-slate-400">{po.order_date || "-"}</td>
-                  <td className="py-3 text-slate-400">{po.expected_delivery_date || "-"}</td>
+                  <td className="py-3 text-slate-500 dark:text-slate-400">{po.order_date || "-"}</td>
+                  <td className="py-3 text-slate-500 dark:text-slate-400">{po.expected_delivery_date || "-"}</td>
                   <td className="py-3 font-mono font-bold text-emerald-400">${po.total_amount}</td>
                 </tr>
               ))}

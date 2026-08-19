@@ -7,7 +7,7 @@ import { CreditCard, User } from "lucide-react";
 export const GiftCardsTable: React.FC<{ giftCards: GiftCard[] }> = ({ giftCards }) => {
   if (giftCards.length === 0) {
     return (
-      <div className="py-12 text-center text-xs text-slate-500 bg-slate-900/40 rounded-2xl border border-slate-800">
+      <div className="py-12 text-center text-xs text-slate-500 bg-slate-100/70 dark:bg-slate-900/40 rounded-2xl border border-slate-200 dark:border-slate-800">
         No gift cards issued yet.
       </div>
     );
@@ -28,10 +28,10 @@ export const GiftCardsTable: React.FC<{ giftCards: GiftCard[] }> = ({ giftCards 
   };
 
   return (
-    <Card className="bg-slate-900/60 border-slate-800 overflow-hidden">
+    <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 overflow-hidden">
       <CardContent className="p-0">
-        <table className="w-full text-left text-xs text-slate-300">
-          <thead className="bg-slate-950/80 text-[10px] uppercase font-bold text-slate-400 border-b border-slate-800">
+        <table className="w-full text-left text-xs text-slate-600 dark:text-slate-300">
+          <thead className="bg-slate-100 dark:bg-slate-950/80 text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
             <tr>
               <th className="px-4 py-3">Card Number</th>
               <th className="px-4 py-3">Cardholder</th>
@@ -41,15 +41,15 @@ export const GiftCardsTable: React.FC<{ giftCards: GiftCard[] }> = ({ giftCards 
               <th className="px-4 py-3 text-right">Issued Date</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/60">
+          <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
             {giftCards.map((gc) => (
-              <tr key={gc.id} className="hover:bg-slate-800/40 transition-colors">
+              <tr key={gc.id} className="hover:bg-slate-200/60 dark:hover:bg-slate-800/40 transition-colors">
                 <td className="px-4 py-3 font-mono font-bold text-indigo-400 flex items-center gap-2">
                   <CreditCard className="h-4 w-4 text-slate-500" />
                   {gc.card_number}
                 </td>
 
-                <td className="px-4 py-3 font-medium text-slate-200">
+                <td className="px-4 py-3 font-medium text-slate-700 dark:text-slate-200">
                   {gc.customer_name ? (
                     <span className="flex items-center gap-1.5">
                       <User className="h-3 w-3 text-slate-500" /> {gc.customer_name}
@@ -59,7 +59,7 @@ export const GiftCardsTable: React.FC<{ giftCards: GiftCard[] }> = ({ giftCards 
                   )}
                 </td>
 
-                <td className="px-4 py-3 text-right text-slate-400">
+                <td className="px-4 py-3 text-right text-slate-500 dark:text-slate-400">
                   ${gc.initial_balance}
                 </td>
 
@@ -71,7 +71,7 @@ export const GiftCardsTable: React.FC<{ giftCards: GiftCard[] }> = ({ giftCards 
                   {getStatusBadge(gc.status)}
                 </td>
 
-                <td className="px-4 py-3 text-right text-[11px] text-slate-400">
+                <td className="px-4 py-3 text-right text-[11px] text-slate-500 dark:text-slate-400">
                   {new Date(gc.created_at).toLocaleDateString()}
                 </td>
               </tr>

@@ -76,18 +76,18 @@ export const CreateReturnModal: React.FC<CreateReturnModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950/40">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/40">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-rose-500/10 text-rose-400 border border-rose-500/20">
               <RotateCcw className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white">Create Purchase Return</h2>
-              <p className="text-xs text-slate-400">Return goods to vendor and generate credit note</p>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">Create Purchase Return</h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Return goods to vendor and generate credit note</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
+          <button onClick={onClose} className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -95,13 +95,13 @@ export const CreateReturnModal: React.FC<CreateReturnModalProps> = ({
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-5">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 Vendor / Supplier
               </label>
               <select
                 value={supplierId}
                 onChange={(e) => setSupplierId(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-rose-500"
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-rose-500"
                 required
               >
                 <option value="">Select vendor...</option>
@@ -114,13 +114,13 @@ export const CreateReturnModal: React.FC<CreateReturnModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 Return Reason
               </label>
               <select
                 value={reason}
                 onChange={(e) => setReason(e.target.value as ReturnReason)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-rose-500"
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-rose-500"
               >
                 <option value="DAMAGED">Damaged / Broken Packaging</option>
                 <option value="EXPIRED">Expired / Short Shelf Life</option>
@@ -135,7 +135,7 @@ export const CreateReturnModal: React.FC<CreateReturnModalProps> = ({
           {/* Items */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
                 Returned Items
               </label>
               <button
@@ -152,13 +152,13 @@ export const CreateReturnModal: React.FC<CreateReturnModalProps> = ({
               {items.map((row, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-3 p-3 rounded-xl bg-slate-950/60 border border-slate-800"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800"
                 >
                   <div className="flex-1">
                     <select
                       value={row.inventory_item_id}
                       onChange={(e) => handleItemChange(idx, "inventory_item_id", e.target.value)}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-rose-500"
+                      className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-rose-500"
                       required
                     >
                       <option value="">Select inventory item...</option>
@@ -178,7 +178,7 @@ export const CreateReturnModal: React.FC<CreateReturnModalProps> = ({
                       value={row.quantity}
                       onChange={(e) => handleItemChange(idx, "quantity", e.target.value)}
                       placeholder="Qty"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-rose-500 font-mono"
+                      className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-rose-500 font-mono"
                       required
                     />
                   </div>
@@ -191,7 +191,7 @@ export const CreateReturnModal: React.FC<CreateReturnModalProps> = ({
                       value={row.unit_cost}
                       onChange={(e) => handleItemChange(idx, "unit_cost", e.target.value)}
                       placeholder="Unit $"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-rose-500 font-mono"
+                      className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-rose-500 font-mono"
                       required
                     />
                   </div>
@@ -210,7 +210,7 @@ export const CreateReturnModal: React.FC<CreateReturnModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
               Return Dispatch Notes
             </label>
             <textarea
@@ -218,15 +218,15 @@ export const CreateReturnModal: React.FC<CreateReturnModalProps> = ({
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="e.g. Returned with driver on same day delivery"
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-rose-500"
+              className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-rose-500"
             />
           </div>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg"
+              className="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-lg"
             >
               Cancel
             </button>

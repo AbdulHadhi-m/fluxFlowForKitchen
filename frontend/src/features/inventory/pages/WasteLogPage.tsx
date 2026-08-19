@@ -17,11 +17,11 @@ export const WasteLogPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2.5">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2.5">
             <Trash2 className="w-7 h-7 text-rose-400" />
             Kitchen Wastage & Spoilage Log
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             Track kitchen shrinkage, trimming losses, burnt dishes, and cost attributions
           </p>
         </div>
@@ -42,7 +42,7 @@ export const WasteLogPage: React.FC = () => {
             <AlertOctagon className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-xs text-rose-300 font-semibold uppercase tracking-wider block">
+            <span className="text-xs text-rose-600 dark:text-rose-300 font-semibold uppercase tracking-wider block">
               Cumulative Waste Loss Recorded
             </span>
             <span className="text-xl font-bold text-rose-400">
@@ -50,14 +50,14 @@ export const WasteLogPage: React.FC = () => {
             </span>
           </div>
         </div>
-        <span className="text-xs text-slate-400">{wasteRecords.length} incidents logged</span>
+        <span className="text-xs text-slate-500 dark:text-slate-400">{wasteRecords.length} incidents logged</span>
       </div>
 
       {/* Waste Ledger Table */}
-      <div className="rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-md overflow-hidden shadow-xl">
+      <div className="rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 backdrop-blur-md overflow-hidden shadow-xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-950/80 text-slate-400 uppercase tracking-wider border-b border-slate-800">
+            <thead className="bg-slate-100 dark:bg-slate-950/80 text-slate-500 dark:text-slate-400 uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
               <tr>
                 <th className="py-3.5 px-4 font-semibold">Item</th>
                 <th className="py-3.5 px-4 font-semibold">Quantity Wasted</th>
@@ -69,10 +69,10 @@ export const WasteLogPage: React.FC = () => {
                 <th className="py-3.5 px-4 font-semibold text-right">Date</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 font-medium">
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60 font-medium">
               {isLoading ? (
                 <tr>
-                  <td colSpan={8} className="py-8 text-center text-slate-400">
+                  <td colSpan={8} className="py-8 text-center text-slate-500 dark:text-slate-400">
                     Loading waste records...
                   </td>
                 </tr>
@@ -84,12 +84,12 @@ export const WasteLogPage: React.FC = () => {
                 </tr>
               ) : (
                 wasteRecords.map((w) => (
-                  <tr key={w.id} className="hover:bg-slate-800/30 transition-colors">
-                    <td className="py-3.5 px-4 font-semibold text-slate-200">
+                  <tr key={w.id} className="hover:bg-slate-200/70 dark:hover:bg-slate-800/30 transition-colors">
+                    <td className="py-3.5 px-4 font-semibold text-slate-700 dark:text-slate-200">
                       {w.item_name}
                     </td>
 
-                    <td className="py-3.5 px-4 font-mono text-slate-200">
+                    <td className="py-3.5 px-4 font-mono text-slate-700 dark:text-slate-200">
                       {Number(w.quantity).toFixed(3)} {w.unit}
                     </td>
 
@@ -103,15 +103,15 @@ export const WasteLogPage: React.FC = () => {
                       </span>
                     </td>
 
-                    <td className="py-3.5 px-4 text-slate-400">
+                    <td className="py-3.5 px-4 text-slate-500 dark:text-slate-400">
                       {w.location}
                     </td>
 
-                    <td className="py-3.5 px-4 text-slate-300">
+                    <td className="py-3.5 px-4 text-slate-600 dark:text-slate-300">
                       {w.reported_by_name || 'Kitchen Staff'}
                     </td>
 
-                    <td className="py-3.5 px-4 text-slate-400">
+                    <td className="py-3.5 px-4 text-slate-500 dark:text-slate-400">
                       {w.notes || '—'}
                     </td>
 

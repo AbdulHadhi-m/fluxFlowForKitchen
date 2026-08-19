@@ -99,18 +99,18 @@ export const CommandMenu: React.FC = () => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 p-4 bg-black/80 backdrop-blur-sm animate-in fade-in">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden text-slate-100 flex flex-col max-h-[70vh]">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden text-slate-900 dark:text-slate-100 flex flex-col max-h-[70vh]">
         {/* Search Input */}
-        <div className="flex items-center px-4 py-3 border-b border-slate-800 gap-3">
+        <div className="flex items-center px-4 py-3 border-b border-slate-200 dark:border-slate-800 gap-3">
           <Search className="h-4 w-4 text-slate-400 shrink-0" />
           <input
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Type a command or jump to page..."
-            className="w-full bg-transparent text-xs text-white placeholder:text-slate-500 focus:outline-none"
+            className="w-full bg-transparent text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none"
           />
-          <button onClick={() => setCommandMenuOpen(false)} className="text-slate-500 hover:text-white">
+          <button onClick={() => setCommandMenuOpen(false)} className="text-slate-500 hover:text-slate-900 dark:hover:text-white">
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -128,10 +128,10 @@ export const CommandMenu: React.FC = () => {
                 <button
                   key={cmd.id}
                   onClick={() => handleSelect(cmd.path)}
-                  className="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-indigo-600/10 hover:text-indigo-300 text-slate-300 transition-colors text-xs text-left group"
+                  className="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-indigo-600/10 hover:text-indigo-600 dark:hover:text-indigo-300 text-slate-600 dark:text-slate-300 transition-colors text-xs text-left group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="h-7 w-7 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-center text-slate-400 group-hover:text-indigo-400 group-hover:border-indigo-500/30">
+                    <div className="h-7 w-7 rounded-lg bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 group-hover:text-indigo-500 group-hover:border-indigo-500/30">
                       <Icon className="h-3.5 w-3.5" />
                     </div>
                     <span className="font-bold">{cmd.label}</span>
@@ -146,9 +146,9 @@ export const CommandMenu: React.FC = () => {
         </div>
 
         {/* Footer */}
-        <div className="px-4 py-2 border-t border-slate-800 bg-slate-950/60 flex items-center justify-between text-[10px] text-slate-500">
+        <div className="px-4 py-2 border-t border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-950/60 flex items-center justify-between text-[10px] text-slate-500">
           <span>Navigate with mouse or click</span>
-          <span className="font-mono bg-slate-900 border border-slate-800 px-1.5 py-0.5 rounded">ESC to close</span>
+          <span className="font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-1.5 py-0.5 rounded">ESC to close</span>
         </div>
       </div>
     </div>

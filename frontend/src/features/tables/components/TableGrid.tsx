@@ -12,9 +12,9 @@ interface TableGridProps {
 export const TableGrid: React.FC<TableGridProps> = ({ tables, onEdit, onStatusClick }) => {
   if (tables.length === 0) {
     return (
-      <div className="py-20 text-center border border-dashed border-slate-800 rounded-2xl bg-slate-900/30">
+      <div className="py-20 text-center border border-dashed border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-100/70 dark:bg-slate-900/30">
         <LayoutGrid className="h-10 w-10 text-slate-600 mx-auto mb-3" />
-        <h3 className="text-sm font-medium text-slate-300">No tables configured</h3>
+        <h3 className="text-sm font-medium text-slate-600 dark:text-slate-300">No tables configured</h3>
         <p className="text-xs text-slate-500 max-w-sm mx-auto mt-1">
           No dining tables match your current filter criteria or none have been added to the floor plan yet.
         </p>
@@ -33,8 +33,8 @@ export const TableGrid: React.FC<TableGridProps> = ({ tables, onEdit, onStatusCl
         );
         return (
           <div key={sectionName} className="space-y-3">
-            <div className="flex items-center gap-2 pb-1 border-b border-slate-800/60">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <div className="flex items-center gap-2 pb-1 border-b border-slate-200 dark:border-slate-800/60">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                 {sectionName}
               </h3>
               <span className="text-[11px] text-slate-500 font-mono">

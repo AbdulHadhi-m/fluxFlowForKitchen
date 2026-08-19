@@ -42,7 +42,7 @@ export const LoyaltyDashboardPage: React.FC = () => {
       />
 
       {/* Tabs */}
-      <div className="flex items-center gap-2 bg-slate-900/60 p-2 rounded-xl border border-slate-800">
+      <div className="flex items-center gap-2 bg-white dark:bg-slate-900/60 p-2 rounded-xl border border-slate-200 dark:border-slate-800">
         <Button
           variant={activeTab === "MEMBERS" ? "default" : "ghost"}
           size="sm"
@@ -50,7 +50,7 @@ export const LoyaltyDashboardPage: React.FC = () => {
           className={`h-8 px-3 text-xs rounded-lg font-medium gap-1.5 transition-all ${
             activeTab === "MEMBERS"
               ? "bg-indigo-600 text-white font-bold shadow-sm"
-              : "text-slate-400 hover:text-white hover:bg-slate-800/60"
+              : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
           }`}
         >
           <Users className="h-3.5 w-3.5" /> Members ({accounts.length})
@@ -63,7 +63,7 @@ export const LoyaltyDashboardPage: React.FC = () => {
           className={`h-8 px-3 text-xs rounded-lg font-medium gap-1.5 transition-all ${
             activeTab === "TIERS"
               ? "bg-indigo-600 text-white font-bold shadow-sm"
-              : "text-slate-400 hover:text-white hover:bg-slate-800/60"
+              : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
           }`}
         >
           <Award className="h-3.5 w-3.5" /> Membership Tiers ({tiers.length})
@@ -76,7 +76,7 @@ export const LoyaltyDashboardPage: React.FC = () => {
           className={`h-8 px-3 text-xs rounded-lg font-medium gap-1.5 transition-all ${
             activeTab === "REWARDS"
               ? "bg-indigo-600 text-white font-bold shadow-sm"
-              : "text-slate-400 hover:text-white hover:bg-slate-800/60"
+              : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
           }`}
         >
           <Gift className="h-3.5 w-3.5" /> Rewards Catalog ({rewards.length})
@@ -92,7 +92,7 @@ export const LoyaltyDashboardPage: React.FC = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search member by name or phone..."
-                className="bg-slate-900 border-slate-800 pl-9 text-xs text-slate-200"
+                className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 pl-9 text-xs text-slate-700 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500"
               />
             </div>
           </div>

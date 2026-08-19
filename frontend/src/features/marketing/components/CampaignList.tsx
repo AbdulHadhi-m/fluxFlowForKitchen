@@ -20,10 +20,10 @@ export const CampaignList: React.FC<Props> = ({ campaigns, isLoading, onCreateCa
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between bg-slate-900/60 p-3 rounded-2xl border border-slate-800/80">
+      <div className="flex items-center justify-between bg-white dark:bg-slate-900/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-800/80">
         <div>
-          <h3 className="text-sm font-bold text-white">Marketing Campaigns & Broadcasts</h3>
-          <p className="text-xs text-slate-400">Launch targeted promotional messages with customer consent enforcement</p>
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white">Marketing Campaigns & Broadcasts</h3>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Launch targeted promotional messages with customer consent enforcement</p>
         </div>
 
         <button
@@ -38,15 +38,15 @@ export const CampaignList: React.FC<Props> = ({ campaigns, isLoading, onCreateCa
       {isLoading ? (
         <div className="space-y-3">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="h-28 rounded-2xl bg-slate-900/40 border border-slate-800 animate-pulse" />
+            <div key={i} className="h-28 rounded-2xl bg-slate-100/60 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 animate-pulse" />
           ))}
         </div>
       ) : campaigns.length === 0 ? (
-        <div className="py-16 text-center rounded-2xl bg-slate-900/40 border border-dashed border-slate-800 p-8">
+        <div className="py-16 text-center rounded-2xl bg-slate-100/70 dark:bg-slate-900/40 border border-dashed border-slate-200 dark:border-slate-800 p-8">
           <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mx-auto mb-3">
             <Send className="h-6 w-6" />
           </div>
-          <h4 className="text-sm font-bold text-white mb-1">No Campaigns Created</h4>
+          <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1">No Campaigns Created</h4>
           <p className="text-xs text-slate-500 max-w-sm mx-auto mb-4">
             Broadcast in-app alerts, emails, or SMS vouchers to target customer segments.
           </p>
@@ -64,7 +64,7 @@ export const CampaignList: React.FC<Props> = ({ campaigns, isLoading, onCreateCa
             return (
               <div
                 key={c.id}
-                className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+                className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
               >
                 <div className="flex items-start gap-3">
                   <div className="p-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 shrink-0">
@@ -72,7 +72,7 @@ export const CampaignList: React.FC<Props> = ({ campaigns, isLoading, onCreateCa
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <h4 className="text-sm font-bold text-white">{c.name}</h4>
+                      <h4 className="text-sm font-bold text-slate-900 dark:text-white">{c.name}</h4>
                       <span
                         className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold border uppercase tracking-wider ${
                           c.status === "COMPLETED"
@@ -86,27 +86,27 @@ export const CampaignList: React.FC<Props> = ({ campaigns, isLoading, onCreateCa
                       </span>
                     </div>
 
-                    <div className="text-xs text-slate-400 mt-1">
-                      {c.title} • Channel: <span className="font-semibold text-slate-300">{c.channel}</span>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                      {c.title} • Channel: <span className="font-semibold text-slate-600 dark:text-slate-300">{c.channel}</span>
                       {c.target_segment_name && (
-                        <span> • Segment: <span className="text-indigo-300 font-semibold">{c.target_segment_name}</span></span>
+                        <span> • Segment: <span className="text-indigo-600 dark:text-indigo-300 font-semibold">{c.target_segment_name}</span></span>
                       )}
                       {c.promotion_name && (
-                        <span> • Promo: <span className="text-emerald-300 font-semibold">{c.promotion_name}</span></span>
+                        <span> • Promo: <span className="text-emerald-600 dark:text-emerald-300 font-semibold">{c.promotion_name}</span></span>
                       )}
                     </div>
 
-                    <div className="text-[11px] text-slate-500 mt-1 font-mono line-clamp-1 bg-slate-950/60 px-2 py-0.5 rounded border border-slate-800/50">
+                    <div className="text-[11px] text-slate-500 mt-1 font-mono line-clamp-1 bg-slate-100/80 dark:bg-slate-950/60 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-800/50">
                       Template: {c.message_template}
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-end shrink-0 pt-3 md:pt-0 border-t md:border-t-0 border-slate-800">
+                <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-end shrink-0 pt-3 md:pt-0 border-t md:border-t-0 border-slate-200 dark:border-slate-800">
                   <div className="text-left md:text-right">
-                    <div className="text-xs font-bold text-white">
+                    <div className="text-xs font-bold text-slate-900 dark:text-white">
                       {c.sent_count} <span className="text-slate-500 font-normal">sent</span> /{" "}
-                      <span className="text-slate-400">{c.skipped_count} skipped</span>
+                      <span className="text-slate-500 dark:text-slate-400">{c.skipped_count} skipped</span>
                     </div>
                     <div className="text-[10px] text-slate-500">
                       Started: {new Date(c.start_at).toLocaleDateString()}

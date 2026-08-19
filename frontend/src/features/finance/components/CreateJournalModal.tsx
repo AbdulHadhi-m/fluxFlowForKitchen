@@ -98,19 +98,19 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950/40">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/40">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
               <Scale className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white">Create Double-Entry Journal</h2>
-              <p className="text-xs text-slate-400">Post balanced debit and credit legs to General Ledger</p>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">Create Double-Entry Journal</h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Post balanced debit and credit legs to General Ledger</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
+          <button onClick={onClose} className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -119,26 +119,26 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-5">
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 Posting Date
               </label>
               <input
                 type="date"
                 value={entryDate}
                 onChange={(e) => setEntryDate(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 Source Document Type
               </label>
               <select
                 value={sourceType}
                 onChange={(e) => setSourceType(e.target.value as SourceDocumentType)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
               >
                 <option value="MANUAL">Manual Adjustment</option>
                 <option value="EXPENSE">Expense Claim</option>
@@ -149,12 +149,12 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
             </div>
 
             <div className="flex items-center gap-3 pt-6">
-              <label className="relative flex items-center gap-2 cursor-pointer text-sm text-slate-300">
+              <label className="relative flex items-center gap-2 cursor-pointer text-sm text-slate-600 dark:text-slate-300">
                 <input
                   type="checkbox"
                   checked={autoPost}
                   onChange={(e) => setAutoPost(e.target.checked)}
-                  className="rounded border-slate-700 bg-slate-950 text-indigo-600 focus:ring-indigo-500 h-4 w-4"
+                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-indigo-600 focus:ring-indigo-500 h-4 w-4"
                 />
                 <span>Auto-Post immediately</span>
               </label>
@@ -164,7 +164,7 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
           {/* Journal Lines Table */}
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Journal Lines</h3>
+              <h3 className="text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider">Journal Lines</h3>
               <button
                 type="button"
                 onClick={handleAddLine}
@@ -174,9 +174,9 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
               </button>
             </div>
 
-            <div className="border border-slate-800 rounded-xl overflow-hidden bg-slate-950/40">
+            <div className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-slate-100/70 dark:bg-slate-950/40">
               <table className="w-full text-xs text-left">
-                <thead className="bg-slate-900/80 border-b border-slate-800 text-slate-400 font-semibold uppercase">
+                <thead className="bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-semibold uppercase">
                   <tr>
                     <th className="p-3">Account</th>
                     <th className="p-3 w-32">Debit ($)</th>
@@ -186,14 +186,14 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
                     <th className="p-3 w-10"></th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60">
+                <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
                   {lines.map((line, idx) => (
-                    <tr key={idx} className="hover:bg-slate-900/30">
+                    <tr key={idx} className="hover:bg-slate-100/70 dark:hover:bg-slate-900/30">
                       <td className="p-2.5">
                         <select
                           value={line.account_id}
                           onChange={(e) => handleLineChange(idx, "account_id", e.target.value)}
-                          className="w-full bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500"
+                          className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                           required
                         >
                           <option value="">-- Select GL Account --</option>
@@ -211,7 +211,7 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
                           min="0"
                           value={line.debit}
                           onChange={(e) => handleLineChange(idx, "debit", e.target.value)}
-                          className="w-full bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono focus:outline-none focus:border-indigo-500"
+                          className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white font-mono focus:outline-none focus:border-indigo-500"
                         />
                       </td>
                       <td className="p-2.5">
@@ -221,7 +221,7 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
                           min="0"
                           value={line.credit}
                           onChange={(e) => handleLineChange(idx, "credit", e.target.value)}
-                          className="w-full bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono focus:outline-none focus:border-indigo-500"
+                          className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white font-mono focus:outline-none focus:border-indigo-500"
                         />
                       </td>
                       <td className="p-2.5">
@@ -230,14 +230,14 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
                           value={line.description}
                           onChange={(e) => handleLineChange(idx, "description", e.target.value)}
                           placeholder="Line narration"
-                          className="w-full bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500"
+                          className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                         />
                       </td>
                       <td className="p-2.5">
                         <select
                           value={line.cost_center}
                           onChange={(e) => handleLineChange(idx, "cost_center", e.target.value as CostCenter)}
-                          className="w-full bg-slate-950 border border-slate-800 rounded-lg px-2 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500"
+                          className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-2 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                         >
                           <option value="KITCHEN">Kitchen</option>
                           <option value="FOH">Front of House</option>
@@ -264,18 +264,18 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
           </div>
 
           {/* Mathematical Integrity Footer */}
-          <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between">
+          <div className="p-4 rounded-xl bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 flex items-center justify-between">
             <div className="flex items-center gap-6 text-xs">
               <div>
-                <span className="text-slate-400">Total Debits: </span>
-                <strong className="text-white font-mono text-sm">${totalDebit.toFixed(2)}</strong>
+                <span className="text-slate-500 dark:text-slate-400">Total Debits: </span>
+                <strong className="text-slate-900 dark:text-white font-mono text-sm">${totalDebit.toFixed(2)}</strong>
               </div>
               <div>
-                <span className="text-slate-400">Total Credits: </span>
-                <strong className="text-white font-mono text-sm">${totalCredit.toFixed(2)}</strong>
+                <span className="text-slate-500 dark:text-slate-400">Total Credits: </span>
+                <strong className="text-slate-900 dark:text-white font-mono text-sm">${totalCredit.toFixed(2)}</strong>
               </div>
               <div>
-                <span className="text-slate-400">Difference: </span>
+                <span className="text-slate-500 dark:text-slate-400">Difference: </span>
                 <strong className={`font-mono text-sm ${difference < 0.001 ? "text-emerald-400" : "text-rose-400"}`}>
                   ${difference.toFixed(2)}
                 </strong>
@@ -296,7 +296,7 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
               Journal Notes & Justification
             </label>
             <textarea
@@ -304,15 +304,15 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Why this journal adjustment is recorded..."
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500"
+              className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
             />
           </div>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg"
+              className="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-lg"
             >
               Cancel
             </button>

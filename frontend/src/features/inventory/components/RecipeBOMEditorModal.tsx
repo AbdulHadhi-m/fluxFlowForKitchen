@@ -116,21 +116,21 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/40">
+        <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-100/70 dark:bg-slate-950/40">
           <div className="flex items-center gap-2.5">
             <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400">
               <ChefHat className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-slate-100">Recipe / BOM Builder</h2>
-              <p className="text-xs text-slate-400">Create standard recipe BOM, sub-recipes & yield costing</p>
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Recipe / BOM Builder</h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Create standard recipe BOM, sub-recipes & yield costing</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-colors"
+            className="p-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -141,13 +141,13 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
           {/* Recipe Type & Target */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 Recipe Type
               </label>
               <select
                 value={recipeType}
                 onChange={(e) => setRecipeType(e.target.value as RecipeType)}
-                className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-emerald-500"
+                className="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm focus:outline-none focus:border-emerald-500"
               >
                 <option value="MENU_ITEM_RECIPE">Menu Item Dish BOM</option>
                 <option value="SUB_RECIPE">Sub-Recipe / Batch Prep</option>
@@ -156,14 +156,14 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
 
             {recipeType === 'MENU_ITEM_RECIPE' ? (
               <div className="md:col-span-2">
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                   Linked Menu Dish *
                 </label>
                 <select
                   value={menuItemId}
                   onChange={(e) => setMenuItemId(e.target.value)}
                   required
-                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm focus:outline-none focus:border-emerald-500"
                 >
                   <option value="">Select a menu dish...</option>
                   {menuItems.map((item: any) => (
@@ -175,7 +175,7 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
               </div>
             ) : (
               <div className="md:col-span-2">
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                   Sub-Recipe Name *
                 </label>
                 <input
@@ -184,31 +184,31 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Marinara Sauce Prep (5L Batch)"
                   required
-                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-emerald-500 placeholder:text-slate-600"
+                  className="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm focus:outline-none focus:border-emerald-500 placeholder:text-slate-400 dark:placeholder:text-slate-600"
                 />
               </div>
             )}
           </div>
 
           {/* Yields & Portions */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-xl bg-slate-950/60 border border-slate-800/80">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-xl bg-slate-100/80 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800/80">
             <div>
-              <label className="block text-xs text-slate-400 mb-1">Output Quantity</label>
+              <label className="block text-xs text-slate-500 dark:text-slate-400 mb-1">Output Quantity</label>
               <input
                 type="number"
                 step="0.001"
                 min="0.001"
                 value={outputQuantity}
                 onChange={(e) => setOutputQuantity(Number(e.target.value))}
-                className="w-full px-2.5 py-1.5 rounded-md bg-slate-900 border border-slate-800 text-slate-200 text-sm"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm"
               />
             </div>
             <div>
-              <label className="block text-xs text-slate-400 mb-1">Output Unit</label>
+              <label className="block text-xs text-slate-500 dark:text-slate-400 mb-1">Output Unit</label>
               <select
                 value={outputUnit}
                 onChange={(e) => setOutputUnit(e.target.value as UnitOfMeasure)}
-                className="w-full px-2.5 py-1.5 rounded-md bg-slate-900 border border-slate-800 text-slate-200 text-sm"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm"
               >
                 <option value="portion">Portion</option>
                 <option value="piece">Piece</option>
@@ -218,25 +218,25 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
               </select>
             </div>
             <div>
-              <label className="block text-xs text-slate-400 mb-1">Prep Loss %</label>
+              <label className="block text-xs text-slate-500 dark:text-slate-400 mb-1">Prep Loss %</label>
               <input
                 type="number"
                 min="0"
                 max="90"
                 value={prepLossPct}
                 onChange={(e) => setPrepLossPct(Number(e.target.value))}
-                className="w-full px-2.5 py-1.5 rounded-md bg-slate-900 border border-slate-800 text-slate-200 text-sm"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm"
               />
             </div>
             <div>
-              <label className="block text-xs text-slate-400 mb-1">Cooking Loss %</label>
+              <label className="block text-xs text-slate-500 dark:text-slate-400 mb-1">Cooking Loss %</label>
               <input
                 type="number"
                 min="0"
                 max="90"
                 value={cookingLossPct}
                 onChange={(e) => setCookingLossPct(Number(e.target.value))}
-                className="w-full px-2.5 py-1.5 rounded-md bg-slate-900 border border-slate-800 text-slate-200 text-sm"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm"
               />
             </div>
           </div>
@@ -244,7 +244,7 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
           {/* Dynamic Ingredients Table */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-sm font-semibold text-slate-200 uppercase tracking-wider">
+              <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-200 uppercase tracking-wider">
                 Ingredients & Bill of Materials (BOM)
               </h3>
               <button
@@ -261,13 +261,13 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
               {ingredients.map((row, idx) => (
                 <div
                   key={idx}
-                  className="grid grid-cols-12 gap-2 p-2.5 rounded-lg bg-slate-950/40 border border-slate-800/80 items-center"
+                  className="grid grid-cols-12 gap-2 p-2.5 rounded-lg bg-slate-100/70 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800/80 items-center"
                 >
                   <div className="col-span-2">
                     <select
                       value={row.type}
                       onChange={(e) => updateRow(idx, 'type', e.target.value)}
-                      className="w-full px-2 py-1.5 rounded-md bg-slate-900 border border-slate-800 text-slate-300 text-xs"
+                      className="w-full px-2 py-1.5 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-xs"
                     >
                       <option value="ITEM">Raw Item</option>
                       <option value="SUB_RECIPE">Sub-Recipe</option>
@@ -279,7 +279,7 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
                       <select
                         value={row.id}
                         onChange={(e) => updateRow(idx, 'id', e.target.value)}
-                        className="w-full px-2 py-1.5 rounded-md bg-slate-900 border border-slate-800 text-slate-200 text-xs"
+                        className="w-full px-2 py-1.5 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-xs"
                       >
                         <option value="">Select ingredient...</option>
                         {inventoryItems.map((i) => (
@@ -292,7 +292,7 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
                       <select
                         value={row.id}
                         onChange={(e) => updateRow(idx, 'id', e.target.value)}
-                        className="w-full px-2 py-1.5 rounded-md bg-slate-900 border border-slate-800 text-slate-200 text-xs"
+                        className="w-full px-2 py-1.5 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-xs"
                       >
                         <option value="">Select sub-recipe...</option>
                         {existingRecipes.map((r) => (
@@ -312,7 +312,7 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
                       value={row.quantity}
                       onChange={(e) => updateRow(idx, 'quantity', Number(e.target.value))}
                       placeholder="Qty"
-                      className="w-full px-2 py-1.5 rounded-md bg-slate-900 border border-slate-800 text-slate-200 text-xs"
+                      className="w-full px-2 py-1.5 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-xs"
                     />
                   </div>
 
@@ -320,7 +320,7 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
                     <select
                       value={row.unit}
                       onChange={(e) => updateRow(idx, 'unit', e.target.value)}
-                      className="w-full px-2 py-1.5 rounded-md bg-slate-900 border border-slate-800 text-slate-200 text-xs"
+                      className="w-full px-2 py-1.5 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-xs"
                     >
                       <option value="kg">kg</option>
                       <option value="g">g</option>
@@ -337,7 +337,7 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
                       value={row.notes}
                       onChange={(e) => updateRow(idx, 'notes', e.target.value)}
                       placeholder="Prep notes"
-                      className="w-full px-2 py-1.5 rounded-md bg-slate-900 border border-slate-800 text-slate-400 text-xs placeholder:text-slate-700"
+                      className="w-full px-2 py-1.5 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-xs placeholder:text-slate-400 dark:placeholder:text-slate-700"
                     />
                   </div>
 
@@ -356,32 +356,32 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
           </div>
 
           {/* Live Cost Calculation Bar */}
-          <div className="p-4 rounded-xl bg-slate-950 border border-emerald-500/20 flex flex-wrap items-center justify-between gap-4">
+          <div className="p-4 rounded-xl bg-white dark:bg-slate-950 border border-emerald-500/20 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400">
                 <Sparkles className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-xs text-slate-400 uppercase tracking-wider block">
+                <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                   Estimated Food Cost
                 </span>
                 <span className="text-xl font-bold text-emerald-400">
                   ${costPerPortion.toFixed(2)}{' '}
-                  <span className="text-xs font-normal text-slate-400">/ {outputUnit}</span>
+                  <span className="text-xs font-normal text-slate-500 dark:text-slate-400">/ {outputUnit}</span>
                 </span>
               </div>
             </div>
 
-            <div className="flex items-center gap-6 text-xs text-slate-400">
+            <div className="flex items-center gap-6 text-xs text-slate-500 dark:text-slate-400">
               <div>
                 <span className="block text-slate-500">Suggested @ 30% Food Cost</span>
-                <span className="font-semibold text-slate-200 text-sm">
+                <span className="font-semibold text-slate-700 dark:text-slate-200 text-sm">
                   ${(costPerPortion / 0.3).toFixed(2)}
                 </span>
               </div>
               <div>
                 <span className="block text-slate-500">Suggested @ 25% Food Cost</span>
-                <span className="font-semibold text-slate-200 text-sm">
+                <span className="font-semibold text-slate-700 dark:text-slate-200 text-sm">
                   ${(costPerPortion / 0.25).toFixed(2)}
                 </span>
               </div>
@@ -390,7 +390,7 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
 
           {/* Instructions & Notes */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
               Preparation Instructions & SOP
             </label>
             <textarea
@@ -398,16 +398,16 @@ export const RecipeBOMEditorModal: React.FC<RecipeBOMEditorModalProps> = ({ isOp
               onChange={(e) => setInstructions(e.target.value)}
               rows={3}
               placeholder="Step-by-step preparation notes for line cooks..."
-              className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-emerald-500 placeholder:text-slate-600"
+              className="w-full px-3 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-sm focus:outline-none focus:border-emerald-500 placeholder:text-slate-400 dark:placeholder:text-slate-600"
             />
           </div>
 
           {/* Submit Buttons */}
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-slate-800 text-sm font-semibold transition-colors"
+              className="px-4 py-2 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800 text-sm font-semibold transition-colors"
             >
               Cancel
             </button>

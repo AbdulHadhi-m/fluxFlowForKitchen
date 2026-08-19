@@ -18,9 +18,9 @@ export const AlertsPage: React.FC = () => {
           <div className="h-8 w-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
             <BellRing className="h-4 w-4" />
           </div>
-          <h1 className="text-xl font-black tracking-tight text-white">Alerts</h1>
+          <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Alerts</h1>
         </div>
-        <p className="text-xs text-slate-400 mt-1">
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Active, acknowledged, and resolved alert conditions (auto-refreshes every 30s).
         </p>
       </div>
@@ -29,15 +29,15 @@ export const AlertsPage: React.FC = () => {
 
       <div className="space-y-3">
         {alerts.map((alert) => (
-          <Card key={alert.id} className="bg-slate-900/60 border-slate-800 p-4">
+          <Card key={alert.id} className="bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-4">
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-sm font-bold text-white">{alert.title}</span>
+                  <span className="text-sm font-bold text-slate-900 dark:text-white">{alert.title}</span>
                   <SeverityBadge severity={alert.severity} />
                   <StatusBadge status={alert.status} />
                 </div>
-                <p className="text-xs text-slate-400 mt-1.5">{alert.message}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5">{alert.message}</p>
                 <div className="text-[11px] text-slate-500 mt-2 flex items-center gap-3 flex-wrap">
                   <span>triggered x{alert.trigger_count}</span>
                   <span>last: {new Date(alert.last_triggered_at).toLocaleString()}</span>
@@ -45,7 +45,7 @@ export const AlertsPage: React.FC = () => {
                   {alert.incident && <span>linked incident</span>}
                 </div>
                 {alert.resolution_note && (
-                  <div className="text-[11px] text-emerald-300 mt-1.5">Resolution: {alert.resolution_note}</div>
+                  <div className="text-[11px] text-emerald-600 dark:text-emerald-300 mt-1.5">Resolution: {alert.resolution_note}</div>
                 )}
               </div>
 
@@ -54,7 +54,7 @@ export const AlertsPage: React.FC = () => {
                   <Button
                     size="sm"
                     variant="outline"
-                    className="border-slate-800 text-slate-300 hover:bg-slate-800 text-xs"
+                    className="border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 text-xs"
                     onClick={() => acknowledge.mutate(alert.id)}
                   >
                     Acknowledge
@@ -64,7 +64,7 @@ export const AlertsPage: React.FC = () => {
                       placeholder="Resolution note…"
                       value={note[alert.id] || ""}
                       onChange={(e) => setNote((prev) => ({ ...prev, [alert.id]: e.target.value }))}
-                      className="rounded-lg border border-slate-800 bg-slate-900/60 px-2 py-1.5 text-[11px] text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 w-44"
+                      className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-2 py-1.5 text-[11px] text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 w-44"
                     />
                     <Button
                       size="sm"

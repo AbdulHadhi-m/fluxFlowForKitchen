@@ -13,13 +13,13 @@ export const TopPromotionsTable: React.FC<Props> = ({ analytics }) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
       {/* Top Promotions */}
-      <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <div className="p-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
               <Tag className="h-4 w-4" />
             </div>
-            <h3 className="text-sm font-bold text-white">Top Performing Promotions</h3>
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">Top Performing Promotions</h3>
           </div>
           <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">By Redemptions</span>
         </div>
@@ -31,12 +31,12 @@ export const TopPromotionsTable: React.FC<Props> = ({ analytics }) => {
             {topPromos.map((p, idx) => (
               <div
                 key={p.id}
-                className="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/50 text-xs"
+                className="flex items-center justify-between p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800/50 text-xs"
               >
                 <div className="flex items-center gap-2.5">
                   <span className="font-mono text-slate-500 font-bold text-[10px]">#{idx + 1}</span>
                   <div>
-                    <div className="font-semibold text-slate-200">{p.name}</div>
+                    <div className="font-semibold text-slate-700 dark:text-slate-200">{p.name}</div>
                     <div className="text-[10px] text-slate-500">{p.type.replace(/_/g, " ")}</div>
                   </div>
                 </div>
@@ -51,13 +51,13 @@ export const TopPromotionsTable: React.FC<Props> = ({ analytics }) => {
       </div>
 
       {/* Top Coupons */}
-      <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <div className="p-1.5 rounded-lg bg-violet-500/10 border border-violet-500/20 text-violet-400">
               <Gift className="h-4 w-4" />
             </div>
-            <h3 className="text-sm font-bold text-white">Top Vouchers & Coupon Codes</h3>
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">Top Vouchers & Coupon Codes</h3>
           </div>
           <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">By Usage</span>
         </div>
@@ -69,7 +69,7 @@ export const TopPromotionsTable: React.FC<Props> = ({ analytics }) => {
             {topCoupons.map((c, idx) => (
               <div
                 key={c.id}
-                className="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/50 text-xs"
+                className="flex items-center justify-between p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800/50 text-xs"
               >
                 <div className="flex items-center gap-2.5">
                   <span className="font-mono text-slate-500 font-bold text-[10px]">#{idx + 1}</span>
@@ -79,7 +79,7 @@ export const TopPromotionsTable: React.FC<Props> = ({ analytics }) => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="font-bold text-violet-300">{c.redemptions} uses</div>
+                  <div className="font-bold text-violet-600 dark:text-violet-300">{c.redemptions} uses</div>
                   <div className="text-[10px] text-slate-500">${c.total_discount} off</div>
                 </div>
               </div>

@@ -45,22 +45,22 @@ export const MenuManagementPage: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-6 md:p-12 selection:bg-blue-500/30">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-6 md:p-12 selection:bg-blue-500/30 transition-colors duration-200">
       <div className="max-w-6xl mx-auto space-y-6">
         {/* Top Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-3">
             <Link to="/dashboard">
               <Button
                 variant="outline"
                 size="sm"
-                className="h-9 w-9 p-0 border-slate-800 hover:bg-slate-900 text-slate-300"
+                className="h-9 w-9 p-0 border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-300"
               >
                 <ArrowLeft className="h-4 w-4" />
               </Button>
             </Link>
             <div>
-              <h1 className="text-xl font-bold text-white flex items-center gap-2">
+              <h1 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 Menu & Catalog Management
                 <Badge
                   variant="outline"
@@ -69,7 +69,7 @@ export const MenuManagementPage: React.FC = () => {
                   Live Catalog
                 </Badge>
               </h1>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 Organize categories, configure menu pricing, and toggle instant item availability.
               </p>
             </div>
@@ -115,9 +115,9 @@ export const MenuManagementPage: React.FC = () => {
           {/* Main Items Area */}
           <div className="flex-1 w-full space-y-4">
             {/* Filters Bar */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800 backdrop-blur-sm">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800 backdrop-blur-sm">
               <div className="relative w-full sm:w-80">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-500 dark:text-slate-400" />
                 <Input
                   placeholder="Search menu items..."
                   value={search}
@@ -125,12 +125,12 @@ export const MenuManagementPage: React.FC = () => {
                     setSearch(e.target.value);
                     setPage(1);
                   }}
-                  className="pl-8 bg-slate-950/60 border-slate-800 text-xs text-slate-100 placeholder:text-slate-500 h-8"
+                  className="pl-8 bg-white dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 h-8"
                 />
               </div>
 
               <div className="flex items-center gap-2 w-full sm:w-auto">
-                <div className="flex items-center gap-1.5 text-xs text-slate-400">
+                <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
                   <Filter className="h-3.5 w-3.5 text-slate-500" />
                 </div>
 
@@ -140,7 +140,7 @@ export const MenuManagementPage: React.FC = () => {
                     setAvailabilityFilter(e.target.value);
                     setPage(1);
                   }}
-                  className="h-8 rounded-lg border border-slate-800 bg-slate-950/60 px-2 text-xs text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="h-8 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950/60 px-2 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 >
                   <option value="">All Availability</option>
                   <option value="true">Available for Order</option>
@@ -166,7 +166,7 @@ export const MenuManagementPage: React.FC = () => {
 
             {/* Pagination Controls */}
             {meta && meta.total_pages > 1 && (
-              <div className="flex items-center justify-between text-xs text-slate-400 pt-2">
+              <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-2">
                 <span>
                   Showing {menuItems.length} of {meta.count} items
                 </span>
@@ -176,11 +176,11 @@ export const MenuManagementPage: React.FC = () => {
                     size="sm"
                     disabled={page <= 1}
                     onClick={() => setPage(page - 1)}
-                    className="h-7 w-7 p-0 border-slate-800 text-slate-300"
+                    className="h-7 w-7 p-0 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300"
                   >
                     <ChevronLeft className="h-3.5 w-3.5" />
                   </Button>
-                  <span className="font-mono text-slate-300 px-2">
+                  <span className="font-mono text-slate-600 dark:text-slate-300 px-2">
                     Page {page} of {meta.total_pages}
                   </span>
                   <Button
@@ -188,7 +188,7 @@ export const MenuManagementPage: React.FC = () => {
                     size="sm"
                     disabled={page >= meta.total_pages}
                     onClick={() => setPage(page + 1)}
-                    className="h-7 w-7 p-0 border-slate-800 text-slate-300"
+                    className="h-7 w-7 p-0 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300"
                   >
                     <ChevronRight className="h-3.5 w-3.5" />
                   </Button>

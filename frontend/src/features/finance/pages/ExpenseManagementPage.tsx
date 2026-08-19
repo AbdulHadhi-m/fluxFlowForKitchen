@@ -47,9 +47,9 @@ export const ExpenseManagementPage: React.FC = () => {
             <div className="h-9 w-9 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400">
               <Receipt className="h-5 w-5" />
             </div>
-            <h1 className="text-2xl font-black tracking-tight text-white">Operational Expenses</h1>
+            <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Operational Expenses</h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Track utilities, rent, maintenance, marketing, and automatic double-entry expense postings
           </p>
         </div>
@@ -71,14 +71,14 @@ export const ExpenseManagementPage: React.FC = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search expense #, payee, category..."
-          className="w-full pl-9 pr-4 py-2 text-xs bg-slate-950 border border-slate-800 rounded-xl text-slate-200 focus:outline-none focus:border-indigo-500"
+          className="w-full pl-9 pr-4 py-2 text-xs bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
         />
       </div>
 
       {/* Expenses Table */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-md overflow-hidden">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 backdrop-blur-md overflow-hidden">
         <table className="w-full text-xs text-left">
-          <thead className="bg-slate-950/80 border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider">
+          <thead className="bg-slate-100 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
             <tr>
               <th className="p-4 w-28">Expense #</th>
               <th className="p-4 w-28">Date</th>
@@ -91,7 +91,7 @@ export const ExpenseManagementPage: React.FC = () => {
               <th className="p-4 w-28 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/60">
+          <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
             {isLoading ? (
               <tr>
                 <td colSpan={9} className="p-12 text-center text-slate-500">
@@ -106,17 +106,17 @@ export const ExpenseManagementPage: React.FC = () => {
               </tr>
             ) : (
               filteredExpenses.map((exp) => (
-                <tr key={exp.id} className="hover:bg-slate-900/40 transition-colors">
-                  <td className="p-4 font-mono font-bold text-white">{exp.expense_number}</td>
-                  <td className="p-4 font-mono text-slate-300">{exp.expense_date}</td>
-                  <td className="p-4 font-semibold text-slate-200">{exp.payee}</td>
+                <tr key={exp.id} className="hover:bg-slate-100/70 dark:hover:bg-slate-900/40 transition-colors">
+                  <td className="p-4 font-mono font-bold text-slate-900 dark:text-white">{exp.expense_number}</td>
+                  <td className="p-4 font-mono text-slate-600 dark:text-slate-300">{exp.expense_date}</td>
+                  <td className="p-4 font-semibold text-slate-700 dark:text-slate-200">{exp.payee}</td>
                   <td className="p-4">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 border border-slate-700 text-slate-300">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300">
                       {exp.category}
                     </span>
                   </td>
-                  <td className="p-4 text-slate-300">{exp.account_name}</td>
-                  <td className="p-4 text-slate-400">{exp.cost_center}</td>
+                  <td className="p-4 text-slate-600 dark:text-slate-300">{exp.account_name}</td>
+                  <td className="p-4 text-slate-500 dark:text-slate-400">{exp.cost_center}</td>
                   <td className="p-4 font-mono text-right font-bold text-rose-400">
                     ${parseFloat(exp.amount).toFixed(2)}
                   </td>
@@ -127,7 +127,7 @@ export const ExpenseManagementPage: React.FC = () => {
                           ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
                           : exp.status === "SUBMITTED"
                           ? "bg-amber-500/10 text-amber-400 border-amber-500/20"
-                          : "bg-slate-800 text-slate-400 border-slate-700"
+                          : "bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-300 dark:border-slate-700"
                       }`}
                     >
                       {exp.status}
@@ -138,7 +138,7 @@ export const ExpenseManagementPage: React.FC = () => {
                       {exp.status === "DRAFT" && (
                         <button
                           onClick={() => handleSubmit(exp.id)}
-                          className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white"
+                          className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white"
                         >
                           <Send className="w-3 h-3" /> Submit
                         </button>

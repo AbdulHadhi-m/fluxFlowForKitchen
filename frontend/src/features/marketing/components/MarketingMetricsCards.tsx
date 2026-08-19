@@ -60,16 +60,16 @@ export const MarketingMetricsCards: React.FC<Props> = ({ analytics, isLoading })
         return (
           <div
             key={i}
-            className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm flex flex-col justify-between"
+            className="p-3.5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-sm flex flex-col justify-between"
           >
             <div className="flex items-center justify-between gap-2 mb-2">
-              <span className="text-[11px] font-semibold text-slate-400 truncate">{card.label}</span>
+              <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 truncate">{card.label}</span>
               <div className={`p-1.5 rounded-lg border shrink-0 ${card.color}`}>
                 <Icon className="h-3.5 w-3.5" />
               </div>
             </div>
             <div>
-              <div className="text-xl font-bold text-white tracking-tight">
+              <div className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
                 {isLoading ? <span className="animate-pulse text-slate-600">...</span> : card.value}
               </div>
               <div className="text-[10px] text-slate-500 mt-0.5 truncate">{card.sub}</div>

@@ -23,7 +23,7 @@ export const CategorySidebar: React.FC<CategorySidebarProps> = ({
   return (
     <div className="w-full md:w-64 space-y-3 shrink-0">
       <div className="flex items-center justify-between">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
           <Layers className="h-3.5 w-3.5 text-blue-400" /> Categories
         </h3>
         <Can permission="menu.create">
@@ -45,14 +45,14 @@ export const CategorySidebar: React.FC<CategorySidebarProps> = ({
           onClick={() => onSelectCategory(null)}
           className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
             selectedCategoryId === null
-              ? "bg-blue-600/20 text-blue-300 border border-blue-500/30"
-              : "text-slate-400 hover:text-slate-200 hover:bg-slate-900"
+              ? "bg-blue-600/20 text-blue-600 dark:text-blue-300 border border-blue-500/30"
+              : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900"
           }`}
         >
           <span className="flex items-center gap-2">
             <Folder className="h-3.5 w-3.5" /> All Categories
           </span>
-          <Badge variant="outline" className="text-[10px] py-0 border-slate-800 bg-slate-950">
+          <Badge variant="outline" className="text-[10px] py-0 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
             {categories.reduce((acc, c) => acc + (c.item_count || 0), 0)}
           </Badge>
         </button>
@@ -65,8 +65,8 @@ export const CategorySidebar: React.FC<CategorySidebarProps> = ({
               key={cat.id}
               className={`group flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
                 isSelected
-                  ? "bg-blue-600/20 text-blue-300 border border-blue-500/30"
-                  : "text-slate-400 hover:text-slate-200 hover:bg-slate-900"
+                  ? "bg-blue-600/20 text-blue-600 dark:text-blue-300 border border-blue-500/30"
+                  : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900"
               }`}
             >
               <button
@@ -79,14 +79,14 @@ export const CategorySidebar: React.FC<CategorySidebarProps> = ({
               </button>
 
               <div className="flex items-center gap-1.5 shrink-0">
-                <Badge variant="outline" className="text-[10px] py-0 border-slate-800 bg-slate-950">
+                <Badge variant="outline" className="text-[10px] py-0 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
                   {cat.item_count}
                 </Badge>
                 <Can permission="menu.update">
                   <button
                     type="button"
                     onClick={() => onEditCategory(cat)}
-                    className="opacity-0 group-hover:opacity-100 p-0.5 text-slate-400 hover:text-white transition-opacity"
+                    className="opacity-0 group-hover:opacity-100 p-0.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-opacity"
                     title="Edit category"
                   >
                     <Edit2 className="h-3 w-3" />

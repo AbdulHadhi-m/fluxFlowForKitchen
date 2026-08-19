@@ -49,25 +49,25 @@ export const OrderHistoryPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-6 md:p-12">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-6 md:p-12 transition-colors duration-200">
       <div className="max-w-6xl mx-auto space-y-6">
         {/* Top Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-3">
             <Link to="/orders/pos">
               <Button
                 variant="outline"
                 size="sm"
-                className="h-9 w-9 p-0 border-slate-800 hover:bg-slate-900 text-slate-300"
+                className="h-9 w-9 p-0 border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-300"
               >
                 <ArrowLeft className="h-4 w-4" />
               </Button>
             </Link>
             <div>
-              <h1 className="text-xl font-bold text-white flex items-center gap-2">
+              <h1 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 Order History & Ticket Ledger
               </h1>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 Track active dining floor tickets, historical receipts, and fulfillment status.
               </p>
             </div>
@@ -84,9 +84,9 @@ export const OrderHistoryPage: React.FC = () => {
         </div>
 
         {/* Filters */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
           <div className="relative w-full sm:w-80">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-500 dark:text-slate-400" />
             <Input
               placeholder="Search order # or notes..."
               value={search}
@@ -94,7 +94,7 @@ export const OrderHistoryPage: React.FC = () => {
                 setSearch(e.target.value);
                 setPage(1);
               }}
-              className="pl-8 bg-slate-950/60 border-slate-800 text-xs text-slate-100 placeholder:text-slate-500 h-8"
+              className="pl-8 bg-slate-100/80 dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 h-8"
             />
           </div>
 
@@ -106,7 +106,7 @@ export const OrderHistoryPage: React.FC = () => {
                 setStatusFilter(e.target.value);
                 setPage(1);
               }}
-              className="h-8 rounded-lg border border-slate-800 bg-slate-950/60 px-2 text-xs text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="h-8 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-950/60 px-2 text-xs text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
             >
               <option value="">All Orders</option>
               <option value="PLACED">Placed / Active</option>
@@ -123,17 +123,17 @@ export const OrderHistoryPage: React.FC = () => {
             Loading Orders Ledger...
           </div>
         ) : orders.length === 0 ? (
-          <div className="py-20 text-center border border-dashed border-slate-800 rounded-2xl bg-slate-900/30">
+          <div className="py-20 text-center border border-dashed border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-100/70 dark:bg-slate-900/30">
             <FileText className="h-10 w-10 text-slate-600 mx-auto mb-3" />
-            <h3 className="text-sm font-medium text-slate-300">No orders found</h3>
+            <h3 className="text-sm font-medium text-slate-600 dark:text-slate-300">No orders found</h3>
             <p className="text-xs text-slate-500 max-w-sm mx-auto mt-1">
               No customer orders match your search or filter parameters.
             </p>
           </div>
         ) : (
-          <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/50">
-            <table className="w-full text-left text-xs text-slate-300">
-              <thead className="bg-slate-950/80 text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-800">
+          <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-900/50">
+            <table className="w-full text-left text-xs text-slate-600 dark:text-slate-300">
+              <thead className="bg-slate-100 dark:bg-slate-950/80 text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
                 <tr>
                   <th className="py-3 px-4 font-semibold">Order Number</th>
                   <th className="py-3 px-4 font-semibold">Table / Seating</th>
@@ -144,16 +144,16 @@ export const OrderHistoryPage: React.FC = () => {
                   <th className="py-3 px-4 font-semibold text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60 font-normal">
+              <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60 font-normal">
                 {orders.map((order) => (
-                  <tr key={order.id} className="hover:bg-slate-800/40 transition-colors">
-                    <td className="py-3 px-4 font-mono font-bold text-white">
+                  <tr key={order.id} className="hover:bg-slate-200/70 dark:hover:bg-slate-800/40 transition-colors">
+                    <td className="py-3 px-4 font-mono font-bold text-slate-900 dark:text-white">
                       {order.order_number}
                     </td>
 
                     <td className="py-3 px-4">
                       {order.table_name ? (
-                        <span className="font-semibold text-blue-300">
+                        <span className="font-semibold text-blue-600 dark:text-blue-300">
                           Table {order.table_name}
                         </span>
                       ) : (
@@ -161,13 +161,13 @@ export const OrderHistoryPage: React.FC = () => {
                       )}
                     </td>
 
-                    <td className="py-3 px-4 text-slate-400">{order.created_by_name}</td>
+                    <td className="py-3 px-4 text-slate-500 dark:text-slate-400">{order.created_by_name}</td>
 
-                    <td className="py-3 px-4 font-mono text-slate-300">
+                    <td className="py-3 px-4 font-mono text-slate-600 dark:text-slate-300">
                       {order.items.length} {order.items.length === 1 ? "item" : "items"}
                     </td>
 
-                    <td className="py-3 px-4 font-mono font-bold text-slate-100">
+                    <td className="py-3 px-4 font-mono font-bold text-slate-900 dark:text-slate-100">
                       ${parseFloat(order.total).toFixed(2)}
                     </td>
 
@@ -180,7 +180,7 @@ export const OrderHistoryPage: React.FC = () => {
                         variant="ghost"
                         size="sm"
                         onClick={() => setSelectedOrder(order)}
-                        className="h-7 px-2 text-slate-300 hover:text-white hover:bg-slate-800 text-xs"
+                        className="h-7 px-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 text-xs"
                       >
                         Receipt
                       </Button>
@@ -193,7 +193,7 @@ export const OrderHistoryPage: React.FC = () => {
                               size="sm"
                               disabled={isCompleting}
                               onClick={() => handleComplete(order.id)}
-                              className="h-7 px-2 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/10 text-xs"
+                              className="h-7 px-2 border-emerald-500/30 text-emerald-600 dark:text-emerald-300 hover:bg-emerald-500/10 text-xs"
                             >
                               <CheckCircle2 className="h-3.5 w-3.5 mr-1 text-emerald-400" /> Complete
                             </Button>
@@ -222,7 +222,7 @@ export const OrderHistoryPage: React.FC = () => {
 
         {/* Pagination */}
         {meta && meta.total_pages > 1 && (
-          <div className="flex items-center justify-between text-xs text-slate-400 pt-2">
+          <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-2">
             <span>
               Showing {orders.length} of {meta.count} orders
             </span>
@@ -232,11 +232,11 @@ export const OrderHistoryPage: React.FC = () => {
                 size="sm"
                 disabled={page <= 1}
                 onClick={() => setPage(page - 1)}
-                className="h-7 w-7 p-0 border-slate-800 text-slate-300"
+                className="h-7 w-7 p-0 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300"
               >
                 <ChevronLeft className="h-3.5 w-3.5" />
               </Button>
-              <span className="font-mono text-slate-300 px-2">
+              <span className="font-mono text-slate-600 dark:text-slate-300 px-2">
                 Page {page} of {meta.total_pages}
               </span>
               <Button
@@ -244,7 +244,7 @@ export const OrderHistoryPage: React.FC = () => {
                 size="sm"
                 disabled={page >= meta.total_pages}
                 onClick={() => setPage(page + 1)}
-                className="h-7 w-7 p-0 border-slate-800 text-slate-300"
+                className="h-7 w-7 p-0 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300"
               >
                 <ChevronRight className="h-3.5 w-3.5" />
               </Button>

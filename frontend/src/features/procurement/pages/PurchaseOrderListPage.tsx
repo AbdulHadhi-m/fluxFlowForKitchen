@@ -88,9 +88,9 @@ export const PurchaseOrderListPage: React.FC = () => {
             <div className="h-9 w-9 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
               <ShoppingCart className="h-5 w-5" />
             </div>
-            <h1 className="text-2xl font-black tracking-tight text-white">Purchase Orders</h1>
+            <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Purchase Orders</h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Supplier purchase orders, approvals, vendor dispatch, and dock intake
           </p>
         </div>
@@ -98,7 +98,7 @@ export const PurchaseOrderListPage: React.FC = () => {
         <div className="flex items-center gap-3">
           <Link
             to="/procurement/suppliers"
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-800 border border-slate-700/60 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700/60 transition-colors"
           >
             <Building2 className="h-4 w-4 text-indigo-400" />
             Suppliers Catalog
@@ -116,26 +116,26 @@ export const PurchaseOrderListPage: React.FC = () => {
 
       {/* KPI Metrics */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md">
-          <p className="text-xs font-medium text-slate-400">Total POs</p>
-          <p className="text-2xl font-black text-white mt-1">{totalPOs}</p>
+        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md">
+          <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Total POs</p>
+          <p className="text-2xl font-black text-slate-900 dark:text-white mt-1">{totalPOs}</p>
         </div>
-        <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md">
+        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md">
           <p className="text-xs font-medium text-amber-400">Pending Approval</p>
           <p className="text-2xl font-black text-amber-400 mt-1">{pendingCount}</p>
         </div>
-        <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md">
+        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md">
           <p className="text-xs font-medium text-indigo-400">Active / In-Transit</p>
           <p className="text-2xl font-black text-indigo-400 mt-1">{approvedCount}</p>
         </div>
-        <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md">
+        <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md">
           <p className="text-xs font-medium text-emerald-400">Fully Received</p>
           <p className="text-2xl font-black text-emerald-400 mt-1">{receivedCount}</p>
         </div>
       </div>
 
       {/* Filter Bar */}
-      <div className="flex flex-col sm:flex-row items-center gap-3 p-3 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md">
+      <div className="flex flex-col sm:flex-row items-center gap-3 p-3 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md">
         <div className="relative flex-1 w-full">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-500" />
           <input
@@ -143,7 +143,7 @@ export const PurchaseOrderListPage: React.FC = () => {
             placeholder="Search by PO number or supplier name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-1.5 text-xs bg-slate-950 border border-slate-800 rounded-xl text-white focus:outline-none focus:border-indigo-500"
+            className="w-full pl-9 pr-4 py-1.5 text-xs bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
           />
         </div>
 
@@ -152,7 +152,7 @@ export const PurchaseOrderListPage: React.FC = () => {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="w-full sm:w-auto bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500"
+            className="w-full sm:w-auto bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
           >
             <option value="">All Statuses</option>
             <option value="DRAFT">Draft</option>
@@ -168,18 +168,18 @@ export const PurchaseOrderListPage: React.FC = () => {
       </div>
 
       {/* PO Master Table */}
-      <div className="rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md overflow-hidden">
+      <div className="rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md overflow-hidden">
         {isLoading ? (
-          <div className="py-16 text-center text-slate-400 text-sm">Loading purchase orders...</div>
+          <div className="py-16 text-center text-slate-500 dark:text-slate-400 text-sm">Loading purchase orders...</div>
         ) : purchaseOrders.length > 0 ? (
-          <div className="divide-y divide-slate-800/60">
+          <div className="divide-y divide-slate-200 dark:divide-slate-800/60">
             {purchaseOrders.map((po) => (
-              <div key={po.id} className="p-5 hover:bg-slate-800/20 transition-colors space-y-3">
+              <div key={po.id} className="p-5 hover:bg-slate-200/70 dark:hover:bg-slate-800/20 transition-colors space-y-3">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <span className="font-mono font-bold text-indigo-400 text-base">{po.po_number}</span>
                     <POStatusBadge status={po.status} />
-                    <span className="text-xs text-slate-400 font-mono">v{po.version}</span>
+                    <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">v{po.version}</span>
                   </div>
 
                   {/* Actions */}
@@ -235,14 +235,14 @@ export const PurchaseOrderListPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-between text-xs text-slate-400 gap-2">
+                <div className="flex flex-wrap items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-2">
                   <div className="flex items-center gap-4">
                     <span>
-                      Vendor: <strong className="text-white">{po.supplier_name}</strong>
+                      Vendor: <strong className="text-slate-900 dark:text-white">{po.supplier_name}</strong>
                     </span>
-                    <span>Store: <strong className="text-slate-300">{po.location}</strong></span>
-                    <span>Order Date: <strong className="text-slate-300">{po.order_date || "-"}</strong></span>
-                    <span>Expected: <strong className="text-slate-300">{po.expected_delivery_date || "-"}</strong></span>
+                    <span>Store: <strong className="text-slate-600 dark:text-slate-300">{po.location}</strong></span>
+                    <span>Order Date: <strong className="text-slate-600 dark:text-slate-300">{po.order_date || "-"}</strong></span>
+                    <span>Expected: <strong className="text-slate-600 dark:text-slate-300">{po.expected_delivery_date || "-"}</strong></span>
                   </div>
 
                   <div className="font-mono text-sm font-bold text-emerald-400">
@@ -251,7 +251,7 @@ export const PurchaseOrderListPage: React.FC = () => {
                 </div>
 
                 {/* Items preview table */}
-                <div className="bg-slate-950/40 rounded-xl p-3 border border-slate-800/60">
+                <div className="bg-slate-100/70 dark:bg-slate-950/40 rounded-xl p-3 border border-slate-200 dark:border-slate-800/60">
                   <table className="w-full text-left text-xs">
                     <thead>
                       <tr className="text-slate-500 text-[10px] uppercase tracking-wider">
@@ -263,14 +263,14 @@ export const PurchaseOrderListPage: React.FC = () => {
                         <th className="pb-1.5 text-right">Total</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-800/40 font-mono text-[11px]">
+                    <tbody className="divide-y divide-slate-200 dark:divide-slate-800/40 font-mono text-[11px]">
                       {po.items.map((line) => (
                         <tr key={line.id}>
-                          <td className="py-1.5 font-sans font-medium text-white">{line.item_name_snapshot}</td>
-                          <td className="py-1.5 text-slate-300">{line.quantity_ordered} {line.unit}</td>
+                          <td className="py-1.5 font-sans font-medium text-slate-900 dark:text-white">{line.item_name_snapshot}</td>
+                          <td className="py-1.5 text-slate-600 dark:text-slate-300">{line.quantity_ordered} {line.unit}</td>
                           <td className="py-1.5 text-emerald-400">{line.quantity_received} {line.unit}</td>
                           <td className="py-1.5 text-amber-400">{line.remaining_quantity} {line.unit}</td>
-                          <td className="py-1.5 text-right text-slate-400">${line.unit_cost}</td>
+                          <td className="py-1.5 text-right text-slate-500 dark:text-slate-400">${line.unit_cost}</td>
                           <td className="py-1.5 text-right font-bold text-emerald-400">${line.line_total}</td>
                         </tr>
                       ))}

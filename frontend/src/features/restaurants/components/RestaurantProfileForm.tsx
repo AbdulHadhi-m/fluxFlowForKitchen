@@ -51,29 +51,29 @@ export const RestaurantProfileForm: React.FC<{ restaurant?: Restaurant }> = ({ r
   };
 
   return (
-    <Card className="bg-slate-900/60 border-slate-800 backdrop-blur-sm">
+    <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 backdrop-blur-sm">
       <CardHeader className="pb-4">
         <div className="flex items-center gap-2">
           <Building2 className="h-5 w-5 text-blue-400" />
-          <CardTitle className="text-base font-semibold text-white">
+          <CardTitle className="text-base font-semibold text-slate-900 dark:text-white">
             General Restaurant Identity
           </CardTitle>
         </div>
-        <CardDescription className="text-xs text-slate-400">
+        <CardDescription className="text-xs text-slate-500 dark:text-slate-400">
           Configure trading names, contact coordinates, localization, and currency.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {successMessage && (
-            <div className="p-3 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs flex items-center gap-2">
+            <div className="p-3 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-600 dark:text-emerald-300 text-xs flex items-center gap-2">
               <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
               <span>{successMessage}</span>
             </div>
           )}
 
           {errorMessage && (
-            <div className="p-3 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
+            <div className="p-3 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-600 dark:text-rose-300 text-xs flex items-center gap-2">
               <AlertCircle className="h-4 w-4 shrink-0 text-rose-400" />
               <span>{errorMessage}</span>
             </div>
@@ -81,125 +81,125 @@ export const RestaurantProfileForm: React.FC<{ restaurant?: Restaurant }> = ({ r
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
             <div className="space-y-1.5">
-              <label className="text-slate-300 font-medium">Trading Name *</label>
+              <label className="text-slate-600 dark:text-slate-300 font-medium">Trading Name *</label>
               <Input
                 placeholder="e.g. Bella Italia Bistro"
                 {...register("name")}
-                className="bg-slate-950/60 border-slate-800 text-slate-100"
+                className="bg-white dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
               />
               {errors.name && <p className="text-rose-400 text-[11px]">{errors.name.message}</p>}
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-slate-300 font-medium">Legal / Corporate Name</label>
+              <label className="text-slate-600 dark:text-slate-300 font-medium">Legal / Corporate Name</label>
               <Input
                 placeholder="e.g. Bella Hospitality LLC"
                 {...register("legal_name")}
-                className="bg-slate-950/60 border-slate-800 text-slate-100"
+                className="bg-white dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-slate-300 font-medium flex items-center gap-1.5">
-                <Phone className="h-3.5 w-3.5 text-slate-400" /> Contact Phone
+              <label className="text-slate-600 dark:text-slate-300 font-medium flex items-center gap-1.5">
+                <Phone className="h-3.5 w-3.5 text-slate-500 dark:text-slate-400" /> Contact Phone
               </label>
               <Input
                 placeholder="+1 (555) 019-2834"
                 {...register("phone")}
-                className="bg-slate-950/60 border-slate-800 text-slate-100"
+                className="bg-white dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-slate-300 font-medium flex items-center gap-1.5">
-                <Mail className="h-3.5 w-3.5 text-slate-400" /> Contact Email
+              <label className="text-slate-600 dark:text-slate-300 font-medium flex items-center gap-1.5">
+                <Mail className="h-3.5 w-3.5 text-slate-500 dark:text-slate-400" /> Contact Email
               </label>
               <Input
                 type="email"
                 placeholder="operations@restaurant.com"
                 {...register("email")}
-                className="bg-slate-950/60 border-slate-800 text-slate-100"
+                className="bg-white dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
               />
               {errors.email && <p className="text-rose-400 text-[11px]">{errors.email.message}</p>}
             </div>
           </div>
 
           {/* Location details */}
-          <div className="pt-2 border-t border-slate-800/80 space-y-3">
-            <h4 className="text-xs font-semibold text-slate-200 flex items-center gap-1.5">
+          <div className="pt-2 border-t border-slate-200 dark:border-slate-800/80 space-y-3">
+            <h4 className="text-xs font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
               <MapPin className="h-3.5 w-3.5 text-blue-400" /> Physical Location & Address
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
               <div className="space-y-1.5">
-                <label className="text-slate-300 font-medium">Address Line 1</label>
+                <label className="text-slate-600 dark:text-slate-300 font-medium">Address Line 1</label>
                 <Input
                   placeholder="Street address, suite/unit"
                   {...register("address_line1")}
-                  className="bg-slate-950/60 border-slate-800 text-slate-100"
+                  className="bg-white dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-slate-300 font-medium">City</label>
+                <label className="text-slate-600 dark:text-slate-300 font-medium">City</label>
                 <Input
                   placeholder="City"
                   {...register("city")}
-                  className="bg-slate-950/60 border-slate-800 text-slate-100"
+                  className="bg-white dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-slate-300 font-medium">State / Province</label>
+                <label className="text-slate-600 dark:text-slate-300 font-medium">State / Province</label>
                 <Input
                   placeholder="State / Region"
                   {...register("state")}
-                  className="bg-slate-950/60 border-slate-800 text-slate-100"
+                  className="bg-white dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-slate-300 font-medium">Postal / ZIP Code</label>
+                <label className="text-slate-600 dark:text-slate-300 font-medium">Postal / ZIP Code</label>
                 <Input
                   placeholder="ZIP"
                   {...register("postal_code")}
-                  className="bg-slate-950/60 border-slate-800 text-slate-100"
+                  className="bg-white dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                 />
               </div>
             </div>
           </div>
 
           {/* Localization */}
-          <div className="pt-2 border-t border-slate-800/80 space-y-3">
-            <h4 className="text-xs font-semibold text-slate-200 flex items-center gap-1.5">
+          <div className="pt-2 border-t border-slate-200 dark:border-slate-800/80 space-y-3">
+            <h4 className="text-xs font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
               <Globe className="h-3.5 w-3.5 text-indigo-400" /> Regional Localization
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
               <div className="space-y-1.5">
-                <label className="text-slate-300 font-medium">Country *</label>
+                <label className="text-slate-600 dark:text-slate-300 font-medium">Country *</label>
                 <Input
                   placeholder="Country"
                   {...register("country")}
-                  className="bg-slate-950/60 border-slate-800 text-slate-100"
+                  className="bg-white dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                 />
                 {errors.country && <p className="text-rose-400 text-[11px]">{errors.country.message}</p>}
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-slate-300 font-medium">Timezone *</label>
+                <label className="text-slate-600 dark:text-slate-300 font-medium">Timezone *</label>
                 <Input
                   placeholder="e.g. America/New_York, UTC"
                   {...register("timezone")}
-                  className="bg-slate-950/60 border-slate-800 text-slate-100"
+                  className="bg-white dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                 />
                 {errors.timezone && <p className="text-rose-400 text-[11px]">{errors.timezone.message}</p>}
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-slate-300 font-medium">Currency (ISO) *</label>
+                <label className="text-slate-600 dark:text-slate-300 font-medium">Currency (ISO) *</label>
                 <Input
                   placeholder="USD, EUR, INR, GBP"
                   {...register("currency")}
-                  className="bg-slate-950/60 border-slate-800 text-slate-100 font-mono"
+                  className="bg-white dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 font-mono"
                 />
                 {errors.currency && <p className="text-rose-400 text-[11px]">{errors.currency.message}</p>}
               </div>

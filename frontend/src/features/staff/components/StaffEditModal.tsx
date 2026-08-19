@@ -84,18 +84,18 @@ export const StaffEditModal: React.FC<StaffEditModalProps> = ({ staff, isOpen, o
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden text-slate-100">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden text-slate-900 dark:text-slate-100">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2">
             <Edit className="h-5 w-5 text-blue-400" />
-            <h3 className="text-base font-semibold text-white">
+            <h3 className="text-base font-semibold text-slate-900 dark:text-white">
               Edit Staff Member &bull; {staff.employee_id}
             </h3>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800"
+            className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800"
           >
             <X className="h-4 w-4" />
           </button>
@@ -103,7 +103,7 @@ export const StaffEditModal: React.FC<StaffEditModalProps> = ({ staff, isOpen, o
 
         <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-4 text-xs">
           {errorMessage && (
-            <div className="p-3 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-300 flex items-center gap-2">
+            <div className="p-3 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-600 dark:text-rose-300 flex items-center gap-2">
               <AlertCircle className="h-4 w-4 shrink-0 text-rose-400" />
               <span>{errorMessage}</span>
             </div>
@@ -111,38 +111,38 @@ export const StaffEditModal: React.FC<StaffEditModalProps> = ({ staff, isOpen, o
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <label className="text-slate-300 font-medium">First Name</label>
+              <label className="text-slate-600 dark:text-slate-300 font-medium">First Name</label>
               <Input
                 {...register("first_name")}
-                className="bg-slate-950/60 border-slate-800 text-slate-100 text-xs"
+                className="bg-white dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs"
               />
             </div>
             <div className="space-y-1.5">
-              <label className="text-slate-300 font-medium">Last Name</label>
+              <label className="text-slate-600 dark:text-slate-300 font-medium">Last Name</label>
               <Input
                 {...register("last_name")}
-                className="bg-slate-950/60 border-slate-800 text-slate-100 text-xs"
+                className="bg-white dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs"
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-slate-300 font-medium">Phone Number</label>
+            <label className="text-slate-600 dark:text-slate-300 font-medium">Phone Number</label>
             <Input
               {...register("phone")}
-              className="bg-slate-950/60 border-slate-800 text-slate-100 text-xs"
+              className="bg-white dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs"
             />
           </div>
 
           {/* Primary Role */}
           <div className="space-y-1.5 pt-1">
-            <label className="text-slate-300 font-medium flex items-center gap-1.5">
+            <label className="text-slate-600 dark:text-slate-300 font-medium flex items-center gap-1.5">
               <Shield className="h-3.5 w-3.5 text-blue-400" />
               Primary Role *
             </label>
             <select
               {...register("primary_role")}
-              className="w-full h-9 rounded-md border border-slate-800 bg-slate-950/60 px-3 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-full h-9 rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950/60 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-blue-500"
             >
               {assignableRoles.map((role) => (
                 <option key={role.id} value={role.code}>
@@ -154,10 +154,10 @@ export const StaffEditModal: React.FC<StaffEditModalProps> = ({ staff, isOpen, o
 
           {/* Secondary Roles Multi-Select */}
           <div className="space-y-1.5 pt-1">
-            <label className="text-slate-300 font-medium block">
+            <label className="text-slate-600 dark:text-slate-300 font-medium block">
               Secondary Roles
             </label>
-            <div className="grid grid-cols-2 gap-2 p-3 rounded-lg bg-slate-950/60 border border-slate-800/80">
+            <div className="grid grid-cols-2 gap-2 p-3 rounded-lg bg-slate-100/60 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800/80">
               {assignableRoles
                 .filter((r) => r.code !== selectedPrimary)
                 .map((role) => {
@@ -165,13 +165,13 @@ export const StaffEditModal: React.FC<StaffEditModalProps> = ({ staff, isOpen, o
                   return (
                     <label
                       key={role.id}
-                      className="flex items-center gap-2 text-slate-300 cursor-pointer hover:text-white"
+                      className="flex items-center gap-2 text-slate-600 dark:text-slate-300 cursor-pointer hover:text-slate-900 dark:hover:text-white"
                     >
                       <input
                         type="checkbox"
                         checked={isChecked}
                         onChange={() => handleToggleSecondary(role.code)}
-                        className="rounded border-slate-700 bg-slate-900 text-blue-600 focus:ring-0"
+                        className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-blue-600 focus:ring-0"
                       />
                       <span className="text-xs">{role.name}</span>
                     </label>
@@ -180,13 +180,13 @@ export const StaffEditModal: React.FC<StaffEditModalProps> = ({ staff, isOpen, o
             </div>
           </div>
 
-          <div className="pt-3 flex items-center justify-end gap-2 border-t border-slate-800">
+          <div className="pt-3 flex items-center justify-end gap-2 border-t border-slate-200 dark:border-slate-800">
             <Button
               type="button"
               variant="outline"
               size="sm"
               onClick={onClose}
-              className="border-slate-800 hover:bg-slate-800 text-xs"
+              className="border-slate-200 dark:border-slate-800 hover:bg-slate-200 dark:hover:bg-slate-800 text-xs"
             >
               Cancel
             </Button>

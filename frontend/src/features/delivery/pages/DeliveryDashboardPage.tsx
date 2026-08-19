@@ -34,10 +34,10 @@ export const DeliveryDashboardPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black tracking-tight text-white flex items-center gap-2.5">
+          <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
             <Truck className="w-7 h-7 text-amber-500" /> Delivery & Dispatch Management
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Real-time courier dispatching, geographic delivery zones, and doorstep order fulfillment
           </p>
         </div>
@@ -45,7 +45,7 @@ export const DeliveryDashboardPage: React.FC = () => {
         <div className="flex items-center gap-3">
           <button
             onClick={handleRefresh}
-            className="p-2.5 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-white transition-colors"
+            className="p-2.5 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
             title="Refresh Deliveries"
           >
             <RefreshCw className="w-4 h-4" />
@@ -58,13 +58,13 @@ export const DeliveryDashboardPage: React.FC = () => {
           </Link>
           <Link
             to="/delivery/zones"
-            className="px-4 py-2.5 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-white font-bold text-xs flex items-center gap-2 transition-colors"
+            className="px-4 py-2.5 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white font-bold text-xs flex items-center gap-2 transition-colors"
           >
             <MapPin className="w-4 h-4 text-amber-500" /> Delivery Zones
           </Link>
           <Link
             to="/delivery/drivers"
-            className="px-4 py-2.5 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-white font-bold text-xs flex items-center gap-2 transition-colors"
+            className="px-4 py-2.5 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white font-bold text-xs flex items-center gap-2 transition-colors"
           >
             <Users className="w-4 h-4 text-amber-500" /> Couriers
           </Link>
@@ -73,9 +73,9 @@ export const DeliveryDashboardPage: React.FC = () => {
 
       {/* KPI Metrics */}
       {loadingMetrics ? (
-        <div className="p-8 text-center bg-slate-900 border border-slate-800 rounded-3xl">
+        <div className="p-8 text-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl">
           <Loader2 className="w-6 h-6 animate-spin text-amber-500 mx-auto mb-2" />
-          <p className="text-xs text-slate-400">Loading delivery fleet metrics...</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Loading delivery fleet metrics...</p>
         </div>
       ) : metrics ? (
         <DeliveryMetricsCards metrics={metrics} />
@@ -84,7 +84,7 @@ export const DeliveryDashboardPage: React.FC = () => {
       {/* Live Dispatch Queue */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-base font-bold text-white flex items-center gap-2">
+          <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
             Active Fulfillment Queue ({activeDeliveries.length})
           </h2>
           <Link
@@ -96,9 +96,9 @@ export const DeliveryDashboardPage: React.FC = () => {
         </div>
 
         {loadingDeliveries ? (
-          <div className="p-12 text-center bg-slate-900 border border-slate-800 rounded-3xl">
+          <div className="p-12 text-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl">
             <Loader2 className="w-6 h-6 animate-spin text-amber-500 mx-auto mb-2" />
-            <p className="text-xs text-slate-400">Loading delivery orders...</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Loading delivery orders...</p>
           </div>
         ) : (
           <DispatchTable

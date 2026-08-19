@@ -21,9 +21,9 @@ export const MarketingDashboardPage: React.FC = () => {
             <div className="p-2 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-600 text-white shadow-lg shadow-indigo-600/30">
               <Sparkles className="h-5 w-5" />
             </div>
-            <h1 className="text-2xl font-black text-white tracking-tight">Marketing & Promotions</h1>
+            <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Marketing & Promotions</h1>
           </div>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500 dark:text-slate-400">
             Automated discount rules, customer segments, voucher codes, and campaign broadcasts.
           </p>
         </div>
@@ -46,14 +46,14 @@ export const MarketingDashboardPage: React.FC = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <Link
           to="/marketing/promotions"
-          className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-indigo-500/50 transition-all flex items-center justify-between group"
+          className="p-3.5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-indigo-500/50 transition-all flex items-center justify-between group"
         >
           <div className="flex items-center gap-2.5">
             <div className="p-2 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 group-hover:scale-110 transition-transform">
               <Tag className="h-4 w-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-white group-hover:text-indigo-300 transition-colors">Promotions</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">Promotions</div>
               <div className="text-[10px] text-slate-500">Discount rules & caps</div>
             </div>
           </div>
@@ -62,14 +62,14 @@ export const MarketingDashboardPage: React.FC = () => {
 
         <Link
           to="/marketing/coupons"
-          className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-violet-500/50 transition-all flex items-center justify-between group"
+          className="p-3.5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-violet-500/50 transition-all flex items-center justify-between group"
         >
           <div className="flex items-center gap-2.5">
             <div className="p-2 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 group-hover:scale-110 transition-transform">
               <Gift className="h-4 w-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-white group-hover:text-violet-300 transition-colors">Coupons</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-300 transition-colors">Coupons</div>
               <div className="text-[10px] text-slate-500">Single & bulk vouchers</div>
             </div>
           </div>
@@ -78,14 +78,14 @@ export const MarketingDashboardPage: React.FC = () => {
 
         <Link
           to="/marketing/segments"
-          className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-pink-500/50 transition-all flex items-center justify-between group"
+          className="p-3.5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-pink-500/50 transition-all flex items-center justify-between group"
         >
           <div className="flex items-center gap-2.5">
             <div className="p-2 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-400 group-hover:scale-110 transition-transform">
               <Users className="h-4 w-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-white group-hover:text-pink-300 transition-colors">Segments</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-300 transition-colors">Segments</div>
               <div className="text-[10px] text-slate-500">Audience targeting</div>
             </div>
           </div>
@@ -94,14 +94,14 @@ export const MarketingDashboardPage: React.FC = () => {
 
         <Link
           to="/marketing/campaigns"
-          className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-cyan-500/50 transition-all flex items-center justify-between group"
+          className="p-3.5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-cyan-500/50 transition-all flex items-center justify-between group"
         >
           <div className="flex items-center gap-2.5">
             <div className="p-2 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:scale-110 transition-transform">
               <Send className="h-4 w-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors">Campaigns</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">Campaigns</div>
               <div className="text-[10px] text-slate-500">Broadcasts & alerts</div>
             </div>
           </div>
@@ -115,11 +115,11 @@ export const MarketingDashboardPage: React.FC = () => {
       {/* Featured Active Promotions Section */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h3 className="text-sm font-bold text-white flex items-center gap-2">
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <Tag className="h-4 w-4 text-indigo-400" />
             <span>Currently Active Promotions</span>
           </h3>
-          <Link to="/marketing/promotions" className="text-xs text-indigo-400 hover:text-indigo-300 font-semibold">
+          <Link to="/marketing/promotions" className="text-xs text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 font-semibold">
             View All ({promotions?.length ?? 0}) →
           </Link>
         </div>
@@ -127,11 +127,11 @@ export const MarketingDashboardPage: React.FC = () => {
         {isPromosLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-48 rounded-2xl bg-slate-900/40 border border-slate-800 animate-pulse" />
+              <div key={i} className="h-48 rounded-2xl bg-slate-100/60 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 animate-pulse" />
             ))}
           </div>
         ) : activePromos.length === 0 ? (
-          <div className="py-8 text-center rounded-2xl bg-slate-900/40 border border-slate-800 text-xs text-slate-500">
+          <div className="py-8 text-center rounded-2xl bg-slate-100/70 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 text-xs text-slate-500">
             No promotions are currently active. Click "Create Promotion" above to launch one.
           </div>
         ) : (

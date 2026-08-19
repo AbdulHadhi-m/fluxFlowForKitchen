@@ -20,8 +20,8 @@ export const PosTableSelector: React.FC<PosTableSelectorProps> = ({
 
   return (
     <div className="flex items-center gap-2">
-      <div className="flex items-center gap-1.5 text-xs text-slate-400">
-        <LayoutGrid className="h-3.5 w-3.5 text-slate-400" />
+      <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+        <LayoutGrid className="h-3.5 w-3.5 text-slate-500 dark:text-slate-400" />
         <span className="hidden sm:inline">Table:</span>
       </div>
 
@@ -38,7 +38,7 @@ export const PosTableSelector: React.FC<PosTableSelectorProps> = ({
             }
           }
         }}
-        className="h-8 rounded-lg border border-slate-800 bg-slate-900 px-2.5 text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+        className="h-8 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-2.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
       >
         <option value="">Takeaway / No Table</option>
         {eligibleTables.map((tbl) => (

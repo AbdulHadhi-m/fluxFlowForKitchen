@@ -48,9 +48,9 @@ export const ReportsDashboardPage: React.FC = () => {
             <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
               <BarChart3 className="h-4 w-4" />
             </div>
-            <h1 className="text-xl font-black tracking-tight text-white">Business Analytics & Reports</h1>
+            <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Business Analytics & Reports</h1>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Real-time executive performance, revenue summaries, popular menu rankings, and operational metrics.
           </p>
         </div>
@@ -125,30 +125,30 @@ export const ReportsDashboardPage: React.FC = () => {
         {/* Operational Health Quick Cards */}
         <div className="space-y-4">
           {/* Inventory Health */}
-          <Card className="bg-slate-900/60 border-slate-800">
+          <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800">
             <CardHeader className="pb-2 flex flex-row items-center justify-between">
-              <CardTitle className="text-sm font-bold text-white flex items-center gap-2">
+              <CardTitle className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <Boxes className="h-4 w-4 text-indigo-400" />
                 Inventory Stock Status
               </CardTitle>
               <Link to="/inventory">
-                <Button variant="ghost" size="sm" className="h-6 text-[10px] text-indigo-400 hover:text-white gap-1 px-1.5">
+                <Button variant="ghost" size="sm" className="h-6 text-[10px] text-indigo-400 hover:text-slate-900 dark:hover:text-white gap-1 px-1.5">
                   View <ArrowRight className="h-2.5 w-2.5" />
                 </Button>
               </Link>
             </CardHeader>
             <CardContent className="space-y-2.5 pt-1 text-xs">
-              <div className="flex justify-between items-center bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
-                <span className="text-slate-400">Total Active Items:</span>
-                <span className="font-mono font-bold text-white">{inventory?.total_items ?? 0}</span>
+              <div className="flex justify-between items-center bg-white dark:bg-slate-950 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800/80">
+                <span className="text-slate-500 dark:text-slate-400">Total Active Items:</span>
+                <span className="font-mono font-bold text-slate-900 dark:text-white">{inventory?.total_items ?? 0}</span>
               </div>
-              <div className="flex justify-between items-center bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <div className="flex justify-between items-center bg-white dark:bg-slate-950 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800/80">
                 <span className="flex items-center gap-1.5 text-amber-400 font-medium">
                   <AlertTriangle className="h-3.5 w-3.5" /> Low Stock Alerts:
                 </span>
                 <span className="font-mono font-bold text-amber-400">{inventory?.low_stock ?? 0}</span>
               </div>
-              <div className="flex justify-between items-center bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <div className="flex justify-between items-center bg-white dark:bg-slate-950 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800/80">
                 <span className="text-rose-400 font-medium">Out of Stock Items:</span>
                 <span className="font-mono font-bold text-rose-400">{inventory?.out_of_stock ?? 0}</span>
               </div>
@@ -156,25 +156,25 @@ export const ReportsDashboardPage: React.FC = () => {
           </Card>
 
           {/* Procurement Health */}
-          <Card className="bg-slate-900/60 border-slate-800">
+          <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800">
             <CardHeader className="pb-2 flex flex-row items-center justify-between">
-              <CardTitle className="text-sm font-bold text-white flex items-center gap-2">
+              <CardTitle className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <Truck className="h-4 w-4 text-purple-400" />
                 Procurement & POs
               </CardTitle>
               <Link to="/procurement/orders">
-                <Button variant="ghost" size="sm" className="h-6 text-[10px] text-purple-400 hover:text-white gap-1 px-1.5">
+                <Button variant="ghost" size="sm" className="h-6 text-[10px] text-purple-400 hover:text-slate-900 dark:hover:text-white gap-1 px-1.5">
                   View <ArrowRight className="h-2.5 w-2.5" />
                 </Button>
               </Link>
             </CardHeader>
             <CardContent className="space-y-2.5 pt-1 text-xs">
-              <div className="flex justify-between items-center bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
-                <span className="text-slate-400">Open Purchase Orders:</span>
+              <div className="flex justify-between items-center bg-white dark:bg-slate-950 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800/80">
+                <span className="text-slate-500 dark:text-slate-400">Open Purchase Orders:</span>
                 <span className="font-mono font-bold text-purple-400">{procurement?.open_purchase_orders ?? 0}</span>
               </div>
-              <div className="flex justify-between items-center bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
-                <span className="text-slate-400">Pending Approval:</span>
+              <div className="flex justify-between items-center bg-white dark:bg-slate-950 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800/80">
+                <span className="text-slate-500 dark:text-slate-400">Pending Approval:</span>
                 <span className="font-mono font-bold text-blue-400">{procurement?.pending_approval ?? 0}</span>
               </div>
             </CardContent>

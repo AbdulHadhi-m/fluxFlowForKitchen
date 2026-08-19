@@ -18,28 +18,28 @@ const STATUS_CONFIG: Record<
   AVAILABLE: {
     label: "Available",
     bg: "bg-emerald-500/10",
-    text: "text-emerald-300",
+    text: "text-emerald-600 dark:text-emerald-300",
     border: "border-emerald-500/30",
     icon: CheckCircle2,
   },
   OCCUPIED: {
     label: "Occupied",
     bg: "bg-blue-500/10",
-    text: "text-blue-300",
+    text: "text-blue-600 dark:text-blue-300",
     border: "border-blue-500/30",
     icon: Clock,
   },
   RESERVED: {
     label: "Reserved",
     bg: "bg-amber-500/10",
-    text: "text-amber-300",
+    text: "text-amber-600 dark:text-amber-300",
     border: "border-amber-500/30",
     icon: AlertCircle,
   },
   OUT_OF_SERVICE: {
     label: "Out of Service",
     bg: "bg-rose-500/10",
-    text: "text-rose-300",
+    text: "text-rose-600 dark:text-rose-300",
     border: "border-rose-500/30",
     icon: Ban,
   },
@@ -51,25 +51,25 @@ export const TableCard: React.FC<TableCardProps> = ({ table, onEdit, onStatusCli
 
   return (
     <div
-      className={`rounded-2xl border ${statusInfo.border} bg-slate-900/60 p-4 backdrop-blur-sm transition-all hover:border-slate-700 flex flex-col justify-between gap-3`}
+      className={`rounded-2xl border ${statusInfo.border} bg-white dark:bg-slate-900/60 p-4 backdrop-blur-sm transition-all hover:border-slate-300 dark:hover:border-slate-700 flex flex-col justify-between gap-3`}
     >
       <div className="flex items-start justify-between gap-2">
         <div>
-          <h4 className="text-base font-bold text-white flex items-center gap-1.5">
+          <h4 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
             {table.name}
           </h4>
-          <span className="text-[11px] text-slate-400 font-medium">
+          <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
             {table.section || "Main Dining"}
           </span>
         </div>
 
-        <Badge variant="outline" className="text-[11px] border-slate-800 bg-slate-950/80 text-slate-300 gap-1">
-          <Users className="h-3 w-3 text-slate-400" />
+        <Badge variant="outline" className="text-[11px] border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950/80 text-slate-600 dark:text-slate-300 gap-1">
+          <Users className="h-3 w-3 text-slate-500 dark:text-slate-400" />
           {table.capacity}
         </Badge>
       </div>
 
-      <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between gap-2">
+      <div className="pt-2 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between gap-2">
         <button
           type="button"
           onClick={() => onStatusClick(table)}
@@ -86,7 +86,7 @@ export const TableCard: React.FC<TableCardProps> = ({ table, onEdit, onStatusCli
             variant="ghost"
             size="sm"
             onClick={() => onEdit(table)}
-            className="h-7 w-7 p-0 text-slate-400 hover:text-white hover:bg-slate-800"
+            className="h-7 w-7 p-0 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800"
             title="Edit table configuration"
           >
             <Edit2 className="h-3.5 w-3.5" />

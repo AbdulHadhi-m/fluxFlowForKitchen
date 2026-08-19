@@ -66,25 +66,25 @@ export const CreateReservationModal: React.FC<CreateReservationModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md shadow-2xl p-6 space-y-4 text-slate-100 animate-in zoom-in-95">
-        <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md shadow-2xl p-6 space-y-4 text-slate-900 dark:text-slate-100 animate-in zoom-in-95">
+        <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
               <CalendarPlus className="h-4 w-4" />
             </div>
-            <h3 className="text-sm font-bold text-white">Book Table Reservation</h3>
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">Book Table Reservation</h3>
           </div>
-          <button onClick={onClose} className="text-slate-500 hover:text-white">
+          <button onClick={onClose} className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
             <X className="h-4 w-4" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-slate-300">Customer *</label>
+            <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Customer *</label>
             <select
               {...register("customer")}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500"
+              className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
             >
               <option value="">Select a customer...</option>
               {customers.map((c) => (
@@ -98,50 +98,50 @@ export const CreateReservationModal: React.FC<CreateReservationModalProps> = ({
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-slate-300">Date *</label>
+              <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Date *</label>
               <Input
                 type="date"
                 {...register("reservation_date")}
-                className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+                className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-slate-300">Time *</label>
+              <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Time *</label>
               <Input
                 type="time"
                 {...register("reservation_time")}
-                className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+                className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
               />
             </div>
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-slate-300">Party Size (Guests) *</label>
+            <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Party Size (Guests) *</label>
             <Input
               type="number"
               {...register("party_size")}
-              className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+              className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
             />
             {errors.party_size && <span className="text-[10px] text-rose-400">{errors.party_size.message}</span>}
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-semibold text-slate-300">Special Notes & Seating Requests</label>
+            <label className="text-xs font-semibold text-slate-600 dark:text-slate-300">Special Notes & Seating Requests</label>
             <Input
               {...register("special_requests")}
               placeholder="e.g. Birthday celebration, window table"
-              className="bg-slate-950 border-slate-800 text-xs text-slate-200"
+              className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200"
             />
           </div>
 
-          <div className="flex justify-end gap-2 pt-3 border-t border-slate-800">
+          <div className="flex justify-end gap-2 pt-3 border-t border-slate-200 dark:border-slate-800">
             <Button
               type="button"
               variant="outline"
               size="sm"
               onClick={onClose}
-              className="border-slate-800 text-slate-300 hover:bg-slate-800 text-xs"
+              className="border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 text-xs"
             >
               Cancel
             </Button>

@@ -43,15 +43,15 @@ export const LoginForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       {errorMessage && (
-        <div className="p-3 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
+        <div className="p-3 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-600 dark:text-rose-300 text-xs flex items-center gap-2">
           <AlertCircle className="h-4 w-4 shrink-0 text-rose-400" />
           <span>{errorMessage}</span>
         </div>
       )}
 
       <div className="space-y-1.5">
-        <label className="text-xs font-medium text-slate-300 flex items-center gap-1.5">
-          <Mail className="h-3.5 w-3.5 text-slate-400" />
+        <label className="text-xs font-medium text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
+          <Mail className="h-3.5 w-3.5 text-slate-500 dark:text-slate-400" />
           Email Address
         </label>
         <Input
@@ -59,7 +59,7 @@ export const LoginForm: React.FC = () => {
           placeholder="name@restaurant.com"
           {...register("email")}
           disabled={isLoggingIn}
-          className="bg-slate-900/60 border-slate-800 focus-visible:ring-blue-500 text-slate-100"
+          className="bg-white dark:bg-slate-900/60 border-slate-300 dark:border-slate-800 focus-visible:ring-blue-500 text-slate-900 dark:text-slate-100"
         />
         {errors.email && (
           <p className="text-xs text-rose-400">{errors.email.message}</p>
@@ -68,13 +68,13 @@ export const LoginForm: React.FC = () => {
 
       <div className="space-y-1.5">
         <div className="flex items-center justify-between">
-          <label className="text-xs font-medium text-slate-300 flex items-center gap-1.5">
-            <Lock className="h-3.5 w-3.5 text-slate-400" />
+          <label className="text-xs font-medium text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
+            <Lock className="h-3.5 w-3.5 text-slate-500 dark:text-slate-400" />
             Password
           </label>
           <Link
             to="/forgot-password"
-            className="text-xs text-blue-400 hover:text-blue-300 hover:underline"
+            className="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 hover:underline"
           >
             Forgot password?
           </Link>
@@ -84,7 +84,7 @@ export const LoginForm: React.FC = () => {
           placeholder="••••••••"
           {...register("password")}
           disabled={isLoggingIn}
-          className="bg-slate-900/60 border-slate-800 focus-visible:ring-blue-500 text-slate-100"
+          className="bg-white dark:bg-slate-900/60 border-slate-300 dark:border-slate-800 focus-visible:ring-blue-500 text-slate-900 dark:text-slate-100"
         />
         {errors.password && (
           <p className="text-xs text-rose-400">{errors.password.message}</p>

@@ -4,6 +4,7 @@ import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useActiveRole } from "@/features/authorization/hooks/useActiveRole";
 import { RoleSwitcher } from "@/features/authorization/components/RoleSwitcher";
 import { NotificationBell } from "@/features/notifications/components/NotificationBell";
+import { ThemeToggle } from "@/components/common/ThemeToggle";
 import { CommandMenu } from "./CommandMenu";
 import { useUIStore } from "@/stores/uiStore";
 import {
@@ -192,15 +193,15 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
   })).filter((group) => group.items.length > 0);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-indigo-500/30">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col selection:bg-indigo-500/30 transition-colors duration-200">
       {/* Top Navigation Bar */}
-      <header className="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 px-4 h-14 flex items-center justify-between gap-3">
+      <header className="sticky top-0 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800/80 px-4 h-14 flex items-center justify-between gap-3 transition-colors duration-200">
         <div className="flex items-center gap-3">
           {/* Mobile drawer toggle */}
           <button
             onClick={() => setMobileNavOpen(true)}
             aria-label="Open mobile menu"
-            className="md:hidden p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-850 focus:outline-none"
+            className="md:hidden p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-850 focus:outline-none"
           >
             <Menu className="h-5 w-5" />
           </button>
@@ -211,8 +212,8 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
               <Sparkles className="h-4 w-4" />
             </div>
             <div className="hidden sm:block">
-              <span className="text-sm font-black tracking-tight text-white block leading-none">Fluxiflow</span>
-              <span className="text-[10px] text-indigo-400 font-bold uppercase tracking-wider">Kitchen Suite</span>
+              <span className="text-sm font-black tracking-tight text-slate-900 dark:text-white block leading-none">Fluxiflow</span>
+              <span className="text-[10px] text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider">Kitchen Suite</span>
             </div>
           </Link>
         </div>
@@ -220,19 +221,22 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
         {/* Global Search Trigger (Ctrl+K) */}
         <button
           onClick={() => setCommandMenuOpen(true)}
-          className="hidden sm:flex items-center gap-2 bg-slate-900 border border-slate-800/80 hover:border-slate-700 px-3 py-1.5 rounded-xl text-xs text-slate-400 hover:text-slate-200 transition-colors w-64 justify-between"
+          className="hidden sm:flex items-center gap-2 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 px-3 py-1.5 rounded-xl text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition-colors w-64 justify-between"
         >
           <div className="flex items-center gap-2">
-            <Search className="h-3.5 w-3.5 text-slate-500" />
+            <Search className="h-3.5 w-3.5 text-slate-400 dark:text-slate-500" />
             <span>Search or jump to...</span>
           </div>
-          <kbd className="font-mono text-[10px] bg-slate-950 border border-slate-800 px-1.5 py-0.5 rounded text-slate-500">
+          <kbd className="font-mono text-[10px] bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 px-1.5 py-0.5 rounded text-slate-500">
             Ctrl+K
           </kbd>
         </button>
 
         {/* Right Header Controls */}
         <div className="flex items-center gap-2.5">
+          {/* Theme Toggle (Dark / Light / System) */}
+          <ThemeToggle />
+
           {/* Notifications */}
           <NotificationBell />
 
@@ -244,7 +248,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
             onClick={() => logout()}
             disabled={isLoggingOut}
             title="Sign Out"
-            className="p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-xl transition-colors focus:outline-none"
+            className="p-2 text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10 rounded-xl transition-colors focus:outline-none"
           >
             <LogOut className="h-4 w-4" />
           </button>
@@ -254,7 +258,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
       <div className="flex flex-1 overflow-hidden">
         {/* Desktop Sidebar */}
         <aside
-          className={`hidden md:flex flex-col border-r border-slate-800/80 bg-slate-950/60 backdrop-blur-sm transition-all duration-300 ${
+          className={`hidden md:flex flex-col border-r border-slate-200 dark:border-slate-800/80 bg-white/70 dark:bg-slate-950/60 backdrop-blur-sm transition-all duration-300 ${
             isSidebarCollapsed ? "w-16" : "w-60"
           }`}
         >
@@ -263,7 +267,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
             {filteredNavGroups.map((group) => (
               <div key={group.group} className="space-y-1">
                 {!isSidebarCollapsed && (
-                  <div className="text-[10px] font-black uppercase text-slate-500 tracking-wider px-2.5 py-1">
+                  <div className="text-[10px] font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider px-2.5 py-1">
                     {group.group}
                   </div>
                 )}
@@ -279,7 +283,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
                       className={`flex items-center gap-3 px-2.5 py-2 rounded-xl text-xs font-semibold transition-all ${
                         active
                           ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30"
-                          : "text-slate-400 hover:text-white hover:bg-slate-900"
+                          : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900"
                       }`}
                     >
                       <Icon className="h-4 w-4 shrink-0" />
@@ -292,10 +296,10 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
           </div>
 
           {/* Collapse Sidebar Button */}
-          <div className="p-2 border-t border-slate-800/80 flex justify-end">
+          <div className="p-2 border-t border-slate-200 dark:border-slate-800/80 flex justify-end">
             <button
               onClick={toggleSidebar}
-              className="p-1.5 rounded-lg text-slate-500 hover:text-white hover:bg-slate-900 transition-colors"
+              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors"
             >
               {isSidebarCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
             </button>
@@ -308,21 +312,21 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
             {/* Backdrop */}
             <div
               onClick={() => setMobileNavOpen(false)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in"
+              className="fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-sm animate-in fade-in"
             />
 
             {/* Drawer */}
-            <div className="relative w-72 bg-slate-950 border-r border-slate-800 p-4 space-y-6 flex flex-col z-50 h-full overflow-y-auto animate-in slide-in-from-left duration-200">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div className="relative w-72 bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 p-4 space-y-6 flex flex-col z-50 h-full overflow-y-auto animate-in slide-in-from-left duration-200">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
                 <div className="flex items-center gap-2">
                   <div className="h-7 w-7 rounded-lg bg-indigo-600 flex items-center justify-center text-white">
                     <Sparkles className="h-3.5 w-3.5" />
                   </div>
-                  <span className="font-bold text-sm text-white">Fluxiflow</span>
+                  <span className="font-bold text-sm text-slate-900 dark:text-white">Fluxiflow</span>
                 </div>
                 <button
                   onClick={() => setMobileNavOpen(false)}
-                  className="text-slate-400 hover:text-white p-1 rounded-lg"
+                  className="text-slate-400 hover:text-slate-900 dark:hover:text-white p-1 rounded-lg"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -331,7 +335,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
               <div className="space-y-4 flex-1">
                 {filteredNavGroups.map((group) => (
                   <div key={group.group} className="space-y-1">
-                    <div className="text-[10px] font-black uppercase text-slate-500 tracking-wider px-2 py-1">
+                    <div className="text-[10px] font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider px-2 py-1">
                       {group.group}
                     </div>
                     {group.items.map((item) => {
@@ -346,7 +350,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
                           className={`flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
                             active
                               ? "bg-indigo-600 text-white"
-                              : "text-slate-400 hover:text-white hover:bg-slate-900"
+                              : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900"
                           }`}
                         >
                           <Icon className="h-4 w-4 shrink-0" />

@@ -41,22 +41,22 @@ export const ForgotPasswordForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       {successMessage && (
-        <div className="p-3 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs flex items-start gap-2">
+        <div className="p-3 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-600 dark:text-emerald-300 text-xs flex items-start gap-2">
           <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400 mt-0.5" />
           <span>{successMessage}</span>
         </div>
       )}
 
       {errorMessage && (
-        <div className="p-3 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
+        <div className="p-3 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-600 dark:text-rose-300 text-xs flex items-center gap-2">
           <AlertCircle className="h-4 w-4 shrink-0 text-rose-400" />
           <span>{errorMessage}</span>
         </div>
       )}
 
       <div className="space-y-1.5">
-        <label className="text-xs font-medium text-slate-300 flex items-center gap-1.5">
-          <Mail className="h-3.5 w-3.5 text-slate-400" />
+        <label className="text-xs font-medium text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
+          <Mail className="h-3.5 w-3.5 text-slate-500 dark:text-slate-400" />
           Registered Email
         </label>
         <Input
@@ -64,7 +64,7 @@ export const ForgotPasswordForm: React.FC = () => {
           placeholder="name@restaurant.com"
           {...register("email")}
           disabled={isSubmittingForgot}
-          className="bg-slate-900/60 border-slate-800 focus-visible:ring-blue-500 text-slate-100"
+          className="bg-white dark:bg-slate-900/60 border-slate-300 dark:border-slate-800 focus-visible:ring-blue-500 text-slate-900 dark:text-slate-100"
         />
         {errors.email && (
           <p className="text-xs text-rose-400">{errors.email.message}</p>
@@ -89,7 +89,7 @@ export const ForgotPasswordForm: React.FC = () => {
       <div className="text-center pt-2">
         <Link
           to="/login"
-          className="text-xs text-slate-400 hover:text-slate-200 inline-flex items-center gap-1.5"
+          className="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 inline-flex items-center gap-1.5"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
           Back to Login

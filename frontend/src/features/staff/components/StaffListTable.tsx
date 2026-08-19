@@ -28,9 +28,9 @@ export const StaffListTable: React.FC<StaffListTableProps> = ({
 }) => {
   if (staffList.length === 0) {
     return (
-      <div className="py-16 text-center border border-dashed border-slate-800 rounded-xl bg-slate-900/30">
+      <div className="py-16 text-center border border-dashed border-slate-200 dark:border-slate-800 rounded-xl bg-slate-100/70 dark:bg-slate-900/30">
         <User className="h-10 w-10 text-slate-600 mx-auto mb-3" />
-        <h3 className="text-sm font-medium text-slate-300">No staff members found</h3>
+        <h3 className="text-sm font-medium text-slate-600 dark:text-slate-300">No staff members found</h3>
         <p className="text-xs text-slate-500 max-w-sm mx-auto mt-1">
           No employees match your current filter criteria or none have been provisioned yet.
         </p>
@@ -39,9 +39,9 @@ export const StaffListTable: React.FC<StaffListTableProps> = ({
   }
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/50 backdrop-blur-sm">
-      <table className="w-full text-left text-xs text-slate-300">
-        <thead className="bg-slate-950/80 text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-800">
+    <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 backdrop-blur-sm">
+      <table className="w-full text-left text-xs text-slate-600 dark:text-slate-300">
+        <thead className="bg-slate-100 dark:bg-slate-950/80 text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
           <tr>
             <th className="py-3.5 px-4 font-semibold">Employee</th>
             <th className="py-3.5 px-4 font-semibold">Contact</th>
@@ -51,21 +51,21 @@ export const StaffListTable: React.FC<StaffListTableProps> = ({
             <th className="py-3.5 px-4 font-semibold text-right">Actions</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-800/60 font-normal">
+        <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60 font-normal">
           {staffList.map((staff) => {
             const isStaffActive = staff.status === "ACTIVE";
             return (
-              <tr key={staff.id} className="hover:bg-slate-800/40 transition-colors">
+              <tr key={staff.id} className="hover:bg-slate-200/70 dark:hover:bg-slate-800/40 transition-colors">
                 <td className="py-3 px-4">
                   <div className="flex items-center gap-2.5">
                     <div className="h-8 w-8 rounded-lg bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-semibold text-xs">
                       {staff.first_name?.[0] || staff.email[0].toUpperCase()}
                     </div>
                     <div>
-                      <div className="font-medium text-white flex items-center gap-1.5">
+                      <div className="font-medium text-slate-900 dark:text-white flex items-center gap-1.5">
                         {staff.display_name}
                       </div>
-                      <div className="text-[11px] font-mono text-slate-400">
+                      <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
                         {staff.employee_id}
                       </div>
                     </div>
@@ -74,12 +74,12 @@ export const StaffListTable: React.FC<StaffListTableProps> = ({
 
                 <td className="py-3 px-4">
                   <div className="space-y-0.5 text-[11px]">
-                    <div className="flex items-center gap-1 text-slate-300">
+                    <div className="flex items-center gap-1 text-slate-600 dark:text-slate-300">
                       <Mail className="h-3 w-3 text-slate-500" />
                       {staff.email}
                     </div>
                     {staff.phone && (
-                      <div className="flex items-center gap-1 text-slate-400">
+                      <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400">
                         <Phone className="h-3 w-3 text-slate-500" />
                         {staff.phone}
                       </div>
@@ -88,7 +88,7 @@ export const StaffListTable: React.FC<StaffListTableProps> = ({
                 </td>
 
                 <td className="py-3 px-4">
-                  <Badge variant="outline" className="text-[10px] font-semibold border-blue-500/30 bg-blue-500/10 text-blue-300">
+                  <Badge variant="outline" className="text-[10px] font-semibold border-blue-500/30 bg-blue-500/10 text-blue-600 dark:text-blue-300">
                     <Shield className="h-3 w-3 mr-1" />
                     {staff.primary_role.name}
                   </Badge>
@@ -101,7 +101,7 @@ export const StaffListTable: React.FC<StaffListTableProps> = ({
                         <Badge
                           key={role.id}
                           variant="outline"
-                          className="text-[10px] border-slate-800 bg-slate-900 text-slate-400 py-0"
+                          className="text-[10px] border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 py-0"
                         >
                           {role.name}
                         </Badge>
@@ -131,7 +131,7 @@ export const StaffListTable: React.FC<StaffListTableProps> = ({
                         variant="ghost"
                         size="sm"
                         onClick={() => onEdit(staff)}
-                        className="h-7 px-2 text-slate-300 hover:text-white hover:bg-slate-800 text-xs"
+                        className="h-7 px-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 text-xs"
                       >
                         <Edit2 className="h-3.5 w-3.5 mr-1" /> Edit
                       </Button>
@@ -143,7 +143,7 @@ export const StaffListTable: React.FC<StaffListTableProps> = ({
                           variant="ghost"
                           size="sm"
                           onClick={() => onDisable(staff)}
-                          className="h-7 px-2 text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 text-xs"
+                          className="h-7 px-2 text-rose-400 hover:text-rose-600 dark:hover:text-rose-300 hover:bg-rose-500/10 text-xs"
                         >
                           <UserX className="h-3.5 w-3.5 mr-1" /> Disable
                         </Button>
@@ -154,7 +154,7 @@ export const StaffListTable: React.FC<StaffListTableProps> = ({
                           variant="ghost"
                           size="sm"
                           onClick={() => onReactivate(staff)}
-                          className="h-7 px-2 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 text-xs"
+                          className="h-7 px-2 text-emerald-400 hover:text-emerald-600 dark:hover:text-emerald-300 hover:bg-emerald-500/10 text-xs"
                         >
                           <UserCheck className="h-3.5 w-3.5 mr-1" /> Reactivate
                         </Button>

@@ -10,9 +10,9 @@ interface PopularItemsTableProps {
 
 export const PopularItemsTable: React.FC<PopularItemsTableProps> = ({ items }) => {
   return (
-    <Card className="bg-slate-900/60 border-slate-800">
+    <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800">
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-bold text-white flex items-center gap-2">
+        <CardTitle className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
           <Award className="h-4 w-4 text-amber-400" />
           Top-Selling Dishes
         </CardTitle>
@@ -25,7 +25,7 @@ export const PopularItemsTable: React.FC<PopularItemsTableProps> = ({ items }) =
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="text-slate-400 border-b border-slate-800/80 font-semibold">
+              <thead className="text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800/80 font-semibold">
                 <tr>
                   <th className="pb-2 pl-1">#</th>
                   <th className="pb-2">Item Name</th>
@@ -34,22 +34,22 @@ export const PopularItemsTable: React.FC<PopularItemsTableProps> = ({ items }) =
                   <th className="pb-2 text-right pr-1">Total Revenue</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/40 text-slate-300">
+              <tbody className="divide-y divide-slate-200 dark:divide-slate-800/40 text-slate-600 dark:text-slate-300">
                 {items.map((item, idx) => (
-                  <tr key={idx} className="hover:bg-slate-800/20">
+                  <tr key={idx} className="hover:bg-slate-200/70 dark:hover:bg-slate-800/20">
                     <td className="py-2.5 pl-1">
-                      <Badge className={idx === 0 ? "bg-amber-500/20 text-amber-300 border-amber-500/30 text-[10px]" : "bg-slate-800 text-slate-400 text-[10px]"}>
+                      <Badge className={idx === 0 ? "bg-amber-500/20 text-amber-600 dark:text-amber-300 border-amber-500/30 text-[10px]" : "bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[10px]"}>
                         #{idx + 1}
                       </Badge>
                     </td>
-                    <td className="py-2.5 font-bold text-white flex items-center gap-1.5">
+                    <td className="py-2.5 font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
                       <UtensilsCrossed className="h-3 w-3 text-slate-500" />
                       {item.item_name}
                     </td>
-                    <td className="py-2.5 text-center font-mono font-bold text-indigo-300">
+                    <td className="py-2.5 text-center font-mono font-bold text-indigo-600 dark:text-indigo-300">
                       {item.quantity_sold}
                     </td>
-                    <td className="py-2.5 text-center font-mono text-slate-400">
+                    <td className="py-2.5 text-center font-mono text-slate-500 dark:text-slate-400">
                       {item.order_count}
                     </td>
                     <td className="py-2.5 text-right pr-1 font-mono font-bold text-emerald-400">
