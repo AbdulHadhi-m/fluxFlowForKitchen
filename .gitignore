@@ -5,6 +5,8 @@
 .env.*.local
 .env.production
 .env.staging
+!.env.example
+!**/.env.example
 
 # Python & Virtual Environments
 __pycache__/

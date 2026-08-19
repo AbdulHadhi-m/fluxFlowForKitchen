@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 
 def main():
     """Run administrative tasks."""
-    # Load environment variables from .env if present
-    base_dir = Path(__file__).resolve().parent.parent
+    # Load environment variables from backend/.env
+    base_dir = Path(__file__).resolve().parent
     load_dotenv(base_dir / ".env")
 
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")

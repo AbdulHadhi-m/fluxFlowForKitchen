@@ -6,10 +6,9 @@ from dotenv import load_dotenv
 
 # Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-ROOT_DIR = BASE_DIR.parent
 
-# Load environment variables
-load_dotenv(ROOT_DIR / ".env")
+# Load environment variables from backend/.env
+load_dotenv(BASE_DIR / ".env")
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "insecure-dev-secret-key-change-in-production-fluxiflow")
 DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() in ("true", "1", "yes")

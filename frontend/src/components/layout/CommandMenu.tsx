@@ -19,6 +19,7 @@ import {
   Award,
   CreditCard,
   Shield,
+  ShieldCheck,
   Settings,
   X,
 } from "lucide-react";
@@ -51,6 +52,7 @@ const COMMANDS: NavCommand[] = [
   { id: "billing-history", label: "Invoices & Settlement History", category: "Finance", path: "/billing/history", permission: "billing.view", icon: Receipt },
   { id: "reports", label: "Business Reports & Analytics", category: "Finance", path: "/reports", permission: "reports.view", icon: BarChart3 },
   { id: "staff", label: "Staff & Employee Directory", category: "Administration", path: "/staff", permission: "staff.view", icon: Users },
+  { id: "access-control", label: "Enterprise Access Control (Dynamic RBAC)", category: "Administration", path: "/security/access-control", permission: "security.view", icon: ShieldCheck },
   { id: "notifications", label: "Notification Center", category: "Administration", path: "/notifications", icon: Bell },
   { id: "audit", label: "Security Audit Logs", category: "Administration", path: "/audit-logs", permission: "audit.view", icon: Shield },
   { id: "settings", label: "System & Restaurant Settings", category: "Administration", path: "/settings", permission: "settings.view", icon: Settings },

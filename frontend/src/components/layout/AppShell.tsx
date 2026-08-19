@@ -23,6 +23,7 @@ import {
   Award,
   CreditCard,
   Shield,
+  ShieldCheck,
   Settings,
   Menu,
   X,
@@ -149,6 +150,7 @@ const NAVIGATION_GROUPS: NavGroup[] = [
     group: "ADMINISTRATION",
     items: [
       { id: "staff", label: "Staff Roster", path: "/staff", icon: Users, permission: "staff.view" },
+      { id: "access-control", label: "Access Control (RBAC)", path: "/security/access-control", icon: ShieldCheck, permission: "security.view" },
       { id: "notifications", label: "Notification Center", path: "/notifications", icon: Bell },
       { id: "audit", label: "Security Audit", path: "/audit-logs", icon: Shield, permission: "audit.view" },
       { id: "settings", label: "Settings", path: "/settings", icon: Settings, permission: "settings.view" },

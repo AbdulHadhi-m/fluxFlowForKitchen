@@ -54,6 +54,7 @@ import { SecurityIncidentsPage } from "@/features/security/pages/SecurityInciden
 import { MFASetupPage } from "@/features/security/pages/MFASetupPage";
 import { SecuritySettingsPage } from "@/features/security/pages/SecuritySettingsPage";
 import { AccessReviewPage } from "@/features/security/pages/AccessReviewPage";
+import { AccessControlPage } from "@/features/authorization/pages/AccessControlPage";
 import { SettingsPage } from "@/features/settings/pages/SettingsPage";
 import { CustomerDirectoryPage } from "@/features/customers/pages/CustomerDirectoryPage";
 import { ReservationsPage } from "@/features/customers/pages/ReservationsPage";
@@ -644,6 +645,26 @@ export const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <PermissionRoute requiredPermission="security.view">
               <AccessReviewPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/security/access-control"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="security.view">
+              <AccessControlPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/security/rbac"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="security.view">
+              <AccessControlPage />
             </PermissionRoute>
           </ProtectedRoute>
         }
