@@ -2,7 +2,12 @@ import { useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { authApi } from "../api/auth.api";
 import { useAuthStore } from "../store/authStore";
-import { LoginFormData, ForgotPasswordFormData, ResetPasswordFormData } from "../schemas/auth.schemas";
+import {
+  LoginFormData,
+  RegisterFormData,
+  ForgotPasswordFormData,
+  ResetPasswordFormData,
+} from "../schemas/auth.schemas";
 
 export const useAuth = () => {
   const queryClient = useQueryClient();
@@ -41,6 +46,17 @@ export const useAuth = () => {
     },
   });
 
+  // Register Mutation
+  const registerMutation = useMutation({
+    mutationFn: (data: RegisterFormData) => authApi.register(data),
+    onSuccess: (res) => {
+      if (res.success && res.data) {
+        setAuth(res.data.user, res.data.access_token);
+        queryClient.invalidateQueries({ queryKey: ["currentUser"] });
+      }
+    },
+  });
+
   // Logout Mutation
   const logoutMutation = useMutation({
     mutationFn: () => authApi.logout(),
@@ -69,6 +85,9 @@ export const useAuth = () => {
     login: loginMutation.mutateAsync,
     isLoggingIn: loginMutation.isPending,
     loginError: loginMutation.error,
+    registerUser: registerMutation.mutateAsync,
+    isRegistering: registerMutation.isPending,
+    registerError: registerMutation.error,
     logout: logoutMutation.mutateAsync,
     isLoggingOut: logoutMutation.isPending,
     forgotPassword: forgotPasswordMutation.mutateAsync,

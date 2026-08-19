@@ -1,6 +1,7 @@
 from django.urls import path
 from apps.accounts.views import (
     LoginView,
+    RegisterView,
     TokenRefreshView,
     LogoutView,
     CurrentUserView,
@@ -14,6 +15,7 @@ from apps.rbac.views import SwitchActiveRoleView, AuthContextView
 
 urlpatterns = [
     path("login/", LoginView.as_view(), name="auth_login"),
+    path("register/", RegisterView.as_view(), name="auth_register"),
     path("refresh/", TokenRefreshView.as_view(), name="auth_refresh"),
     path("logout/", LogoutView.as_view(), name="auth_logout"),
     path("me/", CurrentUserView.as_view(), name="auth_me"),

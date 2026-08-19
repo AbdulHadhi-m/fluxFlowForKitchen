@@ -6,11 +6,28 @@ import {
   UserSession,
   GenericMessageResponse,
 } from "../types/auth.types";
-import { LoginFormData, ForgotPasswordFormData, ResetPasswordFormData } from "../schemas/auth.schemas";
+import {
+  LoginFormData,
+  RegisterFormData,
+  ForgotPasswordFormData,
+  ResetPasswordFormData,
+} from "../schemas/auth.schemas";
 
 export const authApi = {
   async login(data: LoginFormData): Promise<AuthResponse> {
     const response = await apiClient.post<AuthResponse>("/auth/login/", data);
+    return response.data;
+  },
+
+  async register(data: RegisterFormData): Promise<AuthResponse> {
+    const response = await apiClient.post<AuthResponse>("/auth/register/", {
+      first_name: data.firstName,
+      last_name: data.lastName,
+      email: data.email,
+      password: data.password,
+      confirm_password: data.confirmPassword,
+      restaurant_name: data.restaurantName || "",
+    });
     return response.data;
   },
 

@@ -99,6 +99,103 @@ class AuthService:
         return user, session, access_token, refresh_token
 
     @classmethod
+    def register_user_and_create_session(cls, first_name: str, last_name: str, email: str, password: str, restaurant_name: str = "My Kitchen Bistro", ip_address: str = None, user_agent: str = ""):
+        import re
+        from apps.restaurants.models import Restaurant
+        from apps.rbac.models import Role, TenantMembership
+        from apps.rbac.services import RBACService
+        from apps.staff.models import StaffProfile
+
+        email = email.strip().lower()
+        if User.objects.filter(email=email).exists():
+            raise ValidationError({"email": ["User already exists with this email."]})
+
+        # Ensure system roles are seeded
+        RBACService.seed_system_roles_and_permissions()
+
+        # Create user
+        user = User.objects.create_user(
+            email=email,
+            password=password,
+            first_name=first_name.strip(),
+            last_name=last_name.strip(),
+            is_active=True,
+        )
+
+        # Create or assign default restaurant
+        clean_name = restaurant_name.strip() if restaurant_name and restaurant_name.strip() else f"{first_name}'s Kitchen"
+        base_slug = re.sub(r'[^a-zA-Z0-9]+', '-', clean_name.lower()).strip('-') or "my-kitchen"
+        unique_slug = f"{base_slug}-{uuid.uuid4().hex[:6]}"
+
+        restaurant = Restaurant.objects.create(
+            slug=unique_slug,
+            name=clean_name,
+            legal_name=clean_name,
+            email=email,
+            is_active=True,
+            currency="INR",
+        )
+
+        # Assign RESTAURANT_ADMIN role
+        admin_role = Role.objects.filter(code="RESTAURANT_ADMIN").first()
+        if not admin_role:
+            admin_role = Role.objects.first()
+
+        membership = TenantMembership.objects.create(
+            user=user,
+            tenant_id=restaurant.id,
+            active_role=admin_role,
+            is_active=True,
+        )
+        if admin_role:
+            membership.assigned_roles.add(admin_role)
+
+        # Create Staff profile
+        emp_id = f"EMP-{uuid.uuid4().hex[:4].upper()}"
+        StaffProfile.objects.create(
+            restaurant=restaurant,
+            user=user,
+            membership=membership,
+            employee_id=emp_id,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            primary_role=admin_role,
+            status=StaffProfile.StaffStatus.ACTIVE,
+        )
+
+        # Generate Session and Tokens
+        session_id = uuid.uuid4()
+        jwt_refresh = RefreshToken.for_user(user)
+        jwt_refresh["session_id"] = str(session_id)
+        refresh_token = str(jwt_refresh)
+        access_token = str(jwt_refresh.access_token)
+        session_expires_at = timezone.now() + timedelta(days=7)
+
+        device_info = "Desktop Browser"
+        if "Mobile" in user_agent:
+            device_info = "Mobile Device"
+        elif "Tablet" in user_agent:
+            device_info = "Tablet Device"
+
+        session = UserSession.objects.create(
+            id=session_id,
+            user=user,
+            refresh_token_hash=UserSession.hash_token(refresh_token),
+            ip_address=ip_address,
+            user_agent=user_agent[:500] if user_agent else "",
+            device_info=device_info,
+            expires_at=session_expires_at,
+        )
+
+        cls._record_security_event(
+            "AUTH_REGISTER_SUCCESS", f"Registered new user {user.email}",
+            "LOW", user=user, ip=ip_address, ua=user_agent,
+        )
+
+        return user, session, access_token, refresh_token
+
+    @classmethod
     def rotate_refresh_token(cls, raw_refresh_token: str, ip_address: str = None, user_agent: str = ""):
         token_hash = UserSession.hash_token(raw_refresh_token)
         session = UserSession.objects.filter(refresh_token_hash=token_hash).select_related("user").first()

@@ -1,8 +1,10 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { LoginPage } from "@/features/auth/pages/LoginPage";
+import { RegisterPage } from "@/features/auth/pages/RegisterPage";
 import { ForgotPasswordPage } from "@/features/auth/pages/ForgotPasswordPage";
 import { ResetPasswordPage } from "@/features/auth/pages/ResetPasswordPage";
+import { LandingHomePage } from "@/features/landing/pages/LandingHomePage";
 import { DashboardPage } from "@/features/auth/pages/DashboardPage";
 import { RestaurantSetupPage } from "@/features/restaurants/pages/RestaurantSetupPage";
 import { StaffManagementPage } from "@/features/staff/pages/StaffManagementPage";
@@ -107,6 +109,7 @@ export const AppRoutes: React.FC = () => {
 
       {/* Public Auth Routes */}
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route path="/reset-password" element={<ResetPasswordPage />} />
 
@@ -175,6 +178,16 @@ export const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <PermissionRoute requiredPermission="orders.view">
               <OrderHistoryPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/kitchen"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="kitchen.view">
+              <KitchenDisplayPage />
             </PermissionRoute>
           </ProtectedRoute>
         }
@@ -992,14 +1005,7 @@ export const AppRoutes: React.FC = () => {
         }
       />
 
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute>
-            <DashboardPage />
-          </ProtectedRoute>
-        }
-      />
+      <Route path="/" element={<LandingHomePage />} />
 
       {/* Catch-all fallback */}
       <Route path="*" element={<Navigate to="/" replace />} />

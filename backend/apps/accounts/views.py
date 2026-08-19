@@ -11,6 +11,7 @@ from apps.accounts.services import AuthService
 from apps.accounts.serializers import (
     UserSerializer,
     LoginSerializer,
+    RegisterSerializer,
     TokenRefreshSerializer,
     UserSessionSerializer,
     ForgotPasswordSerializer,
@@ -75,6 +76,53 @@ class LoginView(APIView):
                 },
             },
             status=status.HTTP_200_OK,
+        )
+        set_refresh_cookie(response, refresh_token)
+        return response
+
+
+class RegisterView(APIView):
+    permission_classes = [AllowAny]
+    throttle_classes = [PublicAuthThrottle]
+
+    @extend_schema(
+        summary="User Account Registration",
+        request=RegisterSerializer,
+        responses={201: OpenApiResponse(description="User registered and logged in successfully")},
+    )
+    def post(self, request):
+        serializer = RegisterSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        first_name = serializer.validated_data["first_name"]
+        last_name = serializer.validated_data["last_name"]
+        email = serializer.validated_data["email"]
+        password = serializer.validated_data["password"]
+        restaurant_name = serializer.validated_data.get("restaurant_name", "")
+        ip_address = request.META.get("REMOTE_ADDR")
+        user_agent = request.META.get("HTTP_USER_AGENT", "")
+
+        user, session, access_token, refresh_token = AuthService.register_user_and_create_session(
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            password=password,
+            restaurant_name=restaurant_name,
+            ip_address=ip_address,
+            user_agent=user_agent,
+        )
+
+        response = Response(
+            {
+                "success": True,
+                "data": {
+                    "user": UserSerializer(user).data,
+                    "access_token": access_token,
+                    "refresh_token": refresh_token,
+                    "session_id": str(session.id),
+                },
+            },
+            status=status.HTTP_201_CREATED,
         )
         set_refresh_cookie(response, refresh_token)
         return response

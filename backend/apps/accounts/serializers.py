@@ -62,3 +62,20 @@ class ResetPasswordSerializer(serializers.Serializer):
         if data["password"] != data["confirm_password"]:
             raise serializers.ValidationError({"confirm_password": ["Passwords do not match."]})
         return data
+
+class RegisterSerializer(serializers.Serializer):
+    first_name = serializers.CharField(required=True, max_length=100)
+    last_name = serializers.CharField(required=True, max_length=100)
+    email = serializers.EmailField(required=True)
+    password = serializers.CharField(required=True, min_length=8, write_only=True, style={"input_type": "password"})
+    confirm_password = serializers.CharField(required=True, min_length=8, write_only=True, style={"input_type": "password"})
+    restaurant_name = serializers.CharField(required=False, allow_blank=True, default="My Kitchen Bistro")
+
+    def validate(self, data):
+        if data["password"] != data["confirm_password"]:
+            raise serializers.ValidationError({"confirm_password": ["Passwords do not match."]})
+        email = data["email"].strip().lower()
+        if User.objects.filter(email=email).exists():
+            raise serializers.ValidationError({"email": ["An account with this email already exists."]})
+        return data
+

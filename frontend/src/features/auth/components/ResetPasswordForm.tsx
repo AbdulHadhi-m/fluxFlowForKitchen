@@ -59,7 +59,7 @@ export const ResetPasswordForm: React.FC = () => {
             Your password has been updated. Redirecting to login in a moment...
           </p>
           <div className="pt-2">
-            <Link to="/login" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <Link to="/login" className="text-emerald-600 dark:text-emerald-400 hover:underline">
               Click here to sign in immediately &rarr;
             </Link>
           </div>
@@ -83,7 +83,7 @@ export const ResetPasswordForm: React.FC = () => {
               placeholder="At least 8 characters"
               {...register("password")}
               disabled={isSubmittingReset}
-              className="bg-white dark:bg-slate-900/60 border-slate-300 dark:border-slate-800 focus-visible:ring-blue-500 text-slate-900 dark:text-slate-100"
+              className="bg-white dark:bg-slate-900/60 border-slate-300 dark:border-slate-800 focus-visible:ring-emerald-500 text-slate-900 dark:text-slate-100"
             />
             {errors.password && (
               <p className="text-xs text-rose-400">{errors.password.message}</p>
@@ -100,7 +100,7 @@ export const ResetPasswordForm: React.FC = () => {
               placeholder="Repeat password"
               {...register("confirmPassword")}
               disabled={isSubmittingReset}
-              className="bg-white dark:bg-slate-900/60 border-slate-300 dark:border-slate-800 focus-visible:ring-blue-500 text-slate-900 dark:text-slate-100"
+              className="bg-white dark:bg-slate-900/60 border-slate-300 dark:border-slate-800 focus-visible:ring-emerald-500 text-slate-900 dark:text-slate-100"
             />
             {errors.confirmPassword && (
               <p className="text-xs text-rose-400">{errors.confirmPassword.message}</p>
@@ -110,7 +110,7 @@ export const ResetPasswordForm: React.FC = () => {
           <Button
             type="submit"
             disabled={isSubmittingReset}
-            className="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 shadow-lg shadow-blue-600/20"
+            className="w-full bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-medium py-2.5 shadow-lg shadow-emerald-600/25 transition-all"
           >
             {isSubmittingReset ? (
               <>

@@ -64,7 +64,7 @@ export const ForgotPasswordForm: React.FC = () => {
           placeholder="name@restaurant.com"
           {...register("email")}
           disabled={isSubmittingForgot}
-          className="bg-white dark:bg-slate-900/60 border-slate-300 dark:border-slate-800 focus-visible:ring-blue-500 text-slate-900 dark:text-slate-100"
+          className="bg-white dark:bg-slate-900/60 border-slate-300 dark:border-slate-800 focus-visible:ring-emerald-500 text-slate-900 dark:text-slate-100"
         />
         {errors.email && (
           <p className="text-xs text-rose-400">{errors.email.message}</p>
@@ -74,7 +74,7 @@ export const ForgotPasswordForm: React.FC = () => {
       <Button
         type="submit"
         disabled={isSubmittingForgot}
-        className="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 shadow-lg shadow-blue-600/20"
+        className="w-full bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-medium py-2.5 shadow-lg shadow-emerald-600/25 transition-all"
       >
         {isSubmittingForgot ? (
           <>
