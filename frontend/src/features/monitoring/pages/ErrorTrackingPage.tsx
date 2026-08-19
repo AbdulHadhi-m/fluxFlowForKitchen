@@ -57,13 +57,13 @@ export const ErrorTrackingPage: React.FC = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search message or error type…"
-            className="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 pl-9 pr-3 py-2 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-indigo-500"
+            className="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 pl-9 pr-3 py-2 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-emerald-500"
           />
         </div>
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
-          className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-3 py-2 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500"
+          className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-3 py-2 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-emerald-500"
         >
           {STATUS_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -72,7 +72,7 @@ export const ErrorTrackingPage: React.FC = () => {
         <select
           value={severity}
           onChange={(e) => setSeverity(e.target.value)}
-          className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-3 py-2 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500"
+          className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-3 py-2 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-emerald-500"
         >
           {SEVERITY_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -81,7 +81,7 @@ export const ErrorTrackingPage: React.FC = () => {
         <select
           value={preset}
           onChange={(e) => setPreset(e.target.value)}
-          className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-3 py-2 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500"
+          className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-3 py-2 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-emerald-500"
         >
           <option value="">All Time</option>
           <option value="24h">Last 24 hours</option>
@@ -127,7 +127,7 @@ export const ErrorTrackingPage: React.FC = () => {
               <select
                 value={event.status}
                 onChange={(e) => updateStatus.mutate({ id: event.id, status: e.target.value as ErrorStatus })}
-                className="shrink-0 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-2 py-1.5 text-[11px] text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500"
+                className="shrink-0 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-2 py-1.5 text-[11px] text-slate-600 dark:text-slate-300 focus:outline-none focus:border-emerald-500"
               >
                 {STATUS_OPTIONS.filter((opt) => opt.value !== "").map((opt) => (
                   <option key={opt.value} value={opt.value}>{opt.label}</option>

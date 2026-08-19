@@ -85,7 +85,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
           </div>
           <div>
             <span className="text-slate-500 dark:text-slate-400">Balance Due:</span>{" "}
-            <span className="font-mono font-black text-amber-400 text-sm">${bill.balance_due}</span>
+            <span className="font-mono font-black text-amber-400 text-sm">₹{bill.balance_due}</span>
           </div>
         </div>
 
@@ -123,7 +123,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
           {/* Payment Amount */}
           <div className="space-y-1.5">
             <div className="flex justify-between">
-              <label className="text-xs text-slate-600 dark:text-slate-300">Amount Applied ($)</label>
+              <label className="text-xs text-slate-600 dark:text-slate-300">Amount Applied (₹)</label>
               <button
                 type="button"
                 onClick={() => setValue("amount", parseFloat(bill.balance_due))}
@@ -146,7 +146,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
           {paymentMethod === "CASH" && (
             <div className="p-3 bg-slate-100 dark:bg-slate-950/80 rounded-xl border border-slate-200 dark:border-slate-800/80 space-y-2">
               <div className="space-y-1">
-                <label className="text-xs text-slate-500 dark:text-slate-400">Cash Tendered by Customer ($)</label>
+                <label className="text-xs text-slate-500 dark:text-slate-400">Cash Tendered by Customer (₹)</label>
                 <Input
                   type="number"
                   step="0.01"

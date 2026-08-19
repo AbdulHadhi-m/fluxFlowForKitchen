@@ -97,7 +97,7 @@ export const CustomerPortalPage: React.FC = () => {
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="text-sm font-extrabold text-amber-400">${o.total}</p>
+                        <p className="text-sm font-extrabold text-amber-400">₹{o.total}</p>
                         <Link
                           to={`/r/${restaurantSlug}/order/${o.tracking_token}/track`}
                           className="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white inline-flex items-center gap-1 mt-1"

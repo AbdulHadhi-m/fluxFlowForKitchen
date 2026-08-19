@@ -24,7 +24,7 @@ export const TransfersPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2.5">
-            <ArrowRightLeft className="w-7 h-7 text-indigo-400" />
+            <ArrowRightLeft className="w-7 h-7 text-emerald-400" />
             Inter-Location Inventory Transfers
           </h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
@@ -34,7 +34,7 @@ export const TransfersPage: React.FC = () => {
 
         <button
           onClick={() => setIsCreateOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-500 text-white hover:bg-indigo-400 font-semibold text-sm transition-all shadow-lg shadow-indigo-500/20"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500 text-white hover:bg-emerald-400 font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20"
         >
           <Plus className="w-4 h-4" />
           Request Stock Transfer
@@ -89,7 +89,7 @@ export const TransfersPage: React.FC = () => {
                           t.status === 'RECEIVED'
                             ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
                             : t.status === 'IN_TRANSIT'
-                            ? 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20'
+                            ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
                             : 'bg-amber-500/10 text-amber-400 border-amber-500/20'
                         }`}
                       >
@@ -120,7 +120,7 @@ export const TransfersPage: React.FC = () => {
                         <button
                           onClick={() => handleApprove(t.id)}
                           disabled={approveMutation.isPending}
-                          className="px-3 py-1 rounded-lg bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 font-semibold text-xs transition-colors"
+                          className="px-3 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 font-semibold text-xs transition-colors"
                         >
                           Approve & Dispatch
                         </button>

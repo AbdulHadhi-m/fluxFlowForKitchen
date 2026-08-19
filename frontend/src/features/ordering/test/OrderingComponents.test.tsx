@@ -106,7 +106,7 @@ describe('Ordering Components', () => {
     );
 
     expect(screen.getByText('Double Bacon Smash')).toBeDefined();
-    expect(screen.getByText('$16.50')).toBeDefined();
+    expect(screen.getByText('₹16.50')).toBeDefined();
     expect(screen.getByText('2 in cart')).toBeDefined();
 
     fireEvent.click(screen.getByText('Add'));

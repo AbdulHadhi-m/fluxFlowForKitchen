@@ -59,7 +59,7 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({ isOpen, onClose, bil
                     {item.quantity} x ${item.unit_price}
                   </div>
                 </div>
-                <div className="text-slate-900 dark:text-white font-bold">${item.line_total}</div>
+                <div className="text-slate-900 dark:text-white font-bold">₹{item.line_total}</div>
               </div>
             ))}
           </div>
@@ -68,27 +68,27 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({ isOpen, onClose, bil
           <div className="space-y-1.5 border-b border-dashed border-slate-200 dark:border-slate-800 pb-3 text-slate-600 dark:text-slate-300">
             <div className="flex justify-between">
               <span>Subtotal:</span>
-              <span className="text-slate-900 dark:text-white font-bold">${bill.subtotal}</span>
+              <span className="text-slate-900 dark:text-white font-bold">₹{bill.subtotal}</span>
             </div>
             {parseFloat(bill.discount_amount) > 0 && (
               <div className="flex justify-between text-rose-400">
                 <span>Discount ({bill.discount_type}):</span>
-                <span>-${bill.discount_amount}</span>
+                <span>-₹{bill.discount_amount}</span>
               </div>
             )}
             {parseFloat(bill.service_charge_amount) > 0 && (
               <div className="flex justify-between">
                 <span>Service Charge ({bill.service_charge_rate}%):</span>
-                <span>+${bill.service_charge_amount}</span>
+                <span>+₹{bill.service_charge_amount}</span>
               </div>
             )}
             <div className="flex justify-between">
               <span>Tax ({bill.tax_rate_snapshot}%):</span>
-              <span>+${bill.tax_amount}</span>
+              <span>+₹{bill.tax_amount}</span>
             </div>
             <div className="flex justify-between text-sm font-black text-slate-900 dark:text-white pt-1.5 border-t border-slate-200 dark:border-slate-800">
               <span>Grand Total:</span>
-              <span className="text-emerald-400">${bill.grand_total}</span>
+              <span className="text-emerald-400">₹{bill.grand_total}</span>
             </div>
           </div>
 
@@ -101,7 +101,7 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({ isOpen, onClose, bil
               bill.payments.map((p) => (
                 <div key={p.id} className="flex justify-between text-[11px] text-slate-600 dark:text-slate-300">
                   <span>{p.payment_method} ({new Date(p.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })})</span>
-                  <span className="text-emerald-400 font-bold">${p.amount}</span>
+                  <span className="text-emerald-400 font-bold">₹{p.amount}</span>
                 </div>
               ))
             )}

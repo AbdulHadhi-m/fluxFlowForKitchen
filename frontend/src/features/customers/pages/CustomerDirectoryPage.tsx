@@ -31,7 +31,7 @@ export const CustomerDirectoryPage: React.FC = () => {
           <Button
             size="sm"
             onClick={() => setIsCreateModalOpen(true)}
-            className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs gap-1.5 shadow-lg shadow-indigo-600/20"
+            className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs gap-1.5 shadow-lg shadow-emerald-600/20"
           >
             <UserPlus className="h-3.5 w-3.5" /> Add Customer
           </Button>

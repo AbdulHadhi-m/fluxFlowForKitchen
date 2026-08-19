@@ -18,7 +18,7 @@ export const PromotionsPage: React.FC = () => {
         </Link>
         <div>
           <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <Tag className="h-5 w-5 text-indigo-400" />
+            <Tag className="h-5 w-5 text-emerald-400" />
             <span>Promotions & Discount Rules</span>
           </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400">Manage automated percent/fixed discounts, buy X get Y, and item caps</p>

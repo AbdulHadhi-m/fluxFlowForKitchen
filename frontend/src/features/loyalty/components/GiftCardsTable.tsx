@@ -44,7 +44,7 @@ export const GiftCardsTable: React.FC<{ giftCards: GiftCard[] }> = ({ giftCards 
           <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
             {giftCards.map((gc) => (
               <tr key={gc.id} className="hover:bg-slate-200/60 dark:hover:bg-slate-800/40 transition-colors">
-                <td className="px-4 py-3 font-mono font-bold text-indigo-400 flex items-center gap-2">
+                <td className="px-4 py-3 font-mono font-bold text-emerald-400 flex items-center gap-2">
                   <CreditCard className="h-4 w-4 text-slate-500" />
                   {gc.card_number}
                 </td>

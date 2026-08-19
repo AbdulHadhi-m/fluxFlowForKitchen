@@ -8,7 +8,7 @@ import {
 import {
   ShoppingCart,
   Clock,
-  DollarSign,
+  IndianRupee,
   AlertCircle,
   Truck,
   Plus,
@@ -46,7 +46,7 @@ export const ProcurementDashboardPage: React.FC = () => {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
-            <ShoppingCart className="w-7 h-7 text-indigo-400" />
+            <ShoppingCart className="w-7 h-7 text-emerald-400" />
             Procurement & Purchasing
           </h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
@@ -59,12 +59,12 @@ export const ProcurementDashboardPage: React.FC = () => {
             onClick={() => setIsRequisitionModalOpen(true)}
             className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-xl border border-slate-300 dark:border-slate-700/60 transition-colors shadow-sm"
           >
-            <Plus className="w-4 h-4 text-indigo-400" />
+            <Plus className="w-4 h-4 text-emerald-400" />
             New Requisition
           </button>
           <button
             onClick={() => setIsPoModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 rounded-xl shadow-lg shadow-indigo-600/25 transition-all"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 rounded-xl shadow-lg shadow-emerald-600/25 transition-all"
           >
             <Plus className="w-4 h-4" />
             Create Purchase Order
@@ -77,7 +77,7 @@ export const ProcurementDashboardPage: React.FC = () => {
         <div className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Open POs</span>
-            <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               <Truck className="w-4 h-4" />
             </div>
           </div>
@@ -111,10 +111,10 @@ export const ProcurementDashboardPage: React.FC = () => {
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Committed Spend</span>
             <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              <DollarSign className="w-4 h-4" />
+              <IndianRupee className="w-4 h-4" />
             </div>
           </div>
-          <p className="text-3xl font-black text-emerald-400">${reportsLoading ? "..." : totalMonthSpend.toFixed(2)}</p>
+          <p className="text-3xl font-black text-emerald-400">₹{reportsLoading ? "..." : totalMonthSpend.toFixed(2)}</p>
           <p className="text-xs text-slate-500">Across all vendors this period</p>
         </div>
       </div>
@@ -125,14 +125,14 @@ export const ProcurementDashboardPage: React.FC = () => {
         <div className="lg:col-span-2 p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400">
+              <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400">
                 <Sparkles className="w-4 h-4" />
               </div>
               <h2 className="text-base font-bold text-slate-900 dark:text-white">Automated Reorder Suggestions</h2>
             </div>
             <Link
               to="/procurement/planning"
-              className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1"
+              className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
             >
               Full Planning <ArrowRight className="w-3.5 h-3.5" />
             </Link>
@@ -162,7 +162,7 @@ export const ProcurementDashboardPage: React.FC = () => {
                       <td className="py-3 font-mono text-slate-600 dark:text-slate-300">
                         {rec.current_stock} {rec.unit}
                       </td>
-                      <td className="py-3 font-mono font-bold text-indigo-400">
+                      <td className="py-3 font-mono font-bold text-emerald-400">
                         {rec.suggested_quantity} {rec.unit}
                       </td>
                       <td className="py-3 text-slate-600 dark:text-slate-300">{rec.preferred_supplier_name}</td>
@@ -186,7 +186,7 @@ export const ProcurementDashboardPage: React.FC = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400">
-                <DollarSign className="w-4 h-4" />
+                <IndianRupee className="w-4 h-4" />
               </div>
               <h2 className="text-base font-bold text-slate-900 dark:text-white">Budgets & Limits</h2>
             </div>
@@ -207,7 +207,7 @@ export const ProcurementDashboardPage: React.FC = () => {
                     <div className="flex items-center justify-between text-xs">
                       <span className="font-semibold text-slate-900 dark:text-white">{b.name}</span>
                       <span className="font-mono text-slate-500 dark:text-slate-400">
-                        ${b.committed_amount} / ${b.allocated_amount}
+                        ${b.committed_amount} /${b.allocated_amount}
                       </span>
                     </div>
                     <div className="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
@@ -238,7 +238,7 @@ export const ProcurementDashboardPage: React.FC = () => {
           <h2 className="text-base font-bold text-slate-900 dark:text-white">Recent Purchase Orders</h2>
           <Link
             to="/procurement/purchase-orders"
-            className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1"
+            className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
           >
             All Orders <ArrowRight className="w-3.5 h-3.5" />
           </Link>
@@ -259,14 +259,14 @@ export const ProcurementDashboardPage: React.FC = () => {
             <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
               {recentOrders?.slice(0, 5).map((po) => (
                 <tr key={po.id} className="hover:bg-slate-200/70 dark:hover:bg-slate-800/30">
-                  <td className="py-3 font-mono font-bold text-indigo-400">{po.po_number}</td>
+                  <td className="py-3 font-mono font-bold text-emerald-400">{po.po_number}</td>
                   <td className="py-3 text-slate-900 dark:text-white font-medium">{po.supplier_name}</td>
                   <td className="py-3">
                     <POStatusBadge status={po.status} />
                   </td>
                   <td className="py-3 text-slate-500 dark:text-slate-400">{po.order_date || "-"}</td>
                   <td className="py-3 text-slate-500 dark:text-slate-400">{po.expected_delivery_date || "-"}</td>
-                  <td className="py-3 font-mono font-bold text-emerald-400">${po.total_amount}</td>
+                  <td className="py-3 font-mono font-bold text-emerald-400">₹{po.total_amount}</td>
                 </tr>
               ))}
             </tbody>

@@ -20,12 +20,14 @@ function getInitialTheme(): Theme {
   return "dark";
 }
 
+function prefersDark(): boolean {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") return false;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
 function resolveTheme(theme: Theme): "dark" | "light" {
   if (theme === "system") {
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
-    return "light";
+    return prefersDark() ? "dark" : "light";
   }
   return theme;
 }
@@ -49,7 +51,7 @@ export const useThemeStore = create<ThemeState>((set, get) => {
   applyThemeToDOM(initialTheme);
 
   // Set up system preference listener
-  if (typeof window !== "undefined") {
+  if (typeof window !== "undefined" && typeof window.matchMedia === "function") {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = () => {
       if (get().theme === "system") {

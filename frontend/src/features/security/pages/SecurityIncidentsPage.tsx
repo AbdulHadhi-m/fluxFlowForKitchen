@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   ShieldAlert,
   Plus,
@@ -26,11 +26,7 @@ export const SecurityIncidentsPage: React.FC = () => {
   const [noteText, setNoteText] = useState("");
   const [newStatus, setNewStatus] = useState("");
 
-  useEffect(() => {
-    loadIncidents();
-  }, [statusFilter, severityFilter]);
-
-  const loadIncidents = async () => {
+  const loadIncidents = useCallback(async () => {
     try {
       setLoading(true);
       const res = await securityApi.getIncidents({
@@ -45,7 +41,11 @@ export const SecurityIncidentsPage: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [statusFilter, severityFilter]);
+
+  useEffect(() => {
+    loadIncidents();
+  }, [loadIncidents]);
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -90,7 +90,7 @@ export const SecurityIncidentsPage: React.FC = () => {
       case "INVESTIGATING":
         return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-600 dark:text-amber-300 border border-amber-500/30">INVESTIGATING</span>;
       case "CONTAINED":
-        return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-600 dark:text-indigo-300 border border-indigo-500/30">CONTAINED</span>;
+        return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30">CONTAINED</span>;
       case "RESOLVED":
         return <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30">RESOLVED</span>;
       default:

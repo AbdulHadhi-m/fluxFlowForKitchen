@@ -38,8 +38,24 @@ export const KitchenDisplayPage: React.FC = () => {
 
         {/* Live Ticket Grid */}
         {isLoading ? (
-          <div className="py-32 text-center text-slate-500 font-mono text-xs">
-            Connecting & Loading Kitchen Feed...
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div
+                key={i}
+                className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-4 space-y-3 animate-pulse"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="h-4 w-20 bg-slate-200 dark:bg-slate-800 rounded" />
+                  <div className="h-4 w-14 bg-slate-200 dark:bg-slate-800 rounded-full" />
+                </div>
+                <div className="h-3 w-full bg-slate-100 dark:bg-slate-800/60 rounded" />
+                <div className="h-3 w-3/4 bg-slate-100 dark:bg-slate-800/60 rounded" />
+                <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                  <div className="h-8 w-full bg-slate-100 dark:bg-slate-800/60 rounded-xl" />
+                  <div className="h-8 w-full bg-slate-100 dark:bg-slate-800/60 rounded-xl" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           <KitchenTicketGrid

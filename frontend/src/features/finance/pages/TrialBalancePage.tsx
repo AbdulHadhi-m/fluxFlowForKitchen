@@ -23,7 +23,7 @@ export const TrialBalancePage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2.5">
-            <div className="h-9 w-9 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="h-9 w-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <Scale className="h-5 w-5" />
             </div>
             <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">General Ledger Trial Balance</h1>
@@ -76,8 +76,8 @@ export const TrialBalancePage: React.FC = () => {
               <th className="p-4 w-28">Code</th>
               <th className="p-4">Account Title</th>
               <th className="p-4 w-28">Category</th>
-              <th className="p-4 w-32 font-mono text-right">Debit Balance ($)</th>
-              <th className="p-4 w-32 font-mono text-right">Credit Balance ($)</th>
+              <th className="p-4 w-32 font-mono text-right">Debit Balance (₹)</th>
+              <th className="p-4 w-32 font-mono text-right">Credit Balance (₹)</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
@@ -94,10 +94,10 @@ export const TrialBalancePage: React.FC = () => {
                   <td className="p-4 font-semibold text-slate-700 dark:text-slate-200">{acc.name}</td>
                   <td className="p-4 text-slate-500 dark:text-slate-400">{acc.category}</td>
                   <td className="p-4 font-mono text-right text-emerald-400 font-medium">
-                    {parseFloat(acc.total_debit) > 0 ? `$${parseFloat(acc.total_debit).toFixed(2)}` : "—"}
+                    {parseFloat(acc.total_debit) > 0 ? `₹${parseFloat(acc.total_debit).toFixed(2)}` : "—"}
                   </td>
-                  <td className="p-4 font-mono text-right text-indigo-400 font-medium">
-                    {parseFloat(acc.total_credit) > 0 ? `$${parseFloat(acc.total_credit).toFixed(2)}` : "—"}
+                  <td className="p-4 font-mono text-right text-emerald-400 font-medium">
+                    {parseFloat(acc.total_credit) > 0 ? `₹${parseFloat(acc.total_credit).toFixed(2)}` : "—"}
                   </td>
                 </tr>
               ))
@@ -106,8 +106,8 @@ export const TrialBalancePage: React.FC = () => {
           <tfoot className="bg-slate-100 dark:bg-slate-950 border-t-2 border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white">
             <tr>
               <td colSpan={3} className="p-4 uppercase tracking-wider">Total Equilibrium Verification</td>
-              <td className="p-4 font-mono text-right text-emerald-400 text-sm">${totalDebits.toFixed(2)}</td>
-              <td className="p-4 font-mono text-right text-indigo-400 text-sm">${totalCredits.toFixed(2)}</td>
+              <td className="p-4 font-mono text-right text-emerald-400 text-sm">₹{totalDebits.toFixed(2)}</td>
+              <td className="p-4 font-mono text-right text-emerald-400 text-sm">₹{totalCredits.toFixed(2)}</td>
             </tr>
           </tfoot>
         </table>

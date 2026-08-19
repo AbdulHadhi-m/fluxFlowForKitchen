@@ -31,6 +31,6 @@ describe("CustomerListTable Component", () => {
     expect(screen.getByText("Eleanor Vance")).toBeInTheDocument();
     expect(screen.getByText("+1555888999")).toBeInTheDocument();
     expect(screen.getByText("VIP")).toBeInTheDocument();
-    expect(screen.getByText("$450.00")).toBeInTheDocument();
+    expect(screen.getByText("₹450.00")).toBeInTheDocument();
   });
 });

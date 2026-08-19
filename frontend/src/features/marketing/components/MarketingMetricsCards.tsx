@@ -1,5 +1,5 @@
 import React from "react";
-import { Sparkles, Tag, Gift, Users, TrendingUp, DollarSign } from "lucide-react";
+import { Sparkles, Tag, Gift, Users, TrendingUp, IndianRupee } from "lucide-react";
 import { MarketingAnalyticsOverview } from "../types/marketing.types";
 
 interface Props {
@@ -14,14 +14,14 @@ export const MarketingMetricsCards: React.FC<Props> = ({ analytics, isLoading })
       value: analytics?.active_promotions_count ?? 0,
       sub: `${analytics?.total_campaigns_count ?? 0} total campaigns`,
       icon: Tag,
-      color: "text-indigo-400 bg-indigo-500/10 border-indigo-500/20",
+      color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
     },
     {
       label: "Active Coupon Codes",
       value: analytics?.active_coupons_count ?? 0,
       sub: "Available for checkout",
       icon: Gift,
-      color: "text-violet-400 bg-violet-500/10 border-violet-500/20",
+      color: "text-teal-400 bg-teal-500/10 border-teal-500/20",
     },
     {
       label: "Total Redemptions",
@@ -32,14 +32,14 @@ export const MarketingMetricsCards: React.FC<Props> = ({ analytics, isLoading })
     },
     {
       label: "Discounts Awarded",
-      value: `$${analytics?.total_discount_given ?? "0.00"}`,
+      value: `₹${analytics?.total_discount_given ?? "0.00"}`,
       sub: "Promotional cost",
-      icon: DollarSign,
+      icon: IndianRupee,
       color: "text-amber-400 bg-amber-500/10 border-amber-500/20",
     },
     {
       label: "Influenced Revenue",
-      value: `$${analytics?.promotional_revenue_influenced ?? "0.00"}`,
+      value: `₹${analytics?.promotional_revenue_influenced ?? "0.00"}`,
       sub: "Orders with promotions",
       icon: TrendingUp,
       color: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",

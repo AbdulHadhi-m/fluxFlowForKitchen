@@ -51,7 +51,7 @@ export const CreateInventoryItemModal: React.FC<CreateInventoryItemModalProps> =
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md shadow-2xl overflow-hidden text-slate-900 dark:text-slate-100 p-6 space-y-4">
         <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
           <h2 className="text-lg font-bold flex items-center gap-2 text-slate-900 dark:text-white">
-            <PackagePlus className="h-5 w-5 text-indigo-400" />
+            <PackagePlus className="h-5 w-5 text-emerald-400" />
             Add Inventory Item
           </h2>
           <button onClick={onClose} className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
@@ -84,7 +84,7 @@ export const CreateInventoryItemModal: React.FC<CreateInventoryItemModalProps> =
               <label className="text-xs text-slate-600 dark:text-slate-300">Unit of Measure</label>
               <select
                 {...register("unit")}
-                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-emerald-500"
               >
                 <option value="kg">Kilogram (kg)</option>
                 <option value="g">Gram (g)</option>
@@ -120,7 +120,7 @@ export const CreateInventoryItemModal: React.FC<CreateInventoryItemModalProps> =
             </div>
 
             <div className="space-y-1">
-              <label className="text-xs text-slate-600 dark:text-slate-300">Cost / Unit ($)</label>
+              <label className="text-xs text-slate-600 dark:text-slate-300">Cost / Unit (₹)</label>
               <Input
                 type="number"
                 step="0.01"
@@ -142,7 +142,7 @@ export const CreateInventoryItemModal: React.FC<CreateInventoryItemModalProps> =
             <Button
               type="submit"
               disabled={isLoading}
-              className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs gap-1.5 shadow-lg shadow-indigo-600/20"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs gap-1.5 shadow-lg shadow-emerald-600/20"
             >
               {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <PackagePlus className="h-4 w-4" />}
               Create Item

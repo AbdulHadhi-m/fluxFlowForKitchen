@@ -171,7 +171,7 @@ export const RestaurantProfileForm: React.FC<{ restaurant?: Restaurant }> = ({ r
           {/* Localization */}
           <div className="pt-2 border-t border-slate-200 dark:border-slate-800/80 space-y-3">
             <h4 className="text-xs font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
-              <Globe className="h-3.5 w-3.5 text-indigo-400" /> Regional Localization
+              <Globe className="h-3.5 w-3.5 text-emerald-400" /> Regional Localization
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
               <div className="space-y-1.5">

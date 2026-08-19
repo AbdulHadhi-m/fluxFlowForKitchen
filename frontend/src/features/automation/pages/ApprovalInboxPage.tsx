@@ -20,7 +20,7 @@ export const ApprovalInboxPage: React.FC = () => {
         </Link>
         <div className="flex-1">
           <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <Inbox className="h-5 w-5 text-violet-400" />
+            <Inbox className="h-5 w-5 text-teal-400" />
             <span>Approval Inbox</span>
           </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400">Human approval gates raised by automated workflows</p>
@@ -34,7 +34,7 @@ export const ApprovalInboxPage: React.FC = () => {
             onClick={() => setStatusFilter(s)}
             className={`px-3 py-1.5 rounded-xl text-[11px] font-bold transition-colors border ${
               statusFilter === s
-                ? "bg-violet-500/20 border-violet-500/40 text-violet-300"
+                ? "bg-teal-500/20 border-teal-500/40 text-teal-300"
                 : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
             }`}
           >
@@ -58,7 +58,7 @@ export const ApprovalInboxPage: React.FC = () => {
           {(approvals || []).map((a) => (
             <div
               key={a.id}
-              className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-violet-500/40 transition-all"
+              className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-teal-500/40 transition-all"
             >
               <div className="flex flex-wrap items-start gap-3">
                 <div className="flex-1 min-w-[220px]">
@@ -73,7 +73,7 @@ export const ApprovalInboxPage: React.FC = () => {
                   {a.reason && <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-2">{a.reason}</p>}
                   {Number(a.amount) > 0 && (
                     <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-                      Amount: <span className="text-amber-600 dark:text-amber-300 font-bold">${a.amount}</span>
+                      Amount: <span className="text-amber-600 dark:text-amber-300 font-bold">₹{a.amount}</span>
                     </p>
                   )}
                   {a.related_data && Object.keys(a.related_data).length > 0 && (

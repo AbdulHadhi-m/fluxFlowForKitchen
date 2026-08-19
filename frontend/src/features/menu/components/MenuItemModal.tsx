@@ -138,7 +138,7 @@ export const MenuItemModal: React.FC<MenuItemModalProps> = ({
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-slate-600 dark:text-slate-300 font-medium">Selling Price ($) *</label>
+              <label className="text-slate-600 dark:text-slate-300 font-medium">Selling Price (₹) *</label>
               <Input
                 placeholder="14.50"
                 {...register("price")}

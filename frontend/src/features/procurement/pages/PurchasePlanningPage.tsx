@@ -13,7 +13,7 @@ export const PurchasePlanningPage: React.FC = () => {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
-            <Sparkles className="w-7 h-7 text-indigo-400" />
+            <Sparkles className="w-7 h-7 text-emerald-400" />
             Automated Purchase Planning
           </h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
@@ -37,7 +37,7 @@ export const PurchasePlanningPage: React.FC = () => {
                   <div className="flex items-center gap-3">
                     <h3 className="font-bold text-slate-900 dark:text-white text-base">{rec.item_name}</h3>
                     <span className="font-mono text-xs text-slate-500 dark:text-slate-400">({rec.sku})</span>
-                    <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                    <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                       {rec.recommendation_reason}
                     </span>
                   </div>
@@ -52,7 +52,7 @@ export const PurchasePlanningPage: React.FC = () => {
                       <span>Inbound POs: <strong className="text-amber-400">{rec.inbound_quantity} {rec.unit}</strong></span>
                     )}
                     <span className="flex items-center gap-1">
-                      <Building2 className="w-3.5 h-3.5 text-indigo-400" />
+                      <Building2 className="w-3.5 h-3.5 text-emerald-400" />
                       Preferred Vendor: <strong className="text-slate-700 dark:text-slate-200 ml-1">{rec.preferred_supplier_name}</strong>
                     </span>
                     <span className="flex items-center gap-1">
@@ -65,7 +65,7 @@ export const PurchasePlanningPage: React.FC = () => {
                 <div className="flex items-center gap-4 self-end lg:self-center">
                   <div className="text-right">
                     <p className="text-xs text-slate-500 dark:text-slate-400">Suggested Order</p>
-                    <p className="text-lg font-black font-mono text-indigo-400">
+                    <p className="text-lg font-black font-mono text-emerald-400">
                       {rec.suggested_quantity} {rec.unit}
                     </p>
                     <p className="text-xs font-mono font-semibold text-emerald-400">
@@ -75,7 +75,7 @@ export const PurchasePlanningPage: React.FC = () => {
 
                   <button
                     onClick={() => setSelectedItemForPo(rec)}
-                    className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl shadow-lg shadow-indigo-600/25 transition-all"
+                    className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl shadow-lg shadow-emerald-600/25 transition-all"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     Create PO

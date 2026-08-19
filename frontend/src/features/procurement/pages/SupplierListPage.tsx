@@ -13,7 +13,7 @@ import {
   Award,
   ShoppingCart,
   Clock,
-  DollarSign,
+  IndianRupee,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -33,7 +33,7 @@ export const SupplierListPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2.5">
-            <div className="h-9 w-9 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="h-9 w-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <Building2 className="h-5 w-5" />
             </div>
             <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Vendors & Food Suppliers</h1>
@@ -48,13 +48,13 @@ export const SupplierListPage: React.FC = () => {
             to="/procurement/purchase-orders"
             className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700/60 transition-colors"
           >
-            <ShoppingCart className="h-4 w-4 text-indigo-400" />
+            <ShoppingCart className="h-4 w-4 text-emerald-400" />
             Purchase Orders
           </Link>
 
           <button
             onClick={() => setIsCreateOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl shadow-lg shadow-indigo-600/25 transition-all"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl shadow-lg shadow-emerald-600/25 transition-all"
           >
             <Plus className="w-4 h-4" />
             Add Supplier
@@ -70,7 +70,7 @@ export const SupplierListPage: React.FC = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search suppliers, code, contact..."
-          className="w-full pl-9 pr-4 py-2 text-xs bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
+          className="w-full pl-9 pr-4 py-2 text-xs bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-700 dark:text-slate-200 focus:outline-none focus:border-emerald-500"
         />
       </div>
 
@@ -95,7 +95,7 @@ export const SupplierListPage: React.FC = () => {
                   <div>
                     <h3 className="font-bold text-slate-900 dark:text-white text-base">{s.name}</h3>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="font-mono text-xs text-indigo-400 font-bold">{s.supplier_code}</span>
+                      <span className="font-mono text-xs text-emerald-400 font-bold">{s.supplier_code}</span>
                       <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300">
                         {s.supplier_type?.replace(/_/g, " ") || "Wholesaler"}
                       </span>
@@ -145,7 +145,7 @@ export const SupplierListPage: React.FC = () => {
                     <span>Lead: <strong className="text-slate-900 dark:text-white">{s.lead_time_days || 2}d</strong></span>
                   </div>
                   <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
-                    <DollarSign className="w-3.5 h-3.5 text-slate-500" />
+                    <IndianRupee className="w-3.5 h-3.5 text-slate-500" />
                     <span>Terms: <strong className="text-slate-900 dark:text-white">{s.payment_terms || "NET 30"}</strong></span>
                   </div>
                 </div>
@@ -155,7 +155,7 @@ export const SupplierListPage: React.FC = () => {
               <div className="flex items-center gap-2 pt-3 border-t border-slate-200 dark:border-slate-800">
                 <button
                   onClick={() => setSelectedScorecardSupplierId(s.id)}
-                  className="flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 hover:bg-indigo-500/20 transition-colors"
+                  className="flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition-colors"
                 >
                   <Award className="w-3.5 h-3.5" />
                   Scorecard

@@ -366,7 +366,7 @@ export const WorkflowBuilderPage: React.FC = () => {
               <div className="space-y-2">
                 {steps.map((step, i) => (
                   <StepNode
-                    key={`${step.code}-${i}`}
+                    key={`${step.code}-₹{i}`}
                     step={step}
                     index={i}
                     selected={selectedCode === step.code}

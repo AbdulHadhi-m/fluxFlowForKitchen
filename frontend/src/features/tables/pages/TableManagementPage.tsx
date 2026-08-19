@@ -55,19 +55,24 @@ export const TableManagementPage: React.FC = () => {
                 <ArrowLeft className="h-4 w-4" />
               </Button>
             </Link>
-            <div>
-              <h1 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                Floor Plan & Dining Tables
-                <Badge
-                  variant="outline"
-                  className="text-[10px] border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 py-0"
-                >
-                  Floor Live
-                </Badge>
-              </h1>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Manage physical table seating capacities, section layouts, and live service occupancy.
-              </p>
+            <div className="flex items-center gap-2.5">
+              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-500/15 to-emerald-500/15 border border-blue-500/25 flex items-center justify-center text-blue-500 dark:text-blue-400 shrink-0">
+                <Layers className="h-4 w-4" />
+              </div>
+              <div>
+                <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+                  Floor Plan & Dining Tables
+                  <Badge
+                    variant="outline"
+                    className="text-[10px] border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 py-0"
+                  >
+                    Floor Live
+                  </Badge>
+                </h1>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Manage physical table seating capacities, section layouts, and live service occupancy.
+                </p>
+              </div>
             </div>
           </div>
 

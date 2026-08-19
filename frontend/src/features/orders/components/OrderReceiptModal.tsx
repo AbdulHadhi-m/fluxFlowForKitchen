@@ -54,7 +54,7 @@ export const OrderReceiptModal: React.FC<OrderReceiptModalProps> = ({ order, isO
           <div className="pt-3 border-t border-slate-200 dark:border-slate-800 space-y-1.5 text-xs">
             <div className="flex justify-between text-slate-500 dark:text-slate-400">
               <span>Subtotal</span>
-              <span className="font-mono">${parseFloat(order.subtotal).toFixed(2)}</span>
+              <span className="font-mono">₹{parseFloat(order.subtotal).toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-sm font-bold text-slate-900 dark:text-white">
               <span>Total Amount</span>

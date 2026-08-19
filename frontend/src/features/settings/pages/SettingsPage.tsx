@@ -29,7 +29,7 @@ export const SettingsPage: React.FC = () => {
       {/* Header */}
       <div>
         <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+          <div className="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
             <Settings className="h-4 w-4" />
           </div>
           <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">System Settings & Configuration</h1>
@@ -47,7 +47,7 @@ export const SettingsPage: React.FC = () => {
           onClick={() => setActiveTab("OPERATIONAL")}
           className={`h-8 px-3 text-xs rounded-lg font-medium gap-1.5 transition-all ${
             activeTab === "OPERATIONAL"
-              ? "bg-indigo-600 text-white font-bold shadow-sm"
+              ? "bg-emerald-600 text-white font-bold shadow-sm"
               : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
           }`}
         >
@@ -60,7 +60,7 @@ export const SettingsPage: React.FC = () => {
           onClick={() => setActiveTab("PREFERENCES")}
           className={`h-8 px-3 text-xs rounded-lg font-medium gap-1.5 transition-all ${
             activeTab === "PREFERENCES"
-              ? "bg-indigo-600 text-white font-bold shadow-sm"
+              ? "bg-emerald-600 text-white font-bold shadow-sm"
               : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
           }`}
         >
@@ -72,7 +72,7 @@ export const SettingsPage: React.FC = () => {
       {activeTab === "OPERATIONAL" && (
         isLoadingOperational ? (
           <div className="py-16 text-center text-xs text-slate-500 flex items-center justify-center gap-2">
-            <Loader2 className="h-4 w-4 animate-spin text-indigo-500" />
+            <Loader2 className="h-4 w-4 animate-spin text-emerald-500" />
             Loading operational settings...
           </div>
         ) : (
@@ -87,7 +87,7 @@ export const SettingsPage: React.FC = () => {
       {activeTab === "PREFERENCES" && (
         isLoadingPreferences ? (
           <div className="py-16 text-center text-xs text-slate-500 flex items-center justify-center gap-2">
-            <Loader2 className="h-4 w-4 animate-spin text-indigo-500" />
+            <Loader2 className="h-4 w-4 animate-spin text-emerald-500" />
             Loading user preferences...
           </div>
         ) : (

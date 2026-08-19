@@ -240,7 +240,7 @@ export const InventoryListPage: React.FC = () => {
                           {(item.track_batch || item.track_expiry) && (
                             <button
                               onClick={() => setBatchItem(item)}
-                              className="px-2 py-1 rounded-md bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 text-xs font-semibold transition-colors"
+                              className="px-2 py-1 rounded-md bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 text-xs font-semibold transition-colors"
                               title="View Batches / Expiry"
                             >
                               <Box className="w-3.5 h-3.5" />

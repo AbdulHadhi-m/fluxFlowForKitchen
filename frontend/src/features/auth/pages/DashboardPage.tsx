@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth, useSessions } from "../hooks/useAuth";
 import { useActiveRole } from "@/features/authorization/hooks/useActiveRole";
 import { Can } from "@/features/authorization/components/Can";
+import { useReports } from "@/features/reports/hooks/useReports";
+import { SalesKPICard } from "@/features/reports/components/SalesKPICard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -13,10 +15,8 @@ import {
   Monitor,
   Trash2,
   Clock,
-  Utensils,
   RotateCcw,
   Sparkles,
-  Building2,
   Users,
   UtensilsCrossed,
   LayoutGrid,
@@ -27,224 +27,319 @@ import {
   Boxes,
   Truck,
   BarChart3,
-  Settings,
+  IndianRupee,
+  TrendingUp,
+  ShoppingCart,
+  AlertTriangle,
+  ChevronDown,
+  ChevronUp,
+  ArrowRight,
+  Zap,
 } from "lucide-react";
 
 export const DashboardPage: React.FC = () => {
   const { user } = useAuth();
   const { sessions, terminateSession, terminateOtherSessions } = useSessions();
   const { activeRole, permissions } = useActiveRole();
+  const [rbacOpen, setRbacOpen] = useState(false);
+
+  const hasReportsPermission = permissions.includes("reports.view");
+  const { dashboardData, isLoadingDashboard } = useReports("LAST_7_DAYS", "", "", hasReportsPermission);
+
+  const sales = dashboardData?.sales;
+  const orders = dashboardData?.orders;
+  const inventory = dashboardData?.inventory;
+  const procurement = dashboardData?.procurement;
+
+  const greeting = (() => {
+    const hour = new Date().getHours();
+    if (hour < 12) return "Good morning";
+    if (hour < 17) return "Good afternoon";
+    return "Good evening";
+  })();
 
   return (
-    <div className="space-y-8">
-      {/* Top Profile Header */}
-      <header className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
+    <div className="space-y-6 animate-in fade-in duration-300">
+      {/* Welcome Header */}
+      <header className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
         <div className="flex items-center gap-3">
-          <div className="h-12 w-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 shadow-sm">
+          <div className="h-12 w-12 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-500 flex items-center justify-center text-white shadow-md shadow-emerald-600/30">
             <UserIcon className="h-6 w-6" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              {user?.full_name || user?.email}
+              {greeting}, {user?.full_name || user?.email?.split("@")[0] || "there"}
               <Badge variant="success" className="text-[10px] py-0">
-                Authenticated
+                {activeRole?.name || "Member"}
               </Badge>
             </h1>
-            <p className="text-xs text-slate-500 dark:text-slate-400 font-mono">{user?.email}</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              {new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" })}
+              {" · "}Here's what's happening across your restaurant today.
+            </p>
           </div>
         </div>
+        <Can permission="orders.create">
+          <Link to="/orders/pos">
+            <Button className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs h-9 gap-2 shadow-md shadow-emerald-600/30">
+              <Zap className="h-3.5 w-3.5" /> Open POS Terminal
+            </Button>
+          </Link>
+        </Can>
       </header>
 
-      {/* Operational Context & RBAC Status */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 shadow-sm backdrop-blur-sm">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-slate-900 dark:text-slate-200 flex items-center gap-2">
-              <Shield className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-              Active Operational Role
-            </CardTitle>
-            <CardDescription className="text-xs text-slate-500 dark:text-slate-400">
-              Current active RBAC scope governing access to terminal actions
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3 text-xs">
-            <div className="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800/60">
-              <span className="text-slate-500 dark:text-slate-400">Role Title</span>
-              <span className="font-semibold text-slate-900 dark:text-white">{activeRole?.name || "Standard Member"}</span>
+      {/* Executive KPIs */}
+      {hasReportsPermission && (
+        <section className="space-y-3">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-black uppercase tracking-wider text-slate-400 dark:text-slate-500">
+              Last 7 Days Performance
+            </h2>
+            <Link
+              to="/reports"
+              className="flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors"
+            >
+              Full analytics <ArrowRight className="h-3 w-3" />
+            </Link>
+          </div>
+
+          {isLoadingDashboard ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <div key={i} className="h-[104px] rounded-xl bg-slate-100 dark:bg-slate-800/60 animate-pulse" />
+              ))}
             </div>
-            <div className="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800/60">
-              <span className="text-slate-500 dark:text-slate-400">Role Slug</span>
-              <span className="font-mono text-blue-600 dark:text-blue-400 text-[11px] font-medium">{activeRole?.code || "MEMBER"}</span>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3">
+              <SalesKPICard
+                title="Net Revenue"
+                value={sales ? `₹${sales.net_sales}` : "—"}
+                subtitle={`Gross: ₹${sales?.gross_sales || "0.00"}`}
+                icon={IndianRupee}
+                iconColor="text-emerald-500"
+                iconBg="bg-emerald-500/10"
+              />
+              <SalesKPICard
+                title="Paid & Settled"
+                value={sales ? `₹${sales.total_paid}` : "—"}
+                subtitle={`Balance due: ₹${sales?.balance_due || "0.00"}`}
+                icon={Receipt}
+                iconColor="text-blue-500"
+                iconBg="bg-blue-500/10"
+              />
+              <SalesKPICard
+                title="Total Orders"
+                value={orders?.total_orders ?? "—"}
+                subtitle={`${orders?.completed_orders || 0} completed`}
+                icon={ShoppingCart}
+                iconColor="text-purple-500"
+                iconBg="bg-purple-500/10"
+              />
+              <SalesKPICard
+                title="In Progress"
+                value={orders?.active_orders ?? "—"}
+                subtitle={`${orders?.cancelled_orders || 0} cancelled`}
+                icon={TrendingUp}
+                iconColor="text-amber-500"
+                iconBg="bg-amber-500/10"
+              />
+              <SalesKPICard
+                title="Avg Order Value"
+                value={sales ? `₹${sales.average_order_value}` : "—"}
+                subtitle={`${sales?.total_bills || 0} invoices issued`}
+                icon={BarChart3}
+                iconColor="text-cyan-500"
+                iconBg="bg-cyan-500/10"
+              />
             </div>
-            <div className="flex justify-between py-1.5 border-b border-slate-100 dark:border-slate-800/60">
-              <span className="text-slate-500 dark:text-slate-400">Active Permissions Count</span>
-              <span className="font-mono text-emerald-600 dark:text-emerald-400 font-medium">{permissions.length} capabilities</span>
-            </div>
-            <div className="pt-2">
-              <span className="text-slate-500 dark:text-slate-400 text-[11px] block mb-2 font-medium">Effective Permissions:</span>
-              <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto pr-1">
-                {permissions.map((perm) => (
-                  <Badge key={perm} variant="outline" className="text-[10px] border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300">
-                    {perm}
-                  </Badge>
-                ))}
+          )}
+        </section>
+      )}
+
+      {/* Operational Health Alerts */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <Can permission="inventory.view">
+          <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 shadow-sm">
+            <CardHeader className="pb-2 flex flex-row items-center justify-between">
+              <CardTitle className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <Boxes className="h-4 w-4 text-emerald-500" />
+                Inventory Stock Status
+              </CardTitle>
+              <Link to="/inventory">
+                <Button variant="ghost" size="sm" className="h-6 text-[10px] text-emerald-500 hover:text-slate-900 dark:hover:text-white gap-1 px-1.5">
+                  Manage <ArrowRight className="h-2.5 w-2.5" />
+                </Button>
+              </Link>
+            </CardHeader>
+            <CardContent className="pt-1">
+              {(inventory?.low_stock || 0) > 0 || (inventory?.out_of_stock || 0) > 0 ? (
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 p-2.5 rounded-xl text-xs">
+                    <span className="flex items-center gap-1.5 text-amber-700 dark:text-amber-400 font-medium">
+                      <AlertTriangle className="h-3.5 w-3.5" /> Low Stock Items
+                    </span>
+                    <span className="font-mono font-bold text-amber-700 dark:text-amber-400">{inventory?.low_stock ?? 0}</span>
+                  </div>
+                  <div className="flex items-center justify-between bg-rose-50 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/20 p-2.5 rounded-xl text-xs">
+                    <span className="flex items-center gap-1.5 text-rose-700 dark:text-rose-400 font-medium">
+                      <AlertTriangle className="h-3.5 w-3.5" /> Out of Stock Items
+                    </span>
+                    <span className="font-mono font-bold text-rose-700 dark:text-rose-400">{inventory?.out_of_stock ?? 0}</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 p-3 rounded-xl text-xs text-emerald-700 dark:text-emerald-400 font-medium flex items-center gap-2">
+                  <Boxes className="h-3.5 w-3.5" /> Stock levels look healthy — no low or out-of-stock alerts.
+                </div>
+              )}
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-2.5">
+                {inventory?.total_items ?? 0} active items tracked · {inventory?.in_stock ?? 0} fully stocked
+              </p>
+            </CardContent>
+          </Card>
+        </Can>
+
+        <Can permission="procurement.view">
+          <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 shadow-sm">
+            <CardHeader className="pb-2 flex flex-row items-center justify-between">
+              <CardTitle className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <Truck className="h-4 w-4 text-purple-500" />
+                Procurement Pipeline
+              </CardTitle>
+              <Link to="/procurement">
+                <Button variant="ghost" size="sm" className="h-6 text-[10px] text-purple-500 hover:text-slate-900 dark:hover:text-white gap-1 px-1.5">
+                  View <ArrowRight className="h-2.5 w-2.5" />
+                </Button>
+              </Link>
+            </CardHeader>
+            <CardContent className="pt-1 space-y-2.5">
+              <div className="flex items-center justify-between bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80 p-2.5 rounded-xl text-xs">
+                <span className="text-slate-500 dark:text-slate-400 font-medium">Open Purchase Orders</span>
+                <span className="font-mono font-bold text-purple-600 dark:text-purple-400">{procurement?.open_purchase_orders ?? 0}</span>
               </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Demonstration of <Can> permission gating */}
-        <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 shadow-sm backdrop-blur-sm">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-slate-900 dark:text-slate-200 flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
-              Permission-Aware UI Guards
-            </CardTitle>
-            <CardDescription className="text-xs text-slate-500 dark:text-slate-400">
-              Live evaluation of UI capabilities based on active role
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3 text-xs text-slate-700 dark:text-slate-300">
-            <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
-              Actions below automatically enable/disable or hide when you switch roles:
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-              <Can
-                permission="orders.create"
-                fallback={
-                  <Button disabled variant="outline" size="sm" className="opacity-40 text-xs gap-1.5 justify-start">
-                    <Utensils className="h-3.5 w-3.5" /> Create Order (Locked)
-                  </Button>
-                }
-              >
-                <Button variant="outline" size="sm" className="border-blue-500/30 text-blue-700 dark:text-blue-300 bg-blue-50/50 dark:bg-transparent hover:bg-blue-50 dark:hover:bg-blue-500/10 text-xs gap-1.5 justify-start">
-                  <Utensils className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" /> Create Dine-in Order
-                </Button>
-              </Can>
-
-              <Can
-                permission="billing.refund"
-                fallback={
-                  <Button disabled variant="outline" size="sm" className="opacity-40 text-xs gap-1.5 justify-start">
-                    <RotateCcw className="h-3.5 w-3.5" /> Refund (Manager Only)
-                  </Button>
-                }
-              >
-                <Button variant="outline" size="sm" className="border-emerald-500/30 text-emerald-700 dark:text-emerald-300 bg-emerald-50/50 dark:bg-transparent hover:bg-emerald-50 dark:hover:bg-emerald-500/10 text-xs gap-1.5 justify-start">
-                  <RotateCcw className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" /> Managerial Refund
-                </Button>
-              </Can>
-
-              <Can permission="settings.view">
-                <Link to="/restaurant/setup">
-                  <Button variant="outline" size="sm" className="w-full border-blue-500/30 text-blue-700 dark:text-blue-300 bg-blue-50/50 dark:bg-transparent hover:bg-blue-50 dark:hover:bg-blue-500/10 text-xs gap-1.5 justify-start">
-                    <Building2 className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" /> Restaurant Settings & Setup
-                  </Button>
-                </Link>
-              </Can>
-
-              <Can permission="staff.view">
-                <Link to="/staff">
-                  <Button variant="outline" size="sm" className="w-full border-indigo-500/30 text-indigo-700 dark:text-indigo-300 bg-indigo-50/50 dark:bg-transparent hover:bg-indigo-50 dark:hover:bg-indigo-500/10 text-xs gap-1.5 justify-start">
-                    <Users className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400" /> Staff Roster & Roles
-                  </Button>
-                </Link>
-              </Can>
-
-              <Can permission="menu.view">
-                <Link to="/menu">
-                  <Button variant="outline" size="sm" className="w-full border-amber-500/30 text-amber-700 dark:text-amber-300 bg-amber-50/50 dark:bg-transparent hover:bg-amber-50 dark:hover:bg-amber-500/10 text-xs gap-1.5 justify-start">
-                    <UtensilsCrossed className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" /> Menu & Catalog Management
-                  </Button>
-                </Link>
-              </Can>
-
-              <Can permission="tables.view">
-                <Link to="/tables">
-                  <Button variant="outline" size="sm" className="w-full border-emerald-500/30 text-emerald-700 dark:text-emerald-300 bg-emerald-50/50 dark:bg-transparent hover:bg-emerald-50 dark:hover:bg-emerald-500/10 text-xs gap-1.5 justify-start">
-                    <LayoutGrid className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" /> Floor Plan & Dining Tables
-                  </Button>
-                </Link>
-              </Can>
-
-              <Can permission="orders.create">
-                <Link to="/orders/pos">
-                  <Button variant="outline" size="sm" className="w-full border-blue-500/30 text-blue-700 dark:text-blue-300 bg-blue-50/50 dark:bg-transparent hover:bg-blue-50 dark:hover:bg-blue-500/10 text-xs gap-1.5 justify-start">
-                    <Store className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" /> Live POS Terminal
-                  </Button>
-                </Link>
-              </Can>
-
-              <Can permission="orders.view">
-                <Link to="/orders/history">
-                  <Button variant="outline" size="sm" className="w-full border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs gap-1.5 justify-start">
-                    <History className="h-3.5 w-3.5 text-slate-500 dark:text-slate-400" /> Orders & Ticket Ledger
-                  </Button>
-                </Link>
-              </Can>
-
-              <Can permission="kitchen.view">
-                <Link to="/kds">
-                  <Button variant="outline" size="sm" className="w-full border-amber-500/30 text-amber-700 dark:text-amber-300 bg-amber-50/50 dark:bg-transparent hover:bg-amber-50 dark:hover:bg-amber-500/10 text-xs gap-1.5 justify-start">
-                    <ChefHat className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" /> Kitchen Display System (KDS)
-                  </Button>
-                </Link>
-              </Can>
-
-              <Can permission="billing.view">
-                <Link to="/billing">
-                  <Button variant="outline" size="sm" className="w-full border-emerald-500/30 text-emerald-700 dark:text-emerald-300 bg-emerald-50/50 dark:bg-transparent hover:bg-emerald-50 dark:hover:bg-emerald-500/10 text-xs gap-1.5 justify-start">
-                    <Receipt className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" /> POS Billing & Register
-                  </Button>
-                </Link>
-              </Can>
-
-              <Can permission="inventory.view">
-                <Link to="/inventory">
-                  <Button variant="outline" size="sm" className="w-full border-indigo-500/30 text-indigo-700 dark:text-indigo-300 bg-indigo-50/50 dark:bg-transparent hover:bg-indigo-50 dark:hover:bg-indigo-500/10 text-xs gap-1.5 justify-start">
-                    <Boxes className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400" /> Inventory & Stock
-                  </Button>
-                </Link>
-              </Can>
-
-              <Can permission="procurement.view">
-                <Link to="/procurement/orders">
-                  <Button variant="outline" size="sm" className="w-full border-purple-500/30 text-purple-700 dark:text-purple-300 bg-purple-50/50 dark:bg-transparent hover:bg-purple-50 dark:hover:bg-purple-500/10 text-xs gap-1.5 justify-start">
-                    <Truck className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" /> Procurement & POs
-                  </Button>
-                </Link>
-              </Can>
-
-              <Can permission="reports.view">
-                <Link to="/reports">
-                  <Button variant="outline" size="sm" className="w-full border-amber-500/30 text-amber-700 dark:text-amber-300 bg-amber-50/50 dark:bg-transparent hover:bg-amber-50 dark:hover:bg-amber-500/10 text-xs gap-1.5 justify-start">
-                    <BarChart3 className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" /> Business Analytics & Reports
-                  </Button>
-                </Link>
-              </Can>
-
-              <Can permission="audit.view">
-                <Link to="/audit-logs">
-                  <Button variant="outline" size="sm" className="w-full border-cyan-500/30 text-cyan-700 dark:text-cyan-300 bg-cyan-50/50 dark:bg-transparent hover:bg-cyan-50 dark:hover:bg-cyan-500/10 text-xs gap-1.5 justify-start">
-                    <Shield className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400" /> Security & Audit Logs
-                  </Button>
-                </Link>
-              </Can>
-
-              <Can permission="settings.view">
-                <Link to="/settings">
-                  <Button variant="outline" size="sm" className="w-full border-indigo-500/30 text-indigo-700 dark:text-indigo-300 bg-indigo-50/50 dark:bg-transparent hover:bg-indigo-50 dark:hover:bg-indigo-500/10 text-xs gap-1.5 justify-start">
-                    <Settings className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400" /> Operational Settings
-                  </Button>
-                </Link>
-              </Can>
-            </div>
-          </CardContent>
-        </Card>
+              <div className="flex items-center justify-between bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80 p-2.5 rounded-xl text-xs">
+                <span className="text-slate-500 dark:text-slate-400 font-medium">Awaiting Approval</span>
+                <span className="font-mono font-bold text-blue-600 dark:text-blue-400">{procurement?.pending_approval ?? 0}</span>
+              </div>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                {(procurement?.pending_approval ?? 0) > 0
+                  ? "Some purchase orders need your review and sign-off."
+                  : "No purchase orders awaiting approval."}
+              </p>
+            </CardContent>
+          </Card>
+        </Can>
       </div>
 
+      {/* Quick Actions */}
+      <section className="space-y-3">
+        <h2 className="text-sm font-black uppercase tracking-wider text-slate-400 dark:text-slate-500">Quick Actions</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <Can permission="orders.create">
+            <Link to="/orders/pos" className="group">
+              <div className="h-full flex flex-col items-center justify-center gap-2 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-4 text-center hover:border-emerald-400 dark:hover:border-emerald-500 hover:shadow-md hover:shadow-emerald-500/10 transition-all">
+                <div className="h-9 w-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
+                  <Store className="h-4 w-4" />
+                </div>
+                <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-300">POS Terminal</span>
+              </div>
+            </Link>
+          </Can>
+          <Can permission="orders.create">
+            <Link to="/billing" className="group">
+              <div className="h-full flex flex-col items-center justify-center gap-2 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-4 text-center hover:border-emerald-400 dark:hover:border-emerald-500 hover:shadow-md hover:shadow-emerald-500/10 transition-all">
+                <div className="h-9 w-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform">
+                  <Receipt className="h-4 w-4" />
+                </div>
+                <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Billing</span>
+              </div>
+            </Link>
+          </Can>
+          <Can permission="kitchen.view">
+            <Link to="/kitchen" className="group">
+              <div className="h-full flex flex-col items-center justify-center gap-2 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-4 text-center hover:border-amber-400 dark:hover:border-amber-500 hover:shadow-md hover:shadow-amber-500/10 transition-all">
+                <div className="h-9 w-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
+                  <ChefHat className="h-4 w-4" />
+                </div>
+                <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Kitchen (KDS)</span>
+              </div>
+            </Link>
+          </Can>
+          <Can permission="tables.view">
+            <Link to="/tables" className="group">
+              <div className="h-full flex flex-col items-center justify-center gap-2 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-4 text-center hover:border-teal-400 dark:hover:border-teal-500 hover:shadow-md hover:shadow-teal-500/10 transition-all">
+                <div className="h-9 w-9 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-500 group-hover:scale-110 transition-transform">
+                  <LayoutGrid className="h-4 w-4" />
+                </div>
+                <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Floor Plan</span>
+              </div>
+            </Link>
+          </Can>
+          <Can permission="menu.view">
+            <Link to="/menu" className="group">
+              <div className="h-full flex flex-col items-center justify-center gap-2 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-4 text-center hover:border-cyan-400 dark:hover:border-cyan-500 hover:shadow-md hover:shadow-cyan-500/10 transition-all">
+                <div className="h-9 w-9 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-500 group-hover:scale-110 transition-transform">
+                  <UtensilsCrossed className="h-4 w-4" />
+                </div>
+                <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Menu</span>
+              </div>
+            </Link>
+          </Can>
+          <Can permission="orders.view">
+            <Link to="/orders/history" className="group">
+              <div className="h-full flex flex-col items-center justify-center gap-2 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-4 text-center hover:border-slate-400 dark:hover:border-slate-600 hover:shadow-md transition-all">
+                <div className="h-9 w-9 rounded-lg bg-slate-500/10 border border-slate-500/20 flex items-center justify-center text-slate-500 dark:text-slate-400 group-hover:scale-110 transition-transform">
+                  <History className="h-4 w-4" />
+                </div>
+                <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Order History</span>
+              </div>
+            </Link>
+          </Can>
+          <Can permission="customers.view">
+            <Link to="/customers" className="group">
+              <div className="h-full flex flex-col items-center justify-center gap-2 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-4 text-center hover:border-emerald-400 dark:hover:border-emerald-500 hover:shadow-md hover:shadow-emerald-500/10 transition-all">
+                <div className="h-9 w-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform">
+                  <Users className="h-4 w-4" />
+                </div>
+                <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Customers & CRM</span>
+              </div>
+            </Link>
+          </Can>
+          <Can permission="inventory.view">
+            <Link to="/inventory" className="group">
+              <div className="h-full flex flex-col items-center justify-center gap-2 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-4 text-center hover:border-emerald-400 dark:hover:border-emerald-500 hover:shadow-md hover:shadow-emerald-500/10 transition-all">
+                <div className="h-9 w-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform">
+                  <Boxes className="h-4 w-4" />
+                </div>
+                <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Inventory</span>
+              </div>
+            </Link>
+          </Can>
+          <Can permission="workflows.view">
+            <Link to="/automation" className="group">
+              <div className="h-full flex flex-col items-center justify-center gap-2 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-4 text-center hover:border-fuchsia-400 dark:hover:border-fuchsia-500 hover:shadow-md hover:shadow-fuchsia-500/10 transition-all">
+                <div className="h-9 w-9 rounded-lg bg-fuchsia-500/10 border border-fuchsia-500/20 flex items-center justify-center text-fuchsia-500 group-hover:scale-110 transition-transform">
+                  <Sparkles className="h-4 w-4" />
+                </div>
+                <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Automation</span>
+              </div>
+            </Link>
+          </Can>
+          <Can permission="reports.view">
+            <Link to="/reports" className="group">
+              <div className="h-full flex flex-col items-center justify-center gap-2 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-4 text-center hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-md hover:shadow-purple-500/10 transition-all">
+                <div className="h-9 w-9 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-500 group-hover:scale-110 transition-transform">
+                  <BarChart3 className="h-4 w-4" />
+                </div>
+                <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Analytics</span>
+              </div>
+            </Link>
+          </Can>
+        </div>
+      </section>
+
       {/* Active Sessions Management */}
-      <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 shadow-sm backdrop-blur-sm">
+      <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 shadow-sm">
         <CardHeader className="flex flex-row items-center justify-between pb-4">
           <div>
             <CardTitle className="text-sm font-medium text-slate-900 dark:text-white flex items-center gap-2">
@@ -268,50 +363,102 @@ export const DashboardPage: React.FC = () => {
           )}
         </CardHeader>
         <CardContent>
-          <div className="divide-y divide-slate-100 dark:divide-slate-800/80">
-            {sessions.map((session) => (
-              <div
-                key={session.id}
-                className="py-3 flex items-center justify-between gap-4 text-xs"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="h-8 w-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
-                    {session.device_info.includes("Mobile") ? (
-                      <Smartphone className="h-4 w-4" />
-                    ) : (
-                      <Monitor className="h-4 w-4" />
-                    )}
-                  </div>
-                  <div>
-                    <div className="font-medium text-slate-900 dark:text-slate-200 flex items-center gap-2">
-                      {session.device_info}
-                      {session.is_current && (
-                        <Badge variant="outline" className="text-[10px] text-emerald-600 dark:text-emerald-400 border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 py-0">
-                          Current Device
-                        </Badge>
+          {sessions.length === 0 ? (
+            <p className="text-xs text-slate-500 dark:text-slate-400 py-2">No active sessions found.</p>
+          ) : (
+            <div className="divide-y divide-slate-100 dark:divide-slate-800/80">
+              {sessions.map((session) => (
+                <div key={session.id} className="py-3 flex items-center justify-between gap-4 text-xs">
+                  <div className="flex items-center gap-3">
+                    <div className="h-8 w-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                      {session.device_info.includes("Mobile") ? (
+                        <Smartphone className="h-4 w-4" />
+                      ) : (
+                        <Monitor className="h-4 w-4" />
                       )}
                     </div>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">
-                      IP: {session.ip_address || "Unknown"} &bull; Last Active:{" "}
-                      {new Date(session.last_activity).toLocaleTimeString()}
-                    </p>
+                    <div>
+                      <div className="font-medium text-slate-900 dark:text-slate-200 flex items-center gap-2">
+                        {session.device_info}
+                        {session.is_current && (
+                          <Badge variant="outline" className="text-[10px] text-emerald-600 dark:text-emerald-400 border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 py-0">
+                            Current Device
+                          </Badge>
+                        )}
+                      </div>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+                        IP: {session.ip_address || "Unknown"} · Last Active:{" "}
+                        {new Date(session.last_activity).toLocaleTimeString()}
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                {!session.is_current && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => terminateSession(session.id)}
-                    className="text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-500/10 h-7 text-xs"
-                  >
-                    Revoke
-                  </Button>
-                )}
-              </div>
-            ))}
-          </div>
+                  {!session.is_current && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => terminateSession(session.id)}
+                      className="text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-500/10 h-7 text-xs"
+                    >
+                      Revoke
+                    </Button>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </CardContent>
+      </Card>
+
+      {/* Role & Permission Context (collapsible) */}
+      <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 shadow-sm">
+        <button
+          onClick={() => setRbacOpen(!rbacOpen)}
+          className="w-full flex items-center justify-between gap-3 px-5 py-4 text-left"
+          aria-expanded={rbacOpen}
+        >
+          <div className="flex items-center gap-2">
+            <Shield className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+            <span className="text-sm font-medium text-slate-900 dark:text-slate-200">Role & Permission Context</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Badge variant="outline" className="text-[10px] font-mono text-blue-600 dark:text-blue-400">
+              {activeRole?.code || "MEMBER"}
+            </Badge>
+            <span className="text-slate-400">
+              {rbacOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+            </span>
+          </div>
+        </button>
+        {rbacOpen && (
+          <CardContent className="pt-0 px-5 pb-5 space-y-3 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80 rounded-xl p-3">
+                <div className="text-slate-500 dark:text-slate-400 mb-1">Active Role</div>
+                <div className="font-semibold text-slate-900 dark:text-white">{activeRole?.name || "Standard Member"}</div>
+              </div>
+              <div className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80 rounded-xl p-3">
+                <div className="text-slate-500 dark:text-slate-400 mb-1">Role Slug</div>
+                <div className="font-mono text-blue-600 dark:text-blue-400 font-medium">{activeRole?.code || "MEMBER"}</div>
+              </div>
+              <div className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80 rounded-xl p-3">
+                <div className="text-slate-500 dark:text-slate-400 mb-1">Effective Capabilities</div>
+                <div className="font-mono text-emerald-600 dark:text-emerald-400 font-medium">{permissions.length} permissions</div>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              {permissions.map((perm) => (
+                <Badge key={perm} variant="outline" className="text-[10px] border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300">
+                  {perm}
+                </Badge>
+              ))}
+            </div>
+            <div className="pt-1 flex items-center gap-2 text-slate-500 dark:text-slate-400">
+              <RotateCcw className="h-3 w-3" />
+              Switch operational role from the header to change which capabilities the UI exposes.
+            </div>
+          </CardContent>
+        )}
       </Card>
     </div>
   );

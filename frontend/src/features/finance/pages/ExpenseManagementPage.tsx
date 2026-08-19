@@ -56,7 +56,7 @@ export const ExpenseManagementPage: React.FC = () => {
 
         <button
           onClick={() => setIsCreateOpen(true)}
-          className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl shadow-lg shadow-indigo-600/25 transition-all"
+          className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl shadow-lg shadow-emerald-600/25 transition-all"
         >
           <Plus className="w-4 h-4" />
           Record Expense
@@ -71,7 +71,7 @@ export const ExpenseManagementPage: React.FC = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search expense #, payee, category..."
-          className="w-full pl-9 pr-4 py-2 text-xs bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
+          className="w-full pl-9 pr-4 py-2 text-xs bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-700 dark:text-slate-200 focus:outline-none focus:border-emerald-500"
         />
       </div>
 
@@ -86,7 +86,7 @@ export const ExpenseManagementPage: React.FC = () => {
               <th className="p-4">Category</th>
               <th className="p-4">GL Account</th>
               <th className="p-4 w-24">Cost Center</th>
-              <th className="p-4 w-28 font-mono text-right">Amount ($)</th>
+              <th className="p-4 w-28 font-mono text-right">Amount (₹)</th>
               <th className="p-4 w-24 text-center">Status</th>
               <th className="p-4 w-28 text-right">Actions</th>
             </tr>

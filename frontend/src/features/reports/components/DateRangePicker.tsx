@@ -39,7 +39,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
             onClick={() => onPresetChange(p.id)}
             className={`h-7 px-2.5 text-xs rounded-lg font-medium transition-all ${
               preset === p.id
-                ? "bg-indigo-600 text-white font-bold shadow-sm shadow-indigo-600/30"
+                ? "bg-emerald-600 text-white font-bold shadow-sm shadow-emerald-600/30"
                 : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
             }`}
           >
@@ -50,7 +50,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
 
       {preset === "CUSTOM" && (
         <div className="flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-800 animate-in fade-in">
-          <Calendar className="h-3.5 w-3.5 text-indigo-400" />
+          <Calendar className="h-3.5 w-3.5 text-emerald-400" />
           <Input
             type="date"
             value={startDate || ""}

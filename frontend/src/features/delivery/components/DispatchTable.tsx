@@ -67,7 +67,7 @@ export const DispatchTable: React.FC<DispatchTableProps> = ({
                       <ArrowUpRight className="w-3 h-3" />
                     </Link>
                   </div>
-                  <span className="text-[11px] font-extrabold text-slate-900 dark:text-white">${d.order_total}</span>
+                  <span className="text-[11px] font-extrabold text-slate-900 dark:text-white">₹{d.order_total}</span>
                 </td>
 
                 {/* Customer & Address */}
@@ -87,7 +87,7 @@ export const DispatchTable: React.FC<DispatchTableProps> = ({
                 {/* Zone & Fee */}
                 <td className="py-4 px-5 whitespace-nowrap">
                   <span className="font-medium text-slate-700 dark:text-slate-200">{d.zone_name || 'Standard'}</span>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400">${d.delivery_fee} fee</p>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400">₹{d.delivery_fee} fee</p>
                 </td>
 
                 {/* Status */}
@@ -136,7 +136,7 @@ export const DispatchTable: React.FC<DispatchTableProps> = ({
                     {d.status === 'PICKED_UP' && (
                       <button
                         onClick={() => onStart(d.id)}
-                        className="px-3 py-1.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white text-xs font-bold transition-colors"
+                        className="px-3 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white text-xs font-bold transition-colors"
                       >
                         Start Delivery
                       </button>

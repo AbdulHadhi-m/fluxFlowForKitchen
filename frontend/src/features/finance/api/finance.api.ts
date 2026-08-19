@@ -18,11 +18,17 @@ import {
   FinanceDashboardSummary,
 } from "../types/finance.types";
 
+interface ApiResponse<T> {
+  success: boolean;
+  data: T;
+  meta?: Record<string, any>;
+}
+
 export const financeApi = {
   // Chart of Accounts
   getAccounts: async (params?: { category?: string }): Promise<Account[]> => {
-    const res = await apiClient.get<Account[]>("/finance/accounts/", { params });
-    return res.data;
+    const res = await apiClient.get<ApiResponse<Account[]>>("/finance/accounts/", { params });
+    return res.data.data;
   },
   createAccount: async (data: Partial<Account>): Promise<Account> => {
     const res = await apiClient.post<Account>("/finance/accounts/", data);
@@ -35,8 +41,8 @@ export const financeApi = {
 
   // Journal Entries
   getJournals: async (params?: { status?: string }): Promise<JournalEntry[]> => {
-    const res = await apiClient.get<JournalEntry[]>("/finance/journals/", { params });
-    return res.data;
+    const res = await apiClient.get<ApiResponse<JournalEntry[]>>("/finance/journals/", { params });
+    return res.data.data;
   },
   createJournal: async (data: any): Promise<JournalEntry> => {
     const res = await apiClient.post<JournalEntry>("/finance/journals/", data);
@@ -53,8 +59,8 @@ export const financeApi = {
 
   // Cash Sessions & Register Management
   getCashSessions: async (): Promise<CashSession[]> => {
-    const res = await apiClient.get<CashSession[]>("/finance/cash-sessions/");
-    return res.data;
+    const res = await apiClient.get<ApiResponse<CashSession[]>>("/finance/cash-sessions/");
+    return res.data.data;
   },
   openCashSession: async (data: { register_name: string; opening_balance: string }): Promise<CashSession> => {
     const res = await apiClient.post<CashSession>("/finance/cash-sessions/", data);
@@ -75,16 +81,16 @@ export const financeApi = {
 
   // Bank Accounts & Transactions
   getBankAccounts: async (): Promise<BankAccount[]> => {
-    const res = await apiClient.get<BankAccount[]>("/finance/bank-accounts/");
-    return res.data;
+    const res = await apiClient.get<ApiResponse<BankAccount[]>>("/finance/bank-accounts/");
+    return res.data.data;
   },
   createBankAccount: async (data: Partial<BankAccount>): Promise<BankAccount> => {
     const res = await apiClient.post<BankAccount>("/finance/bank-accounts/", data);
     return res.data;
   },
   getBankTransactions: async (): Promise<BankTransaction[]> => {
-    const res = await apiClient.get<BankTransaction[]>("/finance/bank-transactions/");
-    return res.data;
+    const res = await apiClient.get<ApiResponse<BankTransaction[]>>("/finance/bank-transactions/");
+    return res.data.data;
   },
   matchBankTransaction: async (id: string, payment_id: string): Promise<BankTransaction> => {
     const res = await apiClient.post<BankTransaction>(`/finance/bank-transactions/${id}/match/`, { payment_id });
@@ -97,18 +103,18 @@ export const financeApi = {
 
   // Accounts Receivable & Accounts Payable
   getReceivables: async (): Promise<AccountsReceivable[]> => {
-    const res = await apiClient.get<AccountsReceivable[]>("/finance/receivables/");
-    return res.data;
+    const res = await apiClient.get<ApiResponse<AccountsReceivable[]>>("/finance/receivables/");
+    return res.data.data;
   },
   getPayables: async (): Promise<AccountsPayable[]> => {
-    const res = await apiClient.get<AccountsPayable[]>("/finance/payables/");
-    return res.data;
+    const res = await apiClient.get<ApiResponse<AccountsPayable[]>>("/finance/payables/");
+    return res.data.data;
   },
 
   // Operational Expenses
   getExpenses: async (): Promise<Expense[]> => {
-    const res = await apiClient.get<Expense[]>("/finance/expenses/");
-    return res.data;
+    const res = await apiClient.get<ApiResponse<Expense[]>>("/finance/expenses/");
+    return res.data.data;
   },
   createExpense: async (data: any): Promise<Expense> => {
     const res = await apiClient.post<Expense>("/finance/expenses/", data);
@@ -125,8 +131,8 @@ export const financeApi = {
 
   // Financial Periods
   getPeriods: async (): Promise<FinancialPeriod[]> => {
-    const res = await apiClient.get<FinancialPeriod[]>("/finance/periods/");
-    return res.data;
+    const res = await apiClient.get<ApiResponse<FinancialPeriod[]>>("/finance/periods/");
+    return res.data.data;
   },
   createPeriod: async (data: Partial<FinancialPeriod>): Promise<FinancialPeriod> => {
     const res = await apiClient.post<FinancialPeriod>("/finance/periods/", data);

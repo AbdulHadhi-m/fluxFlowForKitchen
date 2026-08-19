@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, CheckCircle, Send } from 'lucide-react';
 import { StockCount } from '../types/inventory.types';
 import {
@@ -18,21 +18,27 @@ export const StockCountReviewModal: React.FC<StockCountReviewModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  if (!isOpen || !stockCount) return null;
-
   const [items, setItems] = useState<
     Array<{ item_id: string; counted_quantity: number; notes: string }>
-  >(
-    stockCount.items.map((i) => ({
-      item_id: i.item,
-      counted_quantity: Number(i.counted_quantity),
-      notes: i.notes || '',
-    }))
-  );
+  >([]);
+
+  useEffect(() => {
+    if (stockCount) {
+      setItems(
+        stockCount.items.map((i) => ({
+          item_id: i.item,
+          counted_quantity: Number(i.counted_quantity),
+          notes: i.notes || '',
+        }))
+      );
+    }
+  }, [stockCount]);
 
   const updateItemsMutation = useUpdateStockCountItems();
   const submitCountMutation = useSubmitStockCount();
   const approveCountMutation = useApproveStockCount();
+
+  if (!isOpen || !stockCount) return null;
 
   const handleQuantityChange = (itemId: string, qty: number) => {
     setItems((prev) =>
@@ -65,7 +71,7 @@ export const StockCountReviewModal: React.FC<StockCountReviewModalProps> = ({
   const isSubmittable = stockCount.status === 'SUBMITTED';
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in">
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
         {/* Header */}
         <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-100/70 dark:bg-slate-950/40">
@@ -146,7 +152,7 @@ export const StockCountReviewModal: React.FC<StockCountReviewModalProps> = ({
                               : 'text-slate-500 dark:text-slate-400'
                           }
                         >
-                          {varianceQty > 0 ? `+${varianceQty.toFixed(3)}` : varianceQty.toFixed(3)}
+                          {varianceQty > 0 ? `+₹{varianceQty.toFixed(3)}` : varianceQty.toFixed(3)}
                         </span>
                       </td>
                       <td className="py-3 px-4 font-mono">

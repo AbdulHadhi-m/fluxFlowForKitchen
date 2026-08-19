@@ -37,7 +37,7 @@ export const SegmentList: React.FC<Props> = ({ segments, isLoading, onCreateSegm
 
         <button
           onClick={onCreateSegment}
-          className="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-md shadow-indigo-600/30 flex items-center gap-1.5"
+          className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md shadow-emerald-600/30 flex items-center gap-1.5"
         >
           <Plus className="h-3.5 w-3.5" />
           <span>New Segment</span>
@@ -61,7 +61,7 @@ export const SegmentList: React.FC<Props> = ({ segments, isLoading, onCreateSegm
           </p>
           <button
             onClick={onCreateSegment}
-            className="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all"
+            className="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all"
           >
             Create First Segment
           </button>
@@ -75,7 +75,7 @@ export const SegmentList: React.FC<Props> = ({ segments, isLoading, onCreateSegm
             >
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 uppercase tracking-wider">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase tracking-wider">
                     {seg.segment_type.replace(/_/g, " ")}
                   </span>
                   <button
@@ -83,7 +83,7 @@ export const SegmentList: React.FC<Props> = ({ segments, isLoading, onCreateSegm
                     className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors flex items-center gap-1 text-[11px]"
                     title="Preview Audience"
                   >
-                    <Eye className="h-3.5 w-3.5 text-indigo-400" />
+                    <Eye className="h-3.5 w-3.5 text-emerald-400" />
                     <span>Preview</span>
                   </button>
                 </div>
@@ -95,7 +95,7 @@ export const SegmentList: React.FC<Props> = ({ segments, isLoading, onCreateSegm
                   {Number(seg.min_spend) > 0 && (
                     <div className="flex justify-between text-slate-500 dark:text-slate-400">
                       <span>Min Lifetime Spend:</span>
-                      <span className="font-semibold text-slate-900 dark:text-white">${seg.min_spend}</span>
+                      <span className="font-semibold text-slate-900 dark:text-white">₹{seg.min_spend}</span>
                     </div>
                   )}
                   {seg.min_visits > 0 && (
@@ -128,7 +128,7 @@ export const SegmentList: React.FC<Props> = ({ segments, isLoading, onCreateSegm
           <div className="w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden">
             <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-800">
               <div className="flex items-center gap-2">
-                <div className="p-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+                <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
                   <Users className="h-4 w-4" />
                 </div>
                 <div>
@@ -154,14 +154,14 @@ export const SegmentList: React.FC<Props> = ({ segments, isLoading, onCreateSegm
                 </div>
               ) : previewData ? (
                 <>
-                  <div className="p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-between">
+                  <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between">
                     <div>
-                      <div className="text-xs text-indigo-600 dark:text-indigo-300 font-semibold">Total Audience Reach</div>
+                      <div className="text-xs text-emerald-600 dark:text-emerald-300 font-semibold">Total Audience Reach</div>
                       <div className="text-xl font-extrabold text-slate-900 dark:text-white">
                         {previewData.total_audience_count} customers
                       </div>
                     </div>
-                    <Sparkles className="h-6 w-6 text-indigo-400" />
+                    <Sparkles className="h-6 w-6 text-emerald-400" />
                   </div>
 
                   <div>
@@ -177,7 +177,7 @@ export const SegmentList: React.FC<Props> = ({ segments, isLoading, onCreateSegm
                             <span className="text-[10px] text-slate-500 ml-2 font-mono">{p.phone_masked}</span>
                           </div>
                           <div className="text-right text-[11px]">
-                            <span className="text-emerald-400 font-bold">${p.total_spend}</span>
+                            <span className="text-emerald-400 font-bold">₹{p.total_spend}</span>
                             <span className="text-slate-500 ml-1.5">({p.total_visits} visits)</span>
                           </div>
                         </div>

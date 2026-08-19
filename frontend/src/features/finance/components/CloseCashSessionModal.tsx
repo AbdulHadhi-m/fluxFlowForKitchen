@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useCloseCashSession } from "../hooks/useFinance";
 import { CashSession } from "../types/finance.types";
-import { DollarSign, X, AlertTriangle } from "lucide-react";
+import { IndianRupee, X, AlertTriangle } from "lucide-react";
 
 interface CloseCashSessionModalProps {
   session: CashSession;
@@ -42,8 +42,8 @@ export const CloseCashSessionModal: React.FC<CloseCashSessionModalProps> = ({ se
       <div className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md shadow-2xl overflow-hidden flex flex-col">
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/40">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-              <DollarSign className="w-5 h-5" />
+            <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <IndianRupee className="w-5 h-5" />
             </div>
             <div>
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">Close & Reconcile Drawer</h2>
@@ -59,25 +59,25 @@ export const CloseCashSessionModal: React.FC<CloseCashSessionModalProps> = ({ se
           <div className="p-4 rounded-xl bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 space-y-2 text-xs">
             <div className="flex justify-between text-slate-500 dark:text-slate-400">
               <span>Opening Float:</span>
-              <strong className="text-slate-900 dark:text-white font-mono">${parseFloat(session.opening_balance).toFixed(2)}</strong>
+              <strong className="text-slate-900 dark:text-white font-mono">₹{parseFloat(session.opening_balance).toFixed(2)}</strong>
             </div>
             <div className="flex justify-between text-slate-500 dark:text-slate-400">
               <span>Cash Sales:</span>
-              <strong className="text-emerald-400 font-mono">+${parseFloat(session.cash_sales).toFixed(2)}</strong>
+              <strong className="text-emerald-400 font-mono">+₹{parseFloat(session.cash_sales).toFixed(2)}</strong>
             </div>
             <div className="flex justify-between text-slate-500 dark:text-slate-400">
               <span>Cash Payouts:</span>
-              <strong className="text-rose-400 font-mono">-${parseFloat(session.cash_payouts).toFixed(2)}</strong>
+              <strong className="text-rose-400 font-mono">-₹{parseFloat(session.cash_payouts).toFixed(2)}</strong>
             </div>
             <div className="flex justify-between border-t border-slate-200 dark:border-slate-800 pt-2 text-slate-600 dark:text-slate-300 font-semibold">
               <span>Expected Cash in Drawer:</span>
-              <strong className="text-slate-900 dark:text-white font-mono text-sm">${expected.toFixed(2)}</strong>
+              <strong className="text-slate-900 dark:text-white font-mono text-sm">₹{expected.toFixed(2)}</strong>
             </div>
           </div>
 
           <div>
             <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
-              Actual Counted Cash ($)
+              Actual Counted Cash (₹)
             </label>
             <input
               type="number"
@@ -85,7 +85,7 @@ export const CloseCashSessionModal: React.FC<CloseCashSessionModalProps> = ({ se
               min="0"
               value={countedCash}
               onChange={(e) => setCountedCash(e.target.value)}
-              className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white font-mono focus:outline-none focus:border-indigo-500 text-lg font-bold"
+              className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white font-mono focus:outline-none focus:border-emerald-500 text-lg font-bold"
               required
             />
           </div>
@@ -110,7 +110,7 @@ export const CloseCashSessionModal: React.FC<CloseCashSessionModalProps> = ({ se
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Reason for any count differences..."
-              className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+              className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
             />
           </div>
 
@@ -125,7 +125,7 @@ export const CloseCashSessionModal: React.FC<CloseCashSessionModalProps> = ({ se
             <button
               type="submit"
               disabled={closeSessionMutation.isPending}
-              className="px-5 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg shadow-lg shadow-indigo-600/30 transition-all disabled:opacity-50"
+              className="px-5 py-2 text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg shadow-lg shadow-emerald-600/30 transition-all disabled:opacity-50"
             >
               {closeSessionMutation.isPending ? "Reconciling..." : "Submit & Close Shift"}
             </button>

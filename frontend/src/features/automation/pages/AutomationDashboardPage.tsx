@@ -27,7 +27,7 @@ export const AutomationDashboardPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <div className="p-2 rounded-xl bg-gradient-to-tr from-cyan-600 to-indigo-600 text-white shadow-lg shadow-cyan-600/30">
+            <div className="p-2 rounded-xl bg-gradient-to-tr from-cyan-600 to-emerald-600 text-white shadow-lg shadow-cyan-600/30">
               <Zap className="h-5 w-5" />
             </div>
             <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Automation & Workflows</h1>
@@ -76,34 +76,34 @@ export const AutomationDashboardPage: React.FC = () => {
 
         <Link
           to="/automation/executions"
-          className="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-indigo-500/50 transition-all flex items-center justify-between group"
+          className="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-emerald-500/50 transition-all flex items-center justify-between group"
         >
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 group-hover:scale-110 transition-transform">
+            <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:scale-110 transition-transform">
               <GitBranch className="h-4 w-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">Executions</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">Executions</div>
               <div className="text-[10px] text-slate-500">Run history & traces</div>
             </div>
           </div>
-          <ArrowRight className="h-4 w-4 text-slate-600 group-hover:text-indigo-400 transition-colors" />
+          <ArrowRight className="h-4 w-4 text-slate-600 group-hover:text-emerald-400 transition-colors" />
         </Link>
 
         <Link
           to="/automation/approvals"
-          className="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-violet-500/50 transition-all flex items-center justify-between group"
+          className="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-teal-500/50 transition-all flex items-center justify-between group"
         >
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 group-hover:scale-110 transition-transform">
+            <div className="p-2 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-400 group-hover:scale-110 transition-transform">
               <CheckCircle2 className="h-4 w-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-300 transition-colors">Approvals</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-300 transition-colors">Approvals</div>
               <div className="text-[10px] text-slate-500">{analytics?.pending_approvals ?? 0} pending</div>
             </div>
           </div>
-          <ArrowRight className="h-4 w-4 text-slate-600 group-hover:text-violet-400 transition-colors" />
+          <ArrowRight className="h-4 w-4 text-slate-600 group-hover:text-teal-400 transition-colors" />
         </Link>
 
         <Link

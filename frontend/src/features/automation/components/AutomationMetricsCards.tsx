@@ -21,7 +21,7 @@ export const AutomationMetricsCards: React.FC<Props> = ({ analytics, isLoading }
       value: analytics?.executions_total ?? 0,
       sub: `${analytics?.executions_today ?? 0} today`,
       icon: Play,
-      color: "text-indigo-400 bg-indigo-500/10 border-indigo-500/20",
+      color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
     },
     {
       label: "Success Rate",
@@ -49,7 +49,7 @@ export const AutomationMetricsCards: React.FC<Props> = ({ analytics, isLoading }
       value: analytics?.pending_approvals ?? 0,
       sub: `${analytics?.escalations ?? 0} escalations`,
       icon: Users,
-      color: "text-violet-400 bg-violet-500/10 border-violet-500/20",
+      color: "text-teal-400 bg-teal-500/10 border-teal-500/20",
     },
     {
       label: "Waiting Runs",

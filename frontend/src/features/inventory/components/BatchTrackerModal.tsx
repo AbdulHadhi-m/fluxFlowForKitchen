@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { X, Calendar, PackageCheck } from 'lucide-react';
 import { useItemBatches } from '../hooks/useInventory';
 
@@ -20,7 +20,7 @@ export const BatchTrackerModal: React.FC<BatchTrackerModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in">
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-2xl max-h-[80vh] flex flex-col shadow-2xl overflow-hidden">
         {/* Header */}
         <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-100/70 dark:bg-slate-950/40">
@@ -98,7 +98,7 @@ export const BatchTrackerModal: React.FC<BatchTrackerModalProps> = ({
                         {Number(batch.current_quantity).toFixed(3)} {batch.item_unit}
                       </span>
                       <span className="text-xs text-slate-500 font-mono">
-                        Init: {Number(batch.initial_quantity).toFixed(3)} • ${Number(batch.unit_cost).toFixed(2)}/u
+                        Init: {Number(batch.initial_quantity).toFixed(3)} â€¢ ${Number(batch.unit_cost).toFixed(2)}/u
                       </span>
                     </div>
                   </div>

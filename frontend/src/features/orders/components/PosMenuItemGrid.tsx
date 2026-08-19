@@ -29,7 +29,7 @@ export const PosMenuItemGrid: React.FC<PosMenuItemGridProps> = ({ items, onSelec
           key={item.id}
           type="button"
           onClick={() => onSelectItem(item)}
-          className="group flex flex-col justify-between p-3.5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-blue-500/50 hover:bg-slate-100 dark:hover:bg-slate-800/40 text-left transition-all backdrop-blur-sm"
+          className="group card-lift flex flex-col justify-between p-3.5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-blue-500/50 hover:bg-slate-100 dark:hover:bg-slate-800/40 text-left transition-all backdrop-blur-sm"
         >
           <div>
             <div className="text-xs font-semibold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors line-clamp-1">

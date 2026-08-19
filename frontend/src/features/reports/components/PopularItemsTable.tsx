@@ -46,7 +46,7 @@ export const PopularItemsTable: React.FC<PopularItemsTableProps> = ({ items }) =
                       <UtensilsCrossed className="h-3 w-3 text-slate-500" />
                       {item.item_name}
                     </td>
-                    <td className="py-2.5 text-center font-mono font-bold text-indigo-600 dark:text-indigo-300">
+                    <td className="py-2.5 text-center font-mono font-bold text-emerald-600 dark:text-emerald-300">
                       {item.quantity_sold}
                     </td>
                     <td className="py-2.5 text-center font-mono text-slate-500 dark:text-slate-400">

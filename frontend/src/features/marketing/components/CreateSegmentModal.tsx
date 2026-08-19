@@ -61,9 +61,9 @@ export const CreateSegmentModal: React.FC<Props> = ({ isOpen, onClose }) => {
             <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Segment Name *</label>
             <input
               type="text"
-              placeholder="e.g. VIP Spenders ($200+)"
+              placeholder="e.g. VIP Spenders (₹200+)"
               {...register("name", { required: "Segment name is required" })}
-              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
             />
             {errors.name && <p className="text-rose-400 text-[10px] mt-1">{errors.name.message}</p>}
           </div>
@@ -74,7 +74,7 @@ export const CreateSegmentModal: React.FC<Props> = ({ isOpen, onClose }) => {
               rows={2}
               placeholder="Describe criteria or marketing purpose..."
               {...register("description")}
-              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
             />
           </div>
 
@@ -82,7 +82,7 @@ export const CreateSegmentModal: React.FC<Props> = ({ isOpen, onClose }) => {
             <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Segment Template Type</label>
             <select
               {...register("segment_type")}
-              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
             >
               <option value="CUSTOM">Custom Rule Criteria</option>
               <option value="ALL_CUSTOMERS">All Active Customers</option>
@@ -90,19 +90,19 @@ export const CreateSegmentModal: React.FC<Props> = ({ isOpen, onClose }) => {
               <option value="REGULAR_CUSTOMERS">Regulars (3+ visits)</option>
               <option value="VIP_CUSTOMERS">VIP High Frequency (10+ visits or $500+)</option>
               <option value="INACTIVE_CUSTOMERS">Inactive Diners (60+ days without visit)</option>
-              <option value="HIGH_VALUE_CUSTOMERS">High Spenders ($300+)</option>
+              <option value="HIGH_VALUE_CUSTOMERS">High Spenders (₹300+)</option>
             </select>
           </div>
 
           <div className="grid grid-cols-3 gap-2">
             <div>
-              <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-300 mb-1">Min Spend ($)</label>
+              <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-300 mb-1">Min Spend (₹)</label>
               <input
                 type="number"
                 step="0.01"
                 min="0"
                 {...register("min_spend")}
-                className="w-full px-2.5 py-1.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-2.5 py-1.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
             <div>
@@ -111,7 +111,7 @@ export const CreateSegmentModal: React.FC<Props> = ({ isOpen, onClose }) => {
                 type="number"
                 min="0"
                 {...register("min_visits")}
-                className="w-full px-2.5 py-1.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-2.5 py-1.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
             <div>
@@ -120,7 +120,7 @@ export const CreateSegmentModal: React.FC<Props> = ({ isOpen, onClose }) => {
                 type="number"
                 min="0"
                 {...register("inactive_days")}
-                className="w-full px-2.5 py-1.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-2.5 py-1.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
           </div>
@@ -136,7 +136,7 @@ export const CreateSegmentModal: React.FC<Props> = ({ isOpen, onClose }) => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-4 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-md shadow-indigo-600/30 flex items-center gap-1.5"
+              className="px-4 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md shadow-emerald-600/30 flex items-center gap-1.5"
             >
               <CheckCircle2 className="h-3.5 w-3.5" />
               <span>Save Segment</span>

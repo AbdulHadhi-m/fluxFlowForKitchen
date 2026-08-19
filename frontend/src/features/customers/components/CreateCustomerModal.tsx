@@ -65,7 +65,7 @@ export const CreateCustomerModal: React.FC<CreateCustomerModalProps> = ({
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md shadow-2xl p-6 space-y-4 text-slate-900 dark:text-slate-100 animate-in zoom-in-95">
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <UserPlus className="h-4 w-4" />
             </div>
             <h3 className="text-sm font-bold text-slate-900 dark:text-white">Add Customer Profile</h3>
@@ -139,7 +139,7 @@ export const CreateCustomerModal: React.FC<CreateCustomerModalProps> = ({
             <Button
               type="submit"
               disabled={isLoading}
-              className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs gap-1.5 shadow-lg shadow-indigo-600/20"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs gap-1.5 shadow-lg shadow-emerald-600/20"
             >
               {isLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : null}
               Create Customer

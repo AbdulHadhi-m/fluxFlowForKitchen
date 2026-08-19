@@ -2,9 +2,9 @@ import React from "react";
 import { WorkflowStep } from "../types/automation.types";
 
 const STEP_ICON_CLASSES: Record<string, string> = {
-  ACTION: "bg-indigo-500/10 text-indigo-400 border-indigo-500/20",
+  ACTION: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
   CONDITION: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-  APPROVAL: "bg-violet-500/10 text-violet-400 border-violet-500/20",
+  APPROVAL: "bg-teal-500/10 text-teal-400 border-teal-500/20",
   WAIT: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
   BRANCH: "bg-pink-500/10 text-pink-400 border-pink-500/20",
   END: "bg-slate-500/10 text-slate-400 border-slate-500/20",
@@ -33,7 +33,7 @@ export const StepNode: React.FC<{
       onClick={onSelect}
       className={`p-3 rounded-xl border transition-all cursor-pointer group ${
         selected
-          ? "bg-white dark:bg-slate-900 border-indigo-500/60 shadow-lg shadow-indigo-500/10"
+          ? "bg-white dark:bg-slate-900 border-emerald-500/60 shadow-lg shadow-emerald-500/10"
           : "bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-600"
       }`}
     >

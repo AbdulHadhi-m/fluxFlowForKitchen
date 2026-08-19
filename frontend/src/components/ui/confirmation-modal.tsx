@@ -66,7 +66,7 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
             className={`text-xs font-bold gap-1.5 ${
               variant === "danger"
                 ? "bg-rose-600 hover:bg-rose-500 text-white shadow-lg shadow-rose-600/20"
-                : "bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/20"
+                : "bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/20"
             }`}
           >
             {isLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : null}

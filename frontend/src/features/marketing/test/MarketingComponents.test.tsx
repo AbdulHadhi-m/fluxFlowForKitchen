@@ -43,8 +43,8 @@ describe("Marketing Components", () => {
     render(<MarketingMetricsCards analytics={mockAnalytics} />, { wrapper });
     expect(screen.getByText("Active Promotions")).toBeDefined();
     expect(screen.getByText("5")).toBeDefined();
-    expect(screen.getByText("$340.50")).toBeDefined();
-    expect(screen.getByText("$1850.00")).toBeDefined();
+    expect(screen.getByText("₹340.50")).toBeDefined();
+    expect(screen.getByText("₹1850.00")).toBeDefined();
   });
 
   it("renders TopPromotionsTable with ranked promotion items", () => {

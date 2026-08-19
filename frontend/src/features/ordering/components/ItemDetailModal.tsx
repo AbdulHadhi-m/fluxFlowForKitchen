@@ -90,7 +90,7 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({ item, onClose,
         <div className="p-6 bg-slate-100 dark:bg-slate-950/80 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4">
           <div>
             <span className="text-xs text-slate-500 dark:text-slate-400">Total Price</span>
-            <p className="text-xl font-black text-slate-900 dark:text-white">${lineTotal}</p>
+            <p className="text-xl font-black text-slate-900 dark:text-white">₹{lineTotal}</p>
           </div>
           <button
             onClick={handleAdd}

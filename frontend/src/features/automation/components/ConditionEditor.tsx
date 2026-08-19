@@ -1,7 +1,6 @@
 import React from "react";
 import { Plus, Trash2 } from "lucide-react";
 import { CONDITION_FIELD_SUGGESTIONS, CONDITION_OPERATORS } from "../constants/automation.constants";
-import { ConditionOperator } from "../types/automation.types";
 
 type ConditionSpec = Record<string, any>;
 
@@ -12,7 +11,7 @@ interface Props {
 }
 
 const inputCls =
-  "bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500 w-full";
+  "bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 w-full";
 
 const isSingleCondition = (node: ConditionSpec): boolean =>
   Boolean(node && typeof node === "object" && node.field !== undefined);
@@ -111,7 +110,7 @@ export const ConditionEditor: React.FC<Props> = ({ value, onChange, depth = 0 })
         </span>
         <button
           onClick={() => onChange({ ...node, conditions: [...children, { operator: "AND", conditions: [] }] })}
-          className="ml-auto px-2 py-1 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 text-[10px] font-bold"
+          className="ml-auto px-2 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 text-[10px] font-bold"
         >
           + Add Condition
         </button>
@@ -151,9 +150,3 @@ export const ConditionEditor: React.FC<Props> = ({ value, onChange, depth = 0 })
     </div>
   );
 };
-
-export const conditionOperatorLabel = (op: string): string =>
-  CONDITION_OPERATORS.find((o) => o.value === op)?.label || op;
-
-export const isConditionOperator = (op: string): op is ConditionOperator =>
-  CONDITION_OPERATORS.some((o) => o.value === op);

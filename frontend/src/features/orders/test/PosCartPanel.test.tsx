@@ -20,7 +20,7 @@ describe("PosCartPanel Component", () => {
     );
 
     expect(screen.getByText("Truffle Pasta")).toBeInTheDocument();
-    expect(screen.getAllByText("$22.00").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("₹22.00").length).toBeGreaterThan(0);
     expect(screen.getByText(/Place Order/i)).toBeInTheDocument();
   });
 });

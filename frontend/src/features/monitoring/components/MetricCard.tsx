@@ -21,7 +21,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({ label, value, sub, icon,
     <div className="flex items-center justify-between">
       <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">{label}</span>
       {icon && (
-        <div className="h-7 w-7 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+        <div className="h-7 w-7 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
           {icon}
         </div>
       )}

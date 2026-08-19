@@ -43,7 +43,7 @@ export const LoyaltyAccountsTable: React.FC<LoyaltyAccountsTableProps> = ({
                 <tr key={acc.id} className="hover:bg-slate-200/60 dark:hover:bg-slate-800/40 transition-colors">
                   <td className="px-4 py-3 font-semibold text-slate-900 dark:text-white">
                     <div className="flex items-center gap-2">
-                      <div className="h-7 w-7 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+                      <div className="h-7 w-7 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
                         <User className="h-3.5 w-3.5" />
                       </div>
                       <div>
@@ -59,7 +59,7 @@ export const LoyaltyAccountsTable: React.FC<LoyaltyAccountsTableProps> = ({
                     </span>
                   </td>
 
-                  <td className="px-4 py-3 text-right font-black text-indigo-600 dark:text-indigo-300 text-sm">
+                  <td className="px-4 py-3 text-right font-black text-emerald-600 dark:text-emerald-300 text-sm">
                     {acc.points_balance} pts
                   </td>
 
@@ -84,7 +84,7 @@ export const LoyaltyAccountsTable: React.FC<LoyaltyAccountsTableProps> = ({
                       onClick={() => onAdjustPoints(acc)}
                       className="h-7 px-2 text-[10px] bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 gap-1"
                     >
-                      <PlusCircle className="h-3 w-3 text-indigo-400" /> Adjust Points
+                      <PlusCircle className="h-3 w-3 text-emerald-400" /> Adjust Points
                     </Button>
                   </td>
                 </tr>

@@ -48,7 +48,7 @@ export const AuditLogsPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <Shield className="h-4 w-4" />
             </div>
             <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Security & Activity Audit Logs</h1>
@@ -88,7 +88,7 @@ export const AuditLogsPage: React.FC = () => {
             }}
             className={`h-7 px-3 text-xs rounded-lg font-medium transition-all ${
               categoryTab === tab.id
-                ? "bg-indigo-600 text-white font-bold shadow-sm"
+                ? "bg-emerald-600 text-white font-bold shadow-sm"
                 : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
             }`}
           >
@@ -112,7 +112,7 @@ export const AuditLogsPage: React.FC = () => {
         <select
           value={presetFilter}
           onChange={(e) => setPresetFilter(e.target.value)}
-          className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500 h-9"
+          className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-emerald-500 h-9"
         >
           <option value="TODAY">Today</option>
           <option value="YESTERDAY">Yesterday</option>
@@ -124,7 +124,7 @@ export const AuditLogsPage: React.FC = () => {
         <select
           value={entityFilter}
           onChange={(e) => setEntityFilter(e.target.value)}
-          className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500 h-9"
+          className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-emerald-500 h-9"
         >
           <option value="">All Entity Types</option>
           <option value="USER">User / Auth</option>
@@ -177,7 +177,7 @@ export const AuditLogsPage: React.FC = () => {
                     <td className="p-3.5">
                       <div className="font-bold text-slate-900 dark:text-white text-xs">{log.actor_email || log.actor_type}</div>
                       {log.actor_role && (
-                        <div className="text-[10px] text-indigo-400 font-mono">{log.actor_role}</div>
+                        <div className="text-[10px] text-emerald-400 font-mono">{log.actor_role}</div>
                       )}
                     </td>
                     <td className="p-3.5">
@@ -196,7 +196,7 @@ export const AuditLogsPage: React.FC = () => {
                       <Button
                         size="sm"
                         variant="ghost"
-                        className="h-7 text-xs text-indigo-400 hover:text-slate-900 dark:hover:text-white p-1"
+                        className="h-7 text-xs text-emerald-400 hover:text-slate-900 dark:hover:text-white p-1"
                       >
                         <Eye className="h-3.5 w-3.5" />
                       </Button>

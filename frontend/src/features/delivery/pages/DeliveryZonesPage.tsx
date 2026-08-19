@@ -120,11 +120,11 @@ export const DeliveryZonesPage: React.FC = () => {
               <div className="grid grid-cols-3 gap-2 pt-3 border-t border-slate-800/80 text-center">
                 <div className="bg-slate-950/60 p-2 rounded-xl">
                   <span className="text-[10px] text-slate-400 block">Fee</span>
-                  <span className="text-xs font-bold text-amber-400">${z.fee}</span>
+                  <span className="text-xs font-bold text-amber-400">₹{z.fee}</span>
                 </div>
                 <div className="bg-slate-950/60 p-2 rounded-xl">
                   <span className="text-[10px] text-slate-400 block">Min. Order</span>
-                  <span className="text-xs font-bold text-white">${z.minimum_order}</span>
+                  <span className="text-xs font-bold text-white">₹{z.minimum_order}</span>
                 </div>
                 <div className="bg-slate-950/60 p-2 rounded-xl">
                   <span className="text-[10px] text-slate-400 block">Transit</span>

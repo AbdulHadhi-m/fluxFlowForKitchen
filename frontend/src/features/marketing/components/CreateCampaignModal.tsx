@@ -47,7 +47,7 @@ export const CreateCampaignModal: React.FC<Props> = ({ isOpen, onClose, segments
       <div className="w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden">
         <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+            <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
               <Send className="h-4 w-4" />
             </div>
             <h3 className="text-sm font-bold text-slate-900 dark:text-white">Create Marketing Campaign</h3>
@@ -64,7 +64,7 @@ export const CreateCampaignModal: React.FC<Props> = ({ isOpen, onClose, segments
               type="text"
               placeholder="e.g. Weekend VIP Tasting Push"
               {...register("name", { required: "Name is required" })}
-              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
             />
             {errors.name && <p className="text-rose-400 text-[10px] mt-1">{errors.name.message}</p>}
           </div>
@@ -74,7 +74,7 @@ export const CreateCampaignModal: React.FC<Props> = ({ isOpen, onClose, segments
               <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Channel *</label>
               <select
                 {...register("channel")}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               >
                 <option value="IN_APP">In-App Notification</option>
                 <option value="EMAIL">Email Broadcast</option>
@@ -86,7 +86,7 @@ export const CreateCampaignModal: React.FC<Props> = ({ isOpen, onClose, segments
               <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Target Segment</label>
               <select
                 {...register("target_segment")}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               >
                 <option value="">All Opted-In Diners</option>
                 {segments.map((s) => (
@@ -103,7 +103,7 @@ export const CreateCampaignModal: React.FC<Props> = ({ isOpen, onClose, segments
               <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Attached Promotion</label>
               <select
                 {...register("promotion")}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               >
                 <option value="">None (General announcement)</option>
                 {promotions.map((p) => (
@@ -119,7 +119,7 @@ export const CreateCampaignModal: React.FC<Props> = ({ isOpen, onClose, segments
               <input
                 type="datetime-local"
                 {...register("start_at")}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
           </div>
@@ -130,7 +130,7 @@ export const CreateCampaignModal: React.FC<Props> = ({ isOpen, onClose, segments
               type="text"
               placeholder="e.g. 🍷 Enjoy complimentary dessert this weekend"
               {...register("title", { required: true })}
-              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
             />
           </div>
 
@@ -140,7 +140,7 @@ export const CreateCampaignModal: React.FC<Props> = ({ isOpen, onClose, segments
               rows={3}
               placeholder="Hi {customer_name}, visit us and use code {promo_name}..."
               {...register("message_template", { required: true })}
-              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500 font-mono"
+              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 font-mono"
             />
             <p className="text-[10px] text-slate-500 mt-1">
               Supported tokens: <code>{"{customer_name}"}</code>, <code>{"{promo_name}"}</code>
@@ -158,7 +158,7 @@ export const CreateCampaignModal: React.FC<Props> = ({ isOpen, onClose, segments
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-4 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-md shadow-indigo-600/30 flex items-center gap-1.5"
+              className="px-4 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md shadow-emerald-600/30 flex items-center gap-1.5"
             >
               <CheckCircle2 className="h-3.5 w-3.5" />
               <span>Create Campaign</span>

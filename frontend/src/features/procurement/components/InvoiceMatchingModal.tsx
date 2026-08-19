@@ -236,7 +236,7 @@ export const InvoiceMatchingModal: React.FC<InvoiceMatchingModalProps> = ({
                       </div>
 
                       <div>
-                        <label className="block text-[11px] text-slate-500 dark:text-slate-400 mb-1">Invoiced Unit Price ($)</label>
+                        <label className="block text-[11px] text-slate-500 dark:text-slate-400 mb-1">Invoiced Unit Price (₹)</label>
                         <input
                           type="number"
                           step="0.01"

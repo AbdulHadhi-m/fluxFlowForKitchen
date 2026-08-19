@@ -101,7 +101,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
           {/* Basic Details */}
           <div className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 space-y-4">
             <div className="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
-              <Tag className="h-4 w-4 text-indigo-400" />
+              <Tag className="h-4 w-4 text-emerald-400" />
               <h3 className="text-sm font-bold text-slate-900 dark:text-white">Promotion Identity</h3>
             </div>
 
@@ -111,7 +111,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
                 type="text"
                 placeholder="e.g. 20% Happy Hour Dinner Deal"
                 {...register("name", { required: "Name is required" })}
-                className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-indigo-500"
+                className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-emerald-500"
               />
               {errors.name && <p className="text-rose-400 text-[10px] mt-1">{errors.name.message}</p>}
             </div>
@@ -122,7 +122,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
                 rows={2}
                 placeholder="Explain the promotional deal or terms..."
                 {...register("description")}
-                className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-indigo-500"
+                className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-emerald-500"
               />
             </div>
           </div>
@@ -130,7 +130,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
           {/* Discount Logic */}
           <div className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 space-y-4">
             <div className="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
-              <Percent className="h-4 w-4 text-indigo-400" />
+              <Percent className="h-4 w-4 text-emerald-400" />
               <h3 className="text-sm font-bold text-slate-900 dark:text-white">Discount Rule Engine</h3>
             </div>
 
@@ -139,10 +139,10 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
                 <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Promotion Type *</label>
                 <select
                   {...register("promotion_type")}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                 >
                   <option value="PERCENTAGE_DISCOUNT">Percentage Discount (%)</option>
-                  <option value="FIXED_DISCOUNT">Fixed Currency Amount ($)</option>
+                  <option value="FIXED_DISCOUNT">Fixed Currency Amount (₹)</option>
                   <option value="BUY_X_GET_Y">Buy X Get Y</option>
                   <option value="FREE_ITEM">Complimentary Item</option>
                 </select>
@@ -150,38 +150,38 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
 
               <div>
                 <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">
-                  {watchedType === "PERCENTAGE_DISCOUNT" ? "Discount Percentage (%) *" : "Discount Amount ($) *"}
+                  {watchedType === "PERCENTAGE_DISCOUNT" ? "Discount Percentage (%) *" : "Discount Amount (₹) *"}
                 </label>
                 <input
                   type="number"
                   step="0.01"
                   min="0"
                   {...register("discount_value", { required: "Discount value required" })}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500 font-bold"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 font-bold"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Minimum Order Spend ($)</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Minimum Order Spend (₹)</label>
                 <input
                   type="number"
                   step="0.01"
                   min="0"
                   placeholder="0.00 (no min)"
                   {...register("min_order_value")}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Maximum Discount Cap ($)</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Maximum Discount Cap (₹)</label>
                 <input
                   type="number"
                   step="0.01"
                   min="0"
                   placeholder="Optional ceiling limit"
                   {...register("max_discount_amount")}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                 />
               </div>
             </div>
@@ -190,7 +190,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
           {/* Audience & Targeting */}
           <div className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 space-y-4">
             <div className="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
-              <Users className="h-4 w-4 text-indigo-400" />
+              <Users className="h-4 w-4 text-emerald-400" />
               <h3 className="text-sm font-bold text-slate-900 dark:text-white">Target Audience</h3>
             </div>
 
@@ -199,7 +199,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
                 <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Target Audience Type</label>
                 <select
                   {...register("target_audience_type")}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                 >
                   <option value="ALL">All Customers</option>
                   <option value="FIRST_ORDER">First-Time Diners Only</option>
@@ -214,7 +214,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
                   <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5">Select Segment</label>
                   <select
                     {...register("target_segment")}
-                    className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                   >
                     <option value="">Choose segment...</option>
                     {segments?.map((s) => (
@@ -231,7 +231,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
           {/* Schedule & Limits */}
           <div className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 space-y-4">
             <div className="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
-              <Calendar className="h-4 w-4 text-indigo-400" />
+              <Calendar className="h-4 w-4 text-emerald-400" />
               <h3 className="text-sm font-bold text-slate-900 dark:text-white">Schedule & Usage Limits</h3>
             </div>
 
@@ -241,7 +241,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
                 <input
                   type="datetime-local"
                   {...register("start_at", { required: "Start date is required" })}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
@@ -250,7 +250,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
                 <input
                   type="datetime-local"
                   {...register("end_at")}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
@@ -261,7 +261,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
                   min="1"
                   placeholder="Unlimited"
                   {...register("total_usage_limit")}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
@@ -272,7 +272,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
                   min="1"
                   defaultValue="1"
                   {...register("per_customer_limit")}
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                 />
               </div>
             </div>
@@ -282,7 +282,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
                 <input
                   type="checkbox"
                   {...register("coupon_required")}
-                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-indigo-600 focus:ring-0"
+                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-emerald-600 focus:ring-0"
                 />
                 Requires Coupon Code at Checkout
               </label>
@@ -291,7 +291,7 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
                 <input
                   type="checkbox"
                   {...register("stackable")}
-                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-indigo-600 focus:ring-0"
+                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-emerald-600 focus:ring-0"
                 />
                 Allow Stacking with Other Discounts
               </label>
@@ -301,9 +301,9 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
 
         {/* Live Simulator & Preview Column */}
         <div className="space-y-6">
-          <div className="sticky top-20 p-5 rounded-2xl bg-gradient-to-b from-indigo-950/40 to-slate-900/80 border border-indigo-500/20 shadow-xl space-y-4">
-            <div className="flex items-center gap-2 pb-2 border-b border-indigo-500/20">
-              <Eye className="h-4 w-4 text-indigo-400" />
+          <div className="sticky top-20 p-5 rounded-2xl bg-gradient-to-b from-emerald-950/40 to-slate-900/80 border border-emerald-500/20 shadow-xl space-y-4">
+            <div className="flex items-center gap-2 pb-2 border-b border-emerald-500/20">
+              <Eye className="h-4 w-4 text-emerald-400" />
               <h3 className="text-sm font-bold text-slate-900 dark:text-white">Live Rule Simulator</h3>
             </div>
 
@@ -319,24 +319,24 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
                   step="5"
                   value={sampleSubtotal}
                   onChange={(e) => setSampleSubtotal(Number(e.target.value))}
-                  className="w-full accent-indigo-500"
+                  className="w-full accent-emerald-500"
                 />
               </div>
 
               <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2 text-xs">
                 <div className="flex justify-between text-slate-400">
                   <span>Order Subtotal:</span>
-                  <span className="font-mono text-white">${sampleSubtotal.toFixed(2)}</span>
+                  <span className="font-mono text-white">₹{sampleSubtotal.toFixed(2)}</span>
                 </div>
 
                 <div className="flex justify-between text-emerald-400 font-bold">
                   <span>Promo Discount:</span>
-                  <span className="font-mono">-${estimatedDiscount.toFixed(2)}</span>
+                  <span className="font-mono">-₹{estimatedDiscount.toFixed(2)}</span>
                 </div>
 
                 <div className="pt-2 border-t border-slate-800 flex justify-between text-white font-black text-sm">
                   <span>Customer Pays:</span>
-                  <span className="font-mono text-indigo-300">${estimatedNet.toFixed(2)}</span>
+                  <span className="font-mono text-emerald-300">₹{estimatedNet.toFixed(2)}</span>
                 </div>
               </div>
 
@@ -347,11 +347,11 @@ export const PromotionForm: React.FC<Props> = ({ initialData, isEdit }) => {
               )}
             </div>
 
-            <div className="pt-4 border-t border-indigo-500/20 space-y-2">
+            <div className="pt-4 border-t border-emerald-500/20 space-y-2">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2"
+                className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2"
               >
                 <CheckCircle2 className="h-4 w-4" />
                 <span>{isEdit ? "Update Promotion" : "Save & Publish Promotion"}</span>

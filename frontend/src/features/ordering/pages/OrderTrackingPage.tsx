@@ -97,14 +97,14 @@ export const OrderTrackingPage: React.FC = () => {
                     <p className="text-xs text-slate-500 dark:text-slate-400 italic mt-0.5">"{item.notes}"</p>
                   )}
                 </div>
-                <span className="text-sm font-semibold text-slate-600 dark:text-slate-300">${item.line_total}</span>
+                <span className="text-sm font-semibold text-slate-600 dark:text-slate-300">₹{item.line_total}</span>
               </div>
             ))}
           </div>
 
           <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
             <span className="text-base font-bold text-slate-900 dark:text-white">Total Amount</span>
-            <span className="text-2xl font-black text-amber-400">${order.total}</span>
+            <span className="text-2xl font-black text-amber-400">₹{order.total}</span>
           </div>
         </div>
 

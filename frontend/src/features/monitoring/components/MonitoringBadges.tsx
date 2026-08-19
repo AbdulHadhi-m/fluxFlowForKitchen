@@ -18,7 +18,7 @@ const STATUS_STYLES: Record<string, string> = {
   NEW: "bg-sky-500/10 border-sky-500/30 text-sky-300",
   ACTIVE: "bg-rose-500/10 border-rose-500/30 text-rose-300",
   ACKNOWLEDGED: "bg-amber-500/10 border-amber-500/30 text-amber-300",
-  INVESTIGATING: "bg-indigo-500/10 border-indigo-500/30 text-indigo-300",
+  INVESTIGATING: "bg-emerald-500/10 border-emerald-500/30 text-emerald-300",
   RESOLVED: "bg-emerald-500/10 border-emerald-500/30 text-emerald-300",
   CLOSED: "bg-slate-500/10 border-slate-500/30 text-slate-300",
   IGNORED: "bg-slate-500/10 border-slate-500/30 text-slate-300",

@@ -16,8 +16,8 @@ export const SalesKPICard: React.FC<SalesKPICardProps> = ({
   value,
   subtitle,
   icon: Icon,
-  iconColor = "text-indigo-400",
-  iconBg = "bg-indigo-500/10",
+  iconColor = "text-emerald-400",
+  iconBg = "bg-emerald-500/10",
 }) => {
   return (
     <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700/80 transition-all">

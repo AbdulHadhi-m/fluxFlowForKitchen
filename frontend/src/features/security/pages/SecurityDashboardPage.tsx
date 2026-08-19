@@ -90,7 +90,7 @@ export const SecurityDashboardPage: React.FC = () => {
         <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-4">
           <div className="flex items-center justify-between">
             <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">MFA Adoption</span>
-            <div className="h-7 w-7 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+            <div className="h-7 w-7 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
               <Key className="h-3.5 w-3.5" />
             </div>
           </div>
@@ -167,7 +167,7 @@ export const SecurityDashboardPage: React.FC = () => {
         <Link to="/security/events" className="group">
           <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-4 hover:border-slate-300 dark:hover:border-slate-700 transition-all cursor-pointer h-full">
             <div className="flex items-center justify-between mb-2">
-              <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+              <div className="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
                 <Activity className="h-4 w-4" />
               </div>
               <ArrowUpRight className="h-4 w-4 text-slate-500 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors" />

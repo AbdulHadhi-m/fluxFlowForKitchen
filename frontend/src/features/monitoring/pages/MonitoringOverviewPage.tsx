@@ -23,7 +23,7 @@ export const MonitoringOverviewPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <Activity className="h-4 w-4" />
             </div>
             <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Monitoring Overview</h1>
@@ -39,7 +39,7 @@ export const MonitoringOverviewPage: React.FC = () => {
             </Button>
           </Link>
           <Link to="/monitoring/alerts">
-            <Button size="sm" className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs gap-1.5 font-bold">
+            <Button size="sm" className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs gap-1.5 font-bold">
               <ShieldAlert className="h-3.5 w-3.5" /> Active Alerts
             </Button>
           </Link>
@@ -94,7 +94,7 @@ export const MonitoringOverviewPage: React.FC = () => {
             <Card className="bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-4">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white">Dependencies</h3>
-                <Link to="/monitoring/health" className="text-[11px] text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                <Link to="/monitoring/health" className="text-[11px] text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
                   Details <ArrowUpRight className="h-3 w-3" />
                 </Link>
               </div>
@@ -118,7 +118,7 @@ export const MonitoringOverviewPage: React.FC = () => {
             <Card className="bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-4">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white">Open Incidents</h3>
-                <Link to="/monitoring/incidents" className="text-[11px] text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+                <Link to="/monitoring/incidents" className="text-[11px] text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
                   View all <ArrowUpRight className="h-3 w-3" />
                 </Link>
               </div>

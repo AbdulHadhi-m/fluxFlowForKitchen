@@ -123,7 +123,7 @@ export const AdjustStockModal: React.FC<AdjustStockModalProps> = ({
               className="bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs gap-1.5 shadow-lg shadow-amber-600/20"
             >
               {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <SlidersHorizontal className="h-4 w-4" />}
-              Apply Adjustment ({delta > 0 ? `+${delta}` : delta} {item.unit})
+              Apply Adjustment ({delta > 0 ? `+₹{delta}` : delta} {item.unit})
             </Button>
           </div>
         </form>

@@ -18,10 +18,10 @@ export const RewardsCatalogGrid: React.FC<{ rewards: Reward[] }> = ({ rewards })
         <Card key={r.id} className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all">
           <CardContent className="p-4 space-y-3">
             <div className="flex items-start justify-between">
-              <div className="h-9 w-9 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+              <div className="h-9 w-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
                 <Gift className="h-4 w-4" />
               </div>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-indigo-500/20 text-indigo-600 dark:text-indigo-300 border border-indigo-500/30">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-500/20 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30">
                 {r.points_cost} Points
               </span>
             </div>

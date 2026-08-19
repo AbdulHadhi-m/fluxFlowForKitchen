@@ -75,7 +75,7 @@ export const InvoiceMatchingPage: React.FC = () => {
                       <td className="p-4 font-mono text-cyan-400">{inv.po_number || "-"}</td>
                       <td className="p-4 font-semibold text-slate-700 dark:text-slate-200">{inv.supplier_name}</td>
                       <td className="p-4 text-slate-500 dark:text-slate-400">{inv.invoice_date}</td>
-                      <td className="p-4 font-mono font-bold text-emerald-400">${inv.total_amount}</td>
+                      <td className="p-4 font-mono font-bold text-emerald-400">₹{inv.total_amount}</td>
                       <td className="p-4">
                         <span
                           className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${

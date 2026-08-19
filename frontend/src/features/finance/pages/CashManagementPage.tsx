@@ -21,6 +21,12 @@ export const CashManagementPage: React.FC = () => {
   const [closingSession, setClosingSession] = useState<CashSession | null>(null);
   const [payoutSessionId, setPayoutSessionId] = useState<string | null>(null);
 
+  const formatClosedTime = (dateStr: string | null) => {
+    if (!dateStr) return "N/A";
+    const date = new Date(dateStr);
+    return isNaN(date.getTime()) ? "N/A" : date.toLocaleTimeString();
+  };
+
   const handleApproveVariance = async (id: string) => {
     const notes = prompt("Manager variance approval notes:");
     if (notes) {
@@ -101,24 +107,24 @@ export const CashManagementPage: React.FC = () => {
                   <div className="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-1.5 text-xs">
                     <div className="flex justify-between text-slate-500 dark:text-slate-400">
                       <span>Opening Float:</span>
-                      <strong className="font-mono text-slate-900 dark:text-white">${parseFloat(s.opening_balance).toFixed(2)}</strong>
+                      <strong className="font-mono text-slate-900 dark:text-white">₹{parseFloat(s.opening_balance).toFixed(2)}</strong>
                     </div>
                     <div className="flex justify-between text-slate-500 dark:text-slate-400">
                       <span>Cash Sales:</span>
-                      <strong className="font-mono text-emerald-400">+${parseFloat(s.cash_sales).toFixed(2)}</strong>
+                      <strong className="font-mono text-emerald-400">+₹{parseFloat(s.cash_sales).toFixed(2)}</strong>
                     </div>
                     <div className="flex justify-between text-slate-500 dark:text-slate-400">
                       <span>Cash Payouts:</span>
-                      <strong className="font-mono text-rose-400">-${parseFloat(s.cash_payouts).toFixed(2)}</strong>
+                      <strong className="font-mono text-rose-400">-₹{parseFloat(s.cash_payouts).toFixed(2)}</strong>
                     </div>
                     <div className="flex justify-between border-t border-slate-200 dark:border-slate-800 pt-1.5 text-slate-600 dark:text-slate-300 font-semibold">
                       <span>Expected Drawer Balance:</span>
-                      <strong className="font-mono text-slate-900 dark:text-white">${parseFloat(s.expected_cash).toFixed(2)}</strong>
+                      <strong className="font-mono text-slate-900 dark:text-white">₹{parseFloat(s.expected_cash).toFixed(2)}</strong>
                     </div>
                     {!isOpen && s.counted_cash && (
                       <div className="flex justify-between border-t border-slate-200 dark:border-slate-800 pt-1.5 text-slate-600 dark:text-slate-300 font-semibold">
                         <span>Actual Counted:</span>
-                        <strong className="font-mono text-slate-900 dark:text-white">${parseFloat(s.counted_cash).toFixed(2)}</strong>
+                        <strong className="font-mono text-slate-900 dark:text-white">₹{parseFloat(s.counted_cash).toFixed(2)}</strong>
                       </div>
                     )}
                   </div>
@@ -129,7 +135,7 @@ export const CashManagementPage: React.FC = () => {
                     }`}>
                       <div className="flex items-center gap-1.5">
                         <AlertTriangle className="w-3.5 h-3.5" />
-                        <span>Variance: <strong className="font-mono">${variance.toFixed(2)}</strong></span>
+                        <span>Variance: <strong className="font-mono">₹{variance.toFixed(2)}</strong></span>
                       </div>
                       {s.status === "RECONCILIATION_REQUIRED" && (
                         <button
@@ -155,7 +161,7 @@ export const CashManagementPage: React.FC = () => {
                     </button>
                     <button
                       onClick={() => setClosingSession(s)}
-                      className="flex-1 flex items-center justify-center gap-1 py-1.5 px-3 rounded-lg text-xs font-semibold bg-indigo-600 text-white hover:bg-indigo-500 transition-colors"
+                      className="flex-1 flex items-center justify-center gap-1 py-1.5 px-3 rounded-lg text-xs font-semibold bg-emerald-600 text-white hover:bg-emerald-500 transition-colors"
                     >
                       <Lock className="w-3.5 h-3.5" />
                       Close Shift
@@ -164,7 +170,7 @@ export const CashManagementPage: React.FC = () => {
                 ) : (
                   <div className="text-[11px] text-slate-500 pt-2 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
                     <Clock className="w-3 h-3" />
-                    <span>Closed: {new Date(s.closed_at || "").toLocaleTimeString()}</span>
+                    <span>Closed: {formatClosedTime(s.closed_at)}</span>
                   </div>
                 )}
               </div>

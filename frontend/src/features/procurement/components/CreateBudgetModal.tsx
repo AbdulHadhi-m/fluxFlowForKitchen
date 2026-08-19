@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useCreateProcurementBudget } from "../hooks/useProcurement";
-import { X, DollarSign } from "lucide-react";
+import { X, IndianRupee } from "lucide-react";
 import { PeriodType } from "../types/procurement.types";
 
 interface CreateBudgetModalProps {
@@ -52,7 +52,7 @@ export const CreateBudgetModal: React.FC<CreateBudgetModalProps> = ({
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/40">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              <DollarSign className="w-5 h-5" />
+              <IndianRupee className="w-5 h-5" />
             </div>
             <div>
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">Create Procurement Budget</h2>
@@ -93,7 +93,7 @@ export const CreateBudgetModal: React.FC<CreateBudgetModalProps> = ({
             </div>
             <div>
               <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
-                Allocated Cap ($)
+                Allocated Cap (₹)
               </label>
               <input
                 type="number"

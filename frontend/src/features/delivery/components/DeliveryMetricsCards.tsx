@@ -33,10 +33,10 @@ export const DeliveryMetricsCards: React.FC<DeliveryMetricsCardsProps> = ({ metr
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-2xl">
         <div className="flex items-center justify-between">
           <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">In Kitchen</span>
-          <Clock className="w-4 h-4 text-indigo-400" />
+          <Clock className="w-4 h-4 text-emerald-400" />
         </div>
         <p className="text-2xl font-black text-slate-900 dark:text-white mt-2">{metrics.pending_count}</p>
-        <span className="text-[11px] text-indigo-400 font-medium">Prep queue</span>
+        <span className="text-[11px] text-emerald-400 font-medium">Prep queue</span>
       </div>
 
       {/* Available Drivers */}

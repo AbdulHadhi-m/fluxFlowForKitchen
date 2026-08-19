@@ -21,7 +21,7 @@ export const DeliveryStatusBadge: React.FC<DeliveryStatusBadgeProps> = ({
       case 'ASSIGNED':
         return 'bg-blue-500/15 text-blue-400 border-blue-500/30';
       case 'PICKED_UP':
-        return 'bg-indigo-500/15 text-indigo-400 border-indigo-500/30';
+        return 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30';
       case 'OUT_FOR_DELIVERY':
         return 'bg-amber-500/20 text-amber-300 border-amber-500/40 font-bold';
       case 'DELIVERED':

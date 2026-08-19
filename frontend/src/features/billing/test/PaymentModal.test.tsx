@@ -44,7 +44,7 @@ describe("PaymentModal Component", () => {
     );
 
     expect(screen.getByText("Process Payment — BILL-000001")).toBeInTheDocument();
-    expect(screen.getByText("$52.50")).toBeInTheDocument();
+    expect(screen.getByText("₹52.50")).toBeInTheDocument();
     expect(screen.getByText("Cash")).toBeInTheDocument();
     expect(screen.getByText("Card")).toBeInTheDocument();
     expect(screen.getByText("UPI / QR")).toBeInTheDocument();

@@ -105,7 +105,7 @@ class Command(BaseCommand):
                     "postal_code": "62704",
                     "country": "United States",
                     "timezone": "America/New_York",
-                    "currency": "USD",
+                    "currency": "INR",
                     "is_active": True,
                 },
             )

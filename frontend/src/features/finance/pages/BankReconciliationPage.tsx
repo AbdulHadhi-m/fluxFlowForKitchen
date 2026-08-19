@@ -21,7 +21,7 @@ export const BankReconciliationPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2.5">
-            <div className="h-9 w-9 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="h-9 w-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <Landmark className="h-5 w-5" />
             </div>
             <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Bank Accounts & Statement Reconciliation</h1>
@@ -41,7 +41,7 @@ export const BankReconciliationPage: React.FC = () => {
                 <h3 className="font-bold text-slate-900 dark:text-white text-sm">{ba.account_name}</h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400">{ba.bank_name}</p>
               </div>
-              <span className="font-mono text-xs text-indigo-400 font-bold">{ba.masked_account_number}</span>
+              <span className="font-mono text-xs text-emerald-400 font-bold">{ba.masked_account_number}</span>
             </div>
             <div className="flex justify-between items-center text-xs text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-200 dark:border-slate-800">
               <span>Linked GL Account:</span>
@@ -60,7 +60,7 @@ export const BankReconciliationPage: React.FC = () => {
               <th className="p-4">Bank Account</th>
               <th className="p-4">Description</th>
               <th className="p-4 w-28">Type</th>
-              <th className="p-4 w-32 font-mono text-right">Amount ($)</th>
+              <th className="p-4 w-32 font-mono text-right">Amount (₹)</th>
               <th className="p-4 w-28 text-center">Status</th>
               <th className="p-4 w-28 text-right">Action</th>
             </tr>
@@ -99,7 +99,7 @@ export const BankReconciliationPage: React.FC = () => {
                       tx.reconciliation_status === "RECONCILED"
                         ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
                         : tx.reconciliation_status === "MATCHED"
-                        ? "bg-indigo-500/10 text-indigo-400 border-indigo-500/20"
+                        ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
                         : "bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-300 dark:border-slate-700"
                     }`}>
                       {tx.reconciliation_status}
@@ -109,7 +109,7 @@ export const BankReconciliationPage: React.FC = () => {
                     {tx.reconciliation_status !== "RECONCILED" && (
                       <button
                         onClick={() => handleReconcile(tx.id)}
-                        className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition-colors"
+                        className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition-colors"
                       >
                         Reconcile
                       </button>

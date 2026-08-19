@@ -34,7 +34,7 @@ export const ReservationsPage: React.FC = () => {
           <Button
             size="sm"
             onClick={() => setIsModalOpen(true)}
-            className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs gap-1.5 shadow-lg shadow-indigo-600/20"
+            className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs gap-1.5 shadow-lg shadow-emerald-600/20"
           >
             <CalendarPlus className="h-3.5 w-3.5" /> Book Reservation
           </Button>

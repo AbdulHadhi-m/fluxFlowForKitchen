@@ -16,7 +16,7 @@ export const TopPromotionsTable: React.FC<Props> = ({ analytics }) => {
       <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+            <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
               <Tag className="h-4 w-4" />
             </div>
             <h3 className="text-sm font-bold text-slate-900 dark:text-white">Top Performing Promotions</h3>
@@ -42,7 +42,7 @@ export const TopPromotionsTable: React.FC<Props> = ({ analytics }) => {
                 </div>
                 <div className="text-right">
                   <div className="font-bold text-emerald-400">{p.redemptions} uses</div>
-                  <div className="text-[10px] text-slate-500">${p.total_discount} off</div>
+                  <div className="text-[10px] text-slate-500">₹{p.total_discount} off</div>
                 </div>
               </div>
             ))}
@@ -54,7 +54,7 @@ export const TopPromotionsTable: React.FC<Props> = ({ analytics }) => {
       <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-lg bg-violet-500/10 border border-violet-500/20 text-violet-400">
+            <div className="p-1.5 rounded-lg bg-teal-500/10 border border-teal-500/20 text-teal-400">
               <Gift className="h-4 w-4" />
             </div>
             <h3 className="text-sm font-bold text-slate-900 dark:text-white">Top Vouchers & Coupon Codes</h3>
@@ -74,13 +74,13 @@ export const TopPromotionsTable: React.FC<Props> = ({ analytics }) => {
                 <div className="flex items-center gap-2.5">
                   <span className="font-mono text-slate-500 font-bold text-[10px]">#{idx + 1}</span>
                   <div>
-                    <div className="font-mono font-bold text-violet-400 tracking-wider">{c.code}</div>
+                    <div className="font-mono font-bold text-teal-400 tracking-wider">{c.code}</div>
                     <div className="text-[10px] text-slate-500">{c.promotion_name}</div>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="font-bold text-violet-600 dark:text-violet-300">{c.redemptions} uses</div>
-                  <div className="text-[10px] text-slate-500">${c.total_discount} off</div>
+                  <div className="font-bold text-teal-600 dark:text-teal-300">{c.redemptions} uses</div>
+                  <div className="text-[10px] text-slate-500">₹{c.total_discount} off</div>
                 </div>
               </div>
             ))}

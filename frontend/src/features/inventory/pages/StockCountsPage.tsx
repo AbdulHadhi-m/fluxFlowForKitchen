@@ -96,7 +96,7 @@ export const StockCountsPage: React.FC = () => {
                           c.status === 'APPROVED'
                             ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
                             : c.status === 'SUBMITTED'
-                            ? 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20'
+                            ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
                             : 'bg-amber-500/10 text-amber-400 border-amber-500/20'
                         }`}
                       >
@@ -138,7 +138,7 @@ export const StockCountsPage: React.FC = () => {
 
       {/* Create Audit Modal */}
       {isCreateOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in">
           <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md p-6 space-y-4 shadow-2xl">
             <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Initialize Stock Count Audit</h2>
             <form onSubmit={handleCreateSession} className="space-y-4">

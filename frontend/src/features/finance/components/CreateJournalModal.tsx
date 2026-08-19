@@ -102,7 +102,7 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/40">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               <Scale className="w-5 h-5" />
             </div>
             <div>
@@ -126,7 +126,7 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
                 type="date"
                 value={entryDate}
                 onChange={(e) => setEntryDate(e.target.value)}
-                className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                 required
               />
             </div>
@@ -138,7 +138,7 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
               <select
                 value={sourceType}
                 onChange={(e) => setSourceType(e.target.value as SourceDocumentType)}
-                className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               >
                 <option value="MANUAL">Manual Adjustment</option>
                 <option value="EXPENSE">Expense Claim</option>
@@ -154,7 +154,7 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
                   type="checkbox"
                   checked={autoPost}
                   onChange={(e) => setAutoPost(e.target.checked)}
-                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-indigo-600 focus:ring-indigo-500 h-4 w-4"
+                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-emerald-600 focus:ring-emerald-500 h-4 w-4"
                 />
                 <span>Auto-Post immediately</span>
               </label>
@@ -168,7 +168,7 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
               <button
                 type="button"
                 onClick={handleAddLine}
-                className="flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300"
+                className="flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300"
               >
                 <Plus className="w-3.5 h-3.5" /> Add Leg
               </button>
@@ -179,8 +179,8 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
                 <thead className="bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-semibold uppercase">
                   <tr>
                     <th className="p-3">Account</th>
-                    <th className="p-3 w-32">Debit ($)</th>
-                    <th className="p-3 w-32">Credit ($)</th>
+                    <th className="p-3 w-32">Debit (₹)</th>
+                    <th className="p-3 w-32">Credit (₹)</th>
                     <th className="p-3">Description</th>
                     <th className="p-3 w-36">Cost Center</th>
                     <th className="p-3 w-10"></th>
@@ -193,7 +193,7 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
                         <select
                           value={line.account_id}
                           onChange={(e) => handleLineChange(idx, "account_id", e.target.value)}
-                          className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                          className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                           required
                         >
                           <option value="">-- Select GL Account --</option>
@@ -211,7 +211,7 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
                           min="0"
                           value={line.debit}
                           onChange={(e) => handleLineChange(idx, "debit", e.target.value)}
-                          className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white font-mono focus:outline-none focus:border-indigo-500"
+                          className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white font-mono focus:outline-none focus:border-emerald-500"
                         />
                       </td>
                       <td className="p-2.5">
@@ -221,7 +221,7 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
                           min="0"
                           value={line.credit}
                           onChange={(e) => handleLineChange(idx, "credit", e.target.value)}
-                          className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white font-mono focus:outline-none focus:border-indigo-500"
+                          className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white font-mono focus:outline-none focus:border-emerald-500"
                         />
                       </td>
                       <td className="p-2.5">
@@ -230,14 +230,14 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
                           value={line.description}
                           onChange={(e) => handleLineChange(idx, "description", e.target.value)}
                           placeholder="Line narration"
-                          className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                          className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                         />
                       </td>
                       <td className="p-2.5">
                         <select
                           value={line.cost_center}
                           onChange={(e) => handleLineChange(idx, "cost_center", e.target.value as CostCenter)}
-                          className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-2 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                          className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-2 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                         >
                           <option value="KITCHEN">Kitchen</option>
                           <option value="FOH">Front of House</option>
@@ -268,11 +268,11 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
             <div className="flex items-center gap-6 text-xs">
               <div>
                 <span className="text-slate-500 dark:text-slate-400">Total Debits: </span>
-                <strong className="text-slate-900 dark:text-white font-mono text-sm">${totalDebit.toFixed(2)}</strong>
+                <strong className="text-slate-900 dark:text-white font-mono text-sm">₹{totalDebit.toFixed(2)}</strong>
               </div>
               <div>
                 <span className="text-slate-500 dark:text-slate-400">Total Credits: </span>
-                <strong className="text-slate-900 dark:text-white font-mono text-sm">${totalCredit.toFixed(2)}</strong>
+                <strong className="text-slate-900 dark:text-white font-mono text-sm">₹{totalCredit.toFixed(2)}</strong>
               </div>
               <div>
                 <span className="text-slate-500 dark:text-slate-400">Difference: </span>
@@ -304,7 +304,7 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Why this journal adjustment is recorded..."
-              className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+              className="w-full bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
             />
           </div>
 
@@ -319,7 +319,7 @@ export const CreateJournalModal: React.FC<CreateJournalModalProps> = ({ isOpen, 
             <button
               type="submit"
               disabled={createJournalMutation.isPending || (autoPost && !isBalanced)}
-              className="px-6 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg shadow-lg shadow-indigo-600/30 transition-all disabled:opacity-50"
+              className="px-6 py-2 text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg shadow-lg shadow-emerald-600/30 transition-all disabled:opacity-50"
             >
               {createJournalMutation.isPending ? "Recording..." : autoPost ? "Post Journal Entry" : "Save Draft"}
             </button>

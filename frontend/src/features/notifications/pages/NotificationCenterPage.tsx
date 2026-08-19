@@ -31,7 +31,7 @@ export const NotificationCenterPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <Bell className="h-4 w-4" />
             </div>
             <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Notification Center</h1>
@@ -46,7 +46,7 @@ export const NotificationCenterPage: React.FC = () => {
             onClick={() => markAllAsRead()}
             disabled={isMarkingAllRead}
             size="sm"
-            className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs gap-1.5 shadow-lg shadow-indigo-600/20"
+            className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs gap-1.5 shadow-lg shadow-emerald-600/20"
           >
             {isMarkingAllRead ? (
               <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -69,7 +69,7 @@ export const NotificationCenterPage: React.FC = () => {
               onClick={() => setReadFilter(status)}
               className={`h-7 px-3 text-xs rounded-lg font-medium transition-all ${
                 readFilter === status
-                  ? "bg-indigo-600 text-white font-bold shadow-sm"
+                  ? "bg-emerald-600 text-white font-bold shadow-sm"
                   : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
               }`}
             >
@@ -83,7 +83,7 @@ export const NotificationCenterPage: React.FC = () => {
           <select
             value={severityFilter}
             onChange={(e) => setSeverityFilter(e.target.value)}
-            className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500"
+            className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-emerald-500"
           >
             <option value="">All Severities</option>
             <option value="CRITICAL">Critical Only</option>

@@ -52,7 +52,7 @@ export class ErrorBoundary extends Component<Props, State> {
           <Button
             size="sm"
             onClick={() => this.setState({ hasError: false })}
-            className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs gap-1.5"
+            className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs gap-1.5"
           >
             <RotateCcw className="h-3.5 w-3.5" /> Try Again
           </Button>

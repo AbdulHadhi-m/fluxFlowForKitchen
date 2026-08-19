@@ -26,7 +26,7 @@ export const SupplierScorecardModal: React.FC<SupplierScorecardModalProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/40">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               <Award className="w-5 h-5" />
             </div>
             <div>
@@ -46,7 +46,7 @@ export const SupplierScorecardModal: React.FC<SupplierScorecardModalProps> = ({
         <div className="p-6 space-y-6">
           {isLoading ? (
             <div className="flex items-center justify-center py-12 text-slate-500 dark:text-slate-400">
-              <div className="w-6 h-6 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin mr-3" />
+              <div className="w-6 h-6 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin mr-3" />
               Calculating vendor scorecard...
             </div>
           ) : scorecard ? (
@@ -66,10 +66,10 @@ export const SupplierScorecardModal: React.FC<SupplierScorecardModalProps> = ({
               </div>
 
               {/* Fill Rate Highlight */}
-              <div className="p-5 rounded-xl bg-gradient-to-br from-indigo-950/30 to-slate-900 border border-indigo-500/20">
+              <div className="p-5 rounded-xl bg-gradient-to-br from-emerald-950/30 to-slate-900 border border-emerald-500/20">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-medium text-slate-500 dark:text-slate-400">Fulfillment Fill Rate</span>
-                  <span className="text-2xl font-black text-indigo-400">{scorecard.fill_rate_percentage}%</span>
+                  <span className="text-2xl font-black text-emerald-400">{scorecard.fill_rate_percentage}%</span>
                 </div>
                 <div className="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
                   <div

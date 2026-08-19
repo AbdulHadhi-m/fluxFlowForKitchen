@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useActiveRole } from "@/features/authorization/hooks/useActiveRole";
@@ -31,10 +31,11 @@ import {
   Sparkles,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   ClipboardList,
   ArrowRightLeft,
   Trash2,
-  DollarSign,
+  IndianRupee,
   ShoppingCart,
   History,
   Building2,
@@ -104,7 +105,7 @@ const NAVIGATION_GROUPS: NavGroup[] = [
       { id: "stock-counts", label: "Stock Audits", path: "/inventory/stock-counts", icon: ClipboardList, permission: "inventory.view" },
       { id: "transfers", label: "Transfers", path: "/inventory/transfers", icon: ArrowRightLeft, permission: "inventory.view" },
       { id: "waste", label: "Wastage Log", path: "/inventory/waste", icon: Trash2, permission: "inventory.view" },
-      { id: "food-cost", label: "Food Costing", path: "/inventory/food-cost", icon: DollarSign, permission: "inventory.view" },
+      { id: "food-cost", label: "Food Costing", path: "/inventory/food-cost", icon: IndianRupee, permission: "inventory.view" },
       { id: "reorder", label: "Par Reorder", path: "/inventory/reorder", icon: ShoppingCart, permission: "inventory.view" },
       { id: "movements", label: "Movements Ledger", path: "/inventory/movements", icon: History, permission: "inventory.view" },
     ],
@@ -118,14 +119,14 @@ const NAVIGATION_GROUPS: NavGroup[] = [
       { id: "po", label: "Purchase Orders", path: "/procurement/purchase-orders", icon: Truck, permission: "procurement.view" },
       { id: "returns", label: "Returns & Credits", path: "/procurement/returns", icon: RotateCcw, permission: "procurement.view" },
       { id: "invoices", label: "3-Way Matching", path: "/procurement/invoices", icon: FileCheck, permission: "procurement.view" },
-      { id: "budgets", label: "Purchase Budgets", path: "/procurement/budgets", icon: DollarSign, permission: "procurement.view" },
+      { id: "budgets", label: "Purchase Budgets", path: "/procurement/budgets", icon: IndianRupee, permission: "procurement.view" },
       { id: "planning", label: "Auto Reorder", path: "/procurement/planning", icon: Sparkles, permission: "procurement.view" },
     ],
   },
   {
     group: "FINANCE & ACCOUNTING",
     items: [
-      { id: "finance-hub", label: "Finance Hub", path: "/finance", icon: DollarSign, permission: "finance.view" },
+      { id: "finance-hub", label: "Finance Hub", path: "/finance", icon: IndianRupee, permission: "finance.view" },
       { id: "coa", label: "Chart of Accounts", path: "/finance/accounts", icon: BookOpen, permission: "finance.view" },
       { id: "journals", label: "General Journal", path: "/finance/journal", icon: Scale, permission: "finance.view" },
       { id: "ledger", label: "General Ledger", path: "/finance/ledger", icon: History, permission: "finance.view" },
@@ -180,11 +181,24 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
     setCommandMenuOpen,
   } = useUIStore();
 
+  // Find the active nav item by matching the longest prefix path segment
+  const activePath = (() => {
+    const allPaths = NAVIGATION_GROUPS.flatMap((group) => group.items.map((item) => item.path));
+    const currentPath = location.pathname === "/" ? "/dashboard" : location.pathname;
+
+    const matchingPaths = allPaths.filter((p) => {
+      return currentPath === p || currentPath.startsWith(p + "/");
+    });
+
+    if (matchingPaths.length === 0) return "";
+
+    return matchingPaths.reduce((longest, current) =>
+      current.length > longest.length ? current : longest
+    , "");
+  })();
+
   const isNavActive = (path: string) => {
-    if (path === "/dashboard") {
-      return location.pathname === "/" || location.pathname === "/dashboard";
-    }
-    return location.pathname.startsWith(path);
+    return path === activePath;
   };
 
   const filteredNavGroups = NAVIGATION_GROUPS.map((group) => ({
@@ -192,8 +206,39 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
     items: group.items.filter((item) => !item.permission || hasPermission(item.permission)),
   })).filter((group) => group.items.length > 0);
 
+  // Determine which group contains the active item so it auto-expands
+  const activeGroup = useMemo(() => {
+    for (const group of filteredNavGroups) {
+      if (group.items.some((item) => item.path === activePath)) {
+        return group.group;
+      }
+    }
+    return "";
+  }, [activePath, filteredNavGroups]);
+
+  const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>(() => {
+    const initial: Record<string, boolean> = {};
+    NAVIGATION_GROUPS.forEach((g) => {
+      // MAIN group (Dashboard) is always expanded; others start collapsed
+      initial[g.group] = g.group === "MAIN";
+    });
+    return initial;
+  });
+
+  // Auto-expand the group containing the active nav item
+  React.useEffect(() => {
+    if (activeGroup && !expandedGroups[activeGroup]) {
+      setExpandedGroups((prev) => ({ ...prev, [activeGroup]: true }));
+    }
+  }, [activeGroup]);
+
+  const toggleGroup = (group: string) => {
+    if (group === "MAIN") return; // MAIN is always visible
+    setExpandedGroups((prev) => ({ ...prev, [group]: !prev[group] }));
+  };
+
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col selection:bg-indigo-500/30 transition-colors duration-200">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col selection:bg-emerald-500/30 transition-colors duration-200">
       {/* Top Navigation Bar */}
       <header className="sticky top-0 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800/80 px-4 h-14 flex items-center justify-between gap-3 transition-colors duration-200">
         <div className="flex items-center gap-3">
@@ -201,19 +246,19 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
           <button
             onClick={() => setMobileNavOpen(true)}
             aria-label="Open mobile menu"
-            className="md:hidden p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-850 focus:outline-none"
+            className="md:hidden p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none"
           >
             <Menu className="h-5 w-5" />
           </button>
 
           {/* Brand Logo */}
           <Link to="/dashboard" className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-600/30">
+            <div className="h-8 w-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-md shadow-emerald-600/30">
               <Sparkles className="h-4 w-4" />
             </div>
             <div className="hidden sm:block">
               <span className="text-sm font-black tracking-tight text-slate-900 dark:text-white block leading-none">Fluxiflow</span>
-              <span className="text-[10px] text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider">Kitchen Suite</span>
+              <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-wider">Kitchen Suite</span>
             </div>
           </Link>
         </div>
@@ -264,35 +309,71 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
         >
           {/* Sidebar Nav Items */}
           <div className="flex-1 overflow-y-auto p-3 space-y-4">
-            {filteredNavGroups.map((group) => (
-              <div key={group.group} className="space-y-1">
-                {!isSidebarCollapsed && (
-                  <div className="text-[10px] font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider px-2.5 py-1">
-                    {group.group}
-                  </div>
-                )}
-                {group.items.map((item) => {
-                  const Icon = item.icon;
-                  const active = isNavActive(item.path);
+            {filteredNavGroups.map((group) => {
+              const isExpanded = expandedGroups[group.group] ?? false;
+              const isMainGroup = group.group === "MAIN";
+              const groupHasActiveItem = group.items.some((item) => item.path === activePath);
 
-                  return (
-                    <Link
-                      key={item.id}
-                      to={item.path}
-                      title={item.label}
-                      className={`flex items-center gap-3 px-2.5 py-2 rounded-xl text-xs font-semibold transition-all ${
-                        active
-                          ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30"
-                          : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900"
+              return (
+                <div key={group.group} className="space-y-0.5">
+                  {/* Group Header - clickable toggle */}
+                  {!isSidebarCollapsed && (
+                    <button
+                      onClick={() => toggleGroup(group.group)}
+                      className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider transition-colors ${
+                        isMainGroup
+                          ? "text-slate-400 dark:text-slate-500 cursor-default"
+                          : groupHasActiveItem
+                          ? "text-emerald-500 dark:text-emerald-400 hover:bg-emerald-500/5"
+                          : "text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900"
                       }`}
                     >
-                      <Icon className="h-4 w-4 shrink-0" />
-                      {!isSidebarCollapsed && <span className="truncate">{item.label}</span>}
-                    </Link>
-                  );
-                })}
-              </div>
-            ))}
+                      <span>{group.group}</span>
+                      {!isMainGroup && (
+                        <ChevronDown
+                          className={`h-3 w-3 transition-transform duration-200 ${
+                            isExpanded ? "rotate-0" : "-rotate-90"
+                          }`}
+                        />
+                      )}
+                    </button>
+                  )}
+
+                  {/* Collapsible Items */}
+                  <div
+                    className={`space-y-0.5 overflow-hidden transition-all duration-200 ease-in-out ${
+                      isSidebarCollapsed || isMainGroup || isExpanded
+                        ? "max-h-[1000px] opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    {group.items.map((item) => {
+                      const Icon = item.icon;
+                      const active = isNavActive(item.path);
+
+                      return (
+                        <Link
+                          key={item.id}
+                          to={item.path}
+                          title={item.label}
+                          className={`group relative flex items-center gap-3 px-2.5 py-2 rounded-xl text-xs font-semibold transition-all ${
+                            active
+                              ? "bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-md shadow-emerald-600/30"
+                              : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900"
+                          }`}
+                        >
+                          {active && (
+                            <span className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-1 rounded-r-full bg-white/80" />
+                          )}
+                          <Icon className="h-4 w-4 shrink-0" />
+                          {!isSidebarCollapsed && <span className="truncate">{item.label}</span>}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           {/* Collapse Sidebar Button */}
@@ -319,7 +400,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
             <div className="relative w-72 bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 p-4 space-y-6 flex flex-col z-50 h-full overflow-y-auto animate-in slide-in-from-left duration-200">
               <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
                 <div className="flex items-center gap-2">
-                  <div className="h-7 w-7 rounded-lg bg-indigo-600 flex items-center justify-center text-white">
+                  <div className="h-7 w-7 rounded-lg bg-emerald-600 flex items-center justify-center text-white">
                     <Sparkles className="h-3.5 w-3.5" />
                   </div>
                   <span className="font-bold text-sm text-slate-900 dark:text-white">Fluxiflow</span>
@@ -333,33 +414,64 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
               </div>
 
               <div className="space-y-4 flex-1">
-                {filteredNavGroups.map((group) => (
-                  <div key={group.group} className="space-y-1">
-                    <div className="text-[10px] font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider px-2 py-1">
-                      {group.group}
-                    </div>
-                    {group.items.map((item) => {
-                      const Icon = item.icon;
-                      const active = isNavActive(item.path);
+                {filteredNavGroups.map((group) => {
+                  const isExpanded = expandedGroups[group.group] ?? false;
+                  const isMainGroup = group.group === "MAIN";
+                  const groupHasActiveItem = group.items.some((item) => item.path === activePath);
 
-                      return (
-                        <Link
-                          key={item.id}
-                          to={item.path}
-                          onClick={() => setMobileNavOpen(false)}
-                          className={`flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
-                            active
-                              ? "bg-indigo-600 text-white"
-                              : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900"
-                          }`}
-                        >
-                          <Icon className="h-4 w-4 shrink-0" />
-                          <span>{item.label}</span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                ))}
+                  return (
+                    <div key={group.group} className="space-y-0.5">
+                      <button
+                        onClick={() => toggleGroup(group.group)}
+                        className={`w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider transition-colors ${
+                          isMainGroup
+                            ? "text-slate-400 dark:text-slate-500 cursor-default"
+                            : groupHasActiveItem
+                            ? "text-emerald-500 dark:text-emerald-400 hover:bg-emerald-500/5"
+                            : "text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900"
+                        }`}
+                      >
+                        <span>{group.group}</span>
+                        {!isMainGroup && (
+                          <ChevronDown
+                            className={`h-3 w-3 transition-transform duration-200 ${
+                              isExpanded ? "rotate-0" : "-rotate-90"
+                            }`}
+                          />
+                        )}
+                      </button>
+
+                      <div
+                        className={`space-y-0.5 overflow-hidden transition-all duration-200 ease-in-out ${
+                          isMainGroup || isExpanded
+                            ? "max-h-[1000px] opacity-100"
+                            : "max-h-0 opacity-0"
+                        }`}
+                      >
+                        {group.items.map((item) => {
+                          const Icon = item.icon;
+                          const active = isNavActive(item.path);
+
+                          return (
+                            <Link
+                              key={item.id}
+                              to={item.path}
+                              onClick={() => setMobileNavOpen(false)}
+                              className={`flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
+                                active
+                                  ? "bg-emerald-600 text-white"
+                                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900"
+                              }`}
+                            >
+                              <Icon className="h-4 w-4 shrink-0" />
+                              <span>{item.label}</span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>

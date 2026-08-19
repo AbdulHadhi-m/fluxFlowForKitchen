@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   Shield,
   Search,
@@ -19,11 +19,7 @@ export const SecurityEventsPage: React.FC = () => {
   const [typeFilter, setTypeFilter] = useState("");
   const [selectedEvent, setSelectedEvent] = useState<SecurityEventItem | null>(null);
 
-  useEffect(() => {
-    loadEvents();
-  }, [severityFilter, typeFilter]);
-
-  const loadEvents = async () => {
+  const loadEvents = useCallback(async () => {
     try {
       setLoading(true);
       const res = await securityApi.getSecurityEvents({
@@ -39,7 +35,11 @@ export const SecurityEventsPage: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [search, severityFilter, typeFilter]);
+
+  useEffect(() => {
+    loadEvents();
+  }, [loadEvents]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,7 +65,7 @@ export const SecurityEventsPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <Shield className="h-4 w-4" />
             </div>
             <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Security Event Log</h1>
@@ -91,7 +91,7 @@ export const SecurityEventsPage: React.FC = () => {
         <select
           value={severityFilter}
           onChange={(e) => setSeverityFilter(e.target.value)}
-          className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500 h-9"
+          className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-emerald-500 h-9"
         >
           <option value="">All Severities</option>
           <option value="LOW">Low</option>
@@ -103,7 +103,7 @@ export const SecurityEventsPage: React.FC = () => {
         <select
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
-          className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500 h-9"
+          className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-emerald-500 h-9"
         >
           <option value="">All Event Types</option>
           <option value="AUTH_LOGIN_SUCCESS">Login Success</option>
@@ -136,7 +136,7 @@ export const SecurityEventsPage: React.FC = () => {
               {loading ? (
                 <tr>
                   <td colSpan={7} className="p-8 text-center text-slate-500">
-                    <Loader2 className="h-5 w-5 animate-spin mx-auto mb-2 text-indigo-400" />
+                    <Loader2 className="h-5 w-5 animate-spin mx-auto mb-2 text-emerald-400" />
                     Loading security events...
                   </td>
                 </tr>
@@ -159,7 +159,7 @@ export const SecurityEventsPage: React.FC = () => {
                     <td className="p-3.5 whitespace-nowrap">
                       {getSeverityBadge(evt.severity)}
                     </td>
-                    <td className="p-3.5 font-mono text-[11px] text-indigo-600 dark:text-indigo-300 font-bold">
+                    <td className="p-3.5 font-mono text-[11px] text-emerald-600 dark:text-emerald-300 font-bold">
                       {evt.event_type}
                     </td>
                     <td className="p-3.5 text-slate-900 dark:text-white font-medium">
@@ -172,7 +172,7 @@ export const SecurityEventsPage: React.FC = () => {
                       {evt.description}
                     </td>
                     <td className="p-3.5 text-right">
-                      <Button size="sm" variant="ghost" className="h-7 text-xs text-indigo-400 hover:text-slate-900 dark:hover:text-white p-1">
+                      <Button size="sm" variant="ghost" className="h-7 text-xs text-emerald-400 hover:text-slate-900 dark:hover:text-white p-1">
                         <Eye className="h-3.5 w-3.5" />
                       </Button>
                     </td>
@@ -190,7 +190,7 @@ export const SecurityEventsPage: React.FC = () => {
           <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 w-full max-w-lg p-6 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
               <div className="flex items-center gap-2">
-                <Shield className="h-4 w-4 text-indigo-400" />
+                <Shield className="h-4 w-4 text-emerald-400" />
                 <h2 className="text-sm font-bold text-slate-900 dark:text-white">Security Event Detail</h2>
               </div>
               <Button size="sm" variant="ghost" onClick={() => setSelectedEvent(null)} className="h-6 w-6 p-0 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
@@ -201,7 +201,7 @@ export const SecurityEventsPage: React.FC = () => {
             <div className="space-y-2.5 text-xs">
               <div className="grid grid-cols-3 gap-2">
                 <span className="text-slate-500 dark:text-slate-400">Event Type:</span>
-                <span className="col-span-2 font-mono text-indigo-600 dark:text-indigo-300 font-bold">{selectedEvent.event_type}</span>
+                <span className="col-span-2 font-mono text-emerald-600 dark:text-emerald-300 font-bold">{selectedEvent.event_type}</span>
               </div>
               <div className="grid grid-cols-3 gap-2">
                 <span className="text-slate-500 dark:text-slate-400">Severity:</span>

@@ -158,11 +158,11 @@ export const PosCartPanel: React.FC<PosCartPanelProps> = ({
         <div className="space-y-1 text-xs">
           <div className="flex justify-between text-slate-500 dark:text-slate-400">
             <span>Subtotal</span>
-            <span className="font-mono">${subtotal.toFixed(2)}</span>
+            <span className="font-mono">₹{subtotal.toFixed(2)}</span>
           </div>
           <div className="flex justify-between text-sm font-bold text-slate-900 dark:text-white pt-1 border-t border-slate-200 dark:border-slate-800/80">
             <span>Payable Total</span>
-            <span className="font-mono text-emerald-400">${subtotal.toFixed(2)}</span>
+            <span className="font-mono text-emerald-400">₹{subtotal.toFixed(2)}</span>
           </div>
         </div>
 
@@ -170,7 +170,7 @@ export const PosCartPanel: React.FC<PosCartPanelProps> = ({
           type="button"
           disabled={items.length === 0 || isSubmitting}
           onClick={onPlaceOrder}
-          className="w-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold py-2.5 shadow-lg shadow-blue-600/20 gap-1.5"
+          className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-semibold py-2.5 shadow-lg shadow-emerald-600/30 gap-1.5"
         >
           {isSubmitting ? (
             <>

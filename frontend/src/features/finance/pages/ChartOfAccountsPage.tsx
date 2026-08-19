@@ -34,7 +34,7 @@ export const ChartOfAccountsPage: React.FC = () => {
       case "EQUITY":
         return "bg-purple-500/10 text-purple-400 border-purple-500/20";
       case "REVENUE":
-        return "bg-indigo-500/10 text-indigo-400 border-indigo-500/20";
+        return "bg-emerald-500/10 text-emerald-400 border-emerald-500/20";
       case "EXPENSE":
         return "bg-amber-500/10 text-amber-400 border-amber-500/20";
     }
@@ -70,7 +70,7 @@ export const ChartOfAccountsPage: React.FC = () => {
 
           <button
             onClick={() => setIsCreateOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl shadow-lg shadow-indigo-600/25 transition-all"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl shadow-lg shadow-emerald-600/25 transition-all"
           >
             <Plus className="w-4 h-4" />
             New Account
@@ -87,7 +87,7 @@ export const ChartOfAccountsPage: React.FC = () => {
               onClick={() => setCategoryFilter(cat)}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
                 categoryFilter === cat
-                  ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/20"
+                  ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/20"
                   : "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
@@ -103,7 +103,7 @@ export const ChartOfAccountsPage: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search code or account title..."
-            className="w-full pl-9 pr-4 py-2 text-xs bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
+            className="w-full pl-9 pr-4 py-2 text-xs bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-700 dark:text-slate-200 focus:outline-none focus:border-emerald-500"
           />
         </div>
       </div>

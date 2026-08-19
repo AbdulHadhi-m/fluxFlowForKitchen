@@ -32,7 +32,7 @@ describe("MenuItemTable Component", () => {
 
     expect(screen.getByText("Margherita Pizza")).toBeInTheDocument();
     expect(screen.getByText("Pizzas")).toBeInTheDocument();
-    expect(screen.getByText("$14.50")).toBeInTheDocument();
+    expect(screen.getByText("₹14.50")).toBeInTheDocument();
     expect(screen.getByText("Available")).toBeInTheDocument();
   });
 });

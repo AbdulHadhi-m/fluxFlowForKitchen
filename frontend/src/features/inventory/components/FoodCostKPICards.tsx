@@ -1,5 +1,5 @@
 import React from 'react';
-import { DollarSign, AlertTriangle, TrendingDown, Layers } from 'lucide-react';
+import { IndianRupee, AlertTriangle, TrendingDown, Layers } from 'lucide-react';
 import { InventoryValuation, VarianceAnalysis } from '../types/inventory.types';
 
 interface FoodCostKPICardsProps {
@@ -24,7 +24,7 @@ export const FoodCostKPICards: React.FC<FoodCostKPICardsProps> = ({
             Total Valuation
           </span>
           <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400">
-            <DollarSign className="w-4 h-4" />
+            <IndianRupee className="w-4 h-4" />
           </div>
         </div>
         <div className="mt-3">
@@ -90,7 +90,7 @@ export const FoodCostKPICards: React.FC<FoodCostKPICardsProps> = ({
           <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
             Locations
           </span>
-          <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
+          <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400">
             <Layers className="w-4 h-4" />
           </div>
         </div>
@@ -102,7 +102,7 @@ export const FoodCostKPICards: React.FC<FoodCostKPICardsProps> = ({
             Kitchen, Main Store, Bar, Freezers
           </p>
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-indigo-500/0 via-indigo-500/50 to-indigo-500/0 opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-emerald-500/0 via-emerald-500/50 to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity" />
       </div>
     </div>
   );

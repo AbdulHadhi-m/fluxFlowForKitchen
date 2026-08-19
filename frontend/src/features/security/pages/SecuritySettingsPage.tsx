@@ -63,7 +63,7 @@ export const SecuritySettingsPage: React.FC = () => {
     <div className="space-y-6 max-w-3xl mx-auto animate-in fade-in duration-300">
       {/* Header */}
       <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+        <div className="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
           <Settings className="h-4 w-4" />
         </div>
         <div>
@@ -90,7 +90,7 @@ export const SecuritySettingsPage: React.FC = () => {
 
       {loading ? (
         <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-8 text-center text-slate-500">
-          <Loader2 className="h-5 w-5 animate-spin mx-auto mb-2 text-indigo-400" />
+          <Loader2 className="h-5 w-5 animate-spin mx-auto mb-2 text-emerald-400" />
           Loading security policy...
         </Card>
       ) : (
@@ -98,7 +98,7 @@ export const SecuritySettingsPage: React.FC = () => {
           {/* Password Policy */}
           <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-5 space-y-4">
             <h2 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <Lock className="h-4 w-4 text-indigo-400" />
+              <Lock className="h-4 w-4 text-emerald-400" />
               Password Strength & Complexity
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
@@ -120,7 +120,7 @@ export const SecuritySettingsPage: React.FC = () => {
                     type="checkbox"
                     checked={policy?.password_require_uppercase || false}
                     onChange={(e) => setPolicy({ ...policy!, password_require_uppercase: e.target.checked })}
-                    className="rounded bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-indigo-600"
+                    className="rounded bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-emerald-600"
                   />
                   <span>Require at least one uppercase letter (A-Z)</span>
                 </label>
@@ -130,7 +130,7 @@ export const SecuritySettingsPage: React.FC = () => {
                     type="checkbox"
                     checked={policy?.password_require_number || false}
                     onChange={(e) => setPolicy({ ...policy!, password_require_number: e.target.checked })}
-                    className="rounded bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-indigo-600"
+                    className="rounded bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-emerald-600"
                   />
                   <span>Require at least one numeric digit (0-9)</span>
                 </label>
@@ -140,7 +140,7 @@ export const SecuritySettingsPage: React.FC = () => {
                     type="checkbox"
                     checked={policy?.password_require_special || false}
                     onChange={(e) => setPolicy({ ...policy!, password_require_special: e.target.checked })}
-                    className="rounded bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-indigo-600"
+                    className="rounded bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-emerald-600"
                   />
                   <span>Require at least one special character (!@#$%^&*)</span>
                 </label>
@@ -160,7 +160,7 @@ export const SecuritySettingsPage: React.FC = () => {
                   type="checkbox"
                   checked={policy?.mfa_required_for_admins || false}
                   onChange={(e) => setPolicy({ ...policy!, mfa_required_for_admins: e.target.checked })}
-                  className="rounded bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-indigo-600"
+                  className="rounded bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-emerald-600"
                 />
                 <div>
                   <span className="font-semibold text-slate-900 dark:text-white">Require MFA for Privileged Accounts</span>
@@ -173,7 +173,7 @@ export const SecuritySettingsPage: React.FC = () => {
                   type="checkbox"
                   checked={policy?.mfa_required_for_all || false}
                   onChange={(e) => setPolicy({ ...policy!, mfa_required_for_all: e.target.checked })}
-                  className="rounded bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-indigo-600"
+                  className="rounded bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-emerald-600"
                 />
                 <div>
                   <span className="font-semibold text-slate-900 dark:text-white">Enforce MFA for All Staff Accounts</span>
@@ -241,7 +241,7 @@ export const SecuritySettingsPage: React.FC = () => {
           </Card>
 
           <div className="flex justify-end gap-2">
-            <Button type="submit" disabled={saving} className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-6">
+            <Button type="submit" disabled={saving} className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-6">
               {saving ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1.5" /> : null}
               Save Security Policy
             </Button>

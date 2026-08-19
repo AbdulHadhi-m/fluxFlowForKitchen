@@ -44,7 +44,7 @@ export const CreateCouponModal: React.FC<Props> = ({ isOpen, onClose, promotions
       <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden">
         <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+            <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
               <Gift className="h-4 w-4" />
             </div>
             <h3 className="text-sm font-bold text-slate-900 dark:text-white">Create Custom Coupon Code</h3>
@@ -59,7 +59,7 @@ export const CreateCouponModal: React.FC<Props> = ({ isOpen, onClose, promotions
             <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Target Promotion *</label>
             <select
               {...register("promotion", { required: "Please select a promotion" })}
-              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
             >
               <option value="">Select promotion...</option>
               {promotions.map((p) => (
@@ -77,7 +77,7 @@ export const CreateCouponModal: React.FC<Props> = ({ isOpen, onClose, promotions
               type="text"
               placeholder="e.g. VIPDINER20"
               {...register("code", { required: "Coupon code is required" })}
-              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white uppercase font-mono font-bold focus:outline-none focus:border-indigo-500"
+              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white uppercase font-mono font-bold focus:outline-none focus:border-emerald-500"
             />
             {errors.code && <p className="text-rose-400 text-[10px] mt-1">{errors.code.message}</p>}
           </div>
@@ -90,7 +90,7 @@ export const CreateCouponModal: React.FC<Props> = ({ isOpen, onClose, promotions
                 min="1"
                 placeholder="Unlimited"
                 {...register("usage_limit")}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
             <div>
@@ -100,7 +100,7 @@ export const CreateCouponModal: React.FC<Props> = ({ isOpen, onClose, promotions
                 min="1"
                 defaultValue="1"
                 {...register("per_customer_limit")}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
           </div>
@@ -111,7 +111,7 @@ export const CreateCouponModal: React.FC<Props> = ({ isOpen, onClose, promotions
               <input
                 type="date"
                 {...register("valid_from")}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
             <div>
@@ -119,7 +119,7 @@ export const CreateCouponModal: React.FC<Props> = ({ isOpen, onClose, promotions
               <input
                 type="date"
                 {...register("valid_until")}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
           </div>
@@ -135,7 +135,7 @@ export const CreateCouponModal: React.FC<Props> = ({ isOpen, onClose, promotions
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-4 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-md shadow-indigo-600/30 flex items-center gap-1.5"
+              className="px-4 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md shadow-emerald-600/30 flex items-center gap-1.5"
             >
               <CheckCircle2 className="h-3.5 w-3.5" />
               <span>Create Coupon</span>

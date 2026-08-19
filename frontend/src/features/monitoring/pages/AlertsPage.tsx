@@ -64,11 +64,11 @@ export const AlertsPage: React.FC = () => {
                       placeholder="Resolution note…"
                       value={note[alert.id] || ""}
                       onChange={(e) => setNote((prev) => ({ ...prev, [alert.id]: e.target.value }))}
-                      className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-2 py-1.5 text-[11px] text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 w-44"
+                      className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-2 py-1.5 text-[11px] text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 w-44"
                     />
                     <Button
                       size="sm"
-                      className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold"
+                      className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold"
                       onClick={() => resolve.mutate({ id: alert.id, note: note[alert.id] || "" })}
                     >
                       Resolve

@@ -15,7 +15,7 @@ export const SalesTrendChart: React.FC<SalesTrendChartProps> = ({ trends }) => {
       <CardHeader className="pb-2 flex flex-row items-center justify-between">
         <CardTitle className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
           <TrendingUp className="h-4 w-4 text-emerald-400" />
-          Daily Revenue Trend ($)
+          Daily Revenue Trend (₹)
         </CardTitle>
       </CardHeader>
       <CardContent className="pt-2">
@@ -37,7 +37,7 @@ export const SalesTrendChart: React.FC<SalesTrendChartProps> = ({ trends }) => {
                     </div>
                     <div
                       style={{ height: `${heightPercent}%` }}
-                      className="w-full max-w-[28px] bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-md group-hover:from-emerald-500 group-hover:to-emerald-400 transition-all duration-300 shadow-sm shadow-indigo-600/30"
+                      className="w-full max-w-[28px] bg-gradient-to-t from-emerald-600 to-emerald-400 rounded-t-md group-hover:from-emerald-500 group-hover:to-emerald-400 transition-all duration-300 shadow-sm shadow-emerald-600/30"
                     />
                     <span className="text-[9px] font-mono text-slate-500 truncate w-full text-center">
                       {t.date.split("-").slice(1).join("/")}

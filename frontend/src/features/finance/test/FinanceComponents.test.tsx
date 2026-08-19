@@ -43,7 +43,7 @@ describe("Finance Cash & Expense Components", () => {
     );
 
     expect(screen.getByText("Open Cash Drawer Session")).toBeInTheDocument();
-    expect(screen.getByText("Starting Cash Float ($)")).toBeInTheDocument();
+    expect(screen.getByText("Starting Cash Float (₹)")).toBeInTheDocument();
   });
 
   it("renders CloseCashSessionModal with expected cash calculations", () => {
@@ -55,7 +55,7 @@ describe("Finance Cash & Expense Components", () => {
 
     expect(screen.getByText("Close & Reconcile Drawer")).toBeInTheDocument();
     expect(screen.getByText(/Expected Cash in Drawer:/i)).toBeInTheDocument();
-    expect(screen.getByText("Actual Counted Cash ($)")).toBeInTheDocument();
+    expect(screen.getByText("Actual Counted Cash (₹)")).toBeInTheDocument();
   });
 
   it("renders CreateExpenseModal with operational expense categories", () => {

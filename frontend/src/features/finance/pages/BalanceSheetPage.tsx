@@ -26,7 +26,7 @@ export const BalanceSheetPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2.5">
-            <div className="h-9 w-9 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="h-9 w-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <Scale className="h-5 w-5" />
             </div>
             <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Balance Sheet (Financial Position)</h1>
@@ -77,7 +77,7 @@ export const BalanceSheetPage: React.FC = () => {
         <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 backdrop-blur-md p-6 space-y-4">
           <div className="border-b border-slate-200 dark:border-slate-800 pb-3 flex justify-between items-center">
             <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Total Assets</h2>
-            <span className="font-mono text-emerald-400 font-bold text-base">${assets.toFixed(2)}</span>
+            <span className="font-mono text-emerald-400 font-bold text-base">₹{assets.toFixed(2)}</span>
           </div>
 
           <div className="space-y-3 text-xs pl-2">
@@ -110,7 +110,7 @@ export const BalanceSheetPage: React.FC = () => {
           <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 backdrop-blur-md p-6 space-y-4">
             <div className="border-b border-slate-200 dark:border-slate-800 pb-3 flex justify-between items-center">
               <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Total Liabilities</h2>
-              <span className="font-mono text-rose-400 font-bold text-base">${liabilities.toFixed(2)}</span>
+              <span className="font-mono text-rose-400 font-bold text-base">₹{liabilities.toFixed(2)}</span>
             </div>
 
             <div className="space-y-2 text-xs pl-2">
@@ -129,17 +129,17 @@ export const BalanceSheetPage: React.FC = () => {
           <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 backdrop-blur-md p-6 space-y-4">
             <div className="border-b border-slate-200 dark:border-slate-800 pb-3 flex justify-between items-center">
               <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Owner's Equity</h2>
-              <span className="font-mono text-purple-400 font-bold text-base">${equity.toFixed(2)}</span>
+              <span className="font-mono text-purple-400 font-bold text-base">₹{equity.toFixed(2)}</span>
             </div>
 
             <div className="space-y-2 text-xs pl-2">
               <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
                 <span>Capital & Initial Equity (#3000)</span>
-                <span className="font-mono text-slate-900 dark:text-white font-medium">${capital.toFixed(2)}</span>
+                <span className="font-mono text-slate-900 dark:text-white font-medium">₹{capital.toFixed(2)}</span>
               </div>
               <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
                 <span>Current Retained Net Income (P&L Roll-up)</span>
-                <span className="font-mono text-emerald-400 font-medium">${retainedIncome.toFixed(2)}</span>
+                <span className="font-mono text-emerald-400 font-medium">₹{retainedIncome.toFixed(2)}</span>
               </div>
             </div>
           </div>

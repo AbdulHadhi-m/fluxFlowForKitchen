@@ -16,12 +16,12 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
 }) => {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
-      <div className="space-y-1">
+      <div className="space-y-1.5">
         <Breadcrumbs />
-        <div className="flex items-center gap-2 pt-1">
+        <div className="flex items-center gap-2.5 pt-1">
           {Icon && (
-            <div className="h-7 w-7 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-500 dark:text-indigo-400 shrink-0">
-              <Icon className="h-3.5 w-3.5" />
+            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-emerald-500/15 to-teal-500/15 border border-emerald-500/25 flex items-center justify-center text-emerald-500 dark:text-emerald-400 shrink-0">
+              <Icon className="h-4 w-4" />
             </div>
           )}
           <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">{title}</h1>

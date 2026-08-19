@@ -58,7 +58,7 @@ export const ReservationListTable: React.FC<ReservationListTableProps> = ({
             <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
               {reservations.map((r) => (
                 <tr key={r.id} className="hover:bg-slate-200/60 dark:hover:bg-slate-800/40 transition-colors">
-                  <td className="px-4 py-3 font-mono font-bold text-indigo-400">
+                  <td className="px-4 py-3 font-mono font-bold text-emerald-400">
                     {r.reservation_number}
                   </td>
 

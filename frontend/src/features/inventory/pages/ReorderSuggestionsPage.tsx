@@ -77,7 +77,7 @@ export const ReorderSuggestionsPage: React.FC = () => {
                       {Number(s.current_quantity).toFixed(2)} {s.unit}
                     </td>
 
-                    <td className="py-3.5 px-4 font-mono text-indigo-400">
+                    <td className="py-3.5 px-4 font-mono text-emerald-400">
                       {Number(s.pending_inbound_quantity).toFixed(2)} {s.unit}
                     </td>
 

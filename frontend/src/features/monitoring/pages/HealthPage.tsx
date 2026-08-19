@@ -33,7 +33,7 @@ export const HealthPage: React.FC = () => {
             </span>
             <button
               onClick={() => refetch()}
-              className="text-[11px] text-indigo-400 hover:text-indigo-300 font-medium"
+              className="text-[11px] text-emerald-400 hover:text-emerald-300 font-medium"
             >
               {isFetching ? "Checking…" : "Re-check"}
             </button>

@@ -1,7 +1,7 @@
 import React from "react";
 import { PaymentBreakdownItem } from "../types/reports.types";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { CreditCard, Banknote, QrCode, Building, CircleDollarSign } from "lucide-react";
+import { CreditCard, Banknote, QrCode, Building, BadgeIndianRupee } from "lucide-react";
 
 interface PaymentBreakdownCardProps {
   payments: PaymentBreakdownItem[];
@@ -21,7 +21,7 @@ export const PaymentBreakdownCard: React.FC<PaymentBreakdownCardProps> = ({ paym
       case "BANK_TRANSFER":
         return <Building className="h-4 w-4 text-amber-400" />;
       default:
-        return <CircleDollarSign className="h-4 w-4 text-slate-400" />;
+        return <BadgeIndianRupee className="h-4 w-4 text-slate-400" />;
     }
   };
 
@@ -54,7 +54,7 @@ export const PaymentBreakdownCard: React.FC<PaymentBreakdownCardProps> = ({ paym
                     <span className="text-slate-500 text-[10px]">({p.count} txns)</span>
                   </div>
                   <div className="font-mono text-right">
-                    <span className="text-slate-900 dark:text-white font-bold">${p.total_amount}</span>
+                    <span className="text-slate-900 dark:text-white font-bold">₹{p.total_amount}</span>
                     <span className="text-slate-500 text-[10px] ml-1.5">({pct.toFixed(1)}%)</span>
                   </div>
                 </div>
@@ -63,7 +63,7 @@ export const PaymentBreakdownCard: React.FC<PaymentBreakdownCardProps> = ({ paym
                 <div className="h-1.5 w-full bg-slate-100 dark:bg-slate-950 rounded-full overflow-hidden">
                   <div
                     style={{ width: `${pct}%` }}
-                    className="h-full bg-gradient-to-r from-purple-600 to-indigo-500 rounded-full"
+                    className="h-full bg-gradient-to-r from-purple-600 to-emerald-500 rounded-full"
                   />
                 </div>
               </div>

@@ -53,7 +53,7 @@ export const UserPreferencesForm: React.FC<UserPreferencesFormProps> = ({
       <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <Palette className="h-4 w-4 text-indigo-400" />
+            <Palette className="h-4 w-4 text-emerald-400" />
             Display & UI Preferences
           </CardTitle>
           <CardDescription className="text-xs text-slate-500 dark:text-slate-400">
@@ -68,7 +68,7 @@ export const UserPreferencesForm: React.FC<UserPreferencesFormProps> = ({
               </label>
               <select
                 {...register("theme")}
-                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-700 dark:text-slate-200 focus:outline-none focus:border-emerald-500"
               >
                 <option value="DARK">Dark Theme (Default)</option>
                 <option value="LIGHT">Light Theme</option>
@@ -82,7 +82,7 @@ export const UserPreferencesForm: React.FC<UserPreferencesFormProps> = ({
               </label>
               <select
                 {...register("time_format")}
-                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-700 dark:text-slate-200 focus:outline-none focus:border-emerald-500"
               >
                 <option value="12H">12-Hour (e.g. 02:30 PM)</option>
                 <option value="24H">24-Hour (e.g. 14:30)</option>
@@ -95,7 +95,7 @@ export const UserPreferencesForm: React.FC<UserPreferencesFormProps> = ({
               </label>
               <select
                 {...register("table_density")}
-                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-700 dark:text-slate-200 focus:outline-none focus:border-emerald-500"
               >
                 <option value="COMFORTABLE">Comfortable Spacing</option>
                 <option value="COMPACT">High-Density Compact</option>
@@ -109,7 +109,7 @@ export const UserPreferencesForm: React.FC<UserPreferencesFormProps> = ({
         <Button
           type="submit"
           disabled={isLoading || !isDirty}
-          className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs gap-1.5 shadow-lg shadow-indigo-600/20"
+          className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs gap-1.5 shadow-lg shadow-emerald-600/20"
         >
           {isLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Save className="h-3.5 w-3.5" />}
           Save User Preferences

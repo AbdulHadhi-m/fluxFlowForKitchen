@@ -53,7 +53,7 @@ export const RequisitionsPage: React.FC = () => {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
-            <ClipboardList className="w-7 h-7 text-indigo-400" />
+            <ClipboardList className="w-7 h-7 text-emerald-400" />
             Purchase Requisitions
           </h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
@@ -63,7 +63,7 @@ export const RequisitionsPage: React.FC = () => {
 
         <button
           onClick={() => setIsCreateModalOpen(true)}
-          className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl shadow-lg shadow-indigo-600/25 transition-all"
+          className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl shadow-lg shadow-emerald-600/25 transition-all"
         >
           <Plus className="w-4 h-4" />
           New Requisition
@@ -76,7 +76,7 @@ export const RequisitionsPage: React.FC = () => {
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+          className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
         >
           <option value="">All Statuses</option>
           <option value="DRAFT">Draft</option>
@@ -96,7 +96,7 @@ export const RequisitionsPage: React.FC = () => {
               <div key={req.id} className="p-5 hover:bg-slate-200/70 dark:hover:bg-slate-800/20 transition-colors space-y-3">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono font-bold text-indigo-400 text-sm">{req.requisition_number}</span>
+                    <span className="font-mono font-bold text-emerald-400 text-sm">{req.requisition_number}</span>
                     <RequisitionStatusBadge status={req.status} />
                     <RequisitionPriorityBadge priority={req.priority} />
                   </div>
@@ -128,7 +128,7 @@ export const RequisitionsPage: React.FC = () => {
                     {req.status === "APPROVED" && (
                       <button
                         onClick={() => setSelectedConvertReq(req)}
-                        className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 hover:bg-indigo-500/20 transition-colors"
+                        className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition-colors"
                       >
                         <ArrowRight className="w-3.5 h-3.5" />
                         Convert to PO
@@ -159,7 +159,7 @@ export const RequisitionsPage: React.FC = () => {
                         <tr key={line.id}>
                           <td className="py-1.5 font-medium text-slate-900 dark:text-white">{line.item_name}</td>
                           <td className="py-1.5 text-slate-500 dark:text-slate-400 font-mono">{line.sku}</td>
-                          <td className="py-1.5 text-indigo-400 font-mono font-bold">
+                          <td className="py-1.5 text-emerald-400 font-mono font-bold">
                             {line.quantity} {line.unit}
                           </td>
                           <td className="py-1.5 text-slate-500 text-[11px]">{line.notes || "-"}</td>

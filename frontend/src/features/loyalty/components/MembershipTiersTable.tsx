@@ -28,7 +28,7 @@ export const MembershipTiersTable: React.FC<{ tiers: MembershipTier[] }> = ({ ti
           <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60">
             {tiers.map((t) => (
               <tr key={t.id} className="hover:bg-slate-200/60 dark:hover:bg-slate-800/40 transition-colors">
-                <td className="px-4 py-3 font-mono font-bold text-indigo-400">
+                <td className="px-4 py-3 font-mono font-bold text-emerald-400">
                   #{t.rank}
                 </td>
                 <td className="px-4 py-3 font-bold text-slate-900 dark:text-white flex items-center gap-2">
@@ -43,7 +43,7 @@ export const MembershipTiersTable: React.FC<{ tiers: MembershipTier[] }> = ({ ti
                     <Zap className="h-3 w-3" /> {t.points_multiplier}x
                   </span>
                 </td>
-                <td className="px-4 py-3 text-right text-indigo-600 dark:text-indigo-300 font-bold">
+                <td className="px-4 py-3 text-right text-emerald-600 dark:text-emerald-300 font-bold">
                   {parseFloat(t.discount_percentage) > 0 ? (
                     <span className="inline-flex items-center gap-0.5">
                       <Percent className="h-3 w-3" /> {t.discount_percentage}%

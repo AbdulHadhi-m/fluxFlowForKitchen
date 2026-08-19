@@ -32,7 +32,7 @@ export const PromotionList: React.FC<Props> = ({ promotions, isLoading }) => {
             placeholder="Search promotions by name or description..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-4 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-indigo-500"
+            className="w-full pl-9 pr-4 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-emerald-500"
           />
         </div>
 
@@ -57,7 +57,7 @@ export const PromotionList: React.FC<Props> = ({ promotions, isLoading }) => {
 
           <Link
             to="/marketing/promotions/new"
-            className="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-md shadow-indigo-600/30 flex items-center gap-1.5 shrink-0"
+            className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md shadow-emerald-600/30 flex items-center gap-1.5 shrink-0"
           >
             <Plus className="h-3.5 w-3.5" />
             <span>Create Rule</span>
@@ -74,7 +74,7 @@ export const PromotionList: React.FC<Props> = ({ promotions, isLoading }) => {
         </div>
       ) : filtered.length === 0 ? (
         <div className="py-16 text-center rounded-2xl bg-slate-100/70 dark:bg-slate-900/40 border border-dashed border-slate-200 dark:border-slate-800 p-8">
-          <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mx-auto mb-3">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto mb-3">
             <Tag className="h-6 w-6" />
           </div>
           <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1">No Promotions Found</h4>
@@ -85,7 +85,7 @@ export const PromotionList: React.FC<Props> = ({ promotions, isLoading }) => {
           </p>
           <Link
             to="/marketing/promotions/new"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all"
           >
             <Plus className="h-3.5 w-3.5" />
             <span>Create First Promotion</span>

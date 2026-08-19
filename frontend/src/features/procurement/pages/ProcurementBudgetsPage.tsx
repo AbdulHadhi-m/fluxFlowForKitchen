@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useProcurementBudgets } from "../hooks/useProcurement";
-import { DollarSign, Plus, AlertTriangle, ShieldCheck } from "lucide-react";
+import { IndianRupee, Plus, AlertTriangle, ShieldCheck } from "lucide-react";
 import { CreateBudgetModal } from "../components/CreateBudgetModal";
 
 export const ProcurementBudgetsPage: React.FC = () => {
@@ -13,7 +13,7 @@ export const ProcurementBudgetsPage: React.FC = () => {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
-            <DollarSign className="w-7 h-7 text-emerald-400" />
+            <IndianRupee className="w-7 h-7 text-emerald-400" />
             Procurement Budgets & Limits
           </h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
@@ -66,7 +66,7 @@ export const ProcurementBudgetsPage: React.FC = () => {
                   <div className="flex justify-between text-xs">
                     <span className="text-slate-500 dark:text-slate-400">Committed Spend</span>
                     <span className="font-mono font-bold text-slate-900 dark:text-white">
-                      ${b.committed_amount} / <span className="text-slate-500 dark:text-slate-400">${b.allocated_amount}</span>
+                      ${b.committed_amount} / <span className="text-slate-500 dark:text-slate-400">₹{b.allocated_amount}</span>
                     </span>
                   </div>
 
@@ -81,7 +81,7 @@ export const ProcurementBudgetsPage: React.FC = () => {
 
                   <div className="flex justify-between text-[11px]">
                     <span className="text-slate-500 font-mono">
-                      Remaining: <strong className="text-emerald-400">${b.remaining_budget}</strong>
+                      Remaining: <strong className="text-emerald-400">₹{b.remaining_budget}</strong>
                     </span>
                     <span className={`font-bold font-mono ${isWarning ? "text-rose-400" : "text-slate-600 dark:text-slate-300"}`}>
                       {pct.toFixed(1)}%

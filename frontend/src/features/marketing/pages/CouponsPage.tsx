@@ -24,7 +24,7 @@ export const CouponsPage: React.FC = () => {
         </Link>
         <div>
           <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <Gift className="h-5 w-5 text-violet-400" />
+            <Gift className="h-5 w-5 text-teal-400" />
             <span>Vouchers & Coupon Codes</span>
           </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400">Generate, distribute, and track single and batch promotional codes</p>

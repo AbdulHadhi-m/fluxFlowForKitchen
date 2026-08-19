@@ -15,7 +15,7 @@ import {
   FileText,
   Clock,
   Ban,
-  DollarSign,
+  IndianRupee,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -130,7 +130,7 @@ export const BillingDashboardPage: React.FC = () => {
                       </div>
                       <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                         {ord.items.length} {ord.items.length === 1 ? "Item" : "Items"} &bull; Total:{" "}
-                        <b className="text-emerald-400">${ord.total}</b>
+                        <b className="text-emerald-400">₹{ord.total}</b>
                       </div>
                     </div>
 
@@ -151,7 +151,7 @@ export const BillingDashboardPage: React.FC = () => {
           <div className="lg:col-span-7 space-y-3">
             <div className="flex items-center justify-between">
               <h2 className="text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                <DollarSign className="h-3.5 w-3.5 text-emerald-400" /> Pending Bills & Settlement ({unpaidBills.length})
+                <IndianRupee className="h-3.5 w-3.5 text-emerald-400" /> Pending Bills & Settlement ({unpaidBills.length})
               </h2>
             </div>
 
@@ -182,16 +182,16 @@ export const BillingDashboardPage: React.FC = () => {
 
                       <div className="text-right font-mono">
                         <div className="text-xs text-slate-500 dark:text-slate-400">Balance Due</div>
-                        <div className="text-lg font-black text-amber-400">${bill.balance_due}</div>
+                        <div className="text-lg font-black text-amber-400">₹{bill.balance_due}</div>
                       </div>
                     </div>
 
                     {/* Breakdown */}
                     <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400 font-mono bg-white dark:bg-slate-950 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800/80">
                       <div>Subtotal: ${bill.subtotal}</div>
-                      <div>Tax: +${bill.tax_amount}</div>
-                      <div>Total: <b className="text-slate-900 dark:text-white">${bill.grand_total}</b></div>
-                      <div>Paid: <b className="text-emerald-400">${bill.total_paid}</b></div>
+                      <div>Tax: +₹{bill.tax_amount}</div>
+                      <div>Total: <b className="text-slate-900 dark:text-white">₹{bill.grand_total}</b></div>
+                      <div>Paid: <b className="text-emerald-400">₹{bill.total_paid}</b></div>
                     </div>
 
                     {/* Actions */}

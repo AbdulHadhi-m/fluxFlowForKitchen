@@ -4,7 +4,7 @@ import { WorkflowStep } from "../types/automation.types";
 import { ConditionEditor } from "./ConditionEditor";
 
 const inputCls =
-  "bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500 w-full";
+  "bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 w-full";
 const labelCls = "text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-1 block";
 
 interface Props {
@@ -57,7 +57,7 @@ export const StepConfigEditor: React.FC<Props> = ({ step, onChange, availableSte
               return (
                 <p className="text-[10px] text-slate-600">
                   Pick an action from the allowlist. Config may reference event data with{" "}
-                  <code className="text-indigo-400">{"{{payload.field}}"}</code>.
+                  <code className="text-emerald-400">{"{{payload.field}}"}</code>.
                 </p>
               );
             }

@@ -49,7 +49,7 @@ export const LoyaltyDashboardPage: React.FC = () => {
           onClick={() => setActiveTab("MEMBERS")}
           className={`h-8 px-3 text-xs rounded-lg font-medium gap-1.5 transition-all ${
             activeTab === "MEMBERS"
-              ? "bg-indigo-600 text-white font-bold shadow-sm"
+              ? "bg-emerald-600 text-white font-bold shadow-sm"
               : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
           }`}
         >
@@ -62,7 +62,7 @@ export const LoyaltyDashboardPage: React.FC = () => {
           onClick={() => setActiveTab("TIERS")}
           className={`h-8 px-3 text-xs rounded-lg font-medium gap-1.5 transition-all ${
             activeTab === "TIERS"
-              ? "bg-indigo-600 text-white font-bold shadow-sm"
+              ? "bg-emerald-600 text-white font-bold shadow-sm"
               : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
           }`}
         >
@@ -75,7 +75,7 @@ export const LoyaltyDashboardPage: React.FC = () => {
           onClick={() => setActiveTab("REWARDS")}
           className={`h-8 px-3 text-xs rounded-lg font-medium gap-1.5 transition-all ${
             activeTab === "REWARDS"
-              ? "bg-indigo-600 text-white font-bold shadow-sm"
+              ? "bg-emerald-600 text-white font-bold shadow-sm"
               : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800/60"
           }`}
         >

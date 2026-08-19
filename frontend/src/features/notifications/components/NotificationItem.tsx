@@ -32,7 +32,7 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({
       case "PAYMENT_COMPLETED":
         return <Receipt className="h-4 w-4 text-blue-400" />;
       default:
-        return <Bell className="h-4 w-4 text-indigo-400" />;
+        return <Bell className="h-4 w-4 text-emerald-400" />;
     }
   };
 
@@ -50,7 +50,7 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({
       onClick={handleClick}
       className={`p-3 rounded-xl border transition-all cursor-pointer space-y-1.5 ${
         notification.is_read
-          ? "bg-slate-100/70 dark:bg-slate-950/40 border-slate-200 dark:border-slate-800/60 hover:bg-slate-200/70 dark:hover:bg-slate-850 opacity-75"
+          ? "bg-slate-100/70 dark:bg-slate-950/40 border-slate-200 dark:border-slate-800/60 hover:bg-slate-200/70 dark:hover:bg-slate-800 opacity-75"
           : "bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-700/80 hover:border-slate-400 dark:hover:border-slate-600 shadow-md"
       }`}
     >
@@ -72,7 +72,7 @@ export const NotificationItem: React.FC<NotificationItemProps> = ({
         <div className="flex items-center gap-1.5">
           <NotificationSeverityBadge severity={notification.severity} />
           {!notification.is_read && (
-            <span className="h-2 w-2 rounded-full bg-indigo-500 animate-pulse" />
+            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
           )}
         </div>
       </div>

@@ -164,7 +164,7 @@ export const PublicStorefrontPage: React.FC = () => {
               </div>
               <div>
                 <span className="text-xs text-slate-500 dark:text-slate-400">Total items</span>
-                <p className="text-lg font-black text-slate-900 dark:text-white">${subtotal.toFixed(2)}</p>
+                <p className="text-lg font-black text-slate-900 dark:text-white">₹{subtotal.toFixed(2)}</p>
               </div>
             </div>
 

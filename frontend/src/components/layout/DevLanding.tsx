@@ -30,13 +30,13 @@ export const DevLanding: React.FC = () => {
       {/* Background decoration */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/10 blur-[120px] rounded-full" />
-        <div className="absolute bottom-10 right-10 w-[400px] h-[300px] bg-indigo-600/10 blur-[100px] rounded-full" />
+        <div className="absolute bottom-10 right-10 w-[400px] h-[300px] bg-emerald-600/10 blur-[100px] rounded-full" />
       </div>
 
       {/* Header */}
       <header className="max-w-6xl w-full mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-8 border-b border-slate-800/80">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/20">
+          <div className="h-10 w-10 rounded-xl bg-gradient-to-tr from-blue-600 to-emerald-500 flex items-center justify-center shadow-lg shadow-blue-500/20">
             <Zap className="h-5 w-5 text-white" />
           </div>
           <div>
@@ -124,7 +124,7 @@ export const DevLanding: React.FC = () => {
         <Card className="bg-slate-900/60 border-slate-800/80 backdrop-blur-sm shadow-xl">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
-              <Database className="h-4 w-4 text-indigo-400" />
+              <Database className="h-4 w-4 text-emerald-400" />
               Infrastructure Dependencies
             </CardTitle>
             <CardDescription className="text-xs text-slate-500">
@@ -134,7 +134,7 @@ export const DevLanding: React.FC = () => {
           <CardContent className="space-y-3">
             <div className="flex items-center justify-between text-xs py-2 border-b border-slate-800/50">
               <span className="text-slate-400 flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                 PostgreSQL
               </span>
               <Badge variant="outline" className="font-mono text-[11px] border-slate-700 bg-slate-800/50">

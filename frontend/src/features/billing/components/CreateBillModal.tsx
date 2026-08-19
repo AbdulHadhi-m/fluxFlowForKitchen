@@ -94,14 +94,14 @@ export const CreateBillModal: React.FC<CreateBillModalProps> = ({
               >
                 <option value="NONE">No Discount</option>
                 <option value="PERCENTAGE">Percentage (%)</option>
-                <option value="FIXED">Fixed Amount ($)</option>
+                <option value="FIXED">Fixed Amount (₹)</option>
               </select>
             </div>
 
             {discountType !== "NONE" && (
               <div className="space-y-1.5">
                 <label className="text-xs text-slate-600 dark:text-slate-300">
-                  {discountType === "PERCENTAGE" ? "Discount (%)" : "Discount ($)"}
+                  {discountType === "PERCENTAGE" ? "Discount (%)" : "Discount (₹)"}
                 </label>
                 <Input
                   type="number"

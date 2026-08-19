@@ -13,7 +13,7 @@ export const IntegrationsPage: React.FC = () => {
     <div className="space-y-6 animate-in fade-in duration-300">
       <div>
         <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-violet-500/10 border border-violet-500/30 flex items-center justify-center text-violet-400">
+          <div className="h-8 w-8 rounded-lg bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400">
             <Cable className="h-4 w-4" />
           </div>
           <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Integrations</h1>
@@ -46,7 +46,7 @@ export const IntegrationsPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <Card className="bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-4">
               <div className="flex items-center gap-2 mb-3">
-                <Globe className="h-3.5 w-3.5 text-violet-400" />
+                <Globe className="h-3.5 w-3.5 text-teal-400" />
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white">External Services</h3>
               </div>
               {integrations.external.length === 0 ? (
@@ -72,7 +72,7 @@ export const IntegrationsPage: React.FC = () => {
 
             <Card className="bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 p-4">
               <div className="flex items-center gap-2 mb-3">
-                <Wifi className="h-3.5 w-3.5 text-violet-400" />
+                <Wifi className="h-3.5 w-3.5 text-teal-400" />
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white">Active WebSocket Streams</h3>
               </div>
               {Object.keys(integrations.websockets.active_by_type).length === 0 ? (

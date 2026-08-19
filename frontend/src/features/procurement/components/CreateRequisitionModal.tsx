@@ -85,7 +85,7 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/40">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               <ClipboardList className="w-5 h-5" />
             </div>
             <div>
@@ -111,7 +111,7 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as RequisitionPriority)}
-                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               >
                 <option value="LOW">Low</option>
                 <option value="NORMAL">Normal</option>
@@ -129,7 +129,7 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
                 placeholder="e.g., Weekend banquet shortage"
-                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
           </div>
@@ -143,7 +143,7 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
               <button
                 type="button"
                 onClick={handleAddItem}
-                className="flex items-center gap-1 text-xs font-medium text-indigo-400 hover:text-indigo-300 transition-colors"
+                className="flex items-center gap-1 text-xs font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
               >
                 <Plus className="w-3.5 h-3.5" />
                 Add Item
@@ -160,7 +160,7 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
                     <select
                       value={row.inventory_item_id}
                       onChange={(e) => handleItemChange(index, "inventory_item_id", e.target.value)}
-                      className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                      className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                       required
                     >
                       <option value="">Select inventory item...</option>
@@ -180,7 +180,7 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
                       value={row.quantity}
                       onChange={(e) => handleItemChange(index, "quantity", e.target.value)}
                       placeholder="Qty"
-                      className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                      className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                       required
                     />
                   </div>
@@ -209,7 +209,7 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Any special handling or kitchen requirements..."
-              className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+              className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
             />
           </div>
 
@@ -224,7 +224,7 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
             <button
               type="submit"
               disabled={createRequisitionMutation.isPending}
-              className="px-5 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg shadow-lg shadow-indigo-600/30 transition-all disabled:opacity-50"
+              className="px-5 py-2 text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg shadow-lg shadow-emerald-600/30 transition-all disabled:opacity-50"
             >
               {createRequisitionMutation.isPending ? "Creating..." : "Submit Requisition"}
             </button>

@@ -57,7 +57,7 @@ export const CheckoutPage: React.FC = () => {
       table_id: tableId,
       coupon_code: couponCode || undefined,
     });
-  }, [restaurantSlug, items, orderType, tableId, couponCode]);
+  }, [restaurantSlug, items, orderType, tableId, couponCode, cartValidationMutation, navigate]);
 
   const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -267,19 +267,19 @@ export const CheckoutPage: React.FC = () => {
               <>
                 <div className="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
                   <span>Items Subtotal</span>
-                  <span className="font-semibold text-slate-900 dark:text-white">${validation.subtotal}</span>
+                  <span className="font-semibold text-slate-900 dark:text-white">₹{validation.subtotal}</span>
                 </div>
 
                 {parseFloat(validation.discount_amount) > 0 && (
                   <div className="flex items-center justify-between text-sm text-emerald-400 font-semibold">
                     <span>Discount ({validation.applied_promotion?.promotion_name || 'Promo'})</span>
-                    <span>-${validation.discount_amount}</span>
+                    <span>-₹{validation.discount_amount}</span>
                   </div>
                 )}
 
                 <div className="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
                   <span>Taxes ({validation.tax_rate}%)</span>
-                  <span className="font-semibold text-slate-900 dark:text-white">${validation.tax_amount}</span>
+                  <span className="font-semibold text-slate-900 dark:text-white">₹{validation.tax_amount}</span>
                 </div>
 
                 <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
@@ -289,7 +289,7 @@ export const CheckoutPage: React.FC = () => {
                       Est. Prep Time: {validation.estimated_prep_time_minutes} mins
                     </p>
                   </div>
-                  <span className="text-3xl font-black text-amber-400">${validation.total}</span>
+                  <span className="text-3xl font-black text-amber-400">₹{validation.total}</span>
                 </div>
               </>
             ) : null}

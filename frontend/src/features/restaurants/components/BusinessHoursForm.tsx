@@ -131,9 +131,9 @@ export const BusinessHoursForm: React.FC<{ initialHours?: BusinessHour[] }> = ({
                           type="checkbox"
                           checked={hour.is_overnight || false}
                           onChange={(e) => handleChange(idx, "is_overnight", e.target.checked)}
-                          className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-indigo-600 focus:ring-0"
+                          className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-emerald-600 focus:ring-0"
                         />
-                        <Moon className="h-3.5 w-3.5 text-indigo-400" />
+                        <Moon className="h-3.5 w-3.5 text-emerald-400" />
                         <span className="text-[11px]">Overnight</span>
                       </label>
                     </>

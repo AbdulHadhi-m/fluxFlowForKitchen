@@ -23,7 +23,7 @@ export const AuditDetailModal: React.FC<AuditDetailModalProps> = ({
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-2xl shadow-2xl overflow-hidden text-slate-900 dark:text-slate-100 p-6 space-y-4 max-h-[90vh] flex flex-col">
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 shrink-0">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <Shield className="h-4 w-4" />
             </div>
             <div>
@@ -54,7 +54,7 @@ export const AuditDetailModal: React.FC<AuditDetailModalProps> = ({
 
             <div>
               <span className="text-slate-500 text-[10px] block">Active Role:</span>
-              <span className="font-mono text-indigo-400 font-bold">{log.actor_role || "—"}</span>
+              <span className="font-mono text-emerald-400 font-bold">{log.actor_role || "—"}</span>
             </div>
 
             <div>

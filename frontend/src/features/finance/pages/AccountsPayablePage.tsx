@@ -24,7 +24,7 @@ export const AccountsPayablePage: React.FC = () => {
 
         <div className="p-3 rounded-xl bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 flex items-center gap-3">
           <span className="text-xs text-slate-500 dark:text-slate-400">Total Outstanding AP:</span>
-          <strong className="text-base font-mono text-rose-400 font-bold">${totalOutstanding.toFixed(2)}</strong>
+          <strong className="text-base font-mono text-rose-400 font-bold">₹{totalOutstanding.toFixed(2)}</strong>
         </div>
       </div>
 
@@ -36,8 +36,8 @@ export const AccountsPayablePage: React.FC = () => {
               <th className="p-4">Vendor / Supplier</th>
               <th className="p-4 w-28">PO #</th>
               <th className="p-4 w-28">Due Date</th>
-              <th className="p-4 w-28 font-mono text-right">Total ($)</th>
-              <th className="p-4 w-28 font-mono text-right">Paid ($)</th>
+              <th className="p-4 w-28 font-mono text-right">Total (₹)</th>
+              <th className="p-4 w-28 font-mono text-right">Paid (₹)</th>
               <th className="p-4 w-28 font-mono text-right">Balance Due</th>
               <th className="p-4 w-24 text-center">Status</th>
             </tr>
@@ -60,11 +60,11 @@ export const AccountsPayablePage: React.FC = () => {
                 <tr key={p.id} className="hover:bg-slate-100/70 dark:hover:bg-slate-900/40 transition-colors">
                   <td className="p-4 font-mono font-bold text-slate-900 dark:text-white">{p.invoice_number}</td>
                   <td className="p-4 font-semibold text-slate-700 dark:text-slate-200">{p.supplier_name}</td>
-                  <td className="p-4 font-mono text-indigo-400">{p.po_number || "—"}</td>
+                  <td className="p-4 font-mono text-emerald-400">{p.po_number || "—"}</td>
                   <td className="p-4 font-mono text-slate-600 dark:text-slate-300">{p.due_date}</td>
-                  <td className="p-4 font-mono text-right text-slate-900 dark:text-white">${parseFloat(p.total_amount).toFixed(2)}</td>
-                  <td className="p-4 font-mono text-right text-emerald-400">${parseFloat(p.paid_amount).toFixed(2)}</td>
-                  <td className="p-4 font-mono text-right font-bold text-rose-400">${parseFloat(p.balance_due).toFixed(2)}</td>
+                  <td className="p-4 font-mono text-right text-slate-900 dark:text-white">₹{parseFloat(p.total_amount).toFixed(2)}</td>
+                  <td className="p-4 font-mono text-right text-emerald-400">₹{parseFloat(p.paid_amount).toFixed(2)}</td>
+                  <td className="p-4 font-mono text-right font-bold text-rose-400">₹{parseFloat(p.balance_due).toFixed(2)}</td>
                   <td className="p-4 text-center">
                     <span className="px-2 py-0.5 rounded-full text-[10px] font-bold border bg-rose-500/10 text-rose-400 border-rose-500/20">
                       {p.status}

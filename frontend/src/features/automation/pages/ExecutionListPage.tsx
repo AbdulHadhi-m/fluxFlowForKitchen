@@ -28,7 +28,7 @@ export const ExecutionListPage: React.FC = () => {
         </Link>
         <div className="flex-1">
           <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <GitBranch className="h-5 w-5 text-indigo-400" />
+            <GitBranch className="h-5 w-5 text-emerald-400" />
             <span>Executions</span>
           </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400">Runtime traces of every workflow run — retry, pause, resume or cancel</p>
@@ -39,14 +39,14 @@ export const ExecutionListPage: React.FC = () => {
         <div className="relative flex-1 min-w-[220px] max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
           <input
-            className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-indigo-500/50"
+            className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-emerald-500/50"
             placeholder="Search by workflow name…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
         <select
-          className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500/50"
+          className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500/50"
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -101,7 +101,7 @@ export const ExecutionListPage: React.FC = () => {
                   <tr key={ex.id} className="hover:bg-slate-200/70 dark:hover:bg-slate-800/40 transition-colors">
                     <td className="px-4 py-3">
                       <Link to={`/automation/executions/${ex.id}`} className="group">
-                        <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
+                        <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
                           {ex.workflow_name}
                         </div>
                         <div className="text-[10px] text-slate-500 font-mono">
@@ -121,7 +121,7 @@ export const ExecutionListPage: React.FC = () => {
                     <td className="px-4 py-3 text-right">
                       <Link
                         to={`/automation/executions/${ex.id}`}
-                        className="inline-flex px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-indigo-500/20 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 text-[11px] font-bold transition-colors"
+                        className="inline-flex px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-emerald-500/20 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-300 text-[11px] font-bold transition-colors"
                       >
                         Trace
                       </Link>

@@ -134,7 +134,7 @@ export const WorkflowDetailPage: React.FC = () => {
               <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">Steps ({workflow.steps.length})</h3>
               <div className="space-y-2">
                 {workflow.steps.map((step, i) => (
-                  <StepNode key={`${step.code}-${i}`} step={step} index={i} />
+                  <StepNode key={`${step.code}-₹{i}`} step={step} index={i} />
                 ))}
               </div>
             </div>

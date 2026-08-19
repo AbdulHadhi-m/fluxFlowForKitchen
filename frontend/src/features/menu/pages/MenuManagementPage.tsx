@@ -17,6 +17,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Filter,
+  UtensilsCrossed,
 } from "lucide-react";
 
 export const MenuManagementPage: React.FC = () => {
@@ -59,19 +60,24 @@ export const MenuManagementPage: React.FC = () => {
                 <ArrowLeft className="h-4 w-4" />
               </Button>
             </Link>
-            <div>
-              <h1 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                Menu & Catalog Management
-                <Badge
-                  variant="outline"
-                  className="text-[10px] border-emerald-500/30 text-emerald-400 bg-emerald-500/10 py-0"
-                >
-                  Live Catalog
-                </Badge>
-              </h1>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Organize categories, configure menu pricing, and toggle instant item availability.
-              </p>
+            <div className="flex items-center gap-2.5">
+              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-emerald-500/15 to-teal-500/15 border border-emerald-500/25 flex items-center justify-center text-emerald-500 dark:text-emerald-400 shrink-0">
+                <UtensilsCrossed className="h-4 w-4" />
+              </div>
+              <div>
+                <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+                  Menu & Catalog Management
+                  <Badge
+                    variant="outline"
+                    className="text-[10px] border-emerald-500/30 text-emerald-400 bg-emerald-500/10 py-0"
+                  >
+                    Live Catalog
+                  </Badge>
+                </h1>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Organize categories, configure menu pricing, and toggle instant item availability.
+                </p>
+              </div>
             </div>
           </div>
 

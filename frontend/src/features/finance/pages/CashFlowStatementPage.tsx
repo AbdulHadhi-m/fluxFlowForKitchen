@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useCashFlow } from "../hooks/useFinance";
-import { DollarSign, Calendar } from "lucide-react";
+import { IndianRupee, Calendar } from "lucide-react";
 
 export const CashFlowStatementPage: React.FC = () => {
   const [startDate, setStartDate] = useState(
@@ -31,7 +31,7 @@ export const CashFlowStatementPage: React.FC = () => {
         <div>
           <div className="flex items-center gap-2.5">
             <div className="h-9 w-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-              <DollarSign className="h-5 w-5" />
+              <IndianRupee className="h-5 w-5" />
             </div>
             <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Statement of Cash Flows</h1>
           </div>
@@ -69,11 +69,11 @@ export const CashFlowStatementPage: React.FC = () => {
         <div className="space-y-3 text-xs pl-4 border-l-2 border-emerald-500/30">
           <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
             <span>Operating Cash Inflows (Customer Receipts & Settlements)</span>
-            <span className="font-mono text-emerald-400 font-bold">+${inflows.toFixed(2)}</span>
+            <span className="font-mono text-emerald-400 font-bold">+₹{inflows.toFixed(2)}</span>
           </div>
           <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
             <span>Operating Cash Outflows (Supplier Payments & Operating Expenses)</span>
-            <span className="font-mono text-rose-400 font-bold">-${outflows.toFixed(2)}</span>
+            <span className="font-mono text-rose-400 font-bold">-₹{outflows.toFixed(2)}</span>
           </div>
         </div>
 

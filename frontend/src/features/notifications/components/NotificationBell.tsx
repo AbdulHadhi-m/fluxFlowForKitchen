@@ -40,11 +40,11 @@ export const NotificationBell: React.FC = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Open notifications"
-        className="relative p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-850 transition-colors focus:outline-none"
+        className="relative p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors focus:outline-none"
       >
         <Bell className="h-4 w-4" />
         {unreadCount > 0 && (
-          <span className="absolute top-1 right-1 flex h-4 min-w-[16px] px-1 items-center justify-center rounded-full bg-indigo-600 text-[9px] font-black text-white shadow-sm shadow-indigo-600/50 animate-in zoom-in">
+          <span className="absolute top-1 right-1 flex h-4 min-w-[16px] px-1 items-center justify-center rounded-full bg-emerald-600 text-[9px] font-black text-white shadow-sm shadow-emerald-600/50 animate-in zoom-in">
             {unreadCount > 99 ? "99+" : unreadCount}
           </span>
         )}
@@ -57,7 +57,7 @@ export const NotificationBell: React.FC = () => {
             <div className="flex items-center gap-2">
               <h3 className="font-bold text-xs text-slate-900 dark:text-white">Notifications</h3>
               {unreadCount > 0 && (
-                <span className="text-[10px] bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-1.5 py-0.2 rounded font-bold">
+                <span className="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.2 rounded font-bold">
                   {unreadCount} new
                 </span>
               )}
@@ -103,7 +103,7 @@ export const NotificationBell: React.FC = () => {
             <Link
               to="/notifications"
               onClick={() => setIsOpen(false)}
-              className="text-xs text-indigo-400 hover:text-indigo-300 font-bold flex items-center justify-center gap-1"
+              className="text-xs text-emerald-400 hover:text-emerald-300 font-bold flex items-center justify-center gap-1"
             >
               View all in Notification Center <ExternalLink className="h-3 w-3" />
             </Link>

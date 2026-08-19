@@ -63,7 +63,7 @@ export const CashPayoutModal: React.FC<CashPayoutModalProps> = ({ sessionId, isO
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div>
             <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
-              Payout Amount ($)
+              Payout Amount (₹)
             </label>
             <input
               type="number"

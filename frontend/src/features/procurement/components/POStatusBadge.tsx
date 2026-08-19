@@ -35,9 +35,9 @@ const statusConfig: Record<
   },
   SENT: {
     label: "Sent to Vendor",
-    bg: "bg-indigo-500/10",
-    text: "text-indigo-400",
-    border: "border-indigo-500/30",
+    bg: "bg-emerald-500/10",
+    text: "text-emerald-400",
+    border: "border-emerald-500/30",
   },
   ACKNOWLEDGED: {
     label: "Acknowledged",

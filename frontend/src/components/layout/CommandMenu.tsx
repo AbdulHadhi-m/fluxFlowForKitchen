@@ -128,15 +128,15 @@ export const CommandMenu: React.FC = () => {
                 <button
                   key={cmd.id}
                   onClick={() => handleSelect(cmd.path)}
-                  className="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-indigo-600/10 hover:text-indigo-600 dark:hover:text-indigo-300 text-slate-600 dark:text-slate-300 transition-colors text-xs text-left group"
+                  className="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-emerald-600/10 hover:text-emerald-600 dark:hover:text-emerald-300 text-slate-600 dark:text-slate-300 transition-colors text-xs text-left group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="h-7 w-7 rounded-lg bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 group-hover:text-indigo-500 group-hover:border-indigo-500/30">
+                    <div className="h-7 w-7 rounded-lg bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 group-hover:text-emerald-500 group-hover:border-emerald-500/30">
                       <Icon className="h-3.5 w-3.5" />
                     </div>
                     <span className="font-bold">{cmd.label}</span>
                   </div>
-                  <span className="text-[10px] text-slate-500 font-mono group-hover:text-indigo-400">
+                  <span className="text-[10px] text-slate-500 font-mono group-hover:text-emerald-400">
                     {cmd.category}
                   </span>
                 </button>

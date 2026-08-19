@@ -145,8 +145,8 @@ export const BillingHistoryPage: React.FC = () => {
                           {bill.table_name ? `Table ${bill.table_name}` : "Takeaway"}
                         </span>
                       </td>
-                      <td className="p-3.5 font-bold text-slate-900 dark:text-white">${bill.grand_total}</td>
-                      <td className="p-3.5 text-emerald-400 font-bold">${bill.total_paid}</td>
+                      <td className="p-3.5 font-bold text-slate-900 dark:text-white">₹{bill.grand_total}</td>
+                      <td className="p-3.5 text-emerald-400 font-bold">₹{bill.total_paid}</td>
                       <td className="p-3.5">
                         <span className={`font-bold ${parseFloat(bill.balance_due) > 0 ? "text-amber-400" : "text-slate-500 dark:text-slate-400"}`}>
                           ${bill.balance_due}

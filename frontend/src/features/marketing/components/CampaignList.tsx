@@ -28,7 +28,7 @@ export const CampaignList: React.FC<Props> = ({ campaigns, isLoading, onCreateCa
 
         <button
           onClick={onCreateCampaign}
-          className="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-md shadow-indigo-600/30 flex items-center gap-1.5"
+          className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md shadow-emerald-600/30 flex items-center gap-1.5"
         >
           <Plus className="h-3.5 w-3.5" />
           <span>New Campaign</span>
@@ -43,7 +43,7 @@ export const CampaignList: React.FC<Props> = ({ campaigns, isLoading, onCreateCa
         </div>
       ) : campaigns.length === 0 ? (
         <div className="py-16 text-center rounded-2xl bg-slate-100/70 dark:bg-slate-900/40 border border-dashed border-slate-200 dark:border-slate-800 p-8">
-          <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mx-auto mb-3">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto mb-3">
             <Send className="h-6 w-6" />
           </div>
           <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1">No Campaigns Created</h4>
@@ -52,7 +52,7 @@ export const CampaignList: React.FC<Props> = ({ campaigns, isLoading, onCreateCa
           </p>
           <button
             onClick={onCreateCampaign}
-            className="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all"
+            className="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all"
           >
             Create First Campaign
           </button>
@@ -67,7 +67,7 @@ export const CampaignList: React.FC<Props> = ({ campaigns, isLoading, onCreateCa
                 className="p-4 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
               >
                 <div className="flex items-start gap-3">
-                  <div className="p-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 shrink-0">
+                  <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 shrink-0">
                     <ChannelIcon className="h-4 w-4" />
                   </div>
                   <div>
@@ -78,7 +78,7 @@ export const CampaignList: React.FC<Props> = ({ campaigns, isLoading, onCreateCa
                           c.status === "COMPLETED"
                             ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
                             : c.status === "RUNNING"
-                            ? "bg-indigo-500/10 text-indigo-400 border-indigo-500/20 animate-pulse"
+                            ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20 animate-pulse"
                             : "bg-slate-500/10 text-slate-400 border-slate-500/20"
                         }`}
                       >
@@ -89,7 +89,7 @@ export const CampaignList: React.FC<Props> = ({ campaigns, isLoading, onCreateCa
                     <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                       {c.title} • Channel: <span className="font-semibold text-slate-600 dark:text-slate-300">{c.channel}</span>
                       {c.target_segment_name && (
-                        <span> • Segment: <span className="text-indigo-600 dark:text-indigo-300 font-semibold">{c.target_segment_name}</span></span>
+                        <span> • Segment: <span className="text-emerald-600 dark:text-emerald-300 font-semibold">{c.target_segment_name}</span></span>
                       )}
                       {c.promotion_name && (
                         <span> • Promo: <span className="text-emerald-600 dark:text-emerald-300 font-semibold">{c.promotion_name}</span></span>

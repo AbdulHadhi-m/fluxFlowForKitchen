@@ -30,6 +30,6 @@ describe("MetricCard", () => {
 
   it("applies bad tone for unhealthy values", () => {
     const { container } = render(<MetricCard label="Failure Rate" value="12.5%" tone="bad" />);
-    expect(container.querySelector(".text-rose-300")).not.toBeNull();
+    expect(container.querySelector(".text-rose-600")).not.toBeNull();
   });
 });

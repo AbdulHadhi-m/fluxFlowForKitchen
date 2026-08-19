@@ -1,5 +1,5 @@
 import React from 'react';
-import { DollarSign, TrendingDown, PieChart, Layers } from 'lucide-react';
+import { IndianRupee, TrendingDown, PieChart, Layers } from 'lucide-react';
 import { useVarianceAnalysis, useInventoryValuation } from '../hooks/useInventory';
 
 export const FoodCostingPage: React.FC = () => {
@@ -11,7 +11,7 @@ export const FoodCostingPage: React.FC = () => {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2.5">
-          <DollarSign className="w-7 h-7 text-emerald-400" />
+          <IndianRupee className="w-7 h-7 text-emerald-400" />
           Food Costing & Variance Analysis
         </h1>
         <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
@@ -107,7 +107,7 @@ export const FoodCostingPage: React.FC = () => {
 
                         <td className="py-3.5 px-4 font-mono font-bold">
                           <span className={varQty > 0 ? 'text-rose-400' : 'text-emerald-400'}>
-                            {varQty > 0 ? `+${varQty.toFixed(3)}` : varQty.toFixed(3)} {row.unit}
+                            {varQty > 0 ? `+₹{varQty.toFixed(3)}` : varQty.toFixed(3)} {row.unit}
                           </span>
                         </td>
 
@@ -143,7 +143,7 @@ export const FoodCostingPage: React.FC = () => {
         {/* By Location */}
         <div className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 backdrop-blur-md space-y-4">
           <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-2">
-            <Layers className="w-5 h-5 text-indigo-400" />
+            <Layers className="w-5 h-5 text-emerald-400" />
             Inventory Asset Valuation by Storage Location
           </h3>
 

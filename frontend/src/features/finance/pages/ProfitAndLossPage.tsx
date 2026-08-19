@@ -69,7 +69,7 @@ export const ProfitAndLossPage: React.FC = () => {
             <h2 className="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider">Statement of Operations</h2>
             <p className="text-xs text-slate-500 dark:text-slate-400">Period: {startDate} to {endDate}</p>
           </div>
-          <span className="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+          <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
             Double-Entry Certified
           </span>
         </div>
@@ -80,20 +80,20 @@ export const ProfitAndLossPage: React.FC = () => {
           <div className="space-y-1.5 text-xs pl-4 border-l-2 border-emerald-500/30">
             <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
               <span>Gross Food & Beverage Sales</span>
-              <span className="font-mono text-slate-900 dark:text-white font-semibold">${parseFloat(pnl?.revenue?.gross_sales || "0.00").toFixed(2)}</span>
+              <span className="font-mono text-slate-900 dark:text-white font-semibold">₹{parseFloat(pnl?.revenue?.gross_sales || "0.00").toFixed(2)}</span>
             </div>
             <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
               <span>Delivery & Service Fee Revenue</span>
-              <span className="font-mono text-slate-900 dark:text-white font-semibold">${parseFloat(pnl?.revenue?.delivery_fees || "0.00").toFixed(2)}</span>
+              <span className="font-mono text-slate-900 dark:text-white font-semibold">₹{parseFloat(pnl?.revenue?.delivery_fees || "0.00").toFixed(2)}</span>
             </div>
             <div className="flex justify-between py-1 text-slate-500 dark:text-slate-400">
               <span>Less: Promotional Discounts & Coupons</span>
-              <span className="font-mono text-rose-400">-${parseFloat(pnl?.revenue?.discounts || "0.00").toFixed(2)}</span>
+              <span className="font-mono text-rose-400">-₹{parseFloat(pnl?.revenue?.discounts || "0.00").toFixed(2)}</span>
             </div>
           </div>
           <div className="flex justify-between p-3 rounded-xl bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-sm font-bold">
             <span className="text-slate-900 dark:text-white">Net Operating Revenue</span>
-            <span className="font-mono text-emerald-400">${netRevenue.toFixed(2)}</span>
+            <span className="font-mono text-emerald-400">₹{netRevenue.toFixed(2)}</span>
           </div>
         </div>
 
@@ -103,30 +103,30 @@ export const ProfitAndLossPage: React.FC = () => {
           <div className="space-y-1.5 text-xs pl-4 border-l-2 border-amber-500/30">
             <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
               <span>Kitchen Food Ingredients Cost</span>
-              <span className="font-mono text-slate-900 dark:text-white font-semibold">${parseFloat(pnl?.cogs?.food || "0.00").toFixed(2)}</span>
+              <span className="font-mono text-slate-900 dark:text-white font-semibold">₹{parseFloat(pnl?.cogs?.food || "0.00").toFixed(2)}</span>
             </div>
             <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
               <span>Beverage & Bar Consumption</span>
-              <span className="font-mono text-slate-900 dark:text-white font-semibold">${parseFloat(pnl?.cogs?.beverage || "0.00").toFixed(2)}</span>
+              <span className="font-mono text-slate-900 dark:text-white font-semibold">₹{parseFloat(pnl?.cogs?.beverage || "0.00").toFixed(2)}</span>
             </div>
             <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
               <span>Food Wastage & Spoilage Cost</span>
-              <span className="font-mono text-slate-900 dark:text-white font-semibold">${parseFloat(pnl?.cogs?.wastage || "0.00").toFixed(2)}</span>
+              <span className="font-mono text-slate-900 dark:text-white font-semibold">₹{parseFloat(pnl?.cogs?.wastage || "0.00").toFixed(2)}</span>
             </div>
           </div>
           <div className="flex justify-between p-3 rounded-xl bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-sm font-bold">
             <span className="text-slate-900 dark:text-white">Total Cost of Goods Sold</span>
-            <span className="font-mono text-rose-400">${totalCogs.toFixed(2)}</span>
+            <span className="font-mono text-rose-400">₹{totalCogs.toFixed(2)}</span>
           </div>
         </div>
 
         {/* GROSS PROFIT */}
-        <div className="flex justify-between p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-base font-black">
+        <div className="flex justify-between p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-base font-black">
           <div className="text-slate-900 dark:text-white">
             Gross Profit Margin
             <span className="text-xs font-medium text-slate-500 dark:text-slate-400 ml-2">({pnl?.gross_margin_pct || "0.00%"})</span>
           </div>
-          <span className="font-mono text-indigo-400">${grossProfit.toFixed(2)}</span>
+          <span className="font-mono text-emerald-400">₹{grossProfit.toFixed(2)}</span>
         </div>
 
         {/* 3. OPERATING EXPENSES */}
@@ -135,36 +135,36 @@ export const ProfitAndLossPage: React.FC = () => {
           <div className="space-y-1.5 text-xs pl-4 border-l-2 border-rose-500/30">
             <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
               <span>Staff Wages & Kitchen Payroll</span>
-              <span className="font-mono text-slate-900 dark:text-white font-semibold">${parseFloat(pnl?.operating_expenses?.payroll || "0.00").toFixed(2)}</span>
+              <span className="font-mono text-slate-900 dark:text-white font-semibold">₹{parseFloat(pnl?.operating_expenses?.payroll || "0.00").toFixed(2)}</span>
             </div>
             <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
               <span>Restaurant Rent & Occupancy</span>
-              <span className="font-mono text-slate-900 dark:text-white font-semibold">${parseFloat(pnl?.operating_expenses?.rent || "0.00").toFixed(2)}</span>
+              <span className="font-mono text-slate-900 dark:text-white font-semibold">₹{parseFloat(pnl?.operating_expenses?.rent || "0.00").toFixed(2)}</span>
             </div>
             <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
               <span>Utilities (Electricity, Gas, Water)</span>
-              <span className="font-mono text-slate-900 dark:text-white font-semibold">${parseFloat(pnl?.operating_expenses?.utilities || "0.00").toFixed(2)}</span>
+              <span className="font-mono text-slate-900 dark:text-white font-semibold">₹{parseFloat(pnl?.operating_expenses?.utilities || "0.00").toFixed(2)}</span>
             </div>
             <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
               <span>Equipment Maintenance & Repairs</span>
-              <span className="font-mono text-slate-900 dark:text-white font-semibold">${parseFloat(pnl?.operating_expenses?.maintenance || "0.00").toFixed(2)}</span>
+              <span className="font-mono text-slate-900 dark:text-white font-semibold">₹{parseFloat(pnl?.operating_expenses?.maintenance || "0.00").toFixed(2)}</span>
             </div>
             <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
               <span>Marketing, Advertising & Campaigns</span>
-              <span className="font-mono text-slate-900 dark:text-white font-semibold">${parseFloat(pnl?.operating_expenses?.marketing || "0.00").toFixed(2)}</span>
+              <span className="font-mono text-slate-900 dark:text-white font-semibold">₹{parseFloat(pnl?.operating_expenses?.marketing || "0.00").toFixed(2)}</span>
             </div>
             <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
               <span>Packaging, Disposables & Supplies</span>
-              <span className="font-mono text-slate-900 dark:text-white font-semibold">${parseFloat(pnl?.operating_expenses?.supplies || "0.00").toFixed(2)}</span>
+              <span className="font-mono text-slate-900 dark:text-white font-semibold">₹{parseFloat(pnl?.operating_expenses?.supplies || "0.00").toFixed(2)}</span>
             </div>
             <div className="flex justify-between py-1 text-slate-600 dark:text-slate-300">
               <span>Payment Processing & Merchant Fees</span>
-              <span className="font-mono text-slate-900 dark:text-white font-semibold">${parseFloat(pnl?.operating_expenses?.merchant_fees || "0.00").toFixed(2)}</span>
+              <span className="font-mono text-slate-900 dark:text-white font-semibold">₹{parseFloat(pnl?.operating_expenses?.merchant_fees || "0.00").toFixed(2)}</span>
             </div>
           </div>
           <div className="flex justify-between p-3 rounded-xl bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-sm font-bold">
             <span className="text-slate-900 dark:text-white">Total Operating Expenses</span>
-            <span className="font-mono text-rose-400">${opExpenses.toFixed(2)}</span>
+            <span className="font-mono text-rose-400">₹{opExpenses.toFixed(2)}</span>
           </div>
         </div>
 
@@ -176,7 +176,7 @@ export const ProfitAndLossPage: React.FC = () => {
             <span>Net Operating Income (EBIT)</span>
             <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">({pnl?.net_margin_pct || "0.00%"})</span>
           </div>
-          <span className="font-mono text-2xl">${netProfit.toFixed(2)}</span>
+          <span className="font-mono text-2xl">₹{netProfit.toFixed(2)}</span>
         </div>
       </div>
     </div>

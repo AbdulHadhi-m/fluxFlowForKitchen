@@ -44,7 +44,7 @@ export const CustomerListTable: React.FC<CustomerListTableProps> = ({
                 >
                   <td className="px-4 py-3 font-semibold text-slate-900 dark:text-white">
                     <div className="flex items-center gap-2">
-                      <div className="h-7 w-7 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+                      <div className="h-7 w-7 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
                         <User className="h-3.5 w-3.5" />
                       </div>
                       <div>
@@ -78,7 +78,7 @@ export const CustomerListTable: React.FC<CustomerListTableProps> = ({
                       {c.tags.map((t) => (
                         <span
                           key={t.id}
-                          className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 border border-indigo-500/20"
+                          className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-300 border border-emerald-500/20"
                         >
                           {t.name}
                         </span>
@@ -98,7 +98,7 @@ export const CustomerListTable: React.FC<CustomerListTableProps> = ({
                     {c.total_visits}
                   </td>
 
-                  <td className="px-4 py-3 text-right font-black text-indigo-600 dark:text-indigo-300">
+                  <td className="px-4 py-3 text-right font-black text-emerald-600 dark:text-emerald-300">
                     ${c.total_spend}
                   </td>
 

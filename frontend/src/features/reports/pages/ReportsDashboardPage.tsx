@@ -10,7 +10,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   BarChart3,
-  DollarSign,
+  IndianRupee,
   Receipt,
   ShoppingCart,
   TrendingUp,
@@ -45,7 +45,7 @@ export const ReportsDashboardPage: React.FC = () => {
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <BarChart3 className="h-4 w-4" />
             </div>
             <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Business Analytics & Reports</h1>
@@ -71,17 +71,17 @@ export const ReportsDashboardPage: React.FC = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <SalesKPICard
           title="Net Revenue"
-          value={sales ? `$${sales.net_sales}` : "—"}
-          subtitle={`Gross: $${sales?.gross_sales || "0.00"}`}
-          icon={DollarSign}
+          value={sales ? `₹${sales.net_sales}` : "—"}
+          subtitle={`Gross: ₹${sales?.gross_sales || "0.00"}`}
+          icon={IndianRupee}
           iconColor="text-emerald-400"
           iconBg="bg-emerald-500/10"
         />
 
         <SalesKPICard
           title="Paid & Settled"
-          value={sales ? `$${sales.total_paid}` : "—"}
-          subtitle={`Due: $${sales?.balance_due || "0.00"}`}
+          value={sales ? `₹${sales.total_paid}` : "—"}
+          subtitle={`Due: ₹${sales?.balance_due || "0.00"}`}
           icon={Receipt}
           iconColor="text-blue-400"
           iconBg="bg-blue-500/10"
@@ -98,7 +98,7 @@ export const ReportsDashboardPage: React.FC = () => {
 
         <SalesKPICard
           title="Avg Order Value"
-          value={sales ? `$${sales.average_order_value}` : "—"}
+          value={sales ? `₹${sales.average_order_value}` : "—"}
           subtitle={`${sales?.total_bills || 0} invoices issued`}
           icon={TrendingUp}
           iconColor="text-amber-400"
@@ -128,11 +128,11 @@ export const ReportsDashboardPage: React.FC = () => {
           <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800">
             <CardHeader className="pb-2 flex flex-row items-center justify-between">
               <CardTitle className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <Boxes className="h-4 w-4 text-indigo-400" />
+                <Boxes className="h-4 w-4 text-emerald-400" />
                 Inventory Stock Status
               </CardTitle>
               <Link to="/inventory">
-                <Button variant="ghost" size="sm" className="h-6 text-[10px] text-indigo-400 hover:text-slate-900 dark:hover:text-white gap-1 px-1.5">
+                <Button variant="ghost" size="sm" className="h-6 text-[10px] text-emerald-400 hover:text-slate-900 dark:hover:text-white gap-1 px-1.5">
                   View <ArrowRight className="h-2.5 w-2.5" />
                 </Button>
               </Link>

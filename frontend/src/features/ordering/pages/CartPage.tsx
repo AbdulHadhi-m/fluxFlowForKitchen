@@ -221,7 +221,7 @@ export const CartPage: React.FC = () => {
         <div className="bg-white/80 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 mb-8 space-y-3">
           <div className="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
             <span>Subtotal</span>
-            <span className="font-semibold text-slate-900 dark:text-white">${subtotal.toFixed(2)}</span>
+            <span className="font-semibold text-slate-900 dark:text-white">₹{subtotal.toFixed(2)}</span>
           </div>
           <div className="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
             <span>Taxes & Fees</span>
@@ -229,7 +229,7 @@ export const CartPage: React.FC = () => {
           </div>
           <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
             <span className="text-lg font-bold text-slate-900 dark:text-white">Estimated Subtotal</span>
-            <span className="text-2xl font-black text-amber-400">${subtotal.toFixed(2)}</span>
+            <span className="text-2xl font-black text-amber-400">₹{subtotal.toFixed(2)}</span>
           </div>
         </div>
 

@@ -256,7 +256,7 @@ export const EXECUTION_STATUS_STYLES: Record<ExecutionStatus, string> = {
   RUNNING: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
   PENDING: "bg-slate-500/10 text-slate-400 border-slate-500/20",
   WAITING: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-  APPROVAL_REQUIRED: "bg-violet-500/10 text-violet-400 border-violet-500/20",
+  APPROVAL_REQUIRED: "bg-teal-500/10 text-teal-400 border-teal-500/20",
   FAILED: "bg-rose-500/10 text-rose-400 border-rose-500/20",
   CANCELLED: "bg-zinc-800 text-zinc-500 border-zinc-700",
   PAUSED: "bg-orange-500/10 text-orange-400 border-orange-500/20",

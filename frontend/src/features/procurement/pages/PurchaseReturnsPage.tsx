@@ -116,7 +116,7 @@ export const PurchaseReturnsPage: React.FC = () => {
 
                   <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
                     <span className="flex items-center gap-1">
-                      <Building2 className="w-3.5 h-3.5 text-indigo-400" />
+                      <Building2 className="w-3.5 h-3.5 text-emerald-400" />
                       Vendor: <strong className="text-slate-900 dark:text-white ml-1">{ret.supplier_name}</strong>
                     </span>
                     <span>Requested by: <strong className="text-slate-600 dark:text-slate-300">{ret.requested_by_name}</strong></span>
@@ -140,8 +140,8 @@ export const PurchaseReturnsPage: React.FC = () => {
                             <td className="py-1.5 font-mono text-rose-400">
                               {line.quantity} {line.unit}
                             </td>
-                            <td className="py-1.5 font-mono text-slate-500 dark:text-slate-400">${line.unit_cost}</td>
-                            <td className="py-1.5 font-mono text-emerald-400">${line.line_total}</td>
+                            <td className="py-1.5 font-mono text-slate-500 dark:text-slate-400">₹{line.unit_cost}</td>
+                            <td className="py-1.5 font-mono text-emerald-400">₹{line.line_total}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -177,7 +177,7 @@ export const PurchaseReturnsPage: React.FC = () => {
                     <tr key={cr.id} className="hover:bg-slate-200/70 dark:hover:bg-slate-800/20">
                       <td className="p-4 font-mono font-bold text-emerald-400">{cr.credit_note_number}</td>
                       <td className="p-4 font-semibold text-slate-900 dark:text-white">{cr.supplier_name}</td>
-                      <td className="p-4 font-mono font-bold text-emerald-400">${cr.amount}</td>
+                      <td className="p-4 font-mono font-bold text-emerald-400">₹{cr.amount}</td>
                       <td className="p-4">
                         <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                           {cr.status}

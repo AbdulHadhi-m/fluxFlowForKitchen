@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { X, TrendingUp, ArrowRight } from 'lucide-react';
 import { inventoryApi } from '../api/inventory.api';
 
@@ -38,7 +38,7 @@ export const ImpactAnalysisModal: React.FC<ImpactAnalysisModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in">
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
         {/* Header */}
         <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-100/70 dark:bg-slate-950/40">
@@ -64,7 +64,7 @@ export const ImpactAnalysisModal: React.FC<ImpactAnalysisModalProps> = ({
           <div className="flex items-center gap-3">
             <div className="flex-1">
               <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
-                Simulated New Cost per {unit} ($)
+                Simulated New Cost per {unit} (₹)
               </label>
               <input
                 type="number"
@@ -111,14 +111,14 @@ export const ImpactAnalysisModal: React.FC<ImpactAnalysisModalProps> = ({
 
                     <div className="text-right">
                       <div className="flex items-center gap-1.5 justify-end font-mono">
-                        <span className="text-slate-500 dark:text-slate-400">${item.old_recipe_cost}</span>
+                        <span className="text-slate-500 dark:text-slate-400">₹{item.old_recipe_cost}</span>
                         <ArrowRight className="w-3 h-3 text-slate-500" />
                         <span className="text-rose-400 font-bold">
                           ${item.new_estimated_recipe_cost}
                         </span>
                       </div>
                       <span className="text-[10px] text-rose-400/80 block mt-0.5">
-                        Margin Delta: -${item.cost_delta}
+                        Margin Delta: -₹{item.cost_delta}
                       </span>
                     </div>
                   </div>

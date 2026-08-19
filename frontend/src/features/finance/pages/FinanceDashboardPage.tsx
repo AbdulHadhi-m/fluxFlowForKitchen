@@ -2,7 +2,7 @@ import React from "react";
 import { useFinanceDashboard } from "../hooks/useFinance";
 import { Link } from "react-router-dom";
 import {
-  DollarSign,
+  IndianRupee,
   TrendingUp,
   Scale,
   Landmark,
@@ -40,7 +40,7 @@ export const FinanceDashboardPage: React.FC = () => {
         <div>
           <div className="flex items-center gap-2.5">
             <div className="h-9 w-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-              <DollarSign className="h-5 w-5" />
+              <IndianRupee className="h-5 w-5" />
             </div>
             <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Finance & Accounting Hub</h1>
           </div>
@@ -59,7 +59,7 @@ export const FinanceDashboardPage: React.FC = () => {
           </Link>
           <Link
             to="/finance/journal"
-            className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl shadow-lg shadow-indigo-600/25 transition-all"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl shadow-lg shadow-emerald-600/25 transition-all"
           >
             <Scale className="w-4 h-4" />
             General Journal
@@ -77,7 +77,7 @@ export const FinanceDashboardPage: React.FC = () => {
               <TrendingUp className="w-4 h-4" />
             </span>
           </div>
-          <p className="text-2xl font-black font-mono text-slate-900 dark:text-white">${netRevenue.toFixed(2)}</p>
+          <p className="text-2xl font-black font-mono text-slate-900 dark:text-white">₹{netRevenue.toFixed(2)}</p>
           <div className="text-[11px] text-slate-500 dark:text-slate-400">Gross Sales minus discounts</div>
         </div>
 
@@ -85,11 +85,11 @@ export const FinanceDashboardPage: React.FC = () => {
         <div className="p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 backdrop-blur-md space-y-2">
           <div className="flex justify-between items-center text-slate-500 dark:text-slate-400 text-xs font-medium">
             <span>Gross Profit (Margin)</span>
-            <span className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400">
+            <span className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400">
               <Scale className="w-4 h-4" />
             </span>
           </div>
-          <p className="text-2xl font-black font-mono text-indigo-400">${grossProfit.toFixed(2)}</p>
+          <p className="text-2xl font-black font-mono text-emerald-400">₹{grossProfit.toFixed(2)}</p>
           <div className="text-[11px] text-slate-500 dark:text-slate-400">Margin: <strong className="text-slate-900 dark:text-white">{dashboard?.gross_margin_pct || "0.00%"}</strong></div>
         </div>
 
@@ -101,7 +101,7 @@ export const FinanceDashboardPage: React.FC = () => {
               <Receipt className="w-4 h-4" />
             </span>
           </div>
-          <p className="text-2xl font-black font-mono text-rose-400">${opExpenses.toFixed(2)}</p>
+          <p className="text-2xl font-black font-mono text-rose-400">₹{opExpenses.toFixed(2)}</p>
           <div className="text-[11px] text-slate-500 dark:text-slate-400">Rent, payroll, utilities & marketing</div>
         </div>
 
@@ -110,7 +110,7 @@ export const FinanceDashboardPage: React.FC = () => {
           <div className="flex justify-between items-center text-slate-500 dark:text-slate-400 text-xs font-medium">
             <span>Net Operating Margin</span>
             <span className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400">
-              <DollarSign className="w-4 h-4" />
+              <IndianRupee className="w-4 h-4" />
             </span>
           </div>
           <p className={`text-2xl font-black font-mono ${netProfit >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
@@ -134,7 +134,7 @@ export const FinanceDashboardPage: React.FC = () => {
                 <p className="text-xs font-semibold text-slate-900 dark:text-white">Physical Drawer Cash</p>
                 <p className="text-[10px] text-slate-500 dark:text-slate-400">{dashboard?.open_cash_sessions || 0} active drawer sessions</p>
               </div>
-              <span className="font-mono text-base font-bold text-emerald-400">${cashOnHand.toFixed(2)}</span>
+              <span className="font-mono text-base font-bold text-emerald-400">₹{cashOnHand.toFixed(2)}</span>
             </div>
 
             <div className="flex justify-between items-center p-3 rounded-xl bg-slate-100/80 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800">
@@ -142,7 +142,7 @@ export const FinanceDashboardPage: React.FC = () => {
                 <p className="text-xs font-semibold text-slate-900 dark:text-white">Main Operating Checking</p>
                 <p className="text-[10px] text-slate-500 dark:text-slate-400">General Ledger Account #1010</p>
               </div>
-              <span className="font-mono text-base font-bold text-indigo-400">${bankBalance.toFixed(2)}</span>
+              <span className="font-mono text-base font-bold text-emerald-400">₹{bankBalance.toFixed(2)}</span>
             </div>
           </div>
 
@@ -157,7 +157,7 @@ export const FinanceDashboardPage: React.FC = () => {
         {/* Double-Entry Integrity Status */}
         <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 backdrop-blur-md space-y-4">
           <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-indigo-400" /> Ledger Health & Integrity
+            <ShieldCheck className="w-4 h-4 text-emerald-400" /> Ledger Health & Integrity
           </h2>
 
           <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 space-y-3">
@@ -176,7 +176,7 @@ export const FinanceDashboardPage: React.FC = () => {
             <div className="grid grid-cols-2 gap-2 text-xs border-t border-slate-200 dark:border-slate-800 pt-3">
               <div>
                 <span className="text-slate-500 dark:text-slate-400">COGS (Food & Bar):</span>
-                <p className="font-mono text-slate-700 dark:text-slate-200 font-bold">${parseFloat(dashboard?.total_cogs || "0.00").toFixed(2)}</p>
+                <p className="font-mono text-slate-700 dark:text-slate-200 font-bold">₹{parseFloat(dashboard?.total_cogs || "0.00").toFixed(2)}</p>
               </div>
               <div>
                 <span className="text-slate-500 dark:text-slate-400">Pending Expenses:</span>
@@ -210,7 +210,7 @@ export const FinanceDashboardPage: React.FC = () => {
               to="/finance/balance-sheet"
               className="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all flex flex-col gap-1"
             >
-              <Scale className="w-4 h-4 text-indigo-400" />
+              <Scale className="w-4 h-4 text-emerald-400" />
               <span className="font-semibold">Balance Sheet</span>
             </Link>
 

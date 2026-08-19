@@ -118,7 +118,7 @@ export const DeliveryDetailsPage: React.FC = () => {
             {delivery.status === 'PICKED_UP' && (
               <button
                 onClick={handleStart}
-                className="px-4 py-2.5 rounded-2xl bg-indigo-500 hover:bg-indigo-400 text-white font-bold text-xs transition-colors"
+                className="px-4 py-2.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-xs transition-colors"
               >
                 Start Delivery
               </button>
@@ -270,7 +270,7 @@ export const DeliveryDetailsPage: React.FC = () => {
                 </span>
                 {item.notes && <p className="text-[11px] text-slate-500 dark:text-slate-400 italic">"{item.notes}"</p>}
               </div>
-              <span className="font-semibold text-slate-600 dark:text-slate-300">${item.total_price}</span>
+              <span className="font-semibold text-slate-600 dark:text-slate-300">₹{item.total_price}</span>
             </div>
           ))}
         </div>
@@ -278,15 +278,15 @@ export const DeliveryDetailsPage: React.FC = () => {
         <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-1 text-xs">
           <div className="flex justify-between text-slate-500 dark:text-slate-400">
             <span>Subtotal</span>
-            <span>${delivery.order_subtotal}</span>
+            <span>₹{delivery.order_subtotal}</span>
           </div>
           <div className="flex justify-between text-slate-500 dark:text-slate-400">
             <span>Delivery Fee</span>
-            <span>${delivery.delivery_fee}</span>
+            <span>₹{delivery.delivery_fee}</span>
           </div>
           <div className="flex justify-between text-base font-bold text-slate-900 dark:text-white pt-2 border-t border-slate-200 dark:border-slate-800">
             <span>Total Amount</span>
-            <span className="text-amber-400 font-extrabold">${delivery.order_total}</span>
+            <span className="text-amber-400 font-extrabold">₹{delivery.order_total}</span>
           </div>
         </div>
       </div>

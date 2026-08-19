@@ -63,7 +63,7 @@ export const JournalEntriesPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2.5">
-            <div className="h-9 w-9 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="h-9 w-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <Scale className="h-5 w-5" />
             </div>
             <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">General Journal Entries</h1>
@@ -75,7 +75,7 @@ export const JournalEntriesPage: React.FC = () => {
 
         <button
           onClick={() => setIsCreateOpen(true)}
-          className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl shadow-lg shadow-indigo-600/25 transition-all"
+          className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl shadow-lg shadow-emerald-600/25 transition-all"
         >
           <Plus className="w-4 h-4" />
           New Journal Entry
@@ -91,7 +91,7 @@ export const JournalEntriesPage: React.FC = () => {
               onClick={() => setStatusFilter(st)}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
                 statusFilter === st
-                  ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/20"
+                  ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/20"
                   : "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
@@ -107,7 +107,7 @@ export const JournalEntriesPage: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search JE number, type, notes..."
-            className="w-full pl-9 pr-4 py-2 text-xs bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
+            className="w-full pl-9 pr-4 py-2 text-xs bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-700 dark:text-slate-200 focus:outline-none focus:border-emerald-500"
           />
         </div>
       </div>
@@ -163,8 +163,8 @@ export const JournalEntriesPage: React.FC = () => {
                         </span>
                       </td>
                       <td className="p-4 text-slate-600 dark:text-slate-300 truncate max-w-xs">{j.notes || "—"}</td>
-                      <td className="p-4 font-mono text-right font-bold text-slate-900 dark:text-white">${parseFloat(j.total_debit).toFixed(2)}</td>
-                      <td className="p-4 font-mono text-right font-bold text-slate-900 dark:text-white">${parseFloat(j.total_credit).toFixed(2)}</td>
+                      <td className="p-4 font-mono text-right font-bold text-slate-900 dark:text-white">₹{parseFloat(j.total_debit).toFixed(2)}</td>
+                      <td className="p-4 font-mono text-right font-bold text-slate-900 dark:text-white">₹{parseFloat(j.total_credit).toFixed(2)}</td>
                       <td className="p-4 text-center">
                         <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${getStatusBadge(j.status)}`}>
                           {j.status}
@@ -203,8 +203,8 @@ export const JournalEntriesPage: React.FC = () => {
                               <thead className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400">
                                 <tr>
                                   <th className="p-2.5">Account</th>
-                                  <th className="p-2.5 w-28 text-right font-mono">Debit ($)</th>
-                                  <th className="p-2.5 w-28 text-right font-mono">Credit ($)</th>
+                                  <th className="p-2.5 w-28 text-right font-mono">Debit (₹)</th>
+                                  <th className="p-2.5 w-28 text-right font-mono">Credit (₹)</th>
                                   <th className="p-2.5">Narration</th>
                                   <th className="p-2.5 w-28">Cost Center</th>
                                 </tr>
@@ -213,14 +213,14 @@ export const JournalEntriesPage: React.FC = () => {
                                 {j.lines.map((l, idx) => (
                                   <tr key={idx}>
                                     <td className="p-2.5 font-medium text-slate-700 dark:text-slate-200">
-                                      <span className="font-mono text-indigo-400 font-bold mr-2">{l.account_code}</span>
+                                      <span className="font-mono text-emerald-400 font-bold mr-2">{l.account_code}</span>
                                       {l.account_name}
                                     </td>
                                     <td className="p-2.5 font-mono text-right text-emerald-400">
-                                      {parseFloat(l.debit) > 0 ? `$${parseFloat(l.debit).toFixed(2)}` : "—"}
+                                      {parseFloat(l.debit) > 0 ? `₹${parseFloat(l.debit).toFixed(2)}` : "—"}
                                     </td>
-                                    <td className="p-2.5 font-mono text-right text-indigo-400">
-                                      {parseFloat(l.credit) > 0 ? `$${parseFloat(l.credit).toFixed(2)}` : "—"}
+                                    <td className="p-2.5 font-mono text-right text-emerald-400">
+                                      {parseFloat(l.credit) > 0 ? `₹${parseFloat(l.credit).toFixed(2)}` : "—"}
                                     </td>
                                     <td className="p-2.5 text-slate-500 dark:text-slate-400">{l.description || "—"}</td>
                                     <td className="p-2.5 text-slate-500 dark:text-slate-400">{l.cost_center}</td>

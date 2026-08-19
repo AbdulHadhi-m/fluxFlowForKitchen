@@ -32,7 +32,7 @@ export const Breadcrumbs: React.FC = () => {
   if (pathSegments.length === 0 || (pathSegments.length === 1 && pathSegments[0] === "dashboard")) {
     return (
       <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
-        <Home className="h-3.5 w-3.5 text-indigo-400" />
+        <Home className="h-3.5 w-3.5 text-emerald-400" />
         <span className="text-slate-900 dark:text-white font-bold">Dashboard</span>
       </div>
     );
@@ -41,7 +41,7 @@ export const Breadcrumbs: React.FC = () => {
   return (
     <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
       <Link to="/dashboard" className="hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1">
-        <Home className="h-3.5 w-3.5 text-slate-500 hover:text-indigo-400" />
+        <Home className="h-3.5 w-3.5 text-slate-500 hover:text-emerald-400" />
       </Link>
 
       {pathSegments.map((segment, index) => {

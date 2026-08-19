@@ -92,7 +92,7 @@ describe("Procurement Modals & Workflows", () => {
     );
 
     expect(screen.getByText("Create Procurement Budget")).toBeInTheDocument();
-    expect(screen.getByText("Allocated Cap ($)")).toBeInTheDocument();
+    expect(screen.getByText("Allocated Cap (₹)")).toBeInTheDocument();
     expect(screen.getByText("Period")).toBeInTheDocument();
   });
 });

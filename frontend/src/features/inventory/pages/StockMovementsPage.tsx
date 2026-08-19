@@ -58,7 +58,7 @@ export const StockMovementsPage: React.FC = () => {
       case "ADJUSTMENT_OUT":
         return (
           <span className="inline-flex items-center gap-1 font-mono font-bold text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded text-[11px]">
-            <SlidersHorizontal className="h-3 w-3" /> {numQty > 0 ? `+${numQty}` : numQty} {unit}
+            <SlidersHorizontal className="h-3 w-3" /> {numQty > 0 ? `+₹{numQty}` : numQty} {unit}
           </span>
         );
       case "RETURN":
@@ -87,7 +87,7 @@ export const StockMovementsPage: React.FC = () => {
                 <ArrowLeft className="h-4 w-4" />
               </Button>
             </Link>
-            <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+            <div className="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <History className="h-4 w-4" />
             </div>
             <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Stock Movement Audit Ledger</h1>
@@ -113,7 +113,7 @@ export const StockMovementsPage: React.FC = () => {
         <select
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
-          className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-indigo-500"
+          className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-600 dark:text-slate-300 focus:outline-none focus:border-emerald-500"
         >
           <option value="">All Movement Types</option>
           <option value="PURCHASE">Purchase / Intake</option>
@@ -168,7 +168,7 @@ export const StockMovementsPage: React.FC = () => {
                         {m.quantity_after} {m.unit}
                       </span>
                     </td>
-                    <td className="p-3.5 font-mono text-[11px] text-indigo-400">
+                    <td className="p-3.5 font-mono text-[11px] text-emerald-400">
                       {m.reference_id || m.reference_type || "—"}
                     </td>
                     <td className="p-3.5 text-slate-600 dark:text-slate-300 max-w-xs truncate">{m.reason || "—"}</td>

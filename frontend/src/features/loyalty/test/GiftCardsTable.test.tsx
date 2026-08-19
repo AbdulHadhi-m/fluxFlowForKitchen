@@ -22,7 +22,7 @@ describe("GiftCardsTable Component", () => {
 
     expect(screen.getByText("GC-4819-2049-1184")).toBeInTheDocument();
     expect(screen.getByText("Selina Kyle")).toBeInTheDocument();
-    expect(screen.getByText("$75.50 USD")).toBeInTheDocument();
+    expect(screen.getByText("₹75.50 USD")).toBeInTheDocument();
     expect(screen.getByText("Active")).toBeInTheDocument();
   });
 });
