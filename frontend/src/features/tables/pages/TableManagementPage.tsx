@@ -56,7 +56,7 @@ export const TableManagementPage: React.FC = () => {
               </Button>
             </Link>
             <div className="flex items-center gap-2.5">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-500/15 to-emerald-500/15 border border-blue-500/25 flex items-center justify-center text-blue-500 dark:text-blue-400 shrink-0">
+              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-emerald-500/15 to-teal-500/15 border border-emerald-500/25 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0">
                 <Layers className="h-4 w-4" />
               </div>
               <div>
@@ -64,7 +64,7 @@ export const TableManagementPage: React.FC = () => {
                   Floor Plan & Dining Tables
                   <Badge
                     variant="outline"
-                    className="text-[10px] border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 py-0"
+                    className="text-[10px] border-emerald-500/30 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 py-0"
                   >
                     Floor Live
                   </Badge>
@@ -83,7 +83,7 @@ export const TableManagementPage: React.FC = () => {
                 setIsTableModalOpen(true);
               }}
               size="sm"
-              className="bg-blue-600 hover:bg-blue-500 text-white text-xs gap-1.5 shadow-lg shadow-blue-600/20"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs gap-1.5 shadow-lg shadow-emerald-600/20"
             >
               <Plus className="h-4 w-4" /> Add Dining Table
             </Button>
@@ -97,7 +97,7 @@ export const TableManagementPage: React.FC = () => {
             onClick={() => setSelectedSection("")}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors shrink-0 flex items-center gap-1.5 ${
               selectedSection === ""
-                ? "bg-blue-50 dark:bg-blue-600/20 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-500/30"
+                ? "bg-emerald-50 dark:bg-emerald-600/20 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/30 font-semibold"
                 : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900 border border-transparent"
             }`}
           >
@@ -114,7 +114,7 @@ export const TableManagementPage: React.FC = () => {
                 onClick={() => setSelectedSection(sec)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors shrink-0 ${
                   isSelected
-                    ? "bg-blue-50 dark:bg-blue-600/20 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-500/30"
+                    ? "bg-emerald-50 dark:bg-emerald-600/20 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/30 font-semibold"
                     : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900 border border-transparent"
                 }`}
               >

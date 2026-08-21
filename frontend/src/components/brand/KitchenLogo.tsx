@@ -12,42 +12,109 @@ export const KitchenLogo: React.FC<KitchenLogoProps> = ({
   className = "",
 }) => {
   const sizeMap = {
-    xs: { iconSize: "h-6 w-6", rounded: "rounded-lg", iconSvg: "h-3.5 w-3.5", textSize: "text-xs", subSize: "text-[9px]" },
-    sm: { iconSize: "h-7 w-7", rounded: "rounded-lg", iconSvg: "h-4 w-4", textSize: "text-xs", subSize: "text-[10px]" },
-    md: { iconSize: "h-8 w-8", rounded: "rounded-xl", iconSvg: "h-4.5 w-4.5", textSize: "text-sm", subSize: "text-[10px]" },
-    lg: { iconSize: "h-11 w-11", rounded: "rounded-2xl", iconSvg: "h-6 w-6", textSize: "text-lg", subSize: "text-xs" },
-    xl: { iconSize: "h-14 w-14", rounded: "2xl", iconSvg: "h-8 w-8", textSize: "text-2xl", subSize: "text-sm" },
+    xs: {
+      iconSize: "h-6 w-6",
+      rounded: "rounded-lg",
+      textSize: "text-xs",
+      subSize: "text-[9px]",
+    },
+    sm: {
+      iconSize: "h-7 w-7",
+      rounded: "rounded-xl",
+      textSize: "text-xs",
+      subSize: "text-[10px]",
+    },
+    md: {
+      iconSize: "h-8 w-8",
+      rounded: "rounded-xl",
+      textSize: "text-sm",
+      subSize: "text-[10px]",
+    },
+    lg: {
+      iconSize: "h-11 w-11",
+      rounded: "rounded-2xl",
+      textSize: "text-lg",
+      subSize: "text-xs",
+    },
+    xl: {
+      iconSize: "h-14 w-14",
+      rounded: "rounded-3xl",
+      textSize: "text-2xl",
+      subSize: "text-sm",
+    },
   };
 
   const { iconSize, rounded, textSize, subSize } = sizeMap[size];
 
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>
-      {/* Culinary Cooking Emblem */}
+      {/* Curved Culinary Emblem with Gloss Ambient Accent */}
       <div
-        className={`${iconSize} ${rounded} bg-gradient-to-tr from-emerald-600 via-emerald-500 to-teal-500 flex items-center justify-center text-white shadow-md shadow-emerald-600/25 ring-1 ring-white/20 flex-shrink-0 relative overflow-hidden group`}
+        className={`${iconSize} ${rounded} bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-700 flex items-center justify-center text-white shadow-lg shadow-emerald-600/30 ring-1 ring-white/30 flex-shrink-0 relative overflow-hidden group transition-all duration-300 hover:scale-105 hover:shadow-emerald-500/40`}
       >
-        {/* Subtle Ambient Radial Glow */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent pointer-events-none" />
+        {/* Curved Top-Edge Glass Shine Overlay */}
+        <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/25 to-transparent pointer-events-none rounded-t-[inherit]" />
 
-        {/* Custom Culinary Chef & Flame Icon */}
+        {/* Ambient Bottom Vignette */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
+
+        {/* Custom Vector Chef Hat with Smooth Curved Bounding */}
         <svg
-          viewBox="0 0 24 24"
+          viewBox="0 0 32 32"
           fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="w-[62%] h-[62%] text-white drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-[64%] h-[64%] text-white drop-shadow-md relative z-10 transition-transform duration-300 group-hover:scale-110"
         >
-          {/* Chef Hat Puffs & Contour */}
-          <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z" />
-          {/* Chef Headband Base Line */}
-          <line x1="6" y1="17" x2="18" y2="17" />
-          {/* Center Culinary Heat Ember / Steam Accent */}
-          <path d="M12 9v4" stroke="#FDE047" strokeWidth="2.2" strokeLinecap="round" />
-          <path d="M9.5 10.5v1.5" stroke="#FDE047" strokeWidth="1.8" strokeLinecap="round" opacity="0.9" />
-          <path d="M14.5 10.5v1.5" stroke="#FDE047" strokeWidth="1.8" strokeLinecap="round" opacity="0.9" />
+          {/* Chef Hat Puffs (Three-Tier Smooth Bezier Curve Puffs) */}
+          <path
+            d="M8 18.5C6.34 18.5 5 17.16 5 15.5C5 14.12 5.93 12.96 7.22 12.61C7.08 12.12 7 11.59 7 11.05C7 8.26 9.24 6 12 6C13.25 6 14.38 6.46 15.26 7.23C16.14 6.46 17.27 6 18.52 6C21.28 6 23.52 8.26 23.52 11.05C23.52 11.59 23.44 12.12 23.3 12.61C24.59 12.96 25.52 14.12 25.52 15.5C25.52 17.16 24.18 18.5 22.52 18.5H8Z"
+            fill="currentColor"
+            fillOpacity="0.15"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+
+          {/* Hat Crown Base Band */}
+          <path
+            d="M8.5 18.5H22C23.1 18.5 24 19.4 24 20.5V23.5C24 24.6 23.1 25.5 22 25.5H8.5C7.4 25.5 6.5 24.6 6.5 23.5V20.5C6.5 19.4 7.4 18.5 8.5 18.5Z"
+            fill="currentColor"
+            fillOpacity="0.2"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+
+          {/* Central Culinary Ember Sparkle Lines */}
+          <line
+            x1="12"
+            y1="20.5"
+            x2="12"
+            y2="23.5"
+            stroke="#FDE047"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+          <line
+            x1="15.25"
+            y1="20.5"
+            x2="15.25"
+            y2="23.5"
+            stroke="#FDE047"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+          <line
+            x1="18.5"
+            y1="20.5"
+            x2="18.5"
+            y2="23.5"
+            stroke="#FDE047"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
         </svg>
       </div>
 
@@ -59,9 +126,7 @@ export const KitchenLogo: React.FC<KitchenLogoProps> = ({
               Fluxiflow
             </span>
           </div>
-          <span
-            className={`${subSize} font-bold uppercase tracking-wider bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent`}
-          >
+          <span className={`${subSize} font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 leading-none mt-0.5`}>
             Kitchen Suite
           </span>
         </div>

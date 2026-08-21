@@ -76,7 +76,7 @@ export const OrderHistoryPage: React.FC = () => {
           <Link to="/orders/pos">
             <Button
               size="sm"
-              className="bg-blue-600 hover:bg-blue-500 text-white text-xs gap-1.5 shadow-lg shadow-blue-600/20"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs gap-1.5 shadow-lg shadow-emerald-600/20"
             >
               Open POS Terminal
             </Button>
@@ -106,7 +106,7 @@ export const OrderHistoryPage: React.FC = () => {
                 setStatusFilter(e.target.value);
                 setPage(1);
               }}
-              className="h-8 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-950/60 px-2 text-xs text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="h-8 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-950/60 px-2 text-xs text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-emerald-500"
             >
               <option value="">All Orders</option>
               <option value="PLACED">Placed / Active</option>
@@ -153,7 +153,7 @@ export const OrderHistoryPage: React.FC = () => {
 
                     <td className="py-3 px-4">
                       {order.table_name ? (
-                        <span className="font-semibold text-blue-600 dark:text-blue-300">
+                        <span className="font-semibold text-emerald-600 dark:text-emerald-400">
                           Table {order.table_name}
                         </span>
                       ) : (

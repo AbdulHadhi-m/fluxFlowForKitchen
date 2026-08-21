@@ -24,14 +24,14 @@ export const CategorySidebar: React.FC<CategorySidebarProps> = ({
     <div className="w-full md:w-64 space-y-3 shrink-0">
       <div className="flex items-center justify-between">
         <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-          <Layers className="h-3.5 w-3.5 text-blue-400" /> Categories
+          <Layers className="h-3.5 w-3.5 text-emerald-500" /> Categories
         </h3>
         <Can permission="menu.create">
           <Button
             size="sm"
             variant="ghost"
             onClick={onAddCategory}
-            className="h-7 px-2 text-xs text-blue-400 hover:text-blue-300 hover:bg-blue-500/10"
+            className="h-7 px-2 text-xs text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 hover:bg-emerald-500/10"
           >
             <FolderPlus className="h-3.5 w-3.5 mr-1" /> Add
           </Button>
@@ -45,8 +45,8 @@ export const CategorySidebar: React.FC<CategorySidebarProps> = ({
           onClick={() => onSelectCategory(null)}
           className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
             selectedCategoryId === null
-              ? "bg-blue-600/20 text-blue-600 dark:text-blue-300 border border-blue-500/30"
-              : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900"
+              ? "bg-emerald-50 dark:bg-emerald-600/20 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/30 font-semibold"
+              : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900 border border-transparent"
           }`}
         >
           <span className="flex items-center gap-2">
@@ -65,8 +65,8 @@ export const CategorySidebar: React.FC<CategorySidebarProps> = ({
               key={cat.id}
               className={`group flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
                 isSelected
-                  ? "bg-blue-600/20 text-blue-600 dark:text-blue-300 border border-blue-500/30"
-                  : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900"
+                  ? "bg-emerald-50 dark:bg-emerald-600/20 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/30 font-semibold"
+                  : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900 border border-transparent"
               }`}
             >
               <button

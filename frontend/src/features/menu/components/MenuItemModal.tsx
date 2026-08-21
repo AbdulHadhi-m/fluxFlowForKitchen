@@ -94,9 +94,9 @@ export const MenuItemModal: React.FC<MenuItemModalProps> = ({
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2">
             {item ? (
-              <Edit className="h-5 w-5 text-blue-400" />
+              <Edit className="h-5 w-5 text-emerald-500" />
             ) : (
-              <UtensilsCrossed className="h-5 w-5 text-blue-400" />
+              <UtensilsCrossed className="h-5 w-5 text-emerald-500" />
             )}
             <h3 className="text-base font-semibold text-slate-900 dark:text-white">
               {item ? "Edit Menu Item" : "Add Menu Item"}
@@ -124,7 +124,7 @@ export const MenuItemModal: React.FC<MenuItemModalProps> = ({
               <label className="text-slate-600 dark:text-slate-300 font-medium">Menu Category *</label>
               <select
                 {...register("category_id")}
-                className="w-full h-9 rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950/60 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full h-9 rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950/60 px-3 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-emerald-500"
               >
                 {categories.map((cat) => (
                   <option key={cat.id} value={cat.id}>
@@ -182,7 +182,7 @@ export const MenuItemModal: React.FC<MenuItemModalProps> = ({
                 <input
                   type="checkbox"
                   {...register("is_available")}
-                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-emerald-600 focus:ring-0"
+                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-emerald-600 focus:ring-emerald-500"
                 />
                 <span>Available for Orders</span>
               </label>
@@ -191,7 +191,7 @@ export const MenuItemModal: React.FC<MenuItemModalProps> = ({
                 <input
                   type="checkbox"
                   {...register("is_active")}
-                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-blue-600 focus:ring-0"
+                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-emerald-600 focus:ring-emerald-500"
                 />
                 <span>Active in Catalog</span>
               </label>
@@ -212,7 +212,7 @@ export const MenuItemModal: React.FC<MenuItemModalProps> = ({
               type="submit"
               disabled={isSaving}
               size="sm"
-              className="bg-blue-600 hover:bg-blue-500 text-white text-xs gap-1.5 shadow-md shadow-blue-600/20"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs gap-1.5 shadow-md shadow-emerald-600/20"
             >
               {isSaving ? (
                 <>

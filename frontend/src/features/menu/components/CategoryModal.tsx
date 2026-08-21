@@ -77,9 +77,9 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({ category, isOpen, 
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2">
             {category ? (
-              <Edit className="h-5 w-5 text-blue-400" />
+              <Edit className="h-5 w-5 text-emerald-500" />
             ) : (
-              <FolderPlus className="h-5 w-5 text-blue-400" />
+              <FolderPlus className="h-5 w-5 text-emerald-500" />
             )}
             <h3 className="text-base font-semibold text-slate-900 dark:text-white">
               {category ? "Edit Menu Category" : "Add Menu Category"}
@@ -136,9 +136,9 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({ category, isOpen, 
                 <input
                   type="checkbox"
                   {...register("is_active")}
-                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-blue-600 focus:ring-0"
+                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-emerald-600 focus:ring-emerald-500"
                 />
-                <span>Active in Catalog</span>
+                <span>Active Category</span>
               </label>
             </div>
           </div>
@@ -157,7 +157,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({ category, isOpen, 
               type="submit"
               disabled={isSaving}
               size="sm"
-              className="bg-blue-600 hover:bg-blue-500 text-white text-xs gap-1.5 shadow-md shadow-blue-600/20"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs gap-1.5 shadow-md shadow-emerald-600/20"
             >
               {isSaving ? (
                 <>

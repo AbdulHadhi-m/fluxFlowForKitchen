@@ -79,7 +79,7 @@ export const TableModal: React.FC<TableModalProps> = ({ table, isOpen, onClose }
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md shadow-2xl overflow-hidden text-slate-900 dark:text-slate-100">
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2">
-            {table ? <Edit className="h-5 w-5 text-blue-400" /> : <Plus className="h-5 w-5 text-blue-400" />}
+            {table ? <Edit className="h-5 w-5 text-emerald-500" /> : <Plus className="h-5 w-5 text-emerald-500" />}
             <h3 className="text-base font-semibold text-slate-900 dark:text-white">
               {table ? `Edit Table ${table.name}` : "Add Dining Table"}
             </h3>
@@ -118,7 +118,7 @@ export const TableModal: React.FC<TableModalProps> = ({ table, isOpen, onClose }
                 type="number"
                 min={1}
                 {...register("capacity", { valueAsNumber: true })}
-className="bg-slate-100/80 dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs font-mono"
+                className="bg-slate-100/80 dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 text-xs font-mono"
               />
               {errors.capacity && <p className="text-rose-400 text-[11px]">{errors.capacity.message}</p>}
             </div>
@@ -148,7 +148,7 @@ className="bg-slate-100/80 dark:bg-slate-950/60 border-slate-200 dark:border-sla
                 <input
                   type="checkbox"
                   {...register("is_active")}
-                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-blue-600 focus:ring-0"
+                  className="rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-emerald-600 focus:ring-emerald-500"
                 />
                 <span>Active on Floor</span>
               </label>
@@ -169,7 +169,7 @@ className="bg-slate-100/80 dark:bg-slate-950/60 border-slate-200 dark:border-sla
               type="submit"
               disabled={isSaving}
               size="sm"
-              className="bg-blue-600 hover:bg-blue-500 text-white text-xs gap-1.5 shadow-md shadow-blue-600/20"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs gap-1.5 shadow-md shadow-emerald-600/20"
             >
               {isSaving ? (
                 <>

@@ -46,7 +46,7 @@ export const MenuManagementPage: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-6 md:p-12 selection:bg-blue-500/30 transition-colors duration-200">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-6 md:p-12 selection:bg-emerald-500/30 transition-colors duration-200">
       <div className="max-w-6xl mx-auto space-y-6">
         {/* Top Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
@@ -90,7 +90,7 @@ export const MenuManagementPage: React.FC = () => {
                 }}
                 size="sm"
                 disabled={categories.length === 0}
-                className="bg-blue-600 hover:bg-blue-500 text-white text-xs gap-1.5 shadow-lg shadow-blue-600/20"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs gap-1.5 shadow-lg shadow-emerald-600/20"
               >
                 <Plus className="h-4 w-4" /> Add Menu Item
               </Button>

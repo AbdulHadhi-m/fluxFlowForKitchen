@@ -25,10 +25,10 @@ const STATUS_CONFIG: Record<
   },
   OCCUPIED: {
     label: "Occupied",
-    bg: "bg-blue-500/10",
-    text: "text-blue-600 dark:text-blue-300",
-    border: "border-blue-500/30",
-    bar: "from-blue-500 to-emerald-400",
+    bg: "bg-teal-500/10",
+    text: "text-teal-700 dark:text-teal-300",
+    border: "border-teal-500/30",
+    bar: "from-teal-500 to-emerald-400",
     icon: Clock,
   },
   RESERVED: {

@@ -27,7 +27,7 @@ export const AutomationDashboardPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <div className="p-2 rounded-xl bg-gradient-to-tr from-cyan-600 to-emerald-600 text-white shadow-lg shadow-cyan-600/30">
+            <div className="p-2 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white shadow-lg shadow-emerald-600/30">
               <Zap className="h-5 w-5" />
             </div>
             <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Automation & Workflows</h1>
@@ -40,14 +40,14 @@ export const AutomationDashboardPage: React.FC = () => {
         <div className="flex items-center gap-2">
           <Link
             to="/automation/templates"
-            className="px-3.5 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-white text-xs font-bold transition-all flex items-center gap-1.5"
+            className="px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white text-xs font-bold transition-all flex items-center gap-1.5 border border-slate-200 dark:border-slate-700"
           >
             <LayoutTemplate className="h-4 w-4" />
             <span>Templates</span>
           </Link>
           <Link
             to="/automation/workflows/new"
-            className="px-3.5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold transition-all shadow-md shadow-cyan-600/30 flex items-center gap-1.5"
+            className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md shadow-emerald-600/30 flex items-center gap-1.5"
           >
             <Plus className="h-4 w-4" />
             <span>New Workflow</span>
@@ -60,92 +60,92 @@ export const AutomationDashboardPage: React.FC = () => {
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
         <Link
           to="/automation/workflows"
-          className="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-cyan-500/50 transition-all flex items-center justify-between group"
+          className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 hover:shadow-sm transition-all flex items-center justify-between group"
         >
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:scale-110 transition-transform">
+            <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform">
               <Workflow className="h-4 w-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">Workflows</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Workflows</div>
               <div className="text-[10px] text-slate-500">Design & publish</div>
             </div>
           </div>
-          <ArrowRight className="h-4 w-4 text-slate-600 group-hover:text-cyan-400 transition-colors" />
+          <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-emerald-500 transition-colors" />
         </Link>
 
         <Link
           to="/automation/executions"
-          className="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-emerald-500/50 transition-all flex items-center justify-between group"
+          className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 hover:shadow-sm transition-all flex items-center justify-between group"
         >
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:scale-110 transition-transform">
+            <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform">
               <GitBranch className="h-4 w-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">Executions</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Executions</div>
               <div className="text-[10px] text-slate-500">Run history & traces</div>
             </div>
           </div>
-          <ArrowRight className="h-4 w-4 text-slate-600 group-hover:text-emerald-400 transition-colors" />
+          <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-emerald-500 transition-colors" />
         </Link>
 
         <Link
           to="/automation/approvals"
-          className="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-teal-500/50 transition-all flex items-center justify-between group"
+          className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 hover:shadow-sm transition-all flex items-center justify-between group"
         >
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-400 group-hover:scale-110 transition-transform">
+            <div className="p-2 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-600 dark:text-teal-400 group-hover:scale-110 transition-transform">
               <CheckCircle2 className="h-4 w-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-300 transition-colors">Approvals</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">Approvals</div>
               <div className="text-[10px] text-slate-500">{analytics?.pending_approvals ?? 0} pending</div>
             </div>
           </div>
-          <ArrowRight className="h-4 w-4 text-slate-600 group-hover:text-teal-400 transition-colors" />
+          <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-teal-500 transition-colors" />
         </Link>
 
         <Link
           to="/automation/tasks"
-          className="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-pink-500/50 transition-all flex items-center justify-between group"
+          className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 hover:shadow-sm transition-all flex items-center justify-between group"
         >
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-400 group-hover:scale-110 transition-transform">
+            <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform">
               <ClipboardList className="h-4 w-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-300 transition-colors">Tasks</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Tasks</div>
               <div className="text-[10px] text-slate-500">Automation follow-ups</div>
             </div>
           </div>
-          <ArrowRight className="h-4 w-4 text-slate-600 group-hover:text-pink-400 transition-colors" />
+          <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-emerald-500 transition-colors" />
         </Link>
 
         <Link
           to="/automation/analytics"
-          className="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-emerald-500/50 transition-all flex items-center justify-between group"
+          className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 hover:shadow-sm transition-all flex items-center justify-between group"
         >
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:scale-110 transition-transform">
+            <div className="p-2 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-600 dark:text-teal-400 group-hover:scale-110 transition-transform">
               <Zap className="h-4 w-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">Analytics</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">Analytics</div>
               <div className="text-[10px] text-slate-500">KPIs & failures</div>
             </div>
           </div>
-          <ArrowRight className="h-4 w-4 text-slate-600 group-hover:text-emerald-400 transition-colors" />
+          <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-teal-500 transition-colors" />
         </Link>
       </div>
 
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <Users className="h-4 w-4 text-cyan-400" />
+            <Users className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
             <span>Recently Updated Workflows</span>
           </h3>
-          <Link to="/automation/workflows" className="text-xs text-cyan-400 hover:text-cyan-300 font-semibold">
+          <Link to="/automation/workflows" className="text-xs text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 font-semibold">
             View All →
           </Link>
         </div>
