@@ -4,6 +4,7 @@ from apps.reports.views import (
     SalesReportView,
     PaymentReportView,
     PopularItemsReportView,
+    ReportExportView,
 )
 
 urlpatterns = [
@@ -11,4 +12,5 @@ urlpatterns = [
     path("sales/", SalesReportView.as_view(), name="report_sales"),
     path("payments/", PaymentReportView.as_view(), name="report_payments"),
     path("menu/popular/", PopularItemsReportView.as_view(), name="report_popular_menu"),
+    path("export/", ReportExportView.as_view(), name="report_export"),
 ]

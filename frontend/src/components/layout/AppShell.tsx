@@ -7,6 +7,7 @@ import { NotificationBell } from "@/features/notifications/components/Notificati
 import { ThemeToggle } from "@/components/common/ThemeToggle";
 import { CommandMenu } from "./CommandMenu";
 import { useUIStore } from "@/stores/uiStore";
+import { KitchenLogo } from "@/components/brand/KitchenLogo";
 import {
   LayoutDashboard,
   Utensils,
@@ -171,7 +172,8 @@ const NAVIGATION_GROUPS: NavGroup[] = [
 ];
 
 export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { logout, isLoggingOut } = useAuth();
+  const { user, logout, isLoggingOut } = useAuth();
+  const [showSignOutConfirm, setShowSignOutConfirm] = useState(false);
   const { permissions } = useActiveRole();
   const hasPermission = (perm: string) => permissions.includes(perm);
   const location = useLocation();
@@ -255,13 +257,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
 
           {/* Brand Logo */}
           <Link to="/dashboard" className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-md shadow-emerald-600/30">
-              <Sparkles className="h-4 w-4" />
-            </div>
-            <div className="hidden sm:block">
-              <span className="text-sm font-black tracking-tight text-slate-900 dark:text-white block leading-none">Fluxiflow</span>
-              <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-wider">Kitchen Suite</span>
-            </div>
+            <KitchenLogo size="md" showText={true} />
           </Link>
         </div>
 
@@ -292,7 +288,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
 
           {/* User Sign Out */}
           <button
-            onClick={() => logout()}
+            onClick={() => setShowSignOutConfirm(true)}
             disabled={isLoggingOut}
             title="Sign Out"
             className="p-2 text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10 rounded-xl transition-colors focus:outline-none"
@@ -401,12 +397,9 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
             {/* Drawer */}
             <div className="relative w-72 bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 p-4 space-y-6 flex flex-col z-50 h-full overflow-y-auto animate-in slide-in-from-left duration-200">
               <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
-                <div className="flex items-center gap-2">
-                  <div className="h-7 w-7 rounded-lg bg-emerald-600 flex items-center justify-center text-white">
-                    <Sparkles className="h-3.5 w-3.5" />
-                  </div>
-                  <span className="font-bold text-sm text-slate-900 dark:text-white">Fluxiflow</span>
-                </div>
+                <Link to="/dashboard" onClick={() => setMobileNavOpen(false)}>
+                  <KitchenLogo size="sm" showText={true} />
+                </Link>
                 <button
                   onClick={() => setMobileNavOpen(false)}
                   className="text-slate-400 hover:text-slate-900 dark:hover:text-white p-1 rounded-lg"
@@ -487,6 +480,82 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
 
       {/* Global Command Palette */}
       <CommandMenu />
+
+      {/* Sign Out Confirmation Modal */}
+      {showSignOutConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div
+            className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-md shadow-2xl p-6 space-y-5 animate-in zoom-in-95 duration-200"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="sign-out-modal-title"
+          >
+            {/* Header / Icon */}
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-2xl bg-rose-500/10 text-rose-500 ring-8 ring-rose-500/5 flex-shrink-0">
+                <LogOut className="w-6 h-6" />
+              </div>
+              <div className="space-y-1">
+                <h3 id="sign-out-modal-title" className="text-lg font-bold text-slate-900 dark:text-slate-100">
+                  Sign Out of Kitchen Suite?
+                </h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                  Are you sure you want to end your current session? Any unsaved edits or active drafts will need to be re-opened.
+                </p>
+              </div>
+            </div>
+
+            {/* Current user session snippet */}
+            {user && (
+              <div className="px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-xs uppercase">
+                    {(user.first_name?.[0] || user.email?.[0] || "U")}
+                  </div>
+                  <div>
+                    <span className="font-semibold text-slate-800 dark:text-slate-200 block">
+                      {user.first_name ? `${user.first_name} ${user.last_name || ""}` : user.email}
+                    </span>
+                    <span className="text-[10px] text-slate-400 dark:text-slate-500">
+                      {user.email}
+                    </span>
+                  </div>
+                </div>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 capitalize">
+                  Active
+                </span>
+              </div>
+            )}
+
+            {/* Actions */}
+            <div className="flex items-center justify-end gap-3 pt-2">
+              <button
+                type="button"
+                onClick={() => setShowSignOutConfirm(false)}
+                disabled={isLoggingOut}
+                className="px-4 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-semibold transition-colors disabled:opacity-50"
+              >
+                Stay Signed In
+              </button>
+              <button
+                type="button"
+                onClick={async () => {
+                  try {
+                    await logout();
+                  } finally {
+                    setShowSignOutConfirm(false);
+                  }
+                }}
+                disabled={isLoggingOut}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold transition-colors shadow-lg shadow-rose-600/20 disabled:opacity-50"
+              >
+                {isLoggingOut && <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />}
+                {isLoggingOut ? "Signing Out..." : "Sign Out"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

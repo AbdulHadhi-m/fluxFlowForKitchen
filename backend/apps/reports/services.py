@@ -2,7 +2,7 @@ from datetime import datetime, time, timedelta
 from decimal import Decimal, ROUND_HALF_UP
 from typing import Dict, Any, List, Tuple
 from django.db.models import Sum, Count, Avg, F, Q, DecimalField
-from django.db.models.functions import TruncDate, Coalesce
+from django.db.models.functions import TruncDate, ExtractHour, Coalesce
 from django.utils import timezone
 from apps.restaurants.models import Restaurant
 from apps.orders.models import Order, OrderItem
@@ -94,6 +94,7 @@ class ReportService:
         completed_orders = orders_qs.filter(status=Order.OrderStatus.COMPLETED).count()
         cancelled_orders = orders_qs.filter(status=Order.OrderStatus.CANCELLED).count()
         active_orders = orders_qs.exclude(status__in=[Order.OrderStatus.COMPLETED, Order.OrderStatus.CANCELLED]).count()
+        completion_rate = ((completed_orders / total_orders) * 100) if total_orders > 0 else 0.0
 
         # 3. Payments breakdown
         payments_qs = Payment.objects.filter(
@@ -122,6 +123,50 @@ class ReportService:
         open_pos = pos_qs.filter(status__in=[PurchaseOrder.POStatus.SUBMITTED, PurchaseOrder.POStatus.APPROVED, PurchaseOrder.POStatus.PARTIALLY_RECEIVED]).count()
         pending_approval_pos = pos_qs.filter(status=PurchaseOrder.POStatus.SUBMITTED).count()
 
+        # 6. Category breakdown
+        category_qs = list(
+            OrderItem.objects.filter(
+                order__restaurant=restaurant,
+                order__created_at__range=(start_dt, end_dt),
+            )
+            .exclude(order__status=Order.OrderStatus.CANCELLED)
+            .values("menu_item__category__name")
+            .annotate(
+                total_revenue=Coalesce(Sum(F("quantity") * F("unit_price_snapshot"), output_field=DecimalField()), Decimal("0.00")),
+                quantity_sold=Coalesce(Sum("quantity"), 0),
+            )
+            .order_by("-total_revenue")
+        )
+        total_cat_rev = sum((c["total_revenue"] for c in category_qs), Decimal("0.00"))
+        categories_breakdown = [
+            {
+                "category_name": c["menu_item__category__name"] or "Special Items",
+                "total_revenue": quantize_money(c["total_revenue"]),
+                "quantity_sold": c["quantity_sold"],
+                "percentage": str(((c["total_revenue"] / total_cat_rev) * 100).quantize(Decimal("0.1"), rounding=ROUND_HALF_UP)) if total_cat_rev > 0 else "0.0",
+            }
+            for c in category_qs
+        ]
+
+        # 7. Hourly breakdown
+        hourly_qs = list(
+            bills_qs.annotate(hour=ExtractHour("created_at"))
+            .values("hour")
+            .annotate(
+                net_sales=Coalesce(Sum("grand_total"), Decimal("0.00"), output_field=DecimalField()),
+                order_count=Count("id"),
+            )
+            .order_by("hour")
+        )
+        hourly_trends = [
+            {
+                "hour": int(h["hour"]) if h["hour"] is not None else 0,
+                "net_sales": quantize_money(h["net_sales"]),
+                "order_count": h["order_count"],
+            }
+            for h in hourly_qs
+        ]
+
         return {
             "sales": {
                 "gross_sales": quantize_money(bill_agg["gross_sales"]),
@@ -138,6 +183,7 @@ class ReportService:
                 "completed_orders": completed_orders,
                 "cancelled_orders": cancelled_orders,
                 "active_orders": active_orders,
+                "completion_rate": round(completion_rate, 1),
             },
             "payments": [
                 {
@@ -157,6 +203,8 @@ class ReportService:
                 "open_purchase_orders": open_pos,
                 "pending_approval": pending_approval_pos,
             },
+            "categories": categories_breakdown,
+            "hourly_trends": hourly_trends,
         }
 
     @classmethod

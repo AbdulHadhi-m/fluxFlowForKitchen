@@ -3,7 +3,8 @@ import { RegisterForm } from "../components/RegisterForm";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
-import { Sparkles, ShieldCheck, Lock, UserPlus } from "lucide-react";
+import { KitchenLogo } from "@/components/brand/KitchenLogo";
+import { ShieldCheck, Lock, UserPlus } from "lucide-react";
 
 export const RegisterPage: React.FC = () => {
   return (
@@ -26,9 +27,7 @@ export const RegisterPage: React.FC = () => {
         <div className="text-center space-y-2.5">
           <div className="relative inline-flex mb-0.5">
             <div className="absolute inset-0 bg-gradient-to-tr from-emerald-600/40 to-teal-500/40 blur-xl rounded-full" />
-            <div className="relative h-13 w-13 rounded-2xl bg-gradient-to-tr from-emerald-600 via-emerald-500 to-teal-500 items-center justify-center shadow-xl shadow-emerald-600/30 ring-1 ring-white/25 flex p-3">
-              <Sparkles className="h-6 w-6 text-white" />
-            </div>
+            <KitchenLogo size="lg" />
           </div>
           <div>
             <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white">

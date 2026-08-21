@@ -11,9 +11,10 @@ import {
   RefreshCw,
   Server,
   Terminal,
-  Zap,
   AlertCircle
 } from "lucide-react";
+
+import { KitchenLogo } from "@/components/brand/KitchenLogo";
 
 export const DevLanding: React.FC = () => {
   const { data, isLoading, isError, refetch, isFetching } = useQuery({
@@ -36,18 +37,16 @@ export const DevLanding: React.FC = () => {
       {/* Header */}
       <header className="max-w-6xl w-full mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-8 border-b border-slate-800/80">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-xl bg-gradient-to-tr from-blue-600 to-emerald-500 flex items-center justify-center shadow-lg shadow-blue-500/20">
-            <Zap className="h-5 w-5 text-white" />
-          </div>
+          <KitchenLogo size="lg" />
           <div>
             <h1 className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
               Fluxiflow for Kitchen
-              <Badge variant="outline" className="text-xs border-blue-500/30 text-blue-400 bg-blue-500/10 font-mono">
-                v1.0.0-foundation
+              <Badge variant="outline" className="text-xs border-emerald-500/30 text-emerald-400 bg-emerald-500/10 font-mono">
+                v1.0.0-kitchen
               </Badge>
             </h1>
             <p className="text-xs text-slate-400">
-              Restaurant Operations Management System — Core Development Environment
+              Culinary &amp; Restaurant Operations Management System
             </p>
           </div>
         </div>

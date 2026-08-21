@@ -1,4 +1,4 @@
-# Fluxiflow for Kitchen — Menu & Catalog Management
+![alt text](image.png)# Fluxiflow for Kitchen — Menu & Catalog Management
 
 ---
 

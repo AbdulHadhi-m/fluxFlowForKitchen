@@ -3,7 +3,8 @@ import { LoginForm } from "../components/LoginForm";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
-import { Sparkles, ShieldCheck, Lock, UtensilsCrossed } from "lucide-react";
+import { KitchenLogo } from "@/components/brand/KitchenLogo";
+import { ShieldCheck, Lock, UtensilsCrossed } from "lucide-react";
 
 export const LoginPage: React.FC = () => {
   return (
@@ -26,16 +27,14 @@ export const LoginPage: React.FC = () => {
         <div className="text-center space-y-3">
           <div className="relative inline-flex mb-1">
             <div className="absolute inset-0 bg-gradient-to-tr from-emerald-600/40 to-teal-500/40 blur-xl rounded-full" />
-            <div className="relative h-14 w-14 rounded-2xl bg-gradient-to-tr from-emerald-600 via-emerald-500 to-teal-500 items-center justify-center shadow-xl shadow-emerald-600/30 ring-1 ring-white/25 flex">
-              <Sparkles className="h-7 w-7 text-white" />
-            </div>
+            <KitchenLogo size="xl" />
           </div>
           <div>
             <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white">
               Fluxiflow <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent">for Kitchen</span>
             </h1>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
-              Restaurant Operations Management System
+              Restaurant Operations &amp; Culinary Management Suite
             </p>
           </div>
         </div>

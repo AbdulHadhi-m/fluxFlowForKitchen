@@ -1,10 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
   <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="kg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#059669" />
+      <stop offset="50%" stop-color="#10b981" />
       <stop offset="100%" stop-color="#0d9488" />
     </linearGradient>
   </defs>
-  <rect width="32" height="32" rx="8" fill="url(#g)" />
-  <path d="M16 6l1.8 4.2L22 12l-4.2 1.8L16 18l-1.8-4.2L10 12l4.2-1.8zM24 19l1 2.2 2.2 1-2.2 1-1 2.2-1-2.2-2.2-1 2.2-1zM9 20l0.8 1.8 1.8 0.8-1.8 0.8-0.8 1.8-0.8-1.8-1.8-0.8 1.8-0.8z" fill="#ffffff" />
+  <rect width="32" height="32" rx="9" fill="url(#kg)" />
+  <!-- Chef Hat / Cooking Toque -->
+  <path d="M9 19.5A4.5 4.5 0 0 1 10.5 10a5.5 5.5 0 0 1 11 0A4.5 4.5 0 0 1 23 19.5V25H9v-5.5z" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <!-- Headband line -->
+  <line x1="9" y1="21.5" x2="23" y2="21.5" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+  <!-- Cooking Heat / Steam Golden Flairs -->
+  <path d="M16 12.5v4" stroke="#FDE047" stroke-width="2.2" stroke-linecap="round" />
+  <path d="M13 13.8v2" stroke="#FDE047" stroke-width="1.8" stroke-linecap="round" />
+  <path d="M19 13.8v2" stroke="#FDE047" stroke-width="1.8" stroke-linecap="round" />
 </svg>

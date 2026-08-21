@@ -26,6 +26,7 @@ export interface OrdersSummary {
   completed_orders: number;
   cancelled_orders: number;
   active_orders: number;
+  completion_rate?: number;
 }
 
 export interface PaymentBreakdownItem {
@@ -47,12 +48,27 @@ export interface ProcurementSummary {
   pending_approval: number;
 }
 
+export interface CategorySalesItem {
+  category_name: string;
+  total_revenue: string;
+  quantity_sold: number;
+  percentage: string;
+}
+
+export interface HourlySalesTrend {
+  hour: number;
+  net_sales: string;
+  order_count: number;
+}
+
 export interface DashboardSummaryData {
   sales: SalesSummary;
   orders: OrdersSummary;
   payments: PaymentBreakdownItem[];
   inventory: InventorySummary;
   procurement: ProcurementSummary;
+  categories?: CategorySalesItem[];
+  hourly_trends?: HourlySalesTrend[];
 }
 
 export interface DailySalesTrend {
@@ -66,6 +82,8 @@ export interface DailySalesTrend {
 export interface SalesReportData {
   summary: SalesSummary;
   daily_trends: DailySalesTrend[];
+  hourly_trends?: HourlySalesTrend[];
+  categories?: CategorySalesItem[];
 }
 
 export interface PopularMenuItem {

@@ -1,5 +1,6 @@
 import uuid
 from decimal import Decimal
+from django.db import transaction
 from django.utils import timezone
 from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import action
@@ -286,9 +287,18 @@ class RecipeViewSet(TenantInventoryBaseViewSet, viewsets.ModelViewSet):
             next_ver = latest.version + 1
 
         with transaction.atomic():
+            if menu_item:
+                Recipe.objects.filter(
+                    menu_item=menu_item,
+                    status=Recipe.RecipeStatus.PUBLISHED,
+                ).update(
+                    status=Recipe.RecipeStatus.ARCHIVED,
+                    effective_until=timezone.now(),
+                )
+
             recipe = Recipe.objects.create(
                 restaurant=restaurant,
-                name=data.get("name", ""),
+                name=data.get("name", "") or (menu_item.name if menu_item else ""),
                 version=next_ver,
                 status=Recipe.RecipeStatus.PUBLISHED,
                 recipe_type=data.get("recipe_type", Recipe.RecipeType.MENU_ITEM_RECIPE),
@@ -300,6 +310,7 @@ class RecipeViewSet(TenantInventoryBaseViewSet, viewsets.ModelViewSet):
                 cooking_loss_pct=data.get("cooking_loss_pct", Decimal("0.00")),
                 instructions=data.get("instructions", ""),
                 notes=data.get("notes", ""),
+                effective_from=timezone.now(),
                 created_by=request.user,
             )
 
