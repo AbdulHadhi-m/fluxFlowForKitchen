@@ -4,7 +4,7 @@ import { useAuth, useSessions } from "../hooks/useAuth";
 import { useActiveRole } from "@/features/authorization/hooks/useActiveRole";
 import { Can } from "@/features/authorization/components/Can";
 import { useReports } from "@/features/reports/hooks/useReports";
-import { SalesKPICard } from "@/features/reports/components/SalesKPICard";
+import { ModelDashboardAnalytics } from "@/features/reports/components/ModelDashboardAnalytics";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -27,9 +27,6 @@ import {
   Boxes,
   Truck,
   BarChart3,
-  IndianRupee,
-  TrendingUp,
-  ShoppingCart,
   AlertTriangle,
   ChevronDown,
   ChevronUp,
@@ -44,10 +41,9 @@ export const DashboardPage: React.FC = () => {
   const [rbacOpen, setRbacOpen] = useState(false);
 
   const hasReportsPermission = permissions.includes("reports.view");
-  const { dashboardData, isLoadingDashboard } = useReports("LAST_7_DAYS", "", "", hasReportsPermission);
+  const { dashboardData, salesData } = useReports("LAST_7_DAYS", "", "", hasReportsPermission);
 
   const sales = dashboardData?.sales;
-  const orders = dashboardData?.orders;
   const inventory = dashboardData?.inventory;
   const procurement = dashboardData?.procurement;
 
@@ -88,72 +84,16 @@ export const DashboardPage: React.FC = () => {
         </Can>
       </header>
 
-      {/* Executive KPIs */}
+      {/* Executive Overview Cards & Analytics Spline Chart (Model Design) */}
       {hasReportsPermission && (
-        <section className="space-y-3">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm font-black uppercase tracking-wider text-slate-400 dark:text-slate-500">
-              Last 7 Days Performance
-            </h2>
-            <Link
-              to="/reports"
-              className="flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors"
-            >
-              Full analytics <ArrowRight className="h-3 w-3" />
-            </Link>
-          </div>
-
-          {isLoadingDashboard ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <div key={i} className="h-[104px] rounded-xl bg-slate-100 dark:bg-slate-800/60 animate-pulse" />
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3">
-              <SalesKPICard
-                title="Net Revenue"
-                value={sales ? `₹${sales.net_sales}` : "—"}
-                subtitle={`Gross: ₹${sales?.gross_sales || "0.00"}`}
-                icon={IndianRupee}
-                iconColor="text-emerald-500"
-                iconBg="bg-emerald-500/10"
-              />
-              <SalesKPICard
-                title="Paid & Settled"
-                value={sales ? `₹${sales.total_paid}` : "—"}
-                subtitle={`Balance due: ₹${sales?.balance_due || "0.00"}`}
-                icon={Receipt}
-                iconColor="text-blue-500"
-                iconBg="bg-blue-500/10"
-              />
-              <SalesKPICard
-                title="Total Orders"
-                value={orders?.total_orders ?? "—"}
-                subtitle={`${orders?.completed_orders || 0} completed`}
-                icon={ShoppingCart}
-                iconColor="text-purple-500"
-                iconBg="bg-purple-500/10"
-              />
-              <SalesKPICard
-                title="In Progress"
-                value={orders?.active_orders ?? "—"}
-                subtitle={`${orders?.cancelled_orders || 0} cancelled`}
-                icon={TrendingUp}
-                iconColor="text-amber-500"
-                iconBg="bg-amber-500/10"
-              />
-              <SalesKPICard
-                title="Avg Order Value"
-                value={sales ? `₹${sales.average_order_value}` : "—"}
-                subtitle={`${sales?.total_bills || 0} invoices issued`}
-                icon={BarChart3}
-                iconColor="text-cyan-500"
-                iconBg="bg-cyan-500/10"
-              />
-            </div>
-          )}
-        </section>
+        <ModelDashboardAnalytics
+          salesSummary={sales}
+          dailyTrends={salesData?.daily_trends || []}
+          hourlyTrends={salesData?.hourly_trends || dashboardData?.hourly_trends || []}
+          categories={salesData?.categories || dashboardData?.categories || []}
+          payments={dashboardData?.payments || []}
+          procurementSummary={procurement}
+        />
       )}
 
       {/* Operational Health Alerts */}
