@@ -177,8 +177,39 @@ SYSTEM_PERMISSIONS = [
 SYSTEM_ROLE_DEFINITIONS = {
     "SAAS_OWNER": {
         "name": "SaaS Platform Owner",
-        "description": "Unrestricted platform-wide super administrator",
-        "permissions": "*",  # All permissions
+        "description": "Platform-wide super administrator (Governance, Security, Audit, System Monitoring & Platform Administration)",
+        "permissions": [
+            # Platform Governance, Settings & Audit
+            "settings.view", "settings.update", "settings.manage",
+            "audit.view",
+            # Security, Incident Management & Session Governance
+            "security.view", "security.manage", "security.incidents", "security.admin_sessions",
+            # Observability & Monitoring
+            "monitoring.view", "monitoring.manage",
+            # Reports & Analytics
+            "reports.view", "reports.export",
+            "automation.analytics.view",
+            # Notifications
+            "notifications.view", "notifications.manage",
+            # Support Inspection (Read-Only)
+            "orders.view",
+            "kitchen.view",
+            "menu.view",
+            "tables.view",
+            "billing.view",
+            "inventory.view",
+            "procurement.view",
+            "staff.view",
+            "customers.view",
+            "reservations.view",
+            "loyalty.view",
+            "gift_cards.view",
+            "marketing.view",
+            "delivery.view",
+            "finance.view",
+            "hr.view",
+            "workflows.view",
+        ],
     },
     "RESTAURANT_ADMIN": {
         "name": "Restaurant Administrator",

@@ -45,12 +45,24 @@ Permissions follow the canonical format: `<resource>.<action>`
 
 | Role Code | Title | Description | Granted Scope |
 | :--- | :--- | :--- | :--- |
-| `SAAS_OWNER` | SaaS Platform Owner | Unrestricted platform superuser | `*` (All permissions) |
+| `SAAS_OWNER` | SaaS Platform Owner | Platform governance, security, observability & support inspection | Platform administration & support view (`settings.*`, `security.*`, `monitoring.*`, `audit.*`, `*.view`) — **Restricted from restaurant operations, POS order creation, and payment processing** |
 | `RESTAURANT_ADMIN` | Restaurant Admin | Full administrative restaurant control | `*` (All permissions within tenant) |
 | `MANAGER` | Store Manager | Shift management, floor, inventory, refunds | Operations, orders, kitchen, billing, inventory, reports |
 | `CASHIER` | Cashier / POS | Checkout, bill generation & settlement | Orders, tables, billing, menu |
 | `WAITER` | Server / Waitstaff | Dining room table orders & status | Orders, tables, menu, kitchen view |
 | `KITCHEN_STAFF` | Chef / Cook | Food preparation & KDS ticket bumping | Kitchen view/bump, orders view, inventory |
+| `DELIVERY_DRIVER` | Delivery Driver | Delivery dispatch & fulfillment | Delivery view/update/complete, orders view |
+
+---
+
+### SaaS Owner Restrictions & Segregation of Duties
+To protect tenant operational integrity, financial compliance (PCI-DSS / SOC2), and prevent operational fraud:
+1. **Cannot participate in restaurant operations**: Cannot bump kitchen tickets, update live table occupancy, or manage restaurant shift rosters.
+2. **Cannot create customer orders**: Cannot create, modify, cancel, or transfer dine-in, takeaway, or online orders.
+3. **Cannot process payments**: Cannot generate bills, process customer transactions, split payments, apply discounts, or issue refunds.
+4. **Cannot modify restaurant operational data while impersonating unless explicitly allowed**: SaaS Owners and platform support staff operate in Read-Only Diagnostics mode by default during tenant impersonation. Modifying operational records requires an explicit, audited elevated write impersonation session with mandatory reason tracking.
+
+See [SAAS_OWNER_RESTRICTIONS.md](SAAS_OWNER_RESTRICTIONS.md) for full architectural specifications.
 
 ---
 

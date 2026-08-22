@@ -55,6 +55,8 @@ import {
   Cable,
   BellRing,
   Siren,
+  UserCheck,
+  Flag,
 } from "lucide-react";
 
 interface NavItem {
@@ -69,6 +71,58 @@ interface NavGroup {
   group: string;
   items: NavItem[];
 }
+
+/**
+ * Dedicated Navigation for SaaS Platform Owner (Internal Administrator).
+ * Segregated strictly to platform-level responsibilities:
+ * - View all restaurants
+ * - Monitor subscriptions
+ * - Monitor system health
+ * - View platform analytics
+ * - Impersonate restaurant users
+ * - Enable feature flags
+ * - View audit logs
+ * - Platform maintenance
+ * Restricted from restaurant operations (POS, KDS, Floor, Inventory, Billing).
+ */
+const SAAS_OWNER_NAVIGATION_GROUPS: NavGroup[] = [
+  {
+    group: "MAIN",
+    items: [
+      { id: "dashboard", label: "Platform Dashboard", path: "/dashboard", icon: LayoutDashboard },
+    ],
+  },
+  {
+    group: "PLATFORM RESPONSIBILITIES",
+    items: [
+      { id: "all-restaurants", label: "View All Restaurants", path: "/platform/restaurants", icon: Building2 },
+      { id: "subscriptions", label: "Monitor Subscriptions", path: "/platform/subscriptions", icon: CreditCard },
+      { id: "platform-analytics", label: "Platform Analytics", path: "/reports", icon: BarChart3 },
+      { id: "impersonation", label: "User Impersonation", path: "/platform/impersonation", icon: UserCheck },
+      { id: "feature-flags", label: "Enable Feature Flags", path: "/platform/feature-flags", icon: Flag },
+      { id: "audit-logs", label: "View Audit Logs", path: "/audit-logs", icon: Shield },
+    ],
+  },
+  {
+    group: "MONITORING & RELIABILITY",
+    items: [
+      { id: "system-health", label: "System Health", path: "/monitoring/health", icon: HeartPulse },
+      { id: "monitoring", label: "Monitoring Overview", path: "/monitoring", icon: Activity },
+      { id: "error-tracking", label: "Error Tracking", path: "/monitoring/errors", icon: Bug },
+      { id: "jobs", label: "Platform Maintenance", path: "/monitoring/jobs", icon: Cpu },
+      { id: "alerts", label: "Alerts & Incidents", path: "/monitoring/alerts", icon: BellRing },
+    ],
+  },
+  {
+    group: "SECURITY & GOVERNANCE",
+    items: [
+      { id: "security", label: "Security Center", path: "/security", icon: ShieldCheck },
+      { id: "access-control", label: "Access Control (RBAC)", path: "/security/access-control", icon: Shield },
+      { id: "notifications", label: "Notification Center", path: "/notifications", icon: Bell },
+      { id: "settings", label: "Platform Settings", path: "/settings", icon: Settings },
+    ],
+  },
+];
 
 const NAVIGATION_GROUPS: NavGroup[] = [
   {
@@ -174,7 +228,8 @@ const NAVIGATION_GROUPS: NavGroup[] = [
 export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, logout, isLoggingOut } = useAuth();
   const [showSignOutConfirm, setShowSignOutConfirm] = useState(false);
-  const { permissions } = useActiveRole();
+  const { activeRole, permissions } = useActiveRole();
+  const isSaasOwner = activeRole?.code === "SAAS_OWNER";
   const hasPermission = (perm: string) => permissions.includes(perm);
   const location = useLocation();
   const {
@@ -185,9 +240,11 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
     setCommandMenuOpen,
   } = useUIStore();
 
+  const navSource = isSaasOwner ? SAAS_OWNER_NAVIGATION_GROUPS : NAVIGATION_GROUPS;
+
   // Find the active nav item by matching the longest prefix path segment
   const activePath = (() => {
-    const allPaths = NAVIGATION_GROUPS.flatMap((group) => group.items.map((item) => item.path));
+    const allPaths = navSource.flatMap((group) => group.items.map((item) => item.path));
     const currentPath = location.pathname === "/" ? "/dashboard" : location.pathname;
 
     const matchingPaths = allPaths.filter((p) => {
@@ -205,7 +262,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
     return path === activePath;
   };
 
-  const filteredNavGroups = NAVIGATION_GROUPS.map((group) => ({
+  const filteredNavGroups = navSource.map((group) => ({
     ...group,
     items: group.items.filter((item) => !item.permission || hasPermission(item.permission)),
   })).filter((group) => group.items.length > 0);
@@ -222,12 +279,25 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
 
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>(() => {
     const initial: Record<string, boolean> = {};
-    NAVIGATION_GROUPS.forEach((g) => {
-      // MAIN group (Dashboard) is always expanded; others start collapsed
-      initial[g.group] = g.group === "MAIN";
+    navSource.forEach((g) => {
+      // MAIN and PLATFORM RESPONSIBILITIES start expanded
+      initial[g.group] = g.group === "MAIN" || g.group === "PLATFORM RESPONSIBILITIES";
     });
     return initial;
   });
+
+  // Re-sync expanded groups if role changes
+  React.useEffect(() => {
+    setExpandedGroups((prev) => {
+      const next = { ...prev };
+      navSource.forEach((g) => {
+        if (next[g.group] === undefined) {
+          next[g.group] = g.group === "MAIN" || g.group === "PLATFORM RESPONSIBILITIES";
+        }
+      });
+      return next;
+    });
+  }, [isSaasOwner]);
 
   // Auto-expand the group containing the active nav item
   React.useEffect(() => {

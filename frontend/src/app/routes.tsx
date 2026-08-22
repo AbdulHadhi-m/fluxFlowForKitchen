@@ -94,6 +94,10 @@ import { IntegrationsPage } from "@/features/monitoring/pages/IntegrationsPage";
 import { AlertsPage } from "@/features/monitoring/pages/AlertsPage";
 import { IncidentsPage } from "@/features/monitoring/pages/IncidentsPage";
 import { HealthPage } from "@/features/monitoring/pages/HealthPage";
+import { PlatformRestaurantsPage } from "@/features/platform/pages/PlatformRestaurantsPage";
+import { PlatformSubscriptionsPage } from "@/features/platform/pages/PlatformSubscriptionsPage";
+import { PlatformFeatureFlagsPage } from "@/features/platform/pages/PlatformFeatureFlagsPage";
+import { PlatformImpersonationPage } from "@/features/platform/pages/PlatformImpersonationPage";
 import { ProtectedRoute } from "@/features/auth/components/ProtectedRoute";
 import { PermissionRoute } from "@/features/authorization/guards/PermissionRoute";
 
@@ -113,6 +117,48 @@ export const AppRoutes: React.FC = () => {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route path="/reset-password" element={<ResetPasswordPage />} />
+
+      {/* SaaS Platform Owner Routes */}
+      <Route
+        path="/platform/restaurants"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="settings.view">
+              <PlatformRestaurantsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/platform/subscriptions"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="reports.view">
+              <PlatformSubscriptionsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/platform/feature-flags"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="settings.manage">
+              <PlatformFeatureFlagsPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/platform/impersonation"
+        element={
+          <ProtectedRoute>
+            <PermissionRoute requiredPermission="security.view">
+              <PlatformImpersonationPage />
+            </PermissionRoute>
+          </ProtectedRoute>
+        }
+      />
 
       {/* Protected Routes */}
       <Route
